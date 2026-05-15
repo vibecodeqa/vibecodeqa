@@ -4,129 +4,174 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>VibeCode QA — Code Health Scanner for the AI Coding Era</title>
-<meta name="description" content="15 checks, zero config, full report. Scan your TypeScript codebase for lint, types, complexity, security, architecture, duplication, testing, and LLM readiness. One command: npx @vibecodeqa/cli">
-<meta name="keywords" content="code quality, code health, lint, typescript, react, vite, security, testing, complexity, AI, vibe coding, LLM">
-<meta property="og:title" content="VibeCode QA — Code Health Scanner">
-<meta property="og:description" content="15 checks, zero config, full report. The most comprehensive code quality tool for TypeScript.">
+<meta name="description" content="15 checks, zero config, full report. The most comprehensive code quality scanner for TypeScript. Lint, types, complexity, security, architecture, testing pyramid, and LLM readiness — scored and graded in 5 seconds.">
+<meta property="og:title" content="VibeCode QA — Code Health Scanner for the AI Coding Era">
+<meta property="og:description" content="15 checks, zero config, full report. Scan your TypeScript codebase in 5 seconds.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vibecodeqa.online">
 <link rel="canonical" href="https://vibecodeqa.online">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--fail:#ef4444;--warn:#eab308}
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--accent2:#6366f1;--pass:#22c55e;--fail:#ef4444;--warn:#eab308;--pro:#f59e0b}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+code{font-family:"SF Mono",Menlo,monospace;font-size:0.9em}
+.container{max-width:1100px;margin:0 auto;padding:0 2rem}
+section{padding:4rem 0}
 
 /* Nav */
-nav{position:sticky;top:0;z-index:10;background:#09090bdd;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;height:56px}
-.logo{font-weight:900;font-size:1.1rem;margin-right:auto}
-.logo span{color:var(--accent)}
-nav a{color:var(--muted);font-size:0.85rem;margin-left:1.5rem;font-weight:500}
-nav a:hover{color:var(--text);text-decoration:none}
+nav{position:sticky;top:0;z-index:20;background:#09090bdd;backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav .container{display:flex;align-items:center;height:56px}
+.logo{font-weight:900;font-size:1.1rem;margin-right:auto}.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-links a{color:var(--muted);font-size:0.85rem;font-weight:500}
+.nav-links a:hover{color:var(--text);text-decoration:none}
+.nav-cta{background:var(--accent);color:#fff!important;padding:0.4rem 1rem;border-radius:8px;font-weight:600;font-size:0.82rem}
+.nav-cta:hover{opacity:0.9;text-decoration:none}
 
 /* Hero */
-.hero{max-width:800px;margin:0 auto;text-align:center;padding:6rem 2rem 4rem}
-.hero h1{font-size:3.5rem;font-weight:900;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1rem}
-.hero h1 span{color:var(--accent)}
-.hero .sub{font-size:1.2rem;color:var(--muted);max-width:560px;margin:0 auto 2rem}
-.cta{display:inline-flex;align-items:center;gap:0.5rem;background:var(--accent);color:#fff;font-weight:700;font-size:1rem;padding:0.85rem 2rem;border-radius:12px;border:none;cursor:pointer;transition:transform 0.1s}
-.cta:hover{transform:scale(1.03);text-decoration:none}
-.install{display:inline-block;margin-top:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:0.7rem 1.5rem;font-family:"SF Mono",monospace;font-size:0.95rem;color:var(--accent);letter-spacing:-0.01em}
+.hero{text-align:center;padding:6rem 2rem 3rem}
+.hero h1{font-size:3.8rem;font-weight:900;letter-spacing:-0.04em;line-height:1.08;margin-bottom:1.2rem;max-width:700px;margin-left:auto;margin-right:auto}
+.hero h1 span{background:linear-gradient(135deg,var(--accent),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero .sub{font-size:1.15rem;color:var(--muted);max-width:540px;margin:0 auto 2.5rem}
+.cta-row{display:flex;gap:1rem;justify-content:center;align-items:center;flex-wrap:wrap}
+.cta{display:inline-flex;align-items:center;gap:0.5rem;background:var(--accent);color:#fff;font-weight:700;font-size:1rem;padding:0.85rem 2rem;border-radius:12px;transition:transform 0.1s}.cta:hover{transform:scale(1.03);text-decoration:none}
+.cta-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}.cta-ghost:hover{border-color:var(--accent)}
+.install{display:inline-block;margin-top:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:0.65rem 1.4rem;font-family:"SF Mono",monospace;font-size:0.92rem;color:var(--accent)}
 
-/* Features */
-.features{max-width:1000px;margin:0 auto;padding:2rem 2rem 4rem}
-.features h2{font-size:2rem;font-weight:800;text-align:center;margin-bottom:0.5rem}
-.features .sub{text-align:center;color:var(--muted);margin-bottom:3rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem}
-.card h3{font-size:1rem;font-weight:700;margin-bottom:0.3rem}
-.card .pct{color:var(--accent);font-size:0.8rem;font-weight:600}
-.card p{font-size:0.85rem;color:var(--muted);line-height:1.5}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:3rem;padding:1.5rem 0;flex-wrap:wrap}
+.stat{text-align:center}
+.stat .n{font-size:1.8rem;font-weight:900;color:var(--accent)}
+.stat .l{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em}
 
-/* Checks */
-.checks{max-width:800px;margin:0 auto;padding:2rem}
-.checks h2{font-size:2rem;font-weight:800;text-align:center;margin-bottom:2rem}
-.check-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.5rem}
-.check{display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0.8rem;background:var(--card);border:1px solid var(--border);border-radius:8px;font-size:0.82rem}
-.check .w{color:var(--accent);font-weight:700;min-width:2rem;text-align:right}
+/* How it works */
+.how{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:2rem}
+.step{text-align:center}
+.step-num{width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:inline-flex;align-items:center;justify-content:center;margin-bottom:0.8rem}
+.step h3{font-size:0.95rem;margin-bottom:0.3rem}
+.step p{font-size:0.82rem;color:var(--muted)}
 
 /* Terminal */
-.terminal-section{max-width:700px;margin:0 auto;padding:2rem}
-.terminal{background:#0c0c0f;border:1px solid var(--border);border-radius:12px;padding:1.5rem;font-family:"SF Mono",monospace;font-size:0.78rem;line-height:1.8;overflow-x:auto}
-.t-dim{color:#555}
-.t-green{color:var(--pass)}
-.t-yellow{color:var(--warn)}
-.t-red{color:var(--fail)}
-.t-accent{color:var(--accent)}
-.t-bold{font-weight:700}
+.terminal{background:#0c0c0f;border:1px solid var(--border);border-radius:12px;padding:1.5rem;font-family:"SF Mono",monospace;font-size:0.75rem;line-height:1.8;overflow-x:auto;max-width:700px;margin:2rem auto 0}
+.t-dim{color:#555}.t-green{color:var(--pass)}.t-yellow{color:var(--warn)}.t-red{color:var(--fail)}.t-accent{color:var(--accent)}.t-bold{font-weight:700}
 
-/* CTA bottom */
-.bottom-cta{text-align:center;padding:4rem 2rem;border-top:1px solid var(--border);margin-top:2rem}
-.bottom-cta h2{font-size:1.8rem;font-weight:800;margin-bottom:0.5rem}
-.bottom-cta p{color:var(--muted);margin-bottom:1.5rem}
+/* Features grid */
+.features h2,.checks h2,.pricing h2{font-size:2rem;font-weight:800;text-align:center;margin-bottom:0.5rem}
+.section-sub{text-align:center;color:var(--muted);margin-bottom:3rem;font-size:0.95rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem}
+.fcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem}
+.fcard h3{font-size:1rem;font-weight:700;margin-bottom:0.3rem;display:flex;align-items:center;gap:0.5rem}
+.fcard .pct{color:var(--accent);font-size:0.75rem;font-weight:600}
+.fcard p{font-size:0.82rem;color:var(--muted)}
+.fcard .tag{display:inline-block;padding:0.1rem 0.4rem;border-radius:4px;font-size:0.65rem;font-weight:700;text-transform:uppercase}
+.tag-new{background:#818cf820;color:var(--accent)}
+.tag-unique{background:#22c55e20;color:var(--pass)}
+
+/* Pricing */
+.pricing{padding-bottom:5rem}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:900px;margin:0 auto}
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;position:relative}
+.price-card.featured{border-color:var(--accent);box-shadow:0 0 40px #818cf810}
+.price-card .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:0.2rem 0.8rem;border-radius:9999px;font-size:0.7rem;font-weight:700}
+.price-name{font-size:1.1rem;font-weight:800;margin-bottom:0.3rem}
+.price-amount{font-size:2.5rem;font-weight:900;margin-bottom:0.2rem}
+.price-amount span{font-size:0.9rem;font-weight:500;color:var(--muted)}
+.price-desc{font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem}
+.price-list{list-style:none;margin-bottom:1.5rem}
+.price-list li{font-size:0.82rem;padding:0.3rem 0;display:flex;gap:0.5rem;align-items:baseline}
+.price-list li::before{content:"✓";color:var(--pass);font-weight:700;flex-shrink:0}
+.price-list li.pro::before{content:"★";color:var(--pro)}
+.price-btn{display:block;text-align:center;padding:0.7rem;border-radius:8px;font-weight:700;font-size:0.9rem;border:none;cursor:pointer;width:100%}
+.price-btn-free{background:var(--card);border:1px solid var(--border);color:var(--text)}
+.price-btn-pro{background:var(--accent);color:#fff}
+
+/* Checks */
+.check-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.5rem}
+.check{display:flex;align-items:center;gap:0.5rem;padding:0.45rem 0.7rem;background:var(--card);border:1px solid var(--border);border-radius:8px;font-size:0.78rem}
+.check .w{color:var(--accent);font-weight:700;min-width:2rem;text-align:right}
 
 /* Footer */
-footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.75rem;border-top:1px solid var(--border)}
-footer a{color:var(--muted)}
+footer{border-top:1px solid var(--border);padding:3rem 2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;max-width:1100px;margin:0 auto}
+.footer-brand{font-weight:800;font-size:1rem;margin-bottom:0.5rem}
+.footer-brand span{color:var(--accent)}
+.footer-desc{font-size:0.78rem;color:var(--muted)}
+.footer-col h4{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);margin-bottom:0.5rem}
+.footer-col a{display:block;font-size:0.82rem;color:var(--muted);padding:0.15rem 0}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{text-align:center;color:var(--muted);font-size:0.7rem;margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);max-width:1100px;margin-left:auto;margin-right:auto}
 
-@media(max-width:600px){.hero h1{font-size:2.2rem}.hero{padding:3rem 1rem 2rem}}
+@media(max-width:700px){
+.hero h1{font-size:2.4rem}.hero{padding:3rem 1rem 2rem}
+.steps{grid-template-columns:1fr}.stats{gap:1.5rem}
+.footer-grid{grid-template-columns:1fr 1fr}
+.price-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
 <nav>
+<div class="container">
   <div class="logo"><span>VibeCode</span> QA</div>
-  <a href="#features">Features</a>
-  <a href="#checks">Checks</a>
-  <a href="https://github.com/freeappstore-online/vibe-check">GitHub</a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="https://github.com/freeappstore-online/vibe-check">GitHub</a>
+    <a href="https://app.vibecodeqa.online" class="nav-cta">Sign in</a>
+  </div>
+</div>
 </nav>
 
+<!-- Hero -->
 <section class="hero">
   <h1>Code health for the <span>AI coding era</span></h1>
-  <p class="sub">15 checks. Zero config. Full report. The most comprehensive code quality scanner for TypeScript — with novel LLM readiness analysis nobody else has.</p>
-  <a href="https://github.com/freeappstore-online/vibe-check" class="cta">Get started — it's free</a>
-  <div><code class="install">npx @vibecodeqa/cli</code></div>
+  <p class="sub">15 checks. Zero config. Full report in 5 seconds. The only code quality tool with LLM readiness analysis — built for how software is made in 2026.</p>
+  <div class="cta-row">
+    <a href="https://github.com/freeappstore-online/vibe-check" class="cta">Get started free</a>
+    <a href="#pricing" class="cta cta-ghost">See pricing</a>
+  </div>
+  <code class="install">npx @vibecodeqa/cli</code>
 </section>
 
-<section class="features" id="features">
-  <h2>6 categories of analysis</h2>
-  <p class="sub">Every dimension of code quality, scored 0-100 with actionable findings</p>
-  <div class="grid">
-    <div class="card">
-      <h3>Foundations</h3><span class="pct">23% of score</span>
-      <p>Project structure, lint, TypeScript types, type safety (as any counts), code standards (naming, file size, code smells).</p>
+<!-- Stats -->
+<div class="stats">
+  <div class="stat"><div class="n">15</div><div class="l">Checks</div></div>
+  <div class="stat"><div class="n">6</div><div class="l">Categories</div></div>
+  <div class="stat"><div class="n">5s</div><div class="l">Scan time</div></div>
+  <div class="stat"><div class="n">0</div><div class="l">Config needed</div></div>
+  <div class="stat"><div class="n">0</div><div class="l">Dependencies</div></div>
+</div>
+
+<!-- How it works -->
+<section class="how">
+<div class="container">
+  <h2 style="text-align:center;font-size:2rem;font-weight:800">How it works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Run one command</h3>
+      <p><code>npx @vibecodeqa/cli</code> — auto-detects your stack, runs 15 checks, opens the report.</p>
     </div>
-    <div class="card">
-      <h3>Quality</h3><span class="pct">15% of score</span>
-      <p>Cognitive complexity per function, code duplication detection, documentation coverage (README + JSDoc).</p>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Get your score</h3>
+      <p>A-F grade with transparent weighted scoring. Every issue shows file, line, rule, and how to fix it.</p>
     </div>
-    <div class="card">
-      <h3>Testing</h3><span class="pct">22% of score</span>
-      <p>Testing pyramid (unit/integration/component/E2E), coverage, file pairing, assertion density, mock ratio, snapshot smell.</p>
-    </div>
-    <div class="card">
-      <h3>Architecture</h3><span class="pct">7% of score</span>
-      <p>Import graph analysis, circular dependencies, god modules, orphan files, fan-out coupling. SVG diagram included.</p>
-    </div>
-    <div class="card">
-      <h3>Security</h3><span class="pct">18% of score</span>
-      <p>Secret detection (13 patterns), 15 CWE-mapped vulnerability patterns, dependency audit + outdated checks.</p>
-    </div>
-    <div class="card">
-      <h3>LLM Readiness</h3><span class="pct">15% of score</span>
-      <p>Confusion Index (naming ambiguity that causes AI to edit wrong code) + Context Locality (file self-containment for LLM comprehension). Research-backed, unique to VibeCode QA.</p>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Track improvement</h3>
+      <p>Each run compares to the previous one. See score deltas, new issues, and what you fixed.</p>
     </div>
   </div>
-</section>
 
-<section class="terminal-section">
   <div class="terminal">
-    <div><span class="t-bold t-accent">vcqa</span> <span class="t-dim">v0.9.0</span></div>
+    <div><span class="t-bold t-accent">vcqa</span> <span class="t-dim">v0.9.1</span></div>
     <div><span class="t-dim">/Users/dev/my-project</span></div>
-    <div>&nbsp;</div>
     <div><span class="t-dim">stack:</span> typescript + react + vite + vitest + biome + pnpm</div>
     <div>&nbsp;</div>
     <div>  structure     <span class="t-green">A    92/100</span></div>
@@ -145,13 +190,118 @@ footer a{color:var(--muted)}
     <div>  confusion     <span class="t-yellow">B    85/100</span>  <span class="t-dim">8 issues</span></div>
     <div>  context       <span class="t-green">A    90/100</span></div>
     <div>&nbsp;</div>
-    <div>  <span class="t-green t-bold">B</span> <span class="t-green">88/100</span>  <span class="t-dim">15 checks · 34 issues · 4.8s</span></div>
+    <div>  <span class="t-green t-bold">B  88/100</span>  <span class="t-dim">15 checks · 34 issues · 4.8s</span></div>
     <div>  <span class="t-green">↑ 3 pts improved</span>  <span class="t-dim">vs 2026-05-14</span>  <span class="t-green">5 fixed</span></div>
   </div>
+</div>
 </section>
 
+<!-- Features -->
+<section class="features" id="features">
+<div class="container">
+  <h2>6 categories of deep analysis</h2>
+  <p class="section-sub">Every dimension of code quality, scored 0-100 with research-backed methodology</p>
+  <div class="grid">
+    <div class="fcard">
+      <h3>Foundations <span class="pct">23%</span></h3>
+      <p>Project structure, lint (Biome/ESLint auto-detected), TypeScript types, type safety (<code>as any</code> counts), code standards (naming, file size, code smells, strict mode).</p>
+    </div>
+    <div class="fcard">
+      <h3>Quality <span class="pct">15%</span></h3>
+      <p>Cognitive complexity per function (McCabe, 1976), copy-paste duplication detection, documentation coverage (README quality + JSDoc on exports).</p>
+    </div>
+    <div class="fcard">
+      <h3>Testing <span class="pct">22%</span></h3>
+      <p>6 sub-dimensions: testing pyramid layers, pass/fail execution, statement/branch/line/function coverage, file pairing, assertion density vs mock ratio, Playwright/Cypress detection.</p>
+    </div>
+    <div class="fcard">
+      <h3>Architecture <span class="pct">7%</span></h3>
+      <p>Static import graph analysis: circular dependencies, god modules (>50% fan-in), orphan files, high fan-out coupling. Auto-generated SVG architecture diagram.</p>
+    </div>
+    <div class="fcard">
+      <h3>Security <span class="pct">18%</span></h3>
+      <p>13 secret patterns (AWS, GitHub, Stripe, OpenAI keys). 15 CWE-mapped vulnerability patterns (XSS, injection, prototype pollution, SSRF). Dependency audit + outdated checks.</p>
+    </div>
+    <div class="fcard">
+      <h3>LLM Readiness <span class="pct">15%</span> <span class="tag tag-unique">Unique</span></h3>
+      <p><strong>Confusion Index</strong> — naming ambiguity that causes AI to edit the wrong code. <strong>Context Locality</strong> — file self-containment for LLM comprehension. Research: GPT-4o drops 28.6% with ambiguous names.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing" id="pricing">
+<div class="container">
+  <h2>Free forever. Pro when you need it.</h2>
+  <p class="section-sub">The CLI is open source and always free. Pro adds hosted dashboards and team features.</p>
+  <div class="price-grid">
+
+    <div class="price-card">
+      <div class="price-name">Free</div>
+      <div class="price-amount">$0 <span>forever</span></div>
+      <div class="price-desc">For developers and open source projects</div>
+      <ul class="price-list">
+        <li>Full CLI — all 15 checks</li>
+        <li>Self-contained HTML report</li>
+        <li>JSON output for CI integration</li>
+        <li>Trend comparison (vs previous run)</li>
+        <li>Architecture SVG diagrams</li>
+        <li>GitHub file links</li>
+        <li>Radar chart + bar charts</li>
+        <li>--ci mode (fail under threshold)</li>
+        <li>Unlimited scans, unlimited repos</li>
+      </ul>
+      <a href="https://github.com/freeappstore-online/vibe-check" class="price-btn price-btn-free">Get started</a>
+    </div>
+
+    <div class="price-card featured">
+      <div class="badge">Most popular</div>
+      <div class="price-name" style="color:var(--accent)">Team</div>
+      <div class="price-amount">$12 <span>/committer/mo</span></div>
+      <div class="price-desc">For teams that ship fast and need visibility</div>
+      <ul class="price-list">
+        <li>Everything in Free</li>
+        <li class="pro">GitHub App — auto-scan on every PR</li>
+        <li class="pro">PR comments with score delta</li>
+        <li class="pro">Hosted dashboard with trend charts</li>
+        <li class="pro">Score history — 1 year retention</li>
+        <li class="pro">Version-to-version comparison</li>
+        <li class="pro">Custom quality gates</li>
+        <li class="pro">Benchmark: compare to industry average</li>
+        <li class="pro">Slack/Discord notifications</li>
+        <li class="pro">Unlimited private repos</li>
+      </ul>
+      <a href="https://app.vibecodeqa.online" class="price-btn price-btn-pro">Coming soon</a>
+    </div>
+
+    <div class="price-card">
+      <div class="price-name">Organization</div>
+      <div class="price-amount">$29 <span>/committer/mo</span></div>
+      <div class="price-desc">For engineering orgs that need governance</div>
+      <ul class="price-list">
+        <li>Everything in Team</li>
+        <li class="pro">LLM-powered code review (AI assessment)</li>
+        <li class="pro">Custom rules via natural language</li>
+        <li class="pro">Org-wide dashboard (all repos)</li>
+        <li class="pro">SARIF export for GitHub Security tab</li>
+        <li class="pro">SSO / SAML</li>
+        <li class="pro">API access</li>
+        <li class="pro">Unlimited history</li>
+        <li class="pro">Priority support</li>
+      </ul>
+      <a href="https://app.vibecodeqa.online" class="price-btn price-btn-free">Coming soon</a>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- Checks -->
 <section class="checks" id="checks">
+<div class="container">
   <h2>15 checks, transparent scoring</h2>
+  <p class="section-sub">Weights are visible. Every point of your score is explained.</p>
   <div class="check-list">
     <div class="check"><span class="w">6%</span> Project Structure</div>
     <div class="check"><span class="w">5%</span> Lint</div>
@@ -169,20 +319,47 @@ footer a{color:var(--muted)}
     <div class="check"><span class="w">8%</span> Confusion Index</div>
     <div class="check"><span class="w">7%</span> Context Locality</div>
   </div>
+</div>
 </section>
 
-<section class="bottom-cta">
-  <h2>Try it now — takes 5 seconds</h2>
-  <p>Zero install. Zero config. Works on any TypeScript/JavaScript project.</p>
+<!-- Bottom CTA -->
+<section style="text-align:center;padding:5rem 2rem;border-top:1px solid var(--border)">
+  <h2 style="font-size:2rem;font-weight:800;margin-bottom:0.5rem">Ship better code, faster</h2>
+  <p style="color:var(--muted);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto">Join developers who use VibeCode QA to catch bugs, reduce complexity, and keep their AI-assisted code clean.</p>
   <code class="install" style="font-size:1.1rem">npx @vibecodeqa/cli</code>
-  <div style="margin-top:1.5rem">
+  <div style="margin-top:1.5rem;display:flex;gap:1rem;justify-content:center">
     <a href="https://github.com/freeappstore-online/vibe-check" class="cta">View on GitHub</a>
+    <a href="https://www.npmjs.com/package/@vibecodeqa/cli" class="cta cta-ghost">npm</a>
   </div>
 </section>
 
+<!-- Footer -->
 <footer>
-  <p>VibeCode QA — open source under MIT license</p>
-  <p><a href="https://github.com/freeappstore-online/vibe-check">GitHub</a> · <a href="https://github.com/freeappstore-online/vibe-check/issues">Issues</a></p>
+<div class="footer-grid">
+  <div>
+    <div class="footer-brand"><span>VibeCode</span> QA</div>
+    <p class="footer-desc">Code health scanner for the AI coding era. 15 checks, zero config, full report. Open source under MIT license.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Product</h4>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#checks">All checks</a>
+    <a href="https://www.npmjs.com/package/@vibecodeqa/cli">npm</a>
+  </div>
+  <div class="footer-col">
+    <h4>Resources</h4>
+    <a href="https://github.com/freeappstore-online/vibe-check">GitHub</a>
+    <a href="https://github.com/freeappstore-online/vibe-check/blob/main/README.md">Documentation</a>
+    <a href="https://github.com/freeappstore-online/vibe-check/issues">Report a bug</a>
+  </div>
+  <div class="footer-col">
+    <h4>Company</h4>
+    <a href="https://github.com/vibecodeqa">Organization</a>
+    <a href="https://github.com/freeappstore-online/vibe-check/blob/main/LICENSE">License (MIT)</a>
+  </div>
+</div>
+<div class="footer-bottom">© 2026 VibeCode QA. Open source under MIT license.</div>
 </footer>
 
 </body>
