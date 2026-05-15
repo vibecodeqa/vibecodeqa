@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeCode QA — Code Health Scanner for the AI Coding Era</title>
+<meta name="description" content="15 checks, zero config, full report. Scan your TypeScript codebase for lint, types, complexity, security, architecture, duplication, testing, and LLM readiness. One command: npx vibe-check">
+<meta name="keywords" content="code quality, code health, lint, typescript, react, vite, security, testing, complexity, AI, vibe coding, LLM">
+<meta property="og:title" content="VibeCode QA — Code Health Scanner">
+<meta property="og:description" content="15 checks, zero config, full report. The most comprehensive code quality tool for TypeScript.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://vibecodeqa.online">
+<link rel="canonical" href="https://vibecodeqa.online">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--fail:#ef4444;--warn:#eab308}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:10;background:#09090bdd;backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;height:56px}
+.logo{font-weight:900;font-size:1.1rem;margin-right:auto}
+.logo span{color:var(--accent)}
+nav a{color:var(--muted);font-size:0.85rem;margin-left:1.5rem;font-weight:500}
+nav a:hover{color:var(--text);text-decoration:none}
+
+/* Hero */
+.hero{max-width:800px;margin:0 auto;text-align:center;padding:6rem 2rem 4rem}
+.hero h1{font-size:3.5rem;font-weight:900;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1rem}
+.hero h1 span{color:var(--accent)}
+.hero .sub{font-size:1.2rem;color:var(--muted);max-width:560px;margin:0 auto 2rem}
+.cta{display:inline-flex;align-items:center;gap:0.5rem;background:var(--accent);color:#fff;font-weight:700;font-size:1rem;padding:0.85rem 2rem;border-radius:12px;border:none;cursor:pointer;transition:transform 0.1s}
+.cta:hover{transform:scale(1.03);text-decoration:none}
+.install{display:inline-block;margin-top:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:0.7rem 1.5rem;font-family:"SF Mono",monospace;font-size:0.95rem;color:var(--accent);letter-spacing:-0.01em}
+
+/* Features */
+.features{max-width:1000px;margin:0 auto;padding:2rem 2rem 4rem}
+.features h2{font-size:2rem;font-weight:800;text-align:center;margin-bottom:0.5rem}
+.features .sub{text-align:center;color:var(--muted);margin-bottom:3rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem}
+.card h3{font-size:1rem;font-weight:700;margin-bottom:0.3rem}
+.card .pct{color:var(--accent);font-size:0.8rem;font-weight:600}
+.card p{font-size:0.85rem;color:var(--muted);line-height:1.5}
+
+/* Checks */
+.checks{max-width:800px;margin:0 auto;padding:2rem}
+.checks h2{font-size:2rem;font-weight:800;text-align:center;margin-bottom:2rem}
+.check-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0.5rem}
+.check{display:flex;align-items:center;gap:0.6rem;padding:0.5rem 0.8rem;background:var(--card);border:1px solid var(--border);border-radius:8px;font-size:0.82rem}
+.check .w{color:var(--accent);font-weight:700;min-width:2rem;text-align:right}
+
+/* Terminal */
+.terminal-section{max-width:700px;margin:0 auto;padding:2rem}
+.terminal{background:#0c0c0f;border:1px solid var(--border);border-radius:12px;padding:1.5rem;font-family:"SF Mono",monospace;font-size:0.78rem;line-height:1.8;overflow-x:auto}
+.t-dim{color:#555}
+.t-green{color:var(--pass)}
+.t-yellow{color:var(--warn)}
+.t-red{color:var(--fail)}
+.t-accent{color:var(--accent)}
+.t-bold{font-weight:700}
+
+/* CTA bottom */
+.bottom-cta{text-align:center;padding:4rem 2rem;border-top:1px solid var(--border);margin-top:2rem}
+.bottom-cta h2{font-size:1.8rem;font-weight:800;margin-bottom:0.5rem}
+.bottom-cta p{color:var(--muted);margin-bottom:1.5rem}
+
+/* Footer */
+footer{text-align:center;padding:2rem;color:var(--muted);font-size:0.75rem;border-top:1px solid var(--border)}
+footer a{color:var(--muted)}
+
+@media(max-width:600px){.hero h1{font-size:2.2rem}.hero{padding:3rem 1rem 2rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span>VibeCode</span> QA</div>
+  <a href="#features">Features</a>
+  <a href="#checks">Checks</a>
+  <a href="https://github.com/freeappstore-online/vibe-check">GitHub</a>
+</nav>
+
+<section class="hero">
+  <h1>Code health for the <span>AI coding era</span></h1>
+  <p class="sub">15 checks. Zero config. Full report. The most comprehensive code quality scanner for TypeScript — with novel LLM readiness analysis nobody else has.</p>
+  <a href="https://github.com/freeappstore-online/vibe-check" class="cta">Get started — it's free</a>
+  <div><code class="install">npx vibe-check</code></div>
+</section>
+
+<section class="features" id="features">
+  <h2>6 categories of analysis</h2>
+  <p class="sub">Every dimension of code quality, scored 0-100 with actionable findings</p>
+  <div class="grid">
+    <div class="card">
+      <h3>Foundations</h3><span class="pct">23% of score</span>
+      <p>Project structure, lint, TypeScript types, type safety (as any counts), code standards (naming, file size, code smells).</p>
+    </div>
+    <div class="card">
+      <h3>Quality</h3><span class="pct">15% of score</span>
+      <p>Cognitive complexity per function, code duplication detection, documentation coverage (README + JSDoc).</p>
+    </div>
+    <div class="card">
+      <h3>Testing</h3><span class="pct">22% of score</span>
+      <p>Testing pyramid (unit/integration/component/E2E), coverage, file pairing, assertion density, mock ratio, snapshot smell.</p>
+    </div>
+    <div class="card">
+      <h3>Architecture</h3><span class="pct">7% of score</span>
+      <p>Import graph analysis, circular dependencies, god modules, orphan files, fan-out coupling. SVG diagram included.</p>
+    </div>
+    <div class="card">
+      <h3>Security</h3><span class="pct">18% of score</span>
+      <p>Secret detection (13 patterns), 15 CWE-mapped vulnerability patterns, dependency audit + outdated checks.</p>
+    </div>
+    <div class="card">
+      <h3>LLM Readiness</h3><span class="pct">15% of score</span>
+      <p>Confusion Index (naming ambiguity that causes AI to edit wrong code) + Context Locality (file self-containment for LLM comprehension). Research-backed, unique to VibeCode QA.</p>
+    </div>
+  </div>
+</section>
+
+<section class="terminal-section">
+  <div class="terminal">
+    <div><span class="t-bold">vibe-check</span> <span class="t-dim">v0.9.0</span></div>
+    <div><span class="t-dim">/Users/dev/my-project</span></div>
+    <div>&nbsp;</div>
+    <div><span class="t-dim">stack:</span> typescript + react + vite + vitest + biome + pnpm</div>
+    <div>&nbsp;</div>
+    <div>  structure     <span class="t-green">A    92/100</span></div>
+    <div>  lint          <span class="t-green">A    96/100</span></div>
+    <div>  types         <span class="t-green">A    100/100</span></div>
+    <div>  type-safety   <span class="t-yellow">B    84/100</span>  <span class="t-dim">12 issues</span></div>
+    <div>  standards     <span class="t-yellow">B    82/100</span>  <span class="t-dim">5 issues</span></div>
+    <div>  complexity    <span class="t-yellow">B    78/100</span>  <span class="t-dim">3 issues</span></div>
+    <div>  duplication   <span class="t-green">A    95/100</span></div>
+    <div>  docs          <span class="t-red">C    62/100</span>  <span class="t-dim">2 issues</span></div>
+    <div>  testing       <span class="t-yellow">B    75/100</span>  <span class="t-dim">4 issues</span></div>
+    <div>  secrets       <span class="t-green">A    100/100</span></div>
+    <div>  security      <span class="t-green">A    100/100</span></div>
+    <div>  dependencies  <span class="t-green">A    99/100</span></div>
+    <div>  architecture  <span class="t-green">A    91/100</span></div>
+    <div>  confusion     <span class="t-yellow">B    85/100</span>  <span class="t-dim">8 issues</span></div>
+    <div>  context       <span class="t-green">A    90/100</span></div>
+    <div>&nbsp;</div>
+    <div>  <span class="t-green t-bold">B</span> <span class="t-green">88/100</span>  <span class="t-dim">15 checks · 34 issues · 4.8s</span></div>
+    <div>  <span class="t-green">↑ 3 pts improved</span>  <span class="t-dim">vs 2026-05-14</span>  <span class="t-green">5 fixed</span></div>
+  </div>
+</section>
+
+<section class="checks" id="checks">
+  <h2>15 checks, transparent scoring</h2>
+  <div class="check-list">
+    <div class="check"><span class="w">6%</span> Project Structure</div>
+    <div class="check"><span class="w">5%</span> Lint</div>
+    <div class="check"><span class="w">6%</span> Type Check</div>
+    <div class="check"><span class="w">3%</span> Type Safety</div>
+    <div class="check"><span class="w">3%</span> Code Standards</div>
+    <div class="check"><span class="w">7%</span> Complexity</div>
+    <div class="check"><span class="w">5%</span> Duplication</div>
+    <div class="check"><span class="w">3%</span> Documentation</div>
+    <div class="check"><span class="w">22%</span> Testing</div>
+    <div class="check"><span class="w">7%</span> Architecture</div>
+    <div class="check"><span class="w">6%</span> Secrets</div>
+    <div class="check"><span class="w">7%</span> Security Patterns</div>
+    <div class="check"><span class="w">5%</span> Dependencies</div>
+    <div class="check"><span class="w">8%</span> Confusion Index</div>
+    <div class="check"><span class="w">7%</span> Context Locality</div>
+  </div>
+</section>
+
+<section class="bottom-cta">
+  <h2>Try it now — takes 5 seconds</h2>
+  <p>Zero install. Zero config. Works on any TypeScript/JavaScript project.</p>
+  <code class="install" style="font-size:1.1rem">npx vibe-check</code>
+  <div style="margin-top:1.5rem">
+    <a href="https://github.com/freeappstore-online/vibe-check" class="cta">View on GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <p>VibeCode QA — open source under MIT license</p>
+  <p><a href="https://github.com/freeappstore-online/vibe-check">GitHub</a> · <a href="https://github.com/freeappstore-online/vibe-check/issues">Issues</a></p>
+</footer>
+
+</body>
+</html>
