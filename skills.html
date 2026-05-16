@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeCode QA — AI Skills Guide</title>
+<meta name="description" content="Give this page to Claude, Codex, or any AI coding agent to teach it how to use VibeCode QA for code health scanning.">
+<style>
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;padding:2rem;max-width:800px;margin:0 auto}
+a{color:var(--accent)}
+h1{font-size:1.8rem;font-weight:900;margin-bottom:0.5rem}
+h2{font-size:1.2rem;font-weight:800;margin-top:2rem;margin-bottom:0.5rem;color:var(--accent)}
+h3{font-size:0.95rem;font-weight:700;margin-top:1.2rem;margin-bottom:0.3rem}
+p,li{font-size:0.88rem;color:#d1d5db}
+code{font-family:"SF Mono",Menlo,monospace;font-size:0.85em;background:var(--card);padding:0.1rem 0.35rem;border-radius:4px;border:1px solid var(--border)}
+pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;overflow-x:auto;font-size:0.82rem;margin:0.8rem 0;line-height:1.5}
+pre code{background:none;border:none;padding:0}
+ul{padding-left:1.2rem;margin:0.5rem 0}
+li{margin-bottom:0.3rem}
+.badge{display:inline-block;background:var(--accent);color:#fff;font-size:0.65rem;font-weight:800;padding:0.15rem 0.5rem;border-radius:9999px;letter-spacing:0.05em;vertical-align:middle}
+hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+.back{font-size:0.8rem;color:var(--muted);margin-bottom:1rem;display:block}
+</style>
+</head>
+<body>
+
+<a href="/" class="back">&larr; vibecodeqa.online</a>
+
+<h1>VibeCode QA — AI Skills Guide</h1>
+<p>Give this page URL to Claude, Codex, Cursor, or any AI coding assistant to teach it how to use VibeCode QA on your project.</p>
+
+<hr>
+
+<h2>What is VibeCode QA?</h2>
+<p>A code health scanner that runs 21 checks across 7 categories (Foundations, Quality, Testing, Architecture, Security, AI Readiness, AI Analysis) and generates a scored report. Zero config, zero dependencies, works on TypeScript/JavaScript and Dart/Flutter projects.</p>
+
+<h2>Quick Start</h2>
+
+<h3>1. Run your first scan</h3>
+<pre><code>npx @vibecodeqa/cli</code></pre>
+<p>This auto-detects your stack, runs all 21 checks, and opens an HTML report in your browser. Output goes to <code>.vibe-check/</code>.</p>
+
+<h3>2. Fast mode (skip test execution)</h3>
+<pre><code>npx @vibecodeqa/cli --skip-tests</code></pre>
+
+<h3>3. CI mode (fail build if score &lt; 60)</h3>
+<pre><code>npx @vibecodeqa/cli --ci</code></pre>
+
+<h3>4. SARIF output for GitHub Security tab</h3>
+<pre><code>npx @vibecodeqa/cli --sarif</code></pre>
+
+<h3>5. JSON output (pipe to other tools)</h3>
+<pre><code>npx @vibecodeqa/cli --json</code></pre>
+
+<h2>Output Files</h2>
+<ul>
+<li><code>.vibe-check/report/index.html</code> — Multi-page HTML report with dashboard, per-category pages, issues table, file health</li>
+<li><code>.vibe-check/report.json</code> — Machine-readable results (all scores, issues, details)</li>
+<li><code>.vibe-check/report.sarif</code> — SARIF 2.1.0 for GitHub Code Scanning (with <code>--sarif</code>)</li>
+<li><code>.vibe-check/badge.svg</code> — shields.io-style badge (with <code>--badge</code>)</li>
+<li><code>.vibe-check/history/</code> — Last 30 reports for trend tracking</li>
+</ul>
+
+<h2>The 21 Checks</h2>
+
+<h3>Foundations (23%)</h3>
+<ul>
+<li><strong>Structure</strong> (6%) — package.json, tsconfig, LICENSE, .gitignore, lockfile, test ratio</li>
+<li><strong>Lint</strong> (5%) — Biome or ESLint auto-detected, error/warning counts</li>
+<li><strong>Types</strong> (6%) — tsc --noEmit or dart analyze type errors</li>
+<li><strong>Type Safety</strong> (3%) — as any, @ts-ignore, dynamic (Dart), late keyword</li>
+<li><strong>Standards</strong> (3%) — naming, file size, code smells, strict mode</li>
+</ul>
+
+<h3>Quality (23%)</h3>
+<ul>
+<li><strong>Complexity</strong> (3%) — cognitive complexity per function, long functions</li>
+<li><strong>Duplication</strong> (5%) — copy-pasted 6+ line blocks</li>
+<li><strong>Error Handling</strong> (5%) — empty catch, throw string, Error Boundary</li>
+<li><strong>React Patterns</strong> (3%) — conditional hooks, missing keys, index keys</li>
+<li><strong>Accessibility</strong> (4%) — img alt, click on div, form labels, html lang</li>
+<li><strong>Docs</strong> (3%) — README quality, JSDoc/doc comment coverage</li>
+</ul>
+
+<h3>Testing (15%)</h3>
+<ul>
+<li>Pyramid layers (unit/integration/component/E2E)</li>
+<li>Pass/fail execution, coverage metrics</li>
+<li>File pairing, assertion density, mock ratio</li>
+</ul>
+
+<h3>Architecture (10%)</h3>
+<ul>
+<li><strong>Architecture</strong> (6%) — import graph, cycles, god modules, orphans, SVG diagrams</li>
+<li><strong>Performance</strong> (4%) — barrel imports, heavy deps, dynamic import opportunities</li>
+</ul>
+
+<h3>Security (16%)</h3>
+<ul>
+<li><strong>Secrets</strong> (6%) — 13 patterns (AWS, GitHub, Stripe, OpenAI keys)</li>
+<li><strong>Security</strong> (5%) — 15 CWE-mapped vulnerability patterns</li>
+<li><strong>Dependencies</strong> (5%) — npm audit / dart pub outdated</li>
+</ul>
+
+<h3>AI Readiness (13%)</h3>
+<ul>
+<li><strong>Confusion Index</strong> (7%) — naming ambiguity that causes AI to edit wrong code</li>
+<li><strong>Context Locality</strong> (6%) — file self-containment for LLM comprehension</li>
+</ul>
+
+<h2>How to Use the Results</h2>
+
+<h3>Reading the JSON report programmatically</h3>
+<pre><code>const report = JSON.parse(fs.readFileSync('.vibe-check/report.json', 'utf-8'));
+console.log(`Score: ${report.grade} ${report.score}/100`);
+for (const check of report.checks) {
+  if (check.issues.length > 0) {
+    console.log(`${check.name}: ${check.grade} — ${check.issues.length} issues`);
+  }
+}</code></pre>
+
+<h3>Fixing issues with AI</h3>
+<p>Each issue in the report includes a copy-pasteable fix prompt. The format is:</p>
+<pre><code>Fix this issue in src/session.ts:240
+warning: cognitive complexity 28 (max 15)
+Check: complexity</code></pre>
+<p>Copy these directly into Claude, Codex, or your AI coding tool.</p>
+
+<h3>Adding to GitHub Actions</h3>
+<pre><code>name: VibeCode QA
+on: [pull_request]
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npx @vibecodeqa/cli --skip-tests --ci --sarif
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: .vibe-check/report.sarif</code></pre>
+
+<h2>For AI Agents: Workflow</h2>
+<p>When working on a codebase that uses VibeCode QA, follow this workflow:</p>
+<ol>
+<li>Run <code>npx @vibecodeqa/cli --skip-tests --json</code> to get a baseline score</li>
+<li>Read the JSON to understand which checks are failing and why</li>
+<li>Fix issues starting with the highest-severity ones (errors first, then warnings)</li>
+<li>Re-run after fixes to verify the score improved</li>
+<li>Aim for grade B (75+) minimum; grade A (90+) for production-ready code</li>
+</ol>
+
+<h3>Key patterns AI agents should know</h3>
+<ul>
+<li>Don't suppress issues with <code>@ts-ignore</code> or <code>// eslint-disable</code> — fix the root cause</li>
+<li>High complexity? Extract sub-functions with clear names</li>
+<li>Duplication? Extract a shared helper</li>
+<li>Security issue? Follow the CWE recommendation in the issue details</li>
+<li>Low test coverage? Add tests for the untested files listed in the report</li>
+<li>Confusion Index high? Rename ambiguous exports, eliminate synonym filenames</li>
+</ul>
+
+<h2>Supported Stacks</h2>
+<ul>
+<li><strong>Languages:</strong> TypeScript, JavaScript, Dart</li>
+<li><strong>Frameworks:</strong> React, Vue, Svelte, Flutter</li>
+<li><strong>Bundlers:</strong> Vite, Webpack, esbuild</li>
+<li><strong>Test runners:</strong> vitest, jest, flutter_test, dart_test</li>
+<li><strong>Linters:</strong> Biome, ESLint, dart analyze</li>
+<li><strong>Package managers:</strong> pnpm, npm, yarn, bun, pub</li>
+</ul>
+
+<h2>Links</h2>
+<ul>
+<li><a href="https://github.com/vibecodeqa/cli">GitHub — vibecodeqa/cli</a></li>
+<li><a href="https://www.npmjs.com/package/@vibecodeqa/cli">npm — @vibecodeqa/cli</a></li>
+<li><a href="https://vibecodeqa.online">Website — vibecodeqa.online</a></li>
+</ul>
+
+<hr>
+<p style="color:var(--muted);font-size:0.75rem;text-align:center">VibeCode QA &mdash; Code health scanner for the AI coding era. MIT license.</p>
+
+</body>
+</html>
