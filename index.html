@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>VibeCode QA — Code Health Scanner for the AI Coding Era</title>
-<meta name="description" content="15 checks, zero config, full report. The most comprehensive code quality scanner for TypeScript. Lint, types, complexity, security, architecture, testing pyramid, and LLM readiness — scored and graded in 5 seconds.">
+<meta name="description" content="21 checks, zero config, full report. The most comprehensive code quality scanner for TypeScript. Lint, types, complexity, security, architecture, testing pyramid, and LLM readiness — scored and graded in 5 seconds.">
 <meta property="og:title" content="VibeCode QA — Code Health Scanner for the AI Coding Era">
-<meta property="og:description" content="15 checks, zero config, full report. Scan your TypeScript codebase in 5 seconds.">
+<meta property="og:description" content="21 checks, zero config, full report. Scan your TypeScript codebase in 5 seconds.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vibecodeqa.online">
 <link rel="canonical" href="https://vibecodeqa.online">
@@ -105,11 +105,19 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
 .footer-col a:hover{color:var(--text)}
 .footer-bottom{text-align:center;color:var(--muted);font-size:0.7rem;margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);max-width:1100px;margin-left:auto;margin-right:auto}
 
+.hamburger{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;padding:0.3rem}
 @media(max-width:700px){
 .hero h1{font-size:2.4rem}.hero{padding:3rem 1rem 2rem}
 .steps{grid-template-columns:1fr}.stats{gap:1.5rem}
 .footer-grid{grid-template-columns:1fr 1fr}
 .price-grid{grid-template-columns:1fr}
+.nav-links{display:none;position:absolute;top:56px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);flex-direction:column;padding:1rem 2rem;gap:0.8rem;z-index:30}
+.nav-links.open{display:flex}
+.hamburger{display:block}
+.container{padding:0 1rem}
+.grid{grid-template-columns:1fr}
+.check-list{grid-template-columns:1fr 1fr}
+.terminal{font-size:0.65rem;padding:1rem}
 }
 </style>
 </head>
@@ -118,10 +126,11 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
 <nav>
 <div class="container">
   <div class="logo"><span>VibeCode</span> QA</div>
+  <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
   <div class="nav-links">
     <a href="#features">Features</a>
     <a href="#pricing">Pricing</a>
-    <a href="https://github.com/freeappstore-online/vibe-check">GitHub</a>
+    <a href="https://github.com/vibecodeqa/cli">GitHub</a>
     <a href="https://app.vibecodeqa.online" class="nav-cta">Sign in</a>
   </div>
 </div>
@@ -130,9 +139,9 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
 <!-- Hero -->
 <section class="hero">
   <h1>Code health for the <span>AI coding era</span></h1>
-  <p class="sub">15 checks. Zero config. Full report in 5 seconds. The only code quality tool with LLM readiness analysis — built for how software is made in 2026.</p>
+  <p class="sub">21 checks. Zero config. Full report in 5 seconds. The only code quality tool with LLM readiness analysis — built for how software is made in 2026.</p>
   <div class="cta-row">
-    <a href="https://github.com/freeappstore-online/vibe-check" class="cta">Get started free</a>
+    <a href="https://github.com/vibecodeqa/cli" class="cta">Get started free</a>
     <a href="#pricing" class="cta cta-ghost">See pricing</a>
   </div>
   <code class="install">npx @vibecodeqa/cli</code>
@@ -140,8 +149,8 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
 
 <!-- Stats -->
 <div class="stats">
-  <div class="stat"><div class="n">15</div><div class="l">Checks</div></div>
-  <div class="stat"><div class="n">6</div><div class="l">Categories</div></div>
+  <div class="stat"><div class="n">21</div><div class="l">Checks</div></div>
+  <div class="stat"><div class="n">7</div><div class="l">Categories</div></div>
   <div class="stat"><div class="n">5s</div><div class="l">Scan time</div></div>
   <div class="stat"><div class="n">0</div><div class="l">Config needed</div></div>
   <div class="stat"><div class="n">0</div><div class="l">Dependencies</div></div>
@@ -155,7 +164,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
     <div class="step">
       <div class="step-num">1</div>
       <h3>Run one command</h3>
-      <p><code>npx @vibecodeqa/cli</code> — auto-detects your stack, runs 15 checks, opens the report.</p>
+      <p><code>npx @vibecodeqa/cli</code> — auto-detects your stack, runs 21 checks, opens the report.</p>
     </div>
     <div class="step">
       <div class="step-num">2</div>
@@ -199,7 +208,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
 <!-- Features -->
 <section class="features" id="features">
 <div class="container">
-  <h2>6 categories of deep analysis</h2>
+  <h2>7 categories of deep analysis</h2>
   <p class="section-sub">Every dimension of code quality, scored 0-100 with research-backed methodology</p>
   <div class="grid">
     <div class="fcard">
@@ -207,23 +216,23 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
       <p>Project structure, lint (Biome/ESLint auto-detected), TypeScript types, type safety (<code>as any</code> counts), code standards (naming, file size, code smells, strict mode).</p>
     </div>
     <div class="fcard">
-      <h3>Quality <span class="pct">15%</span></h3>
-      <p>Cognitive complexity per function (McCabe, 1976), copy-paste duplication detection, documentation coverage (README quality + JSDoc on exports).</p>
+      <h3>Quality <span class="pct">23%</span></h3>
+      <p>Cognitive complexity per function, copy-paste duplication, error handling patterns, React hooks rules, accessibility violations, documentation coverage.</p>
     </div>
     <div class="fcard">
-      <h3>Testing <span class="pct">22%</span></h3>
+      <h3>Testing <span class="pct">15%</span></h3>
       <p>6 sub-dimensions: testing pyramid layers, pass/fail execution, statement/branch/line/function coverage, file pairing, assertion density vs mock ratio, Playwright/Cypress detection.</p>
     </div>
     <div class="fcard">
-      <h3>Architecture <span class="pct">7%</span></h3>
-      <p>Static import graph analysis: circular dependencies, god modules (>50% fan-in), orphan files, high fan-out coupling. Auto-generated SVG architecture diagram.</p>
+      <h3>Architecture <span class="pct">10%</span></h3>
+      <p>Import graph analysis, circular dependencies, god modules, coupling. Performance: barrel imports, heavy deps, dynamic import opportunities, CSS-in-JS overhead.</p>
     </div>
     <div class="fcard">
-      <h3>Security <span class="pct">18%</span></h3>
+      <h3>Security <span class="pct">16%</span></h3>
       <p>13 secret patterns (AWS, GitHub, Stripe, OpenAI keys). 15 CWE-mapped vulnerability patterns (XSS, injection, prototype pollution, SSRF). Dependency audit + outdated checks.</p>
     </div>
     <div class="fcard">
-      <h3>LLM Readiness <span class="pct">15%</span> <span class="tag tag-unique">Unique</span></h3>
+      <h3>LLM Readiness <span class="pct">13%</span> <span class="tag tag-unique">Unique</span></h3>
       <p><strong>Confusion Index</strong> — naming ambiguity that causes AI to edit the wrong code. <strong>Context Locality</strong> — file self-containment for LLM comprehension. Research: GPT-4o drops 28.6% with ambiguous names.</p>
     </div>
   </div>
@@ -242,9 +251,9 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
       <div class="price-amount">$0 <span>forever</span></div>
       <div class="price-desc">For developers and open source projects</div>
       <ul class="price-list">
-        <li>Full CLI — all 15 checks</li>
+        <li>Full CLI — all 21 checks</li>
         <li>Self-contained HTML report</li>
-        <li>JSON output for CI integration</li>
+        <li>JSON + SARIF output for CI</li>
         <li>Trend comparison (vs previous run)</li>
         <li>Architecture SVG diagrams</li>
         <li>GitHub file links</li>
@@ -252,7 +261,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
         <li>--ci mode (fail under threshold)</li>
         <li>Unlimited scans, unlimited repos</li>
       </ul>
-      <a href="https://github.com/freeappstore-online/vibe-check" class="price-btn price-btn-free">Get started</a>
+      <a href="https://github.com/vibecodeqa/cli" class="price-btn price-btn-free">Get started</a>
     </div>
 
     <div class="price-card featured">
@@ -300,7 +309,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
 <!-- Checks -->
 <section class="checks" id="checks">
 <div class="container">
-  <h2>15 checks, transparent scoring</h2>
+  <h2>21 checks, transparent scoring</h2>
   <p class="section-sub">Weights are visible. Every point of your score is explained.</p>
   <div class="check-list">
     <div class="check"><span class="w">6%</span> Project Structure</div>
@@ -308,16 +317,20 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
     <div class="check"><span class="w">6%</span> Type Check</div>
     <div class="check"><span class="w">3%</span> Type Safety</div>
     <div class="check"><span class="w">3%</span> Code Standards</div>
-    <div class="check"><span class="w">7%</span> Complexity</div>
+    <div class="check"><span class="w">3%</span> Complexity</div>
     <div class="check"><span class="w">5%</span> Duplication</div>
+    <div class="check"><span class="w">5%</span> Error Handling</div>
+    <div class="check"><span class="w">3%</span> React Patterns</div>
+    <div class="check"><span class="w">4%</span> Accessibility</div>
     <div class="check"><span class="w">3%</span> Documentation</div>
-    <div class="check"><span class="w">22%</span> Testing</div>
-    <div class="check"><span class="w">7%</span> Architecture</div>
+    <div class="check"><span class="w">15%</span> Testing</div>
+    <div class="check"><span class="w">6%</span> Architecture</div>
+    <div class="check"><span class="w">4%</span> Performance</div>
     <div class="check"><span class="w">6%</span> Secrets</div>
-    <div class="check"><span class="w">7%</span> Security Patterns</div>
+    <div class="check"><span class="w">5%</span> Security Patterns</div>
     <div class="check"><span class="w">5%</span> Dependencies</div>
-    <div class="check"><span class="w">8%</span> Confusion Index</div>
-    <div class="check"><span class="w">7%</span> Context Locality</div>
+    <div class="check"><span class="w">7%</span> Confusion Index</div>
+    <div class="check"><span class="w">6%</span> Context Locality</div>
   </div>
 </div>
 </section>
@@ -328,7 +341,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
   <p style="color:var(--muted);margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto">Join developers who use VibeCode QA to catch bugs, reduce complexity, and keep their AI-assisted code clean.</p>
   <code class="install" style="font-size:1.1rem">npx @vibecodeqa/cli</code>
   <div style="margin-top:1.5rem;display:flex;gap:1rem;justify-content:center">
-    <a href="https://github.com/freeappstore-online/vibe-check" class="cta">View on GitHub</a>
+    <a href="https://github.com/vibecodeqa/cli" class="cta">View on GitHub</a>
     <a href="https://www.npmjs.com/package/@vibecodeqa/cli" class="cta cta-ghost">npm</a>
   </div>
 </section>
@@ -338,7 +351,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
 <div class="footer-grid">
   <div>
     <div class="footer-brand"><span>VibeCode</span> QA</div>
-    <p class="footer-desc">Code health scanner for the AI coding era. 15 checks, zero config, full report. Open source under MIT license.</p>
+    <p class="footer-desc">Code health scanner for the AI coding era. 21 checks, zero config, full report. Open source under MIT license.</p>
   </div>
   <div class="footer-col">
     <h4>Product</h4>
@@ -349,14 +362,14 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
   </div>
   <div class="footer-col">
     <h4>Resources</h4>
-    <a href="https://github.com/freeappstore-online/vibe-check">GitHub</a>
-    <a href="https://github.com/freeappstore-online/vibe-check/blob/main/README.md">Documentation</a>
-    <a href="https://github.com/freeappstore-online/vibe-check/issues">Report a bug</a>
+    <a href="https://github.com/vibecodeqa/cli">GitHub</a>
+    <a href="https://github.com/vibecodeqa/cli/blob/main/README.md">Documentation</a>
+    <a href="https://github.com/vibecodeqa/cli/issues">Report a bug</a>
   </div>
   <div class="footer-col">
     <h4>Company</h4>
     <a href="https://github.com/vibecodeqa">Organization</a>
-    <a href="https://github.com/freeappstore-online/vibe-check/blob/main/LICENSE">License (MIT)</a>
+    <a href="https://github.com/vibecodeqa/cli/blob/main/LICENSE">License (MIT)</a>
   </div>
 </div>
 <div class="footer-bottom">© 2026 VibeCode QA. Open source under MIT license.</div>
