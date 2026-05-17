@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeCode QA for Dart + Flutter</title>
+<link rel="icon" href="/favicon.svg">
+<style>
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308;--fail:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;max-width:900px;margin:0 auto}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+h1{font-size:2rem;font-weight:900;margin-bottom:0.3rem}
+h2{font-size:1.3rem;font-weight:800;margin-top:2.5rem;margin-bottom:0.8rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+h3{font-size:1rem;font-weight:700;margin-top:1.5rem;margin-bottom:0.4rem}
+p{color:var(--muted);font-size:0.85rem;margin-bottom:0.8rem}
+code{font-family:"SF Mono",Menlo,monospace;font-size:0.8em;background:var(--card);padding:0.15rem 0.4rem;border-radius:4px}
+pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;overflow-x:auto;font-size:0.8rem;margin:0.8rem 0;color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:0.8rem 0;font-size:0.8rem}
+th{text-align:left;padding:0.5rem;border-bottom:2px solid var(--border);color:var(--muted);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.04em}
+td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
+.badge{display:inline-block;padding:0.1rem 0.4rem;border-radius:4px;font-size:0.65rem;font-weight:700}
+.tool{background:#818cf820;color:#818cf8;border:1px solid #818cf840}
+.ours{background:#22c55e20;color:#22c55e;border:1px solid #22c55e40}
+.nav{margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.nav a{font-size:0.82rem;color:var(--muted)}
+.logo{font-weight:900;font-size:1.1rem}.logo span{color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;margin:0.5rem 0}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="logo"><span>VibeCode</span> QA</div>
+  <a href="/">Home</a>
+  <a href="/tools.html">Tool Decisions</a>
+  <a href="/stacks/typescript.html">TypeScript + React</a>
+  <a href="/stacks/node.html">Node.js</a>
+  <a href="/stacks/flutter.html"><b>Flutter</b></a>
+</div>
+
+<h1>Dart + Flutter</h1>
+<p style="font-size:1rem;color:var(--text);margin-bottom:1.5rem">VibeCode QA natively supports Dart and Flutter projects — same 22 checks, adapted to the Dart ecosystem.</p>
+
+<h2>Quick Start</h2>
+<pre>npx @vibecodeqa/cli</pre>
+<p>Auto-detects: <code>pubspec.yaml</code>, <code>analysis_options.yaml</code>, Flutter vs pure Dart, test runner, melos workspaces.</p>
+
+<h2>How Detection Works</h2>
+<p>When <code>pubspec.yaml</code> exists, VibeCode QA switches to Dart mode:</p>
+<table>
+<tr><th>Signal</th><th>Detection</th></tr>
+<tr><td><code>pubspec.yaml</code> contains <code>flutter:</code></td><td>Flutter project</td></tr>
+<tr><td><code>flutter_test:</code> in dev_dependencies</td><td>Test runner: flutter_test</td></tr>
+<tr><td><code>test:</code> in dev_dependencies</td><td>Test runner: dart_test</td></tr>
+<tr><td><code>analysis_options.yaml</code> exists</td><td>Linter: dart_analyze</td></tr>
+<tr><td><code>melos.yaml</code> exists</td><td>Monorepo: melos workspace</td></tr>
+<tr><td><code>pubspec.lock</code></td><td>Package manager: pub</td></tr>
+</table>
+
+<h2>Dart-Adapted Checks</h2>
+
+<h3>Foundations</h3>
+<table>
+<tr><th>Check</th><th>Dart Adaptation</th><th>Tool</th></tr>
+<tr><td>Structure</td><td>Checks <code>pubspec.yaml</code>, <code>analysis_options.yaml</code>, LICENSE, .gitignore. Source in <code>lib/</code> (not <code>src/</code>)</td><td><span class="badge ours">built-in</span></td></tr>
+<tr><td>Lint</td><td>Runs <code>dart analyze --format=machine</code></td><td><span class="badge tool">dart analyze</span></td></tr>
+<tr><td>Type Safety</td><td>Counts <code>dynamic</code> type usage, <code>as dynamic</code> casts, <code>// ignore:</code> directives, <code>late</code> without <code>final</code></td><td><span class="badge ours">built-in</span></td></tr>
+</table>
+
+<h3>Testing</h3>
+<table>
+<tr><th>Check</th><th>Dart Adaptation</th><th>Tool</th></tr>
+<tr><td>Test Discovery</td><td>Finds <code>*_test.dart</code> files in <code>test/</code> directory</td><td><span class="badge ours">built-in</span></td></tr>
+<tr><td>Test Execution</td><td>Runs <code>flutter test</code> or <code>dart test</code></td><td><span class="badge tool">flutter_test</span></td></tr>
+<tr><td>Pyramid</td><td>Classifies tests into unit/widget/integration/golden layers</td><td><span class="badge ours">built-in</span></td></tr>
+</table>
+
+<h3>Dependencies</h3>
+<table>
+<tr><th>Check</th><th>Dart Adaptation</th><th>Tool</th></tr>
+<tr><td>Outdated</td><td>Runs <code>dart pub outdated --json</code></td><td><span class="badge tool">dart pub</span></td></tr>
+<tr><td>Major Outdated</td><td>Flags packages behind by a major version</td><td><span class="badge ours">built-in</span></td></tr>
+</table>
+
+<h3>Unchanged (work the same as TS/JS)</h3>
+<p>Complexity, duplication, error handling, secrets, security patterns, architecture, confusion, context, docs, best practices, performance — all work on Dart code files.</p>
+
+<h2>Melos Monorepo Support</h2>
+<p>Detected via <code>melos.yaml</code>. When found:</p>
+<ul style="font-size:0.82rem;color:var(--muted);padding-left:1.5rem;margin-bottom:1rem">
+<li>Parses <code>packages:</code> section for workspace globs</li>
+<li>Scans <code>packages/*/lib/</code> for source and <code>packages/*/test/</code> for tests</li>
+<li>Architecture diagrams show cross-package dependencies</li>
+<li>All scoring proportional to total codebase size</li>
+</ul>
+<pre>
+# melos.yaml
+name: my_project
+packages:
+  - packages/*
+  - apps/*
+</pre>
+
+<h2>Recommended Tool Setup</h2>
+<pre>
+# Core (included with Flutter SDK)
+dart analyze                       # lint
+dart test / flutter test           # tests
+dart pub outdated                  # dependency freshness
+
+# Security
+brew install gitleaks              # secret detection
+
+# Code quality (no extra install needed)
+# VibeCode QA handles complexity, duplication, architecture
+</pre>
+
+<h2>Dart-Specific Patterns We Check</h2>
+
+<h3>Type Safety</h3>
+<table>
+<tr><th>Pattern</th><th>Severity</th><th>Why</th></tr>
+<tr><td><code>dynamic</code> type annotation</td><td>Warning</td><td>Bypasses static analysis — use <code>Object</code> or proper types</td></tr>
+<tr><td><code>as dynamic</code> cast</td><td>Warning</td><td>Unsafe cast — will crash at runtime if wrong type</td></tr>
+<tr><td><code>// ignore:</code> directive</td><td>Error</td><td>Disables analyzer for a line — hiding real issues</td></tr>
+<tr><td><code>// ignore_for_file:</code></td><td>Error</td><td>Disables analyzer for entire file — very dangerous</td></tr>
+<tr><td><code>late</code> without <code>final</code></td><td>Info</td><td>Mutable late vars can throw if accessed before init</td></tr>
+</table>
+
+<h2>What We Don't Cover (Yet)</h2>
+<ul style="font-size:0.82rem;color:var(--muted);padding-left:1.5rem;margin-bottom:1rem">
+<li>Widget test golden comparisons (screenshot diff testing)</li>
+<li>Flutter-specific lint rules (prefer_const_constructors etc.) — covered by <code>flutter_lints</code></li>
+<li>Dart-specific security patterns (HTTP without TLS) — covered by <code>dart analyze</code></li>
+<li>pub.dev score integration (planned)</li>
+</ul>
+
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);text-align:center">
+  <p style="font-size:0.75rem;color:var(--muted)">
+    <a href="/">Home</a> &middot;
+    <a href="/tools.html">Tool Decisions</a> &middot;
+    <a href="/stacks/typescript.html">TypeScript + React</a> &middot;
+    <a href="/stacks/node.html">Node.js Guide</a>
+  </p>
+</div>
+
+</body>
+</html>

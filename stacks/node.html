@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeCode QA for Node.js Backend</title>
+<link rel="icon" href="/favicon.svg">
+<style>
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308;--fail:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;max-width:900px;margin:0 auto}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+h1{font-size:2rem;font-weight:900;margin-bottom:0.3rem}
+h2{font-size:1.3rem;font-weight:800;margin-top:2.5rem;margin-bottom:0.8rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+h3{font-size:1rem;font-weight:700;margin-top:1.5rem;margin-bottom:0.4rem}
+p{color:var(--muted);font-size:0.85rem;margin-bottom:0.8rem}
+code{font-family:"SF Mono",Menlo,monospace;font-size:0.8em;background:var(--card);padding:0.15rem 0.4rem;border-radius:4px}
+pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;overflow-x:auto;font-size:0.8rem;margin:0.8rem 0;color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:0.8rem 0;font-size:0.8rem}
+th{text-align:left;padding:0.5rem;border-bottom:2px solid var(--border);color:var(--muted);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.04em}
+td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
+.badge{display:inline-block;padding:0.1rem 0.4rem;border-radius:4px;font-size:0.65rem;font-weight:700}
+.tool{background:#818cf820;color:#818cf8;border:1px solid #818cf840}
+.ours{background:#22c55e20;color:#22c55e;border:1px solid #22c55e40}
+.nav{margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.nav a{font-size:0.82rem;color:var(--muted)}
+.logo{font-weight:900;font-size:1.1rem}.logo span{color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;margin:0.5rem 0}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="logo"><span>VibeCode</span> QA</div>
+  <a href="/">Home</a>
+  <a href="/tools.html">Tool Decisions</a>
+  <a href="/stacks/typescript.html">TypeScript + React</a>
+  <a href="/stacks/node.html"><b>Node.js</b></a>
+  <a href="/stacks/flutter.html">Flutter</a>
+</div>
+
+<h1>Node.js Backend</h1>
+<p style="font-size:1rem;color:var(--text);margin-bottom:1.5rem">Express, Hono, Fastify, Cloudflare Workers, serverless functions. What VibeCode QA checks and which tools power each analysis.</p>
+
+<h2>Quick Start</h2>
+<pre>npx @vibecodeqa/cli</pre>
+<p>Auto-detects: TypeScript/JavaScript, test runner, linter, package manager, monorepo workspaces.</p>
+
+<h2>Backend-Specific Checks</h2>
+
+<h3>Security — Critical for backends</h3>
+<table>
+<tr><th>Pattern</th><th>CWE</th><th>What It Catches</th></tr>
+<tr><td>SQL Injection</td><td>CWE-89</td><td>Template literals in query/prepare/execute calls</td></tr>
+<tr><td>Command Injection</td><td>CWE-78</td><td>child_process.exec with string args (prefer execFile)</td></tr>
+<tr><td>SSRF</td><td>CWE-918</td><td>fetch() with user-supplied URLs</td></tr>
+<tr><td>Path Traversal</td><td>CWE-22</td><td>readFile/writeFile with user input in path</td></tr>
+<tr><td>Prototype Pollution</td><td>CWE-1321</td><td>Object.assign/spread from req.body/params</td></tr>
+<tr><td>Weak Crypto</td><td>CWE-330/328</td><td>Math.random for tokens, MD5/SHA1 for hashing</td></tr>
+<tr><td>localStorage in auth</td><td>CWE-922</td><td>Storing tokens/secrets in client-side storage</td></tr>
+<tr><td>Cookie Security</td><td>CWE-1004/614</td><td>document.cookie without HttpOnly, Set-Cookie without Secure</td></tr>
+</table>
+<p>For deeper security analysis, add <code>semgrep</code> in CI/CD — it does proper data-flow tracking.</p>
+
+<h3>Error Handling — Essential for servers</h3>
+<table>
+<tr><th>Pattern</th><th>Why It Matters</th></tr>
+<tr><td>Empty catch blocks</td><td>Errors silently disappear — users see broken behavior with no logs</td></tr>
+<tr><td>Floating promises</td><td>Unhandled rejections crash Node.js 15+ in production</td></tr>
+<tr><td><code>.catch(() => {})</code></td><td>Swallowed errors — at least log them for debugging</td></tr>
+<tr><td>JSON.parse without try-catch</td><td>Malformed request body crashes the request handler</td></tr>
+<tr><td>while(true) without break</td><td>Infinite loop freezes the event loop — all requests hang</td></tr>
+<tr><td>process.exit() in library code</td><td>Libraries should throw, not exit — callers can't recover</td></tr>
+<tr><td>Missing unhandledRejection handler</td><td>Uncaught promise rejections crash the server in Node 15+</td></tr>
+</table>
+
+<h3>.env File Audit</h3>
+<p>The secrets checker verifies:</p>
+<ul style="font-size:0.82rem;color:var(--muted);padding-left:1.5rem;margin-bottom:1rem">
+<li>.env files are in .gitignore</li>
+<li>No secrets with long values in committed .env files</li>
+<li>Hardcoded API keys/tokens in source code</li>
+</ul>
+
+<h2>Recommended Tool Setup</h2>
+<pre>
+# Core
+pnpm add -D typescript @biomejs/biome vitest
+
+# Security
+brew install gitleaks              # secret detection (800+ patterns)
+# pip install semgrep             # optional: deeper SAST in CI
+
+# Supply chain
+# pnpm add -D socket             # optional: pre-install malware detection
+
+# Monitoring (detected by best-practices check)
+pnpm add -D @sentry/node          # error tracking
+</pre>
+
+<h2>Cloudflare Workers</h2>
+<p>Workers are detected via <code>wrangler.toml</code>. VibeCode QA:</p>
+<ul style="font-size:0.82rem;color:var(--muted);padding-left:1.5rem;margin-bottom:1rem">
+<li>Runs <code>tsc --noEmit</code> for type checking</li>
+<li>Scans for security patterns (SSRF, secrets in code)</li>
+<li>Detects Workers as a "container" in the architecture diagram</li>
+<li>Checks wrangler.toml for secrets vs. vars separation</li>
+</ul>
+
+<h2>Monorepo: Platform Repos</h2>
+<p>Common pattern: <code>packages/api</code> + <code>packages/sdk</code> + <code>packages/cli</code>. VibeCode QA:</p>
+<ul style="font-size:0.82rem;color:var(--muted);padding-left:1.5rem;margin-bottom:1rem">
+<li>Detects pnpm-workspace.yaml / npm workspaces automatically</li>
+<li>Runs TypeScript per-package (project references or individual tsconfigs)</li>
+<li>Architecture diagrams show cross-package dependencies</li>
+<li>Scoring is proportional — 10 issues in 200 files != 10 issues in 5 files</li>
+</ul>
+
+<h2>CI Integration</h2>
+<pre>
+# .github/workflows/quality.yml
+name: Code Quality
+on: [pull_request]
+permissions: { contents: read }
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npx @vibecodeqa/cli --ci --fail-under 70 --sarif
+      - uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: .vibe-check/report.sarif
+</pre>
+
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);text-align:center">
+  <p style="font-size:0.75rem;color:var(--muted)">
+    <a href="/">Home</a> &middot;
+    <a href="/tools.html">Tool Decisions</a> &middot;
+    <a href="/stacks/typescript.html">TypeScript + React</a> &middot;
+    <a href="/stacks/flutter.html">Flutter Guide</a>
+  </p>
+</div>
+
+</body>
+</html>

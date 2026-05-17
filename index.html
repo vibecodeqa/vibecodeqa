@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>VibeCode QA — Code Health Scanner for the AI Coding Era</title>
-<meta name="description" content="21 checks, zero config, full report. The most comprehensive code quality scanner for TypeScript. Lint, types, complexity, security, architecture, testing pyramid, and LLM readiness — scored and graded in 5 seconds.">
+<meta name="description" content="22 checks, zero config, full report. Code quality scanner for TypeScript, React, Node.js, and Dart/Flutter. Lint, types, complexity, security, architecture, testing, and LLM readiness — scored in 5 seconds.">
 <meta property="og:title" content="VibeCode QA — Code Health Scanner for the AI Coding Era">
-<meta property="og:description" content="21 checks, zero config, full report. Scan your TypeScript codebase in 5 seconds.">
+<meta property="og:description" content="22 checks, zero config, full report. Scan TypeScript, React, Node.js, or Dart/Flutter in 5 seconds.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://vibecodeqa.online">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -165,7 +165,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
     <div class="step">
       <div class="step-num">1</div>
       <h3>Run one command</h3>
-      <p><code>npx @vibecodeqa/cli</code> — auto-detects your stack, runs 21 checks, opens the report.</p>
+      <p><code>npx @vibecodeqa/cli</code> — auto-detects your stack (TS/JS, React, Dart/Flutter), runs 22 checks, generates a full report.</p>
     </div>
     <div class="step">
       <div class="step-num">2</div>
@@ -236,6 +236,31 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
       <h3>LLM Readiness <span class="pct">13%</span> <span class="tag tag-unique">Unique</span></h3>
       <p><strong>Confusion Index</strong> — naming ambiguity that causes AI to edit the wrong code. <strong>Context Locality</strong> — file self-containment for LLM comprehension. Research: GPT-4o drops 28.6% with ambiguous names.</p>
     </div>
+  </div>
+</div>
+</section>
+
+<!-- Supported Stacks -->
+<section class="stacks" id="stacks">
+<div class="container">
+  <h2>Works with your stack</h2>
+  <p class="section-sub">Auto-detects your tools. Dedicated analysis for each ecosystem.</p>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+    <a href="/stacks/typescript.html" class="fcard" style="text-decoration:none;cursor:pointer;transition:border-color 0.15s">
+      <h3>TypeScript + React</h3>
+      <p>Biome/ESLint, tsc, vitest/jest, Playwright. React hooks rules, JSX accessibility, component testing.</p>
+      <div style="margin-top:0.5rem;font-size:0.72rem;color:var(--accent)">View stack guide &rarr;</div>
+    </a>
+    <a href="/stacks/node.html" class="fcard" style="text-decoration:none;cursor:pointer;transition:border-color 0.15s">
+      <h3>Node.js Backend</h3>
+      <p>Express/Hono/Fastify, Cloudflare Workers, error handling, security SAST, dependency audit, monorepo support.</p>
+      <div style="margin-top:0.5rem;font-size:0.72rem;color:var(--accent)">View stack guide &rarr;</div>
+    </a>
+    <a href="/stacks/flutter.html" class="fcard" style="text-decoration:none;cursor:pointer;transition:border-color 0.15s">
+      <h3>Dart + Flutter</h3>
+      <p>dart analyze, flutter_test, pub outdated, melos workspaces. Full analysis adapted for the Dart ecosystem.</p>
+      <div style="margin-top:0.5rem;font-size:0.72rem;color:var(--accent)">View stack guide &rarr;</div>
+    </a>
   </div>
 </div>
 </section>
@@ -312,7 +337,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
 <!-- Checks -->
 <section class="checks" id="checks">
 <div class="container">
-  <h2>21 checks, transparent scoring</h2>
+  <h2>22 checks, transparent scoring</h2>
   <p class="section-sub">Weights are visible. Every point of your score is explained.</p>
   <div class="check-list">
     <div class="check"><span class="w">6%</span> Project Structure</div>
@@ -354,7 +379,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
 <div class="footer-grid">
   <div>
     <div class="footer-brand"><span>VibeCode</span> QA</div>
-    <p class="footer-desc">Code health scanner for the AI coding era. 21 checks, zero config, full report. Open source under MIT license.</p>
+    <p class="footer-desc">Code health scanner for the AI coding era. 22 checks, zero config, full report. TypeScript, React, Node.js, Dart/Flutter. Open source under MIT.</p>
   </div>
   <div class="footer-col">
     <h4>Product</h4>

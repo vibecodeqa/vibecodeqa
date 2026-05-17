@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeCode QA for TypeScript + React</title>
+<link rel="icon" href="/favicon.svg">
+<style>
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308;--fail:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;max-width:900px;margin:0 auto}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+h1{font-size:2rem;font-weight:900;margin-bottom:0.3rem}
+h2{font-size:1.3rem;font-weight:800;margin-top:2.5rem;margin-bottom:0.8rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+h3{font-size:1rem;font-weight:700;margin-top:1.5rem;margin-bottom:0.4rem}
+p{color:var(--muted);font-size:0.85rem;margin-bottom:0.8rem}
+code{font-family:"SF Mono",Menlo,monospace;font-size:0.8em;background:var(--card);padding:0.15rem 0.4rem;border-radius:4px}
+pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;overflow-x:auto;font-size:0.8rem;margin:0.8rem 0;color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:0.8rem 0;font-size:0.8rem}
+th{text-align:left;padding:0.5rem;border-bottom:2px solid var(--border);color:var(--muted);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.04em}
+td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
+.badge{display:inline-block;padding:0.1rem 0.4rem;border-radius:4px;font-size:0.65rem;font-weight:700}
+.tool{background:#818cf820;color:#818cf8;border:1px solid #818cf840}
+.ours{background:#22c55e20;color:#22c55e;border:1px solid #22c55e40}
+.nav{margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.nav a{font-size:0.82rem;color:var(--muted)}
+.logo{font-weight:900;font-size:1.1rem}.logo span{color:var(--accent)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;margin:0.5rem 0}
+.metric{display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid var(--border);font-size:0.8rem}
+.metric:last-child{border:none}
+.metric-name{font-weight:600}
+.metric-tool{color:var(--muted);font-size:0.72rem}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="logo"><span>VibeCode</span> QA</div>
+  <a href="/">Home</a>
+  <a href="/tools.html">Tool Decisions</a>
+  <a href="/stacks/typescript.html"><b>TypeScript + React</b></a>
+  <a href="/stacks/node.html">Node.js</a>
+  <a href="/stacks/flutter.html">Flutter</a>
+</div>
+
+<h1>TypeScript + React</h1>
+<p style="font-size:1rem;color:var(--text);margin-bottom:1.5rem">Complete guide to what VibeCode QA checks, which tools it uses, and what metrics matter for TypeScript + React projects.</p>
+
+<h2>Quick Start</h2>
+<pre>npx @vibecodeqa/cli</pre>
+<p>Auto-detects: TypeScript, React, Vite/webpack, vitest/jest, Biome/ESLint, pnpm/npm/yarn.</p>
+
+<h2>What Gets Checked</h2>
+
+<h3>Foundations (23% of score)</h3>
+<table>
+<tr><th>Check</th><th>What</th><th>Tool</th><th>Metric</th></tr>
+<tr><td>Structure</td><td>package.json, tsconfig, LICENSE, lockfile, src/ dir, test ratio</td><td><span class="badge ours">built-in</span></td><td>missing files count</td></tr>
+<tr><td>Lint</td><td>Runs your linter with JSON output</td><td><span class="badge tool">biome</span> or <span class="badge tool">eslint</span></td><td>errors + warnings</td></tr>
+<tr><td>Type Check</td><td>Runs <code>tsc --noEmit</code></td><td><span class="badge tool">tsc</span></td><td>type errors</td></tr>
+<tr><td>Type Safety</td><td><code>as any</code>, <code>: any</code>, <code>@ts-ignore</code>, <code>@ts-nocheck</code>, <code>!.</code></td><td><span class="badge ours">built-in</span></td><td>unsafe patterns per KLOC</td></tr>
+<tr><td>Standards</td><td>File naming, file size, code smells (console.log, var, ==)</td><td><span class="badge ours">built-in</span></td><td>violations per file</td></tr>
+</table>
+
+<h3>Quality (23% of score)</h3>
+<table>
+<tr><th>Check</th><th>What</th><th>Tool</th><th>Metric</th></tr>
+<tr><td>Complexity</td><td>Cognitive complexity per function, line count</td><td><span class="badge ours">built-in</span></td><td>% functions over threshold</td></tr>
+<tr><td>Duplication</td><td>Copy-pasted blocks (6+ lines)</td><td><span class="badge tool">jscpd</span> or <span class="badge ours">built-in</span></td><td>duplication %</td></tr>
+<tr><td>Error Handling</td><td>Empty catch, throw string, floating promises, unsafe JSON.parse</td><td><span class="badge ours">built-in</span></td><td>issues per file</td></tr>
+<tr><td>React Patterns</td><td>Conditional hooks, missing keys, index keys, prop spreading, useEffect deps</td><td><span class="badge tool">eslint-plugin-react-hooks</span> or <span class="badge ours">built-in</span></td><td>violations per component</td></tr>
+<tr><td>Accessibility</td><td>img alt, click on div, form labels, autoFocus, tabIndex, html lang</td><td><span class="badge tool">eslint-plugin-jsx-a11y</span> or <span class="badge ours">built-in</span></td><td>violations per component</td></tr>
+<tr><td>Docs</td><td>README quality, JSDoc coverage, CHANGELOG presence</td><td><span class="badge ours">built-in</span></td><td>% exports documented</td></tr>
+<tr><td>Best Practices</td><td>CI/CD, OIDC, supply chain, repo hygiene, pre-commit hooks</td><td><span class="badge ours">built-in</span></td><td>practices followed %</td></tr>
+</table>
+
+<h3>Testing (15% of score)</h3>
+<table>
+<tr><th>Check</th><th>What</th><th>Tool</th><th>Metric</th></tr>
+<tr><td>Testing</td><td>Pyramid (unit/integration/component/E2E), execution, coverage, pairing, quality</td><td><span class="badge tool">vitest</span> or <span class="badge tool">jest</span></td><td>6 sub-dimensions</td></tr>
+</table>
+<p><b>Test pyramid layers detected:</b> Unit tests (any .test.ts), Component tests (@testing-library), Integration tests (real API calls), E2E (Playwright/Cypress).</p>
+
+<h3>Security (16% of score)</h3>
+<table>
+<tr><th>Check</th><th>What</th><th>Tool</th><th>Metric</th></tr>
+<tr><td>Secrets</td><td>Hardcoded API keys, tokens, private keys, .env audit</td><td><span class="badge tool">gitleaks</span> or <span class="badge ours">built-in (13 patterns)</span></td><td>secrets found</td></tr>
+<tr><td>Security</td><td>19 CWE patterns: XSS, injection, crypto, SSRF, localStorage</td><td><span class="badge ours">built-in</span></td><td>CWE violations</td></tr>
+<tr><td>Dependencies</td><td>npm audit + outdated packages</td><td><span class="badge tool">npm audit</span></td><td>critical/high vulns</td></tr>
+</table>
+
+<h3>Architecture (10% of score)</h3>
+<table>
+<tr><th>Check</th><th>What</th><th>Tool</th><th>Metric</th></tr>
+<tr><td>Architecture</td><td>Import graph, circular deps, god modules, orphans, fan-out</td><td><span class="badge ours">built-in (unique)</span></td><td>structural issues</td></tr>
+<tr><td>Performance</td><td>Barrel imports, heavy deps, dynamic import opportunities, CSS-in-JS</td><td><span class="badge ours">built-in</span></td><td>optimization opportunities</td></tr>
+</table>
+<p><b>6 interactive diagrams:</b> Dependency graph (click to highlight), DSM matrix (hover rows), Sequence diagram, Layer diagram, Package diagram, Container diagram.</p>
+
+<h3>AI Readiness (13% of score)</h3>
+<table>
+<tr><th>Check</th><th>What</th><th>Tool</th><th>Metric</th></tr>
+<tr><td>Confusion</td><td>Filename similarity (Levenshtein), synonym pairs, generic names, export collisions</td><td><span class="badge ours">built-in (unique)</span></td><td>confusion index</td></tr>
+<tr><td>Context</td><td>Token density per file, import depth, circular dep impact on LLM context</td><td><span class="badge ours">built-in (unique)</span></td><td>files over 4K tokens</td></tr>
+</table>
+
+<h2>Recommended Tool Setup</h2>
+<p>Install these for maximum accuracy. VibeCode QA auto-detects and delegates to them.</p>
+<pre>
+# Core (probably already have these)
+pnpm add -D typescript @biomejs/biome vitest
+
+# React-specific (enables AST-level checking)
+pnpm add -D eslint eslint-plugin-react-hooks eslint-plugin-jsx-a11y
+
+# Security (optional, boosts secret detection)
+brew install gitleaks
+
+# E2E (optional, detected for test pyramid)
+pnpm add -D @playwright/test
+</pre>
+
+<h2>Monorepo Support</h2>
+<p>VibeCode QA auto-detects pnpm-workspace.yaml, npm/yarn workspaces, Turborepo, Nx, and Lerna. When detected:</p>
+<ul style="font-size:0.82rem;color:var(--muted);padding-left:1.5rem;margin-bottom:1rem">
+<li>All checks scan <code>packages/*/src/</code>, not just root <code>src/</code></li>
+<li>TypeScript runs per-package (respects project references)</li>
+<li>Confusion check only compares files within the same package</li>
+<li>Orphan module detection disabled (cross-package imports are invisible to static analysis)</li>
+<li>Report overview shows workspace structure before assessment</li>
+</ul>
+
+<h2>Scoring Formula</h2>
+<p>All scoring is proportional to codebase size. No absolute-count cliffs.</p>
+<div class="card">
+<div class="metric"><span class="metric-name">Foundations</span><span>23%</span></div>
+<div class="metric"><span class="metric-name">Quality</span><span>23%</span></div>
+<div class="metric"><span class="metric-name">Testing</span><span>15%</span></div>
+<div class="metric"><span class="metric-name">Security</span><span>16%</span></div>
+<div class="metric"><span class="metric-name">Architecture</span><span>10%</span></div>
+<div class="metric"><span class="metric-name">AI Readiness</span><span>13%</span></div>
+</div>
+<p>Grade: A (90+), B (75+), C (60+), D (40+), F (&lt;40). Premium AI Analysis checks (doc-coherence, code-coherence) have 0% weight.</p>
+
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);text-align:center">
+  <p style="font-size:0.75rem;color:var(--muted)">
+    <a href="/">Home</a> &middot;
+    <a href="/tools.html">Tool Decisions</a> &middot;
+    <a href="/stacks/node.html">Node.js Guide</a> &middot;
+    <a href="/stacks/flutter.html">Flutter Guide</a>
+  </p>
+</div>
+
+</body>
+</html>
