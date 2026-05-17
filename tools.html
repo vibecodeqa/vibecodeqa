@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeCode QA — Tool Decisions & Transparency</title>
+<link rel="icon" href="favicon.svg">
+<style>
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;max-width:900px;margin:0 auto}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+h1{font-size:2rem;font-weight:900;margin-bottom:0.3rem}
+h2{font-size:1.3rem;font-weight:800;margin-top:2.5rem;margin-bottom:0.8rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+h3{font-size:1rem;font-weight:700;margin-top:1.5rem;margin-bottom:0.5rem;color:var(--accent)}
+p,.desc{color:var(--muted);font-size:0.85rem;margin-bottom:1rem}
+code{font-family:"SF Mono",Menlo,monospace;font-size:0.8em;background:var(--card);padding:0.15rem 0.4rem;border-radius:4px}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.8rem}
+th{text-align:left;padding:0.5rem;border-bottom:2px solid var(--border);color:var(--muted);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.04em}
+td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
+.badge{display:inline-block;padding:0.1rem 0.4rem;border-radius:4px;font-size:0.65rem;font-weight:700}
+.chosen{background:#22c55e20;color:#22c55e;border:1px solid #22c55e40}
+.fallback{background:#eab30820;color:#eab308;border:1px solid #eab30840}
+.rejected{background:#ef444420;color:#ef4444;border:1px solid #ef444440}
+.unique{background:#818cf820;color:#818cf8;border:1px solid #818cf840}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;margin:0.8rem 0}
+.card-title{font-weight:700;font-size:0.9rem;margin-bottom:0.3rem}
+.card-why{color:var(--muted);font-size:0.78rem}
+.nav{margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.nav a{font-size:0.82rem;color:var(--muted)}
+.nav a:hover{color:var(--text)}
+.logo{font-weight:900;font-size:1.1rem}
+.logo span{color:var(--accent)}
+.updated{color:var(--muted);font-size:0.7rem;margin-top:0.5rem}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="logo"><span>VibeCode</span> QA</div>
+  <a href="index.html">Home</a>
+  <a href="skills.html">Skills</a>
+  <a href="tools.html"><b>Tool Decisions</b></a>
+</div>
+
+<h1>Tool Decisions & Transparency</h1>
+<p>What tools we use, what we built ourselves, and why. Open by design.</p>
+<p class="updated">Last updated: 2026-05-18</p>
+
+<h2>Our Philosophy</h2>
+<p><b>Present, score, trend — don't reimplement.</b> We delegate to the best-in-class tool for each job. Our value is the unified view: one command, one score, one report across everything. When the dedicated tool isn't installed, we fall back to built-in heuristics so you always get a result.</p>
+
+<h2>Decision Matrix</h2>
+
+<table>
+<tr><th>Category</th><th>Chosen Tool</th><th>Fallback</th><th>Why This One</th></tr>
+<tr>
+  <td><b>Linting</b></td>
+  <td><span class="badge chosen">biome</span> or <span class="badge chosen">eslint</span></td>
+  <td>—</td>
+  <td>Auto-detected from project config. Biome is fastest; ESLint has 4000+ plugins. We run whichever you have.</td>
+</tr>
+<tr>
+  <td><b>Type Checking</b></td>
+  <td><span class="badge chosen">tsc</span></td>
+  <td>—</td>
+  <td>The only real TypeScript type checker. No alternative exists.</td>
+</tr>
+<tr>
+  <td><b>Test Execution</b></td>
+  <td><span class="badge chosen">vitest</span> or <span class="badge chosen">jest</span></td>
+  <td>—</td>
+  <td>Auto-detected. We run your test runner with JSON reporter + coverage.</td>
+</tr>
+<tr>
+  <td><b>Secret Detection</b></td>
+  <td><span class="badge chosen">gitleaks</span></td>
+  <td><span class="badge fallback">built-in (13 regex)</span></td>
+  <td>26K GitHub stars, MIT, 800+ patterns, scans git history. Fastest for pre-commit.</td>
+</tr>
+<tr>
+  <td><b>Duplication</b></td>
+  <td><span class="badge chosen">jscpd</span></td>
+  <td><span class="badge fallback">built-in (line-hash)</span></td>
+  <td>AST-token based (Rabin-Karp), 223 formats, AI-ready reporter. npm package, zero config.</td>
+</tr>
+<tr>
+  <td><b>Dep Vulnerabilities</b></td>
+  <td><span class="badge chosen">npm audit</span></td>
+  <td>—</td>
+  <td>Zero install, built into every Node.js. For deeper coverage, install Snyk or Socket.</td>
+</tr>
+<tr>
+  <td><b>React Hooks</b></td>
+  <td><span class="badge chosen">eslint-plugin-react-hooks</span></td>
+  <td><span class="badge fallback">built-in (regex)</span></td>
+  <td>Authoritative (maintained by React team), AST-based, catches all hook violations.</td>
+</tr>
+<tr>
+  <td><b>Accessibility</b></td>
+  <td><span class="badge chosen">eslint-plugin-jsx-a11y</span></td>
+  <td><span class="badge fallback">built-in (regex)</span></td>
+  <td>Static a11y checking at lint-time. For runtime testing, add axe-core.</td>
+</tr>
+<tr>
+  <td><b>Security (SAST)</b></td>
+  <td><span class="badge fallback">built-in (19 CWE patterns)</span></td>
+  <td>—</td>
+  <td>Semgrep/CodeQL are better but require separate install. Our patterns catch OWASP Top 10 basics.</td>
+</tr>
+<tr>
+  <td><b>Architecture</b></td>
+  <td><span class="badge unique">VibeCode QA (unique)</span></td>
+  <td>—</td>
+  <td>Import graph + 6 interactive diagrams. No other tool does this for JS/TS at zero-config.</td>
+</tr>
+<tr>
+  <td><b>AI Readiness</b></td>
+  <td><span class="badge unique">VibeCode QA (unique)</span></td>
+  <td>—</td>
+  <td>Token density, naming confusion, context sink analysis. Nobody else measures this.</td>
+</tr>
+<tr>
+  <td><b>Complexity</b></td>
+  <td><span class="badge unique">VibeCode QA</span></td>
+  <td>—</td>
+  <td>Per-function cognitive complexity + line count. Complements biome's file-level check.</td>
+</tr>
+</table>
+
+<h2>Tools We Evaluated But Didn't Choose</h2>
+
+<h3>TruffleHog <span class="badge rejected">Not default</span></h3>
+<div class="card">
+  <div class="card-title">Why not: Gitleaks is faster for our use case</div>
+  <div class="card-why">TruffleHog's killer feature is credential verification (checking if leaked secrets are still active). That's valuable but slow — it makes network calls. For a fast CLI scan, Gitleaks' regex-only approach runs in milliseconds. Recommendation: use TruffleHog in CI/CD for deeper scans.</div>
+</div>
+
+<h3>Semgrep <span class="badge rejected">Not bundled</span></h3>
+<div class="card">
+  <div class="card-title">Why not: Requires Python, too heavy for zero-config</div>
+  <div class="card-why">Semgrep has 3000+ community rules and proper AST pattern matching — far more accurate than our regex. But it requires Python/Docker and takes 10-30s to install. Our goal is zero-config: <code>npx @vibecodeqa/cli</code> should work instantly. We recommend Semgrep as a "go deeper" tool for security-critical projects.</div>
+</div>
+
+<h3>CodeQL <span class="badge rejected">GitHub-only</span></h3>
+<div class="card">
+  <div class="card-title">Why not: Can't run locally, GitHub-only</div>
+  <div class="card-why">CodeQL does deep data-flow analysis (tracking tainted input from source to sink) that regex can never match. But it only runs on GitHub Actions and requires a compiled database. We output SARIF that CodeQL can consume, so teams can use both.</div>
+</div>
+
+<h3>SonarQube <span class="badge rejected">Needs server</span></h3>
+<div class="card">
+  <div class="card-title">Why not: Requires self-hosted server, 4GB+ RAM</div>
+  <div class="card-why">SonarQube is the enterprise standard with 5000+ rules. But it needs a running server (Java, PostgreSQL, 4GB RAM minimum). We're a CLI that runs in 5 seconds. Different philosophy. For enterprises that want SonarQube depth + our architecture diagrams, we complement rather than compete.</div>
+</div>
+
+<h3>Oxlint <span class="badge rejected">Too narrow</span></h3>
+<div class="card">
+  <div class="card-title">Why not: Linter-only, no formatter, fewer rules than Biome</div>
+  <div class="card-why">Oxlint is 2x faster than Biome for linting. But it's intentionally narrow — no formatter, no import sorting. Biome gives the full package in one tool. We auto-detect whichever linter you use, including Oxlint if configured.</div>
+</div>
+
+<h3>Fallow <span class="badge rejected">Overlapping scope</span></h3>
+<div class="card">
+  <div class="card-title">Why not: Similar scope to VibeCode QA</div>
+  <div class="card-why">Fallow is a Rust-native codebase intelligence tool for TS/JS with unused code, duplication, circular deps, and complexity analysis. It's fast and has MCP/agent integration. We see it as a peer rather than a tool to delegate to — similar philosophy, different execution. Users can choose either or use both (Fallow for real-time agent queries, VibeCode QA for scoring + reports).</div>
+</div>
+
+<h3>Socket.dev <span class="badge rejected">Not free enough</span></h3>
+<div class="card">
+  <div class="card-title">Why not: Best supply-chain protection but limited free tier</div>
+  <div class="card-why">Socket intercepts malicious packages BEFORE install — behavioral analysis, not just CVE database. It's the future of dependency security. But the free tier is limited. We use npm audit (free, zero-config) and recommend Socket as an upgrade for production apps.</div>
+</div>
+
+<h2>What We Built Ourselves (and Why)</h2>
+
+<h3>Architecture Analysis <span class="badge unique">Unique</span></h3>
+<p>Import graph construction, circular dependency detection, god module identification, fan-in/fan-out metrics, package stability (Martin), and 6 interactive SVG diagrams. No existing tool provides this at zero-config for JS/TS monorepos.</p>
+
+<h3>AI Readiness Checks <span class="badge unique">Unique</span></h3>
+<p><b>Confusion Index:</b> Levenshtein filename similarity, synonym detection, export collisions, generic variable names. Measures how likely an LLM is to edit the wrong file or call the wrong function.</p>
+<p><b>Context Density:</b> Token count per file, import depth, circular dependency impact on context windows. Measures how expensive each file is for an AI to understand.</p>
+
+<h3>Monorepo Understanding <span class="badge unique">Unique</span></h3>
+<p>Auto-detects pnpm/npm/yarn/lerna/melos workspaces, Turborepo, Nx. Shows the repo structure on the overview page BEFORE assessing it. All checks are workspace-aware — they scan packages/*/src/, not just root src/.</p>
+
+<h3>Composite Scoring <span class="badge unique">Unique</span></h3>
+<p>22 checks weighted to 100 points. A single 0-100 score with grade (A-F) that trends over time. No other tool gives you "your code health is 78/B, up 3 from last week" in one number.</p>
+
+<h2>For Each Stack</h2>
+
+<h3>TypeScript + React (Vite/Next.js)</h3>
+<table>
+<tr><th>What</th><th>Tool</th><th>Install</th></tr>
+<tr><td>Lint + Format</td><td>biome</td><td><code>pnpm add -D @biomejs/biome</code></td></tr>
+<tr><td>Type Check</td><td>tsc</td><td>(included with typescript)</td></tr>
+<tr><td>Tests</td><td>vitest</td><td><code>pnpm add -D vitest</code></td></tr>
+<tr><td>React Hooks</td><td>eslint-plugin-react-hooks</td><td><code>pnpm add -D eslint eslint-plugin-react-hooks</code></td></tr>
+<tr><td>Accessibility</td><td>eslint-plugin-jsx-a11y</td><td><code>pnpm add -D eslint-plugin-jsx-a11y</code></td></tr>
+<tr><td>Secrets</td><td>gitleaks</td><td><code>brew install gitleaks</code></td></tr>
+<tr><td>E2E</td><td>Playwright</td><td><code>pnpm add -D @playwright/test</code></td></tr>
+</table>
+
+<h3>TypeScript + Node.js (API/Worker)</h3>
+<table>
+<tr><th>What</th><th>Tool</th><th>Install</th></tr>
+<tr><td>Lint + Format</td><td>biome</td><td><code>pnpm add -D @biomejs/biome</code></td></tr>
+<tr><td>Type Check</td><td>tsc</td><td>(included with typescript)</td></tr>
+<tr><td>Tests</td><td>vitest</td><td><code>pnpm add -D vitest</code></td></tr>
+<tr><td>Security</td><td>semgrep (CI)</td><td><code>pip install semgrep</code> or Docker</td></tr>
+<tr><td>Secrets</td><td>gitleaks</td><td><code>brew install gitleaks</code></td></tr>
+<tr><td>Deps</td><td>socket + npm audit</td><td><code>pnpm add -D socket</code></td></tr>
+</table>
+
+<h3>Dart + Flutter</h3>
+<table>
+<tr><th>What</th><th>Tool</th><th>Install</th></tr>
+<tr><td>Lint</td><td>dart analyze</td><td>(included with Dart SDK)</td></tr>
+<tr><td>Format</td><td>dart format</td><td>(included with Dart SDK)</td></tr>
+<tr><td>Tests</td><td>flutter_test / dart test</td><td>(included)</td></tr>
+<tr><td>Secrets</td><td>gitleaks</td><td><code>brew install gitleaks</code></td></tr>
+<tr><td>Deps</td><td>dart pub outdated</td><td>(included)</td></tr>
+</table>
+
+<h2>How to Get Maximum Score</h2>
+<p>Install the dedicated tools above. VibeCode QA auto-detects them and uses their output instead of built-in heuristics. More tools installed = more accurate results = higher confidence in your score.</p>
+<p><code>npx @vibecodeqa/cli --top</code> — shows your top issues with which tool found them.</p>
+
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);text-align:center">
+  <p style="font-size:0.75rem;color:var(--muted)">
+    <a href="https://github.com/vibecodeqa/cli">GitHub</a> &middot;
+    <a href="https://app.vibecodeqa.online">Dashboard</a> &middot;
+    <a href="https://www.npmjs.com/package/@vibecodeqa/cli">npm</a>
+  </p>
+</div>
+
+</body>
+</html>
