@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeCode QA for Vue + Nuxt</title>
+<link rel="icon" href="/favicon.svg">
+<style>
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;max-width:900px;margin:0 auto}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+h1{font-size:2rem;font-weight:900;margin-bottom:0.3rem}
+h2{font-size:1.3rem;font-weight:800;margin-top:2.5rem;margin-bottom:0.8rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+h3{font-size:1rem;font-weight:700;margin-top:1.5rem;margin-bottom:0.4rem}
+p{color:var(--muted);font-size:0.85rem;margin-bottom:0.8rem}
+code{font-family:"SF Mono",Menlo,monospace;font-size:0.8em;background:var(--card);padding:0.15rem 0.4rem;border-radius:4px}
+pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;overflow-x:auto;font-size:0.8rem;margin:0.8rem 0;color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:0.8rem 0;font-size:0.8rem}
+th{text-align:left;padding:0.5rem;border-bottom:2px solid var(--border);color:var(--muted);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.04em}
+td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
+.badge{display:inline-block;padding:0.1rem 0.4rem;border-radius:4px;font-size:0.65rem;font-weight:700}
+.tool{background:#818cf820;color:#818cf8;border:1px solid #818cf840}
+.ours{background:#22c55e20;color:#22c55e;border:1px solid #22c55e40}
+.nav{margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.nav a{font-size:0.82rem;color:var(--muted)}
+.logo{font-weight:900;font-size:1.1rem}.logo span{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="logo"><span>VibeCode</span> QA</div>
+  <a href="/">Home</a>
+  <a href="/tools.html">Tool Decisions</a>
+  <a href="/stacks/typescript.html">TS + React</a>
+  <a href="/stacks/vue.html"><b>Vue</b></a>
+  <a href="/stacks/node.html">Node.js</a>
+  <a href="/stacks/flutter.html">Flutter</a>
+</div>
+
+<h1>Vue + Nuxt</h1>
+<p style="font-size:1rem;color:var(--text);margin-bottom:1.5rem">Full SFC support. VibeCode QA extracts <code>&lt;script&gt;</code> for logic analysis and scans templates for security + accessibility.</p>
+
+<h2>Quick Start</h2>
+<pre>npx @vibecodeqa/cli</pre>
+<p>Auto-detects: <code>vue</code> or <code>nuxt</code> in dependencies, Vite bundler, vitest/jest test runner.</p>
+
+<h2>How .vue Files Are Analyzed</h2>
+<table>
+<tr><th>Part of SFC</th><th>What's Checked</th></tr>
+<tr><td><code>&lt;script setup&gt;</code></td><td>Type safety, complexity, duplication, error handling, imports, architecture graph</td></tr>
+<tr><td><code>&lt;template&gt;</code></td><td>Accessibility (img alt, click handlers), Security (v-html XSS)</td></tr>
+<tr><td><code>&lt;style&gt;</code></td><td>Not analyzed (CSS is out of scope)</td></tr>
+</table>
+
+<h2>Vue-Specific Patterns We Catch</h2>
+
+<h3>Security</h3>
+<table>
+<tr><th>Pattern</th><th>Severity</th><th>Why</th></tr>
+<tr><td><code>v-html="..."</code></td><td>Warning (CWE-79)</td><td>Renders raw HTML — equivalent to React's dangerouslySetInnerHTML. Sanitize user input with DOMPurify.</td></tr>
+</table>
+
+<h3>Accessibility</h3>
+<table>
+<tr><th>Pattern</th><th>Severity</th><th>Why</th></tr>
+<tr><td><code>&lt;div @click&gt;</code> without <code>role</code> + <code>@keydown</code></td><td>Warning</td><td>Non-interactive elements with click handlers exclude keyboard users.</td></tr>
+<tr><td><code>&lt;img&gt;</code> without <code>alt</code></td><td>Error</td><td>Images without alt text are invisible to screen readers.</td></tr>
+<tr><td><code>autofocus</code></td><td>Warning</td><td>Disorients screen reader users.</td></tr>
+</table>
+
+<h3>All Standard Checks Apply</h3>
+<p>Complexity, duplication, error handling, secrets, dependencies, architecture — all work on the extracted <code>&lt;script&gt;</code> content. Vue files appear in the import graph and architecture diagrams.</p>
+
+<h2>Nuxt-Specific</h2>
+<p>Nuxt is detected via <code>nuxt</code> in dependencies. When found:</p>
+<ul style="font-size:0.82rem;color:var(--muted);padding-left:1.5rem;margin-bottom:1rem">
+<li>Framework reported as "vue" (Nuxt is a Vue meta-framework)</li>
+<li>Bundler auto-detected (Nuxt handles its own bundling via Vite/webpack)</li>
+<li><code>.nuxt/</code> directory excluded from scanning</li>
+<li><code>app/</code> directory included in source roots</li>
+</ul>
+
+<h2>Recommended Tool Setup</h2>
+<pre>
+# Core
+pnpm add -D typescript @biomejs/biome vitest
+
+# Vue-specific ESLint (optional — enables deeper checks in lint runner)
+pnpm add -D eslint eslint-plugin-vue
+
+# Security
+brew install gitleaks
+
+# E2E
+pnpm add -D @playwright/test
+</pre>
+
+<h2>What We Don't Cover (Yet)</h2>
+<ul style="font-size:0.82rem;color:var(--muted);padding-left:1.5rem;margin-bottom:1rem">
+<li>Vue-specific lint rules (eslint-plugin-vue handles these when installed)</li>
+<li>Composition API vs Options API migration detection</li>
+<li><code>v-for</code> without <code>:key</code> (planned — currently only React's missing key is checked)</li>
+<li>Pinia/Vuex store patterns</li>
+<li>Scoped CSS analysis</li>
+</ul>
+
+<div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);text-align:center">
+  <p style="font-size:0.75rem;color:var(--muted)">
+    <a href="/">Home</a> &middot; <a href="/tools.html">Tool Decisions</a> &middot;
+    <a href="/stacks/typescript.html">TS + React</a> &middot; <a href="/stacks/node.html">Node.js</a> &middot; <a href="/stacks/flutter.html">Flutter</a>
+  </p>
+</div>
+</body>
+</html>
