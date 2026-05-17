@@ -191,6 +191,21 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
 <h3>Composite Scoring <span class="badge unique">Unique</span></h3>
 <p>22 checks weighted to 100 points. A single 0-100 score with grade (A-F) that trends over time. No other tool gives you "your code health is 78/B, up 3 from last week" in one number.</p>
 
+<h2>Ecosystem Gaps We Fill</h2>
+<p>Research into what existing tools miss — the gaps that informed our roadmap.</p>
+
+<table>
+<tr><th>Gap</th><th>Status</th><th>How</th></tr>
+<tr><td><b>Dead code / unused exports</b></td><td><span class="badge chosen">Delegated</span></td><td>Knip integration (30K+ stars, used by Vercel). Auto-detected, reports unused files, exports, deps.</td></tr>
+<tr><td><b>AI-generated code slop</b></td><td><span class="badge unique">Unique</span></td><td>Our confusion + context checks catch AI-generated naming ambiguity, unnecessary complexity, and over-imported deps.</td></tr>
+<tr><td><b>Architecture drift</b></td><td><span class="badge unique">Unique</span></td><td>6 interactive diagrams + stability metrics. Trend over time shows when architecture degrades.</td></tr>
+<tr><td><b>Naming consistency</b></td><td><span class="badge unique">Unique</span></td><td>Levenshtein filename similarity, synonym detection, export collision analysis across the codebase.</td></tr>
+<tr><td><b>Documentation coherence</b></td><td><span class="badge fallback">Planned (Pro)</span></td><td>LLM-powered comparison of README/JSDoc vs actual code behavior. Detects docs that lie.</td></tr>
+<tr><td><b>API boundary health</b></td><td><span class="badge fallback">Planned (Pro)</span></td><td>Track exported interface changes between versions. Detect breaking changes in monorepo packages.</td></tr>
+<tr><td><b>Cross-service dependency detection</b></td><td><span class="badge fallback">Planned</span></td><td>In monorepos, detect breaking changes between packages before they ship.</td></tr>
+<tr><td><b>Vue/Svelte SFC analysis</b></td><td><span class="badge chosen">Implemented</span></td><td>Script extraction for logic checks, template scanning for a11y + security (v-html, {@html} XSS).</td></tr>
+</table>
+
 <h2>For Each Stack</h2>
 
 <h3>TypeScript + React (Vite/Next.js)</h3>
@@ -202,7 +217,20 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
 <tr><td>React Hooks</td><td>eslint-plugin-react-hooks</td><td><code>pnpm add -D eslint eslint-plugin-react-hooks</code></td></tr>
 <tr><td>Accessibility</td><td>eslint-plugin-jsx-a11y</td><td><code>pnpm add -D eslint-plugin-jsx-a11y</code></td></tr>
 <tr><td>Secrets</td><td>gitleaks</td><td><code>brew install gitleaks</code></td></tr>
+<tr><td>Dead Code</td><td>knip</td><td><code>pnpm add -D knip</code></td></tr>
+<tr><td>Duplication</td><td>jscpd</td><td><code>pnpm add -D jscpd</code></td></tr>
 <tr><td>E2E</td><td>Playwright</td><td><code>pnpm add -D @playwright/test</code></td></tr>
+</table>
+
+<h3>Vue + Nuxt</h3>
+<table>
+<tr><th>What</th><th>Tool</th><th>Install</th></tr>
+<tr><td>Lint + Format</td><td>biome</td><td><code>pnpm add -D @biomejs/biome</code></td></tr>
+<tr><td>Vue Lint</td><td>eslint-plugin-vue</td><td><code>pnpm add -D eslint eslint-plugin-vue</code></td></tr>
+<tr><td>Type Check</td><td>vue-tsc</td><td><code>pnpm add -D vue-tsc</code></td></tr>
+<tr><td>Tests</td><td>vitest</td><td><code>pnpm add -D vitest @vue/test-utils</code></td></tr>
+<tr><td>Secrets</td><td>gitleaks</td><td><code>brew install gitleaks</code></td></tr>
+<tr><td>Dead Code</td><td>knip</td><td><code>pnpm add -D knip</code></td></tr>
 </table>
 
 <h3>TypeScript + Node.js (API/Worker)</h3>
