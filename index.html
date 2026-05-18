@@ -180,28 +180,37 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
   </div>
 
   <div class="terminal">
-    <div><span class="t-bold t-accent">vcqa</span> <span class="t-dim">v0.9.1</span></div>
+    <div><span class="t-bold t-accent">vcqa</span> <span class="t-dim">v0.29.0</span></div>
     <div><span class="t-dim">/Users/dev/my-project</span></div>
     <div><span class="t-dim">stack:</span> typescript + react + vite + vitest + biome + pnpm</div>
+    <div><span class="t-dim">workspace:</span> pnpm monorepo — 4 packages</div>
     <div>&nbsp;</div>
-    <div>  structure     <span class="t-green">A    92/100</span></div>
+    <div>  structure     <span class="t-green">A    100/100</span></div>
     <div>  lint          <span class="t-green">A    96/100</span></div>
     <div>  types         <span class="t-green">A    100/100</span></div>
-    <div>  type-safety   <span class="t-yellow">B    84/100</span>  <span class="t-dim">12 issues</span></div>
+    <div>  type-safety   <span class="t-green">A    98/100</span>  <span class="t-dim">2 issues</span></div>
     <div>  standards     <span class="t-yellow">B    82/100</span>  <span class="t-dim">5 issues</span></div>
-    <div>  complexity    <span class="t-yellow">B    78/100</span>  <span class="t-dim">3 issues</span></div>
+    <div>  complexity    <span class="t-green">A    92/100</span>  <span class="t-dim">3 issues</span></div>
     <div>  duplication   <span class="t-green">A    95/100</span></div>
-    <div>  docs          <span class="t-red">C    62/100</span>  <span class="t-dim">2 issues</span></div>
+    <div>  error-handling<span class="t-green">A    98/100</span>  <span class="t-dim">1 issues</span></div>
+    <div>  react         <span class="t-green">A    100/100</span></div>
+    <div>  accessibility <span class="t-green">A    100/100</span></div>
+    <div>  docs          <span class="t-yellow">B    78/100</span>  <span class="t-dim">1 issues</span></div>
+    <div>  best-practices<span class="t-yellow">B    82/100</span>  <span class="t-dim">4 issues</span></div>
     <div>  testing       <span class="t-yellow">B    75/100</span>  <span class="t-dim">4 issues</span></div>
     <div>  secrets       <span class="t-green">A    100/100</span></div>
     <div>  security      <span class="t-green">A    100/100</span></div>
     <div>  dependencies  <span class="t-green">A    99/100</span></div>
-    <div>  architecture  <span class="t-green">A    91/100</span></div>
+    <div>  architecture  <span class="t-green">A    91/100</span>  <span class="t-dim">3 issues</span></div>
+    <div>  performance   <span class="t-green">A    100/100</span></div>
     <div>  confusion     <span class="t-yellow">B    85/100</span>  <span class="t-dim">8 issues</span></div>
     <div>  context       <span class="t-green">A    90/100</span></div>
+    <div>  doc-coherence <span class="t-dim">soon PRO</span></div>
+    <div>  code-coherence<span class="t-dim">soon PRO</span></div>
     <div>&nbsp;</div>
-    <div>  <span class="t-green t-bold">B  88/100</span>  <span class="t-dim">15 checks · 34 issues · 4.8s</span></div>
+    <div>  <span class="t-green t-bold">A  92/100</span>  <span class="t-dim">22 checks · 31 issues · 5.2s</span></div>
     <div>  <span class="t-green">↑ 3 pts improved</span>  <span class="t-dim">vs 2026-05-14</span>  <span class="t-green">5 fixed</span></div>
+    <div>  <span class="t-dim">▁▂▃▄▅▅▆▆▇▇█████████</span></div>
   </div>
 </div>
 </section>
@@ -218,7 +227,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
     </div>
     <div class="fcard">
       <h3>Quality <span class="pct">23%</span></h3>
-      <p>Cognitive complexity per function, copy-paste duplication, error handling patterns, React hooks rules, accessibility violations, documentation coverage.</p>
+      <p>Cognitive complexity per function, copy-paste duplication (delegates to jscpd), error handling (empty catch, floating promises, JSON.parse safety), React/Vue/Svelte patterns, accessibility, documentation + CHANGELOG.</p>
     </div>
     <div class="fcard">
       <h3>Testing <span class="pct">15%</span></h3>
@@ -226,11 +235,11 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
     </div>
     <div class="fcard">
       <h3>Architecture <span class="pct">10%</span></h3>
-      <p>Import graph analysis, circular dependencies, god modules, coupling. Performance: barrel imports, heavy deps, dynamic import opportunities, CSS-in-JS overhead.</p>
+      <p>Import graph + 6 interactive SVG diagrams (dep graph, DSM, sequence, layer, package, container). Circular deps, god modules, coupling metrics. Performance: barrel imports, heavy deps, dead code (Knip).</p>
     </div>
     <div class="fcard">
       <h3>Security <span class="pct">16%</span></h3>
-      <p>13 secret patterns (AWS, GitHub, Stripe, OpenAI keys). 15 CWE-mapped vulnerability patterns (XSS, injection, prototype pollution, SSRF). Dependency audit + outdated checks.</p>
+      <p>Secret detection (delegates to gitleaks, 13 built-in patterns). 21 CWE-mapped patterns (XSS, injection, SSRF, localStorage). .env file audit. Dependency audit via npm audit. Dead code via Knip.</p>
     </div>
     <div class="fcard">
       <h3>LLM Readiness <span class="pct">13%</span> <span class="tag tag-unique">Unique</span></h3>
@@ -283,13 +292,14 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
       <div class="price-desc">For developers and open source projects</div>
       <ul class="price-list">
         <li>Full CLI — all 22 checks</li>
-        <li>Multi-page HTML report</li>
+        <li>Multi-page HTML report with interactive diagrams</li>
         <li>JSON + SARIF output for CI</li>
-        <li>Trends page (score history over time)</li>
-        <li>7 architecture diagrams + assessment</li>
-        <li>Best practices audit (CI/CD, supply chain)</li>
-        <li>GitHub file links + copy-to-fix prompts</li>
-        <li>--ci, --watch, --upload modes</li>
+        <li>Score trends with terminal sparklines</li>
+        <li>6 architecture diagrams (click-to-explore)</li>
+        <li>Monorepo support (pnpm, npm, yarn, melos)</li>
+        <li>Vue/Svelte SFC analysis</li>
+        <li>Tool delegation (gitleaks, jscpd, knip, biome)</li>
+        <li>--ci, --fail-under, --top, --watch</li>
         <li>Unlimited scans, unlimited repos</li>
       </ul>
       <a href="https://github.com/vibecodeqa/cli" class="price-btn price-btn-free">Get started</a>
@@ -302,13 +312,14 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
       <div class="price-desc">For teams that ship fast and need visibility</div>
       <ul class="price-list">
         <li>Everything in Free</li>
-        <li class="pro">Interactive report viewer (search, filter, expand)</li>
-        <li class="pro">Source code viewer with issue highlighting</li>
-        <li class="pro">GitHub App — auto-scan on every PR</li>
-        <li class="pro">PR comments with score delta</li>
+        <li class="pro">LLM-powered Doc Coherence (README vs code)</li>
+        <li class="pro">LLM-powered Code Coherence (internal contradictions)</li>
+        <li class="pro">GitHub App — auto-scan PRs + quality gates</li>
+        <li class="pro">Org dashboard — team visibility across repos</li>
+        <li class="pro">Slack/Discord alerts on score regression</li>
         <li class="pro">Hosted dashboard with trend charts</li>
         <li class="pro">Score history — 1 year retention</li>
-        <li class="pro">Version-to-version comparison</li>
+        <li class="pro">Configurable scan triggers + scheduled scans</li>
         <li class="pro">Custom quality gates</li>
         <li class="pro">Benchmark: compare to industry average</li>
         <li class="pro">Slack/Discord notifications</li>
@@ -346,24 +357,27 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
   <p class="section-sub">Weights are visible. Every point of your score is explained.</p>
   <div class="check-list">
     <div class="check"><span class="w">6%</span> Project Structure</div>
-    <div class="check"><span class="w">5%</span> Lint</div>
-    <div class="check"><span class="w">6%</span> Type Check</div>
+    <div class="check"><span class="w">5%</span> Lint <span class="t-dim">(biome/eslint)</span></div>
+    <div class="check"><span class="w">6%</span> Type Check <span class="t-dim">(tsc)</span></div>
     <div class="check"><span class="w">3%</span> Type Safety</div>
     <div class="check"><span class="w">3%</span> Code Standards</div>
-    <div class="check"><span class="w">3%</span> Complexity</div>
-    <div class="check"><span class="w">5%</span> Duplication</div>
-    <div class="check"><span class="w">5%</span> Error Handling</div>
-    <div class="check"><span class="w">3%</span> React Patterns</div>
+    <div class="check"><span class="w">5%</span> Complexity</div>
+    <div class="check"><span class="w">5%</span> Duplication <span class="t-dim">(jscpd)</span></div>
+    <div class="check"><span class="w">3%</span> Error Handling</div>
+    <div class="check"><span class="w">3%</span> React / Vue / Svelte</div>
     <div class="check"><span class="w">4%</span> Accessibility</div>
     <div class="check"><span class="w">3%</span> Documentation</div>
-    <div class="check"><span class="w">15%</span> Testing</div>
-    <div class="check"><span class="w">6%</span> Architecture</div>
-    <div class="check"><span class="w">4%</span> Performance</div>
-    <div class="check"><span class="w">6%</span> Secrets</div>
+    <div class="check"><span class="w">3%</span> Best Practices</div>
+    <div class="check"><span class="w">15%</span> Testing <span class="t-dim">(vitest/jest)</span></div>
+    <div class="check"><span class="w">6%</span> Secrets <span class="t-dim">(gitleaks)</span></div>
     <div class="check"><span class="w">5%</span> Security Patterns</div>
-    <div class="check"><span class="w">5%</span> Dependencies</div>
-    <div class="check"><span class="w">7%</span> Confusion Index</div>
-    <div class="check"><span class="w">6%</span> Context Locality</div>
+    <div class="check"><span class="w">5%</span> Dependencies <span class="t-dim">(npm audit)</span></div>
+    <div class="check"><span class="w">5%</span> Architecture</div>
+    <div class="check"><span class="w">4%</span> Performance <span class="t-dim">(knip)</span></div>
+    <div class="check"><span class="w">6%</span> Confusion Index <span class="tag tag-unique">Unique</span></div>
+    <div class="check"><span class="w">5%</span> Context Locality <span class="tag tag-unique">Unique</span></div>
+    <div class="check"><span class="w" style="color:var(--pro)">PRO</span> Doc Coherence <span class="t-dim">(LLM)</span></div>
+    <div class="check"><span class="w" style="color:var(--pro)">PRO</span> Code Coherence <span class="t-dim">(LLM)</span></div>
   </div>
 </div>
 </section>
