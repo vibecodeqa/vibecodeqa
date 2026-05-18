@@ -44,6 +44,12 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
 
 <h2>Quick Start</h2>
 <pre>npx @vibecodeqa/cli</pre>
+
+<h3>Set up CI + auto-fix</h3>
+<pre>
+npx @vibecodeqa/cli init    # creates .github/workflows/vibecodeqa.yml
+npx @vibecodeqa/cli fix     # auto-fix lint issues + show fix suggestions
+</pre>
 <p>Auto-detects: <code>pubspec.yaml</code>, <code>analysis_options.yaml</code>, Flutter vs pure Dart, test runner, melos workspaces.</p>
 
 <h2>How Detection Works</h2>

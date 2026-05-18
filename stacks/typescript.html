@@ -48,6 +48,12 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
 
 <h2>Quick Start</h2>
 <pre>npx @vibecodeqa/cli</pre>
+
+<h3>Set up CI + auto-fix</h3>
+<pre>
+npx @vibecodeqa/cli init    # creates .github/workflows/vibecodeqa.yml
+npx @vibecodeqa/cli fix     # auto-fix lint issues + show fix suggestions
+</pre>
 <p>Auto-detects: TypeScript, React, Vite/webpack, vitest/jest, Biome/ESLint, pnpm/npm/yarn.</p>
 
 <h2>What Gets Checked</h2>
