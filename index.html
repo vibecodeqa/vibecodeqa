@@ -185,7 +185,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
   </div>
 
   <div class="terminal">
-    <div><span class="t-bold t-accent">vcqa</span> <span class="t-dim">v0.29.0</span></div>
+    <div><span class="t-bold t-accent">vcqa</span> <span class="t-dim">v0.30.0</span></div>
     <div><span class="t-dim">/Users/dev/my-project</span></div>
     <div><span class="t-dim">stack:</span> typescript + react + vite + vitest + biome + pnpm</div>
     <div><span class="t-dim">workspace:</span> pnpm monorepo — 4 packages</div>
@@ -231,23 +231,23 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
       <p>Project structure, lint (Biome/ESLint auto-detected), TypeScript types, type safety (<code>as any</code> counts), code standards (naming, file size, code smells, strict mode).</p>
     </div>
     <div class="fcard">
-      <h3>Quality <span class="pct">23%</span></h3>
-      <p>Cognitive complexity per function, copy-paste duplication (delegates to jscpd), error handling (empty catch, floating promises, JSON.parse safety), React/Vue/Svelte patterns, accessibility, documentation + CHANGELOG.</p>
+      <h3>Quality <span class="pct">26%</span></h3>
+      <p>Cognitive complexity per function, copy-paste duplication (delegates to jscpd), error handling (empty catch, floating promises, JSON.parse safety), React/Vue/Svelte patterns, accessibility, documentation + CHANGELOG, best practices.</p>
     </div>
     <div class="fcard">
       <h3>Testing <span class="pct">15%</span></h3>
       <p>6 sub-dimensions: testing pyramid layers, pass/fail execution, statement/branch/line/function coverage, file pairing, assertion density vs mock ratio, Playwright/Cypress detection.</p>
     </div>
     <div class="fcard">
-      <h3>Architecture <span class="pct">10%</span></h3>
+      <h3>Architecture <span class="pct">9%</span></h3>
       <p>Import graph + 6 interactive SVG diagrams (dep graph, DSM, sequence, layer, package, container). Circular deps, god modules, coupling metrics. Performance: barrel imports, heavy deps, dead code (Knip).</p>
     </div>
     <div class="fcard">
       <h3>Security <span class="pct">16%</span></h3>
-      <p>Secret detection (delegates to gitleaks, 13 built-in patterns). 21 CWE-mapped patterns (XSS, injection, SSRF, localStorage). .env file audit. Dependency audit via npm audit. Dead code via Knip.</p>
+      <p>Secret detection (delegates to gitleaks, 13 built-in patterns). 25 CWE-mapped patterns (XSS, injection, SSRF, localStorage, prototype pollution). .env file audit. Dependency audit via npm audit.</p>
     </div>
     <div class="fcard">
-      <h3>LLM Readiness <span class="pct">13%</span> <span class="tag tag-unique">Unique</span></h3>
+      <h3>LLM Readiness <span class="pct">11%</span> <span class="tag tag-unique">Unique</span></h3>
       <p><strong>Confusion Index</strong> — naming ambiguity that causes AI to edit the wrong code. <strong>Context Locality</strong> — file self-containment for LLM comprehension. Research: GPT-4o drops 28.6% with ambiguous names.</p>
     </div>
   </div>

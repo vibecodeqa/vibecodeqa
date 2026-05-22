@@ -68,7 +68,7 @@ npx @vibecodeqa/cli fix     # auto-fix lint issues + show fix suggestions
 <tr><td>Standards</td><td>File naming, file size, code smells (console.log, var, ==)</td><td><span class="badge ours">built-in</span></td><td>violations per file</td></tr>
 </table>
 
-<h3>Quality (23% of score)</h3>
+<h3>Quality (26% of score)</h3>
 <table>
 <tr><th>Check</th><th>What</th><th>Tool</th><th>Metric</th></tr>
 <tr><td>Complexity</td><td>Cognitive complexity per function, line count</td><td><span class="badge ours">built-in</span></td><td>% functions over threshold</td></tr>
@@ -91,11 +91,11 @@ npx @vibecodeqa/cli fix     # auto-fix lint issues + show fix suggestions
 <table>
 <tr><th>Check</th><th>What</th><th>Tool</th><th>Metric</th></tr>
 <tr><td>Secrets</td><td>Hardcoded API keys, tokens, private keys, .env audit</td><td><span class="badge tool">gitleaks</span> or <span class="badge ours">built-in (13 patterns)</span></td><td>secrets found</td></tr>
-<tr><td>Security</td><td>19 CWE patterns: XSS, injection, crypto, SSRF, localStorage</td><td><span class="badge ours">built-in</span></td><td>CWE violations</td></tr>
+<tr><td>Security</td><td>25 CWE patterns: XSS, injection, crypto, SSRF, localStorage, prototype pollution</td><td><span class="badge ours">built-in</span></td><td>CWE violations</td></tr>
 <tr><td>Dependencies</td><td>npm audit + outdated packages</td><td><span class="badge tool">npm audit</span></td><td>critical/high vulns</td></tr>
 </table>
 
-<h3>Architecture (10% of score)</h3>
+<h3>Architecture (9% of score)</h3>
 <table>
 <tr><th>Check</th><th>What</th><th>Tool</th><th>Metric</th></tr>
 <tr><td>Architecture</td><td>Import graph, circular deps, god modules, orphans, fan-out</td><td><span class="badge ours">built-in (unique)</span></td><td>structural issues</td></tr>
@@ -103,7 +103,7 @@ npx @vibecodeqa/cli fix     # auto-fix lint issues + show fix suggestions
 </table>
 <p><b>6 interactive diagrams:</b> Dependency graph (click to highlight), DSM matrix (hover rows), Sequence diagram, Layer diagram, Package diagram, Container diagram.</p>
 
-<h3>AI Readiness (13% of score)</h3>
+<h3>AI Readiness (11% of score)</h3>
 <table>
 <tr><th>Check</th><th>What</th><th>Tool</th><th>Metric</th></tr>
 <tr><td>Confusion</td><td>Filename similarity (Levenshtein), synonym pairs, generic names, export collisions</td><td><span class="badge ours">built-in (unique)</span></td><td>confusion index</td></tr>
@@ -140,11 +140,11 @@ pnpm add -D @playwright/test
 <p>All scoring is proportional to codebase size. No absolute-count cliffs.</p>
 <div class="card">
 <div class="metric"><span class="metric-name">Foundations</span><span>23%</span></div>
-<div class="metric"><span class="metric-name">Quality</span><span>23%</span></div>
+<div class="metric"><span class="metric-name">Quality</span><span>26%</span></div>
 <div class="metric"><span class="metric-name">Testing</span><span>15%</span></div>
 <div class="metric"><span class="metric-name">Security</span><span>16%</span></div>
-<div class="metric"><span class="metric-name">Architecture</span><span>10%</span></div>
-<div class="metric"><span class="metric-name">AI Readiness</span><span>13%</span></div>
+<div class="metric"><span class="metric-name">Architecture</span><span>9%</span></div>
+<div class="metric"><span class="metric-name">AI Readiness</span><span>11%</span></div>
 </div>
 <p>Grade: A (90+), B (75+), C (60+), D (40+), F (&lt;40). Premium AI Analysis checks (doc-coherence, code-coherence) have 0% weight.</p>
 
