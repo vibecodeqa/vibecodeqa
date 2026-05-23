@@ -49,7 +49,7 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
 
 <h1>Tool Decisions & Transparency</h1>
 <p>What tools we use, what we built ourselves, and why. Open by design.</p>
-<p class="updated">Last updated: 2026-05-18</p>
+<p class="updated">Last updated: 2026-05-23</p>
 
 <h2>Our Philosophy</h2>
 <p><b>Present, score, trend — don't reimplement.</b> We delegate to the best-in-class tool for each job. Our value is the unified view: one command, one score, one report across everything. When the dedicated tool isn't installed, we fall back to built-in heuristics so you always get a result.</p>
@@ -125,10 +125,28 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
   <td>Token density, naming confusion, context sink analysis. Nobody else measures this.</td>
 </tr>
 <tr>
+  <td><b>Dead Code</b></td>
+  <td><span class="badge chosen">knip</span></td>
+  <td>—</td>
+  <td>30K+ stars, used by Vercel. Finds unused files, exports, and dependencies. Auto-detected if installed.</td>
+</tr>
+<tr>
+  <td><b>Dart/Flutter</b></td>
+  <td><span class="badge chosen">dart analyze</span></td>
+  <td>—</td>
+  <td>Official Dart static analyzer. Detects type errors, lint rules, and deprecated API usage.</td>
+</tr>
+<tr>
   <td><b>Complexity</b></td>
   <td><span class="badge unique">VibeCode QA</span></td>
   <td>—</td>
   <td>Per-function cognitive complexity + line count. Complements biome's file-level check.</td>
+</tr>
+<tr>
+  <td><b>Coverage Ingestion</b></td>
+  <td><span class="badge unique">VibeCode QA</span></td>
+  <td>—</td>
+  <td>Reads existing <code>coverage-summary.json</code> or <code>lcov.info</code>. Works with <code>--skip-tests</code>.</td>
 </tr>
 </table>
 
@@ -186,10 +204,21 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
 <p><b>Context Density:</b> Token count per file, import depth, circular dependency impact on context windows. Measures how expensive each file is for an AI to understand.</p>
 
 <h3>Monorepo Understanding <span class="badge unique">Unique</span></h3>
-<p>Auto-detects pnpm/npm/yarn/lerna/melos workspaces, Turborepo, Nx. Shows the repo structure on the overview page BEFORE assessing it. All checks are workspace-aware — they scan packages/*/src/, not just root src/.</p>
+<p>Auto-detects pnpm/npm/yarn/bun/lerna/melos workspaces, Turborepo, Nx. Handles YAML with comments, flow-style syntax, and negation patterns. Shows the repo structure on the overview page BEFORE assessing it. All checks are workspace-aware — they scan packages/*/src/, not just root src/. Framework detection aggregates deps from all workspace packages.</p>
+
+<h3>Test Coverage Map <span class="badge unique">Unique</span></h3>
+<p>Visual SVG diagram showing every module as a box — green (✓ tested) or red (✗ untested) — grouped by directory with a coverage percentage bar. Shows at a glance where test coverage gaps are.</p>
 
 <h3>Composite Scoring <span class="badge unique">Unique</span></h3>
 <p>22 checks weighted to 100 points. A single 0-100 score with grade (A-F) that trends over time. No other tool gives you "your code health is 78/B, up 3 from last week" in one number.</p>
+
+<h3>CI & Platform Integration <span class="badge unique">Unique</span></h3>
+<p><b>Config file:</b> <code>.vcqa.json</code> to disable checks, ignore paths, set per-check exclusions, and configure thresholds.</p>
+<p><b>PR comments:</b> <code>--pr-comment</code> posts score, trend, and top issues as a GitHub PR comment (upsert, no duplicates).</p>
+<p><b>Diff mode:</b> <code>--diff main</code> filters issues to only changed files — see what your PR introduced.</p>
+<p><b>Output modes:</b> <code>--markdown</code>, <code>--annotations</code> (GitHub Actions inline), <code>--sarif</code>, <code>--json</code>, <code>--badge</code>.</p>
+<p><b>Badge API:</b> <code>&lt;img src="api.vibecodeqa.online/badge/org/repo.svg"&gt;</code> — embeddable anywhere.</p>
+<p><b>Integration API:</b> <code>GET /api/v1/repos/:owner/:repo/latest</code> and <code>POST /api/v1/scan</code> for platform integrations.</p>
 
 <h2>Ecosystem Gaps We Fill</h2>
 <p>Research into what existing tools miss — the gaps that informed our roadmap.</p>
