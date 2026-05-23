@@ -283,6 +283,18 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
 <tr><td>Deps</td><td>dart pub outdated</td><td>(included)</td></tr>
 </table>
 
+<h2>MCP Server for AI Agents</h2>
+
+<div class="card">
+  <div class="card-title">@vibecodeqa/mcp — Model Context Protocol Server</div>
+  <div class="card-why">
+    <p>Gives AI coding agents (Claude Code, Cursor, Codex) real-time code health context. CodeScene's research shows AI fixes <b>90-100% of code health issues</b> when given health data via MCP, vs only 20% without.</p>
+    <p style="margin-top:0.5rem"><b>Setup:</b> <code>claude mcp add vcqa -- npx @vibecodeqa/mcp</code></p>
+    <p style="margin-top:0.5rem"><b>Tools:</b> vcqa_score, vcqa_scan, vcqa_file_health, vcqa_check, vcqa_explain</p>
+    <p style="margin-top:0.5rem"><a href="https://github.com/vibecodeqa/mcp">GitHub →</a></p>
+  </div>
+</div>
+
 <h2>How to Get Maximum Score</h2>
 <p>Install the dedicated tools above. VibeCode QA auto-detects them and uses their output instead of built-in heuristics. More tools installed = more accurate results = higher confidence in your score.</p>
 <p><code>npx @vibecodeqa/cli --top</code> — shows your top issues with which tool found them.</p>
