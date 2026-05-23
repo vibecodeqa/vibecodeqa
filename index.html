@@ -135,6 +135,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
   <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
   <div class="nav-links">
     <a href="#features">Features</a>
+    <a href="#mcp">MCP</a>
     <a href="#pricing">Pricing</a>
     <a href="https://github.com/vibecodeqa/cli">GitHub</a>
     <a href="https://app.vibecodeqa.online" class="nav-cta">Sign in</a>
@@ -312,6 +313,62 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
     <div class="fcard">
       <h3>Badge API</h3>
       <p>Embed <code>&lt;img src="api.vibecodeqa.online/badge/org/repo.svg"&gt;</code> in READMEs, dashboards, and store listings.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- MCP / AI Agent Integration -->
+<section class="how" id="mcp">
+<div class="container">
+  <h2 style="text-align:center;font-size:2rem;font-weight:800">AI Agent Integration (MCP)</h2>
+  <p class="section-sub" style="text-align:center">Give your AI coding agent real-time code health context via <a href="https://modelcontextprotocol.io">Model Context Protocol</a>.</p>
+  <div class="grid" style="grid-template-columns:repeat(2,1fr)">
+    <div class="fcard">
+      <h3>One command setup</h3>
+      <code style="display:block;margin:0.5rem 0;font-size:0.8rem">claude mcp add vcqa -- npx @vibecodeqa/mcp</code>
+      <p>Works with Claude Code, Cursor, and any MCP client. 5 tools: score, scan, file health, check details, explain.</p>
+    </div>
+    <div class="fcard">
+      <h3>How agents use it</h3>
+      <p><b>Before editing:</b> Agent calls <code>vcqa_file_health</code> to see existing issues.<br>
+      <b>After editing:</b> Agent calls <code>vcqa_score</code> to verify it didn't degrade quality.<br>
+      <b>Understanding:</b> Agent calls <code>vcqa_explain</code> to learn why a check flags something.</p>
+    </div>
+  </div>
+  <p style="text-align:center;margin-top:1.5rem"><a href="https://github.com/vibecodeqa/mcp" class="cta cta-ghost" style="font-size:0.85rem">View @vibecodeqa/mcp on GitHub →</a></p>
+</div>
+</section>
+
+<!-- 2026 Trends -->
+<section class="how" id="trends">
+<div class="container">
+  <h2 style="text-align:center;font-size:2rem;font-weight:800">2026: The Year of AI Code Quality</h2>
+  <p class="section-sub" style="text-align:center">2025 was about speed. 2026 is about keeping AI-generated code safe and maintainable.</p>
+  <div class="grid" style="grid-template-columns:repeat(2,1fr)">
+    <div class="fcard">
+      <h3>The problem</h3>
+      <p>AI-generated code introduces <b>1.7× more issues</b> than human-written code. <b>23.7% more security vulnerabilities.</b> Double the code churn rate. Without guardrails, AI agents accumulate technical debt faster than humans can review it.</p>
+    </div>
+    <div class="fcard">
+      <h3>The solution</h3>
+      <p>Layered guardrails: <b>MCP servers</b> give agents code health context in real-time. <b>PR comments</b> catch regressions before merge. <b>Quality gates</b> block deploys when score drops. <b>Trend tracking</b> shows if AI is improving or degrading your codebase over time.</p>
+    </div>
+  </div>
+
+  <h3 style="margin-top:2rem;text-align:center;color:var(--muted)">Roadmap</h3>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="fcard">
+      <h3>✅ Shipped</h3>
+      <p>MCP server · Config file · PR comments · Diff mode · Markdown output · GH Actions annotations · Badge API · Integration API · Coverage ingestion · Monorepo support</p>
+    </div>
+    <div class="fcard">
+      <h3>🔜 Next</h3>
+      <p>AI code attribution (flag AI-generated commits) · Change risk hotspots (git churn × code health) · 30/60/90 day regression tracking · IDE extension</p>
+    </div>
+    <div class="fcard">
+      <h3>🔮 Future</h3>
+      <p>AI defect rate dashboard · Cross-service dependency detection · API surface stability tracking · Real-time MCP guardrails (block agent from degrading score)</p>
     </div>
   </div>
 </div>
