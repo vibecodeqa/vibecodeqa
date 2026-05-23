@@ -185,7 +185,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
   </div>
 
   <div class="terminal">
-    <div><span class="t-bold t-accent">vcqa</span> <span class="t-dim">v0.30.0</span></div>
+    <div><span class="t-bold t-accent">vcqa</span> <span class="t-dim">v0.31.0</span></div>
     <div><span class="t-dim">/Users/dev/my-project</span></div>
     <div><span class="t-dim">stack:</span> typescript + react + vite + vitest + biome + pnpm</div>
     <div><span class="t-dim">workspace:</span> pnpm monorepo — 4 packages</div>
@@ -280,6 +280,39 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
       <p>dart analyze, flutter_test, pub outdated, melos workspaces. Full analysis adapted for the Dart ecosystem.</p>
       <div style="margin-top:0.5rem;font-size:0.72rem;color:var(--accent)">View stack guide &rarr;</div>
     </a>
+  </div>
+</div>
+</section>
+
+<!-- CI & Integration -->
+<section class="how" id="integration">
+<div class="container">
+  <h2 style="text-align:center;font-size:2rem;font-weight:800">CI & Platform Integration</h2>
+  <div class="grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="fcard">
+      <h3>Config File</h3>
+      <p>Create <code>.vcqa.json</code> to disable checks, ignore paths, set per-check exclusions, and configure quality thresholds.</p>
+    </div>
+    <div class="fcard">
+      <h3>PR Comments</h3>
+      <p><code>--pr-comment</code> posts score, trend, and top issues as a GitHub PR comment. Upserts to avoid duplicates.</p>
+    </div>
+    <div class="fcard">
+      <h3>Diff Mode</h3>
+      <p><code>--diff main</code> filters issues to only changed files. See what your PR introduced, not inherited debt.</p>
+    </div>
+    <div class="fcard">
+      <h3>Markdown Output</h3>
+      <p><code>--markdown</code> generates a clean markdown report. Pipe to clipboard, paste into docs, or attach to issues.</p>
+    </div>
+    <div class="fcard">
+      <h3>GH Actions Annotations</h3>
+      <p><code>--annotations</code> emits <code>::warning</code> and <code>::error</code> lines. Issues appear inline on PR diffs.</p>
+    </div>
+    <div class="fcard">
+      <h3>Badge API</h3>
+      <p>Embed <code>&lt;img src="api.vibecodeqa.online/badge/org/repo.svg"&gt;</code> in READMEs, dashboards, and store listings.</p>
+    </div>
   </div>
 </div>
 </section>
