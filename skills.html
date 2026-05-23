@@ -101,7 +101,7 @@ hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
 
 <h3>Security (16%)</h3>
 <ul>
-<li><strong>Secrets</strong> (6%) — 13 patterns (AWS, GitHub, Stripe, OpenAI keys)</li>
+<li><strong>Secrets</strong> (6%) — 14 patterns (AWS, GitHub, Stripe, OpenAI, Anthropic, Google keys)</li>
 <li><strong>Security</strong> (5%) — 25 CWE-mapped vulnerability patterns</li>
 <li><strong>Dependencies</strong> (5%) — npm audit / dart pub outdated</li>
 </ul>
@@ -130,15 +130,52 @@ warning: cognitive complexity 28 (max 15)
 Check: complexity</code></pre>
 <p>Copy these directly into Claude, Codex, or your AI coding tool.</p>
 
+<h3>Configuration (.vcqa.json)</h3>
+<p>Create <code>.vcqa.json</code> in your project root to customize behavior:</p>
+<pre><code>{
+  "checks": {
+    "confusion": { "enabled": false },
+    "standards": { "ignore": ["generated/**"] }
+  },
+  "ignore": ["vendor/**", "*.pb.ts"],
+  "failUnder": 70
+}</code></pre>
+<p>You can also put this in the <code>"vcqa"</code> field of <code>package.json</code>.</p>
+
+<h3>CLI commands</h3>
+<ul>
+<li><code>vcqa</code> — scan current directory (default)</li>
+<li><code>vcqa init</code> — set up CI workflow, biome.json, .vcqa.json, .gitignore</li>
+<li><code>vcqa fix</code> — auto-fix (.gitignore, tsconfig strict, biome/eslint, suggestions)</li>
+<li><code>vcqa explain [check]</code> — deep-dive on any check (what/risk/fix)</li>
+</ul>
+
+<h3>Output modes</h3>
+<ul>
+<li><code>--json</code> — machine-readable JSON to stdout</li>
+<li><code>--markdown</code> — clean markdown report (pipe to clipboard or file)</li>
+<li><code>--badge</code> — generate SVG badge</li>
+<li><code>--sarif</code> — SARIF 2.1.0 for GitHub Code Scanning</li>
+<li><code>--annotations</code> — GitHub Actions <code>::warning</code>/<code>::error</code> inline annotations</li>
+<li><code>--pr-comment</code> — post score as GitHub PR comment (needs GITHUB_TOKEN)</li>
+<li><code>--diff [base]</code> — only show issues in changed files</li>
+<li><code>--top [N]</code> — show top N issues to fix</li>
+</ul>
+
 <h3>Adding to GitHub Actions</h3>
 <pre><code>name: VibeCode QA
 on: [pull_request]
+permissions:
+  contents: read
+  pull-requests: write
 jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npx @vibecodeqa/cli --skip-tests --ci --sarif
+      - run: npx @vibecodeqa/cli --skip-tests --ci --sarif --pr-comment --annotations
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: github/codeql-action/upload-sarif@v3
         if: always()
         with:
