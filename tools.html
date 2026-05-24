@@ -233,7 +233,57 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
 <tr><td><b>API boundary health</b></td><td><span class="badge fallback">Planned (Pro)</span></td><td>Track exported interface changes between versions. Detect breaking changes in monorepo packages.</td></tr>
 <tr><td><b>Cross-service dependency detection</b></td><td><span class="badge fallback">Planned</span></td><td>In monorepos, detect breaking changes between packages before they ship.</td></tr>
 <tr><td><b>Vue/Svelte SFC analysis</b></td><td><span class="badge chosen">Implemented</span></td><td>Script extraction for logic checks, template scanning for a11y + security (v-html, {@html} XSS).</td></tr>
+<tr><td><b>Security headers (Helmet)</b></td><td><span class="badge chosen">Implemented</span></td><td>Checks for <a href="https://helmetjs.github.io/">Helmet.js</a> or manual security headers. Warning for Express/Fastify/Hono without X-Content-Type-Options, HSTS, X-Frame-Options.</td></tr>
+<tr><td><b>Input validation</b></td><td><span class="badge chosen">Implemented</span></td><td>Checks for <a href="https://zod.dev">Zod</a>, <a href="https://joi.dev">Joi</a>, Yup, <a href="https://valibot.dev">Valibot</a>, class-validator, ajv. Warning for API projects with no validation library.</td></tr>
+<tr><td><b>Production readiness</b></td><td><span class="badge chosen">Implemented</span></td><td>Health endpoints (/health, /healthz), graceful shutdown (SIGTERM handler), start script, error tracking (<a href="https://sentry.io">Sentry</a>/Bugsnag).</td></tr>
+<tr><td><b>Error info leakage</b></td><td><span class="badge chosen">Implemented</span></td><td>Detects <code>res.json({ error: err.stack })</code> — sending internal error details to clients. <a href="https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html">OWASP Error Handling</a>.</td></tr>
+<tr><td><b>CORS misconfiguration</b></td><td><span class="badge chosen">Implemented</span></td><td>Permissive <code>Access-Control-Allow-Origin: "*"</code>. <a href="https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/11-Client-side_Testing/07-Testing_Cross_Origin_Resource_Sharing">OWASP CORS Testing</a>.</td></tr>
 </table>
+
+<h2>What We Evaluated But Chose Not To Check (And Why)</h2>
+<p>We reviewed every major security checklist (<a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a>, <a href="https://cheatsheetseries.owasp.org/cheatsheets/Nodejs_Security_Cheat_Sheet.html">OWASP Node.js Cheat Sheet</a>, <a href="https://www.securityjourney.com/post/secure-coding-checklist">Security Journey Checklist</a>, <a href="https://nodejs.org/learn/getting-started/security-best-practices">Node.js Security Best Practices</a>) and chose not to add these checks. Here's why:</p>
+
+<h3>Rate limiting middleware <span class="badge rejected">Not added</span></h3>
+<div class="card">
+  <div class="card-title">Why not: Requires semantic understanding of middleware chain</div>
+  <div class="card-why">Rate limiting is critical for production APIs, but detecting it statically is unreliable. Some projects use Cloudflare/AWS WAF at the infrastructure level, others use express-rate-limit, others use custom middleware. A regex check would either false-positive (flagging projects with CDN-level limiting) or false-negative (missing custom implementations). <b>Recommendation:</b> Install <a href="https://www.npmjs.com/package/express-rate-limit">express-rate-limit</a> or use your CDN's built-in rate limiting.</div>
+</div>
+
+<h3>Session fixation / session management <span class="badge rejected">Not added</span></h3>
+<div class="card">
+  <div class="card-title">Why not: Framework-specific, needs runtime context</div>
+  <div class="card-why">Session fixation requires understanding how sessions are created and regenerated after login — this depends on which session library is used (express-session, iron-session, lucia, etc.) and how it's configured. Static analysis can't reliably detect "session not regenerated after auth" without understanding the auth flow. <b>Recommendation:</b> Use <a href="https://lucia-auth.com">Lucia</a> or <a href="https://authjs.dev">Auth.js</a> which handle session regeneration automatically.</div>
+</div>
+
+<h3>Structured logging <span class="badge rejected">Not added</span></h3>
+<div class="card">
+  <div class="card-title">Why not: Can't distinguish debug logs from production logging</div>
+  <div class="card-why">We already flag <code>console.log</code> in the standards check. But whether a project uses structured logging (pino, winston) vs console is a preference, not a security issue. Many Cloudflare Workers and edge functions use <code>console.log</code> because the platform captures it as structured logs automatically. Flagging "no pino installed" would be a false positive for serverless projects. <b>Recommendation:</b> Use <a href="https://github.com/pinojs/pino">pino</a> for Node.js servers that need log aggregation.</div>
+</div>
+
+<h3>JWT token expiry and algorithm validation <span class="badge rejected">Not added</span></h3>
+<div class="card">
+  <div class="card-title">Why not: High false positive rate, needs runtime context</div>
+  <div class="card-why">Checking if <code>jwt.sign()</code> includes <code>expiresIn</code> seems simple, but many projects set expiry in a config file, environment variable, or wrapper function — not at the call site. Flagging every <code>jwt.sign()</code> without seeing the full config would produce false positives. Similarly, algorithm choice (RS256 vs HS256) depends on the auth architecture. <b>Recommendation:</b> Use <a href="https://authjs.dev">Auth.js</a> or <a href="https://github.com/panva/jose">jose</a> which enforce secure defaults.</div>
+</div>
+
+<h3>CSP at framework level <span class="badge rejected">Not added</span></h3>
+<div class="card">
+  <div class="card-title">Why not: Too many valid approaches to detect reliably</div>
+  <div class="card-why">Content Security Policy can be set via meta tag (we check index.html for this), Helmet.js middleware (we check for this), CDN headers (Cloudflare, Vercel), or deployment config (vercel.json, _headers). A project using Cloudflare Pages with CSP headers in its dashboard would be flagged as "missing CSP" even though it's properly configured. We check the two most common approaches and leave infrastructure-level CSP to the user. <b>Recommendation:</b> Use <a href="https://csp-evaluator.withgoogle.com/">Google's CSP Evaluator</a> to validate your policy.</div>
+</div>
+
+<h3>bcrypt/argon2 for password hashing <span class="badge rejected">Not added</span></h3>
+<div class="card">
+  <div class="card-title">Why not: Most projects don't hash passwords locally</div>
+  <div class="card-why">We already detect weak hashing (MD5/SHA1). But checking "bcrypt is in deps" would false-positive on projects using OAuth/social login (no local passwords), Cloudflare Workers (bcrypt requires native bindings), or managed auth services (Auth0, Clerk, Supabase Auth). If you hash passwords locally, use <a href="https://www.npmjs.com/package/bcrypt">bcrypt</a> or <a href="https://www.npmjs.com/package/argon2">argon2</a>.</div>
+</div>
+
+<h3>Bundle size analysis <span class="badge rejected">Not added</span></h3>
+<div class="card">
+  <div class="card-title">Why not: Requires build step, not static analysis</div>
+  <div class="card-why">Measuring actual bundle size requires running the build (Vite, webpack, esbuild), which adds 10-30 seconds and may fail without environment setup. We detect heavy dependencies and barrel imports statically (in the performance check), which catches the root causes without needing a build. For actual bundle analysis, use <a href="https://www.npmjs.com/package/rollup-plugin-visualizer">rollup-plugin-visualizer</a> or <a href="https://bundlephobia.com">Bundlephobia</a>.</div>
+</div>
 
 <h2>For Each Stack</h2>
 
@@ -249,6 +299,9 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
 <tr><td>Dead Code</td><td>knip</td><td><code>pnpm add -D knip</code></td></tr>
 <tr><td>Duplication</td><td>jscpd</td><td><code>pnpm add -D jscpd</code></td></tr>
 <tr><td>E2E</td><td>Playwright</td><td><code>pnpm add -D @playwright/test</code></td></tr>
+<tr><td>Security SAST</td><td>eslint-plugin-security</td><td><code>pnpm add -D eslint-plugin-security</code></td></tr>
+<tr><td>Security Headers</td><td>helmet</td><td><code>pnpm add helmet</code></td></tr>
+<tr><td>Input Validation</td><td>zod</td><td><code>pnpm add zod</code></td></tr>
 </table>
 
 <h3>Vue + Nuxt</h3>
@@ -271,6 +324,9 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
 <tr><td>Security</td><td>semgrep (CI)</td><td><code>pip install semgrep</code> or Docker</td></tr>
 <tr><td>Secrets</td><td>gitleaks</td><td><code>brew install gitleaks</code></td></tr>
 <tr><td>Deps</td><td>socket + npm audit</td><td><code>pnpm add -D socket</code></td></tr>
+<tr><td>Security SAST</td><td>eslint-plugin-security</td><td><code>pnpm add -D eslint-plugin-security</code></td></tr>
+<tr><td>Security Headers</td><td>helmet</td><td><code>pnpm add helmet</code></td></tr>
+<tr><td>Input Validation</td><td>zod</td><td><code>pnpm add zod</code></td></tr>
 </table>
 
 <h3>Dart + Flutter</h3>
