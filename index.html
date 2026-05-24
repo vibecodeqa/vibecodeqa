@@ -233,7 +233,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
     </div>
     <div class="fcard">
       <h3>Quality <span class="pct">26%</span></h3>
-      <p>Cognitive complexity per function, copy-paste duplication (delegates to jscpd), error handling (empty catch, floating promises, JSON.parse safety), React/Vue/Svelte patterns, accessibility, documentation + CHANGELOG, best practices.</p>
+      <p>Cognitive complexity per function, copy-paste duplication (delegates to <a href="https://github.com/kucherenko/jscpd">jscpd</a>), error handling (empty catch, floating promises, <a href="https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html">error info leakage</a>), React/Vue/Svelte patterns, accessibility, documentation, production readiness (health endpoints, graceful shutdown).</p>
     </div>
     <div class="fcard">
       <h3>Testing <span class="pct">15%</span></h3>
@@ -245,7 +245,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
     </div>
     <div class="fcard">
       <h3>Security <span class="pct">16%</span></h3>
-      <p>Secret detection (delegates to gitleaks, 14 built-in patterns). 31 CWE-mapped patterns (XSS, injection, SSRF, localStorage, prototype pollution). .env file audit. Dependency audit via npm audit.</p>
+      <p>Secret detection (delegates to <a href="https://github.com/gitleaks/gitleaks">gitleaks</a>, 14 built-in patterns). 36 CWE-mapped patterns (XSS, injection, SSRF, CORS, credential storage, cookies, redirects). Delegates to <a href="https://github.com/eslint-community/eslint-plugin-security">eslint-plugin-security</a> when installed. Dependency audit via npm audit.</p>
     </div>
     <div class="fcard">
       <h3>LLM Readiness <span class="pct">11%</span> <span class="tag tag-unique">Unique</span></h3>

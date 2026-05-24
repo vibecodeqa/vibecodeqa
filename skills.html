@@ -79,11 +79,11 @@ hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
 <ul>
 <li><strong>Complexity</strong> (5%) — cognitive complexity per function, long functions</li>
 <li><strong>Duplication</strong> (5%) — copy-pasted 6+ line blocks</li>
-<li><strong>Error Handling</strong> (3%) — empty catch, throw string, Error Boundary</li>
+<li><strong>Error Handling</strong> (3%) — empty catch, throw string, Error Boundary, <a href="https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html">error info leakage</a> (stack traces sent to client)</li>
 <li><strong>React Patterns</strong> (3%) — conditional hooks, missing keys, index keys</li>
 <li><strong>Accessibility</strong> (4%) — img alt, click on div, form labels, html lang</li>
 <li><strong>Docs</strong> (3%) — README quality, JSDoc/doc comment coverage</li>
-<li><strong>Best Practices</strong> (3%) — CI/CD, lockfile, linter config, test scripts, supply chain (severity-weighted: warnings=8pts, infos=2pts)</li>
+<li><strong>Best Practices</strong> (3%) — CI/CD, lockfile, linter config, test scripts, supply chain, <a href="https://github.com/nodeshift/nodejs-reference-architecture/blob/main/docs/operations/healthchecks.md">health endpoints</a>, <a href="https://nodejs.org/learn/getting-started/security-best-practices">graceful shutdown</a> (severity-weighted: warnings=8pts, infos=2pts)</li>
 </ul>
 
 <h3>Testing (15%)</h3>
@@ -102,7 +102,7 @@ hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
 <h3>Security (16%)</h3>
 <ul>
 <li><strong>Secrets</strong> (6%) — 14 patterns (AWS, GitHub, Stripe, OpenAI, Anthropic, Google keys)</li>
-<li><strong>Security</strong> (5%) — 31 CWE-mapped vulnerability patterns (XSS, injection, credential storage, cookie security)</li>
+<li><strong>Security</strong> (5%) — 36 <a href="https://cwe.mitre.org/">CWE</a>-mapped patterns (XSS, injection, CORS, credential storage, cookies, redirects, debug mode). Delegates to <a href="https://github.com/eslint-community/eslint-plugin-security">eslint-plugin-security</a> for ReDoS, timing attacks, and more</li>
 <li><strong>Dependencies</strong> (5%) — npm audit / dart pub outdated</li>
 </ul>
 
