@@ -143,6 +143,12 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
   <td>Per-function cognitive complexity + line count. Complements biome's file-level check.</td>
 </tr>
 <tr>
+  <td><b>License Compliance</b></td>
+  <td><span class="badge unique">VibeCode QA</span></td>
+  <td>—</td>
+  <td>Scans node_modules for copyleft licenses (GPL, AGPL, SSPL). Flags unknown licenses. <a href="https://www.npmjs.com/package/license-checker">license-checker</a> for deeper audit.</td>
+</tr>
+<tr>
   <td><b>Coverage Ingestion</b></td>
   <td><span class="badge unique">VibeCode QA</span></td>
   <td>—</td>
@@ -210,7 +216,7 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
 <p>Visual SVG diagram showing every module as a box — green (✓ tested) or red (✗ untested) — grouped by directory with a coverage percentage bar. Shows at a glance where test coverage gaps are.</p>
 
 <h3>Composite Scoring <span class="badge unique">Unique</span></h3>
-<p>22 checks weighted to 100 points. Composite = Σ(check × weight) / Σ(weight). Skipped checks excluded. All scoring proportional to codebase size — no absolute-count cliffs. Best-practices uses severity-weighted penalties (error=15, warning=8, info=2) so missing nice-to-haves don't tank your score. A single 0-100 score with grade (A-F) that trends over time.</p>
+<p>23 checks weighted to 100 points. Composite = Σ(check × weight) / Σ(weight). Skipped checks excluded. All scoring proportional to codebase size — no absolute-count cliffs. Best-practices uses severity-weighted penalties (error=15, warning=8, info=2) so missing nice-to-haves don't tank your score. A single 0-100 score with grade (A-F) that trends over time.</p>
 
 <h3>CI & Platform Integration <span class="badge unique">Unique</span></h3>
 <p><b>Config file:</b> <code>.vcqa.json</code> to disable checks, ignore paths, set per-check exclusions, and configure thresholds.</p>
