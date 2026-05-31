@@ -135,6 +135,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
   <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
   <div class="nav-links">
     <a href="#features">Features</a>
+    <a href="#monitor">Monitor</a>
     <a href="#mcp">MCP</a>
     <a href="#pricing">Pricing</a>
     <a href="https://github.com/vibecodeqa/cli">GitHub</a>
@@ -186,7 +187,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
   </div>
 
   <div class="terminal">
-    <div><span class="t-bold t-accent">vcqa</span> <span class="t-dim">v0.31.0</span></div>
+    <div><span class="t-bold t-accent">vcqa</span> <span class="t-dim">v0.35.0</span></div>
     <div><span class="t-dim">/Users/dev/my-project</span></div>
     <div><span class="t-dim">stack:</span> typescript + react + vite + vitest + biome + pnpm</div>
     <div><span class="t-dim">workspace:</span> pnpm monorepo — 4 packages</div>
@@ -316,6 +317,24 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
     <div class="fcard">
       <h3>Badge API</h3>
       <p>Embed <code>&lt;img src="api.vibecodeqa.online/badge/org/repo.svg"&gt;</code> in READMEs, dashboards, and store listings.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Live Monitor -->
+<section class="how" id="monitor">
+<div class="container">
+  <h2 style="text-align:center;font-size:2rem;font-weight:800">Live Monitor</h2>
+  <p class="section-sub" style="text-align:center">Real-time quality control panel. Like htop for code health.</p>
+  <div class="grid" style="grid-template-columns:repeat(2,1fr)">
+    <div class="fcard">
+      <h3>One Command <span class="tag tag-new">New</span></h3>
+      <p><code>npx @vibecodeqa/cli monitor</code> — full-screen TUI that watches your codebase and re-scans on every file change. Score, checks, issues, and activity log update live.</p>
+    </div>
+    <div class="fcard">
+      <h3>Configurable</h3>
+      <p>Press <code>c</code> for settings: alert thresholds (score floor, drop sensitivity), scan debounce, toggle panels on/off. Persists to <code>.vibe-check/monitor.json</code>.</p>
     </div>
   </div>
 </div>
