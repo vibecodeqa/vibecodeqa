@@ -8,11 +8,11 @@ VibeCode QA reports one number: a **composite score from 0 to 100**, mapped to a
 
 ## The formula
 
-$$
-\text{score} = \frac{\sum_i (\text{check}_i \times \text{weight}_i)}{\sum_i \text{weight}_i}
-$$
+```text
+score = Σ(checkᵢ × weightᵢ) / Σ(weightᵢ)
+```
 
-Each check produces a 0–100 sub-score. Skipped checks (e.g. a React check on a non-React project) are excluded from both sums, so they never penalize you.
+Each check produces a 0–100 sub-score, multiplied by its weight; the weighted sum is divided by the total weight of the checks that ran. Skipped checks (e.g. a React check on a non-React project) are excluded from both sums, so they never penalize you.
 
 ## Category weights
 
