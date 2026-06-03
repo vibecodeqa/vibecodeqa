@@ -84,9 +84,9 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
 </tr>
 <tr>
   <td><b>Duplication</b></td>
-  <td><span class="badge chosen">jscpd</span></td>
-  <td><span class="badge fallback">built-in (line-hash)</span></td>
-  <td>AST-token based (Rabin-Karp), 223 formats, AI-ready reporter. npm package, zero config.</td>
+  <td><span class="badge chosen">jscpd CLI</span></td>
+  <td><span class="badge fallback">built-in (@jscpd/core)</span></td>
+  <td>Token-based (Rabin-Karp), maximal clones. The built-in fallback runs jscpd's own <code>@jscpd/core</code> engine over our lightweight tokenizer — same algorithm, ~100&nbsp;KB instead of the full 2.5&nbsp;MB language-grammar tokenizer. The opt-in CLI adds 223-format tokenizing + HTML reports.</td>
 </tr>
 <tr>
   <td><b>Dep Vulnerabilities</b></td>
