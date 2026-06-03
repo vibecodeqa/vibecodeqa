@@ -10,10 +10,13 @@ VibeCode QA's rule: **use the best dedicated tool when it's present, fall back t
 |---|---|---|
 | Secrets | gitleaks | 14 regex patterns + `.env` audit |
 | Duplication | jscpd CLI | `@jscpd/core` engine + our tokenizer |
+| Architecture | **dependency-cruiser** (bundled) | built-in resolver (SFC / monorepo) |
 | Dead code | Knip | skipped |
 | React hooks | eslint-plugin-react-hooks | built-in heuristics |
 | Accessibility | eslint-plugin-jsx-a11y | built-in heuristics |
 | Security | eslint-plugin-security | 36 CWE-mapped patterns |
+
+The **architecture** check resolves your import graph with [dependency-cruiser](https://github.com/sverweij/dependency-cruiser) — the standard for JS/TS dependency analysis — so cycles, orphans, and god modules are found with real module resolution (tsconfig path aliases included). `.vue`/`.svelte` and monorepo projects fall back to a built-in SFC-aware resolver.
 
 When a specialist plugin is installed (e.g. `eslint-plugin-react-hooks`), the built-in heuristic steps aside to avoid double-reporting.
 

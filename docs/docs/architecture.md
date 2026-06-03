@@ -36,6 +36,9 @@ flowchart LR
   subgraph Duplication
     D1[jscpd CLI] -.fallback.-> D2["@jscpd/core engine<br/>+ our tokenizer"]
   end
+  subgraph Architecture
+    A1[dependency-cruiser] -.SFC/monorepo.-> A2[built-in resolver]
+  end
   subgraph Dead code
     K1[Knip] -.fallback.-> K2[skip]
   end
