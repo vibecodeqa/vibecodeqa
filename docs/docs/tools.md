@@ -8,7 +8,7 @@ VibeCode QA's rule: **use the best dedicated tool when it's present, fall back t
 
 | Check | Preferred tool | Built-in fallback |
 |---|---|---|
-| Secrets | gitleaks | 14 regex patterns + `.env` audit |
+| Secrets | gitleaks | our patterns (incl. OpenAI/Anthropic) **∪ secretlint** + `.env` audit |
 | Duplication | jscpd CLI | `@jscpd/core` engine + our tokenizer |
 | Architecture | **dependency-cruiser** (bundled) | built-in resolver (SFC / monorepo) |
 | Dead code | Knip | skipped |
