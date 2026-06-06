@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeCode QA vs Snyk — Comparison</title>
+<meta name="description" content="Compare VibeCode QA and Snyk for code quality and security scanning. Unified code health vs dependency-focused security. 34 checks including AI readiness.">
+<link rel="icon" href="../favicon.svg">
+<link rel="canonical" href="https://vibecodeqa.online/compare/vs-snyk.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "What is the difference between VibeCode QA and Snyk?", "acceptedAnswer": {"@type": "Answer", "text": "Snyk focuses on security — dependency vulnerabilities, container scanning, and IaC misconfigurations. VibeCode QA is a unified code health scanner: 34 checks across security, architecture, testing, complexity, AI readiness, and more. VibeCode QA includes built-in secret detection, security pattern scanning, AND code quality in one tool."}},
+    {"@type": "Question", "name": "Should I use both VibeCode QA and Snyk?", "acceptedAnswer": {"@type": "Answer", "text": "They complement each other. Use Snyk for deep dependency vulnerability tracking and container scanning. Use VibeCode QA for code quality, architecture analysis, testing assessment, and AI readiness — areas Snyk doesn't cover."}},
+    {"@type": "Question", "name": "Does VibeCode QA do security scanning?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. VibeCode QA scans for 36 CWE patterns (XSS, SQL injection, command injection, etc.), detects secrets with gitleaks, audits npm dependencies, and checks .env file exposure. It's not as deep as Snyk for dependency CVEs, but covers code-level security that Snyk misses."}}
+  ]
+}
+</script>
+<style>
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308;--fail:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;max-width:900px;margin:0 auto}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+h1{font-size:2rem;font-weight:900;margin-bottom:0.5rem}
+h2{font-size:1.3rem;font-weight:800;margin-top:2.5rem;margin-bottom:0.8rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+p{color:var(--muted);font-size:0.9rem;margin-bottom:1rem}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.85rem}
+th{text-align:left;padding:0.6rem;border-bottom:2px solid var(--border);color:var(--muted);font-size:0.75rem;text-transform:uppercase}
+td{padding:0.6rem;border-bottom:1px solid var(--border)}
+.v{color:var(--pass);font-weight:700}.x{color:var(--fail);font-weight:700}
+.nav{margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;flex-wrap:wrap}
+.cta{display:inline-block;background:var(--accent);color:#fff;padding:0.6rem 1.5rem;border-radius:6px;font-weight:700;margin-top:1rem}
+.cta:hover{opacity:0.9;text-decoration:none}
+code{font-family:"SF Mono",Menlo,monospace;font-size:0.85em;background:var(--card);padding:0.15rem 0.4rem;border-radius:4px}
+.hero-sub{font-size:1.1rem;color:var(--text);margin-bottom:1.5rem}
+</style>
+</head>
+<body>
+<div class="nav">
+<a href="https://vibecodeqa.online">Home</a>
+<a href="vs-sonarqube.html">vs SonarQube</a>
+<a href="vs-codeclimate.html">vs CodeClimate</a>
+<a href="vs-eslint.html">vs ESLint</a>
+</div>
+
+<h1>VibeCode QA vs Snyk</h1>
+<p class="hero-sub">Snyk secures your dependencies. VibeCode QA scores your entire codebase.</p>
+
+<h2>Side by side</h2>
+<table>
+<tr><th></th><th>VibeCode QA</th><th>Snyk</th></tr>
+<tr><td>Focus</td><td class="v">Full code health (34 checks, 7 categories)</td><td>Security (vulnerabilities, licenses, IaC)</td></tr>
+<tr><td>Dependency audit</td><td>npm audit + outdated check</td><td class="v">Deep CVE database with fix PRs</td></tr>
+<tr><td>Code security</td><td class="v">36 CWE patterns + secret detection</td><td>Snyk Code (SAST, separate product)</td></tr>
+<tr><td>Architecture analysis</td><td class="v">Import graph, circular deps, god modules, 6 SVG diagrams</td><td class="x">No</td></tr>
+<tr><td>Testing assessment</td><td class="v">Pyramid, quality, coverage, pairing</td><td class="x">No</td></tr>
+<tr><td>Complexity analysis</td><td class="v">Cognitive complexity per function</td><td class="x">No</td></tr>
+<tr><td>AI readiness</td><td class="v">Confusion index + context locality</td><td class="x">No</td></tr>
+<tr><td>AI-powered fix</td><td class="v">Yes (Claude)</td><td>Fix PRs for dependency upgrades</td></tr>
+<tr><td>Delta reports</td><td class="v">Before/after with fixed/new issue tracking</td><td class="v">PR check annotations</td></tr>
+<tr><td>Container scanning</td><td>Dockerfile best practices</td><td class="v">Deep container image scanning</td></tr>
+<tr><td>IaC scanning</td><td class="x">No</td><td class="v">Terraform, CloudFormation, Kubernetes</td></tr>
+<tr><td>License compliance</td><td class="x">No</td><td class="v">License policy enforcement</td></tr>
+<tr><td>Report format</td><td class="v">Self-contained HTML, JSON, SARIF, Markdown</td><td>Web dashboard (SaaS)</td></tr>
+<tr><td>MCP for AI agents</td><td class="v">6 tools</td><td class="x">No</td></tr>
+<tr><td>VS Code extension</td><td class="v">Inline diagnostics + AI fix</td><td class="v">Inline vulnerability alerts</td></tr>
+<tr><td>Runs where</td><td class="v">Local CLI (code never leaves your machine)</td><td>SaaS + CLI (sends data to cloud)</td></tr>
+<tr><td>Cost</td><td class="v">Free</td><td>Free tier (limited tests/mo), $25+/dev/mo</td></tr>
+</table>
+
+<h2>When to use Snyk</h2>
+<p>Snyk is the right choice when your primary concern is dependency vulnerabilities and license compliance. Its CVE database is deeper than npm audit, and it can auto-generate fix PRs. Also essential if you need container image scanning or IaC security (Terraform, Kubernetes).</p>
+
+<h2>When to use VibeCode QA</h2>
+<p>VibeCode QA is the right choice when you want a complete picture of code health — not just security, but also architecture quality, testing coverage, complexity, and AI readiness. It's the tool that tells you if your codebase is maintainable, not just secure. Use both together: Snyk for deep dependency security, VibeCode QA for everything else.</p>
+
+<h2>Use them together</h2>
+<p>Snyk and VibeCode QA are complementary. Snyk focuses deep on security supply chain. VibeCode QA covers the 6 other dimensions of code health that Snyk doesn't touch: architecture, testing, complexity, standards, documentation, and AI readiness. Run both in CI for maximum coverage.</p>
+
+<a class="cta" href="https://vibecodeqa.online">Try it now: npx @vibecodeqa/cli</a>
+</body>
+</html>
