@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Scan Any Public Repo — VibeCode QA</title>
+<meta name="description" content="Scan any public GitHub repository for code health. Get a score, grade, and breakdown across structure, testing, docs, security, and more.">
+<link rel="icon" href="favicon.svg">
+<style>
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308;--fail:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.nav{padding:1rem 2rem;border-bottom:1px solid var(--border);display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+.nav .logo{font-weight:900;font-size:1.1rem}.nav .logo span{color:var(--accent)}
+.container{max-width:700px;margin:0 auto;padding:3rem 1.5rem}
+h1{font-size:2.2rem;font-weight:900;text-align:center;margin-bottom:0.5rem}
+.sub{text-align:center;color:var(--muted);margin-bottom:2rem;font-size:1rem}
+.input-row{display:flex;gap:0.5rem;margin-bottom:2rem}
+input{flex:1;padding:0.8rem 1rem;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:1rem;font-family:inherit;outline:none}
+input:focus{border-color:var(--accent)}
+input::placeholder{color:var(--muted)}
+button{padding:0.8rem 1.5rem;border-radius:8px;border:none;background:var(--accent);color:#fff;font-weight:700;font-size:1rem;cursor:pointer}
+button:hover{opacity:0.9}
+button:disabled{opacity:0.5;cursor:not-allowed}
+.result{display:none}
+.score-big{text-align:center;margin:2rem 0}
+.score-big .grade{font-size:5rem;font-weight:900;line-height:1}
+.score-big .number{font-size:1.5rem;color:var(--muted);margin-top:0.3rem}
+.score-big .repo-name{font-size:0.9rem;color:var(--muted);margin-top:0.5rem}
+.checks{display:grid;gap:0.8rem;margin:2rem 0}
+.check-row{display:flex;align-items:center;gap:1rem;padding:0.8rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:8px}
+.check-grade{font-size:1.3rem;font-weight:900;width:2rem;text-align:center}
+.check-name{font-weight:700;font-size:0.9rem;flex:1}
+.check-detail{color:var(--muted);font-size:0.75rem;max-width:300px;text-align:right}
+.check-bar{width:60px;height:6px;background:var(--border);border-radius:3px;overflow:hidden}
+.check-bar-fill{height:100%;border-radius:3px}
+.grade-A{color:var(--pass)}.grade-B{color:var(--warn)}.grade-C{color:#f97316}.grade-D,.grade-F{color:var(--fail)}
+.bar-A{background:var(--pass)}.bar-B{background:var(--warn)}.bar-C{background:#f97316}.bar-D,.bar-F{background:var(--fail)}
+.cta-row{text-align:center;margin:2rem 0;padding:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:8px}
+.cta-row p{color:var(--muted);font-size:0.85rem;margin-bottom:0.8rem}
+.cta-row code{background:var(--bg);padding:0.4rem 0.8rem;border-radius:4px;font-size:0.9rem;font-family:"SF Mono",Menlo,monospace}
+.meta{text-align:center;color:var(--muted);font-size:0.8rem;margin-top:1rem}
+.error{color:var(--fail);text-align:center;margin:1rem 0}
+.loading{text-align:center;color:var(--muted);margin:2rem 0;font-size:1.1rem}
+.share-btn{display:inline-block;margin-top:1rem;padding:0.5rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:0.85rem;cursor:pointer}
+.share-btn:hover{border-color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<nav class="nav">
+<div class="logo"><span>VibeCode</span> QA</div>
+<a href="/">Home</a>
+<a href="/tools.html">Tools</a>
+<a href="/compare/vs-sonarqube.html">Compare</a>
+<a href="https://github.com/vibecodeqa/cli">GitHub</a>
+</nav>
+
+<div class="container">
+<h1>Scan any public repo</h1>
+<p class="sub">Paste a GitHub URL or owner/repo. Get a health score in seconds.</p>
+
+<div class="input-row">
+<input id="repo-input" type="text" placeholder="e.g. facebook/react or https://github.com/vercel/next.js" autofocus>
+<button id="scan-btn" onclick="doScan()">Scan</button>
+</div>
+
+<div id="error" class="error"></div>
+<div id="loading" class="loading" style="display:none">Scanning...</div>
+
+<div id="result" class="result">
+<div class="score-big">
+<div id="grade" class="grade"></div>
+<div id="number" class="number"></div>
+<div id="repo-name" class="repo-name"></div>
+</div>
+
+<div id="checks" class="checks"></div>
+
+<div class="cta-row">
+<p>Want the full scan? 29 checks including security, architecture, AI readiness, and more.</p>
+<code>npx @vibecodeqa/cli</code>
+</div>
+
+<div style="text-align:center">
+<a class="share-btn" id="share-btn" onclick="shareResult()">Copy share link</a>
+</div>
+
+<div id="meta" class="meta"></div>
+</div>
+</div>
+
+<script>
+const input = document.getElementById('repo-input');
+input.addEventListener('keydown', e => { if (e.key === 'Enter') doScan(); });
+
+// Auto-scan from URL hash
+if (location.hash) {
+  const repo = location.hash.slice(1);
+  if (repo) { input.value = repo; doScan(); }
+}
+
+function parseRepo(val) {
+  val = val.trim().replace(/\/+$/, '');
+  // https://github.com/owner/repo
+  const urlMatch = val.match(/github\.com\/([^/]+)\/([^/]+)/);
+  if (urlMatch) return urlMatch[1] + '/' + urlMatch[2];
+  // owner/repo
+  if (/^[a-zA-Z0-9_.-]+\/[a-zA-Z0-9_.-]+$/.test(val)) return val;
+  return null;
+}
+
+async function doScan() {
+  const val = input.value;
+  const repo = parseRepo(val);
+  if (!repo) {
+    document.getElementById('error').textContent = 'Enter a valid GitHub repo (e.g. vercel/next.js)';
+    return;
+  }
+
+  document.getElementById('error').textContent = '';
+  document.getElementById('result').style.display = 'none';
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('scan-btn').disabled = true;
+
+  try {
+    const res = await fetch('https://api.vibecodeqa.online/api/scan-public/' + repo);
+    const data = await res.json();
+
+    if (!res.ok) {
+      document.getElementById('error').textContent = data.error || 'Scan failed';
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('scan-btn').disabled = false;
+      return;
+    }
+
+    // Update URL hash for sharing
+    location.hash = repo;
+
+    // Display results
+    const gradeEl = document.getElementById('grade');
+    gradeEl.textContent = data.grade;
+    gradeEl.className = 'grade grade-' + data.grade;
+
+    document.getElementById('number').textContent = data.score + '/100';
+    document.getElementById('repo-name').textContent = repo + (data.language ? ' · ' + data.language : '') + (data.stars ? ' · ' + data.stars.toLocaleString() + ' stars' : '');
+
+    const checksEl = document.getElementById('checks');
+    checksEl.innerHTML = data.checks.map(c => `
+      <div class="check-row">
+        <div class="check-grade grade-${c.grade}">${c.grade}</div>
+        <div class="check-name">${c.name}</div>
+        <div class="check-bar"><div class="check-bar-fill bar-${c.grade}" style="width:${c.score}%"></div></div>
+        <div class="check-detail">${c.detail}</div>
+      </div>
+    `).join('');
+
+    document.getElementById('meta').textContent = (data.cached ? 'Cached result · ' : '') + 'Quick scan via GitHub API · For full analysis run npx @vibecodeqa/cli';
+    document.getElementById('result').style.display = 'block';
+  } catch (err) {
+    document.getElementById('error').textContent = 'Network error — try again';
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('scan-btn').disabled = false;
+}
+
+function shareResult() {
+  const url = location.href;
+  navigator.clipboard.writeText(url).then(() => {
+    document.getElementById('share-btn').textContent = 'Copied!';
+    setTimeout(() => { document.getElementById('share-btn').textContent = 'Copy share link'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
