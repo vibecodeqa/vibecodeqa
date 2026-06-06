@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeCode QA vs Other Tools — Competitive Comparison</title>
+<meta name="description" content="Compare VibeCode QA with SonarQube, CodeClimate, Snyk, and ESLint. See how VibeCode QA's 34-check unified code health scanner compares to specialized tools.">
+<link rel="icon" href="../favicon.svg">
+<link rel="canonical" href="https://vibecodeqa.online/compare/">
+<style>
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308;--fail:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;max-width:900px;margin:0 auto}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+h1{font-size:2rem;font-weight:900;margin-bottom:0.5rem}
+h2{font-size:1.3rem;font-weight:800;margin-top:2.5rem;margin-bottom:0.8rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+p{color:var(--muted);font-size:0.9rem;margin-bottom:1rem}
+.nav{margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;flex-wrap:wrap}
+.hero-sub{font-size:1.1rem;color:var(--text);margin-bottom:1.5rem}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.85rem}
+th{text-align:left;padding:0.6rem;border-bottom:2px solid var(--border);color:var(--muted);font-size:0.75rem;text-transform:uppercase}
+td{padding:0.6rem;border-bottom:1px solid var(--border)}
+.v{color:var(--pass);font-weight:700}.x{color:var(--fail)}.n{color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.5rem;margin:1rem 0;transition:border-color 0.15s}
+.card:hover{border-color:var(--accent)}
+.card h3{font-size:1rem;margin-bottom:0.3rem}
+.card h3 a{color:var(--text)}
+.card p{font-size:0.82rem;margin-bottom:0.5rem}
+.card .tags{display:flex;gap:0.4rem;flex-wrap:wrap}
+.tag{font-size:0.65rem;padding:0.15rem 0.5rem;border-radius:4px;border:1px solid var(--border);color:var(--muted)}
+.tag.win{background:#22c55e15;color:var(--pass);border-color:#22c55e30}
+.tag.lose{background:#ef444415;color:var(--fail);border-color:#ef444430}
+.cta{display:inline-block;background:var(--accent);color:#fff;padding:0.6rem 1.5rem;border-radius:6px;font-weight:700;margin-top:1.5rem}
+.cta:hover{opacity:0.9;text-decoration:none}
+code{font-family:"SF Mono",Menlo,monospace;font-size:0.85em;background:var(--card);padding:0.15rem 0.4rem;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="nav">
+<a href="https://vibecodeqa.online">Home</a>
+<a href="https://vibecodeqa.online/tools">Tool Decisions</a>
+</div>
+
+<h1>How VibeCode QA Compares</h1>
+<p class="hero-sub">Different tools solve different problems. Here's where VibeCode QA fits.</p>
+
+<p>VibeCode QA is a <strong>unified code health scanner</strong> — 34 checks across security, architecture, testing, complexity, and AI readiness in one command. Most other tools focus on one dimension. Here's how we compare to each.</p>
+
+<div class="card">
+  <h3><a href="vs-sonarqube.html">vs SonarQube</a></h3>
+  <p>Enterprise code quality platform. Self-hosted Java server + PostgreSQL. 500+ rules per language.</p>
+  <div class="tags">
+    <span class="tag win">Zero config vs 30-min setup</span>
+    <span class="tag win">AI readiness checks</span>
+    <span class="tag win">AI-powered fixes</span>
+    <span class="tag lose">Fewer language-specific rules</span>
+    <span class="tag">Best for: enterprise compliance</span>
+  </div>
+</div>
+
+<div class="card">
+  <h3><a href="vs-codeclimate.html">vs CodeClimate Quality</a></h3>
+  <p>SaaS code quality dashboard. 4 metrics: maintainability, duplication, complexity, coverage.</p>
+  <div class="tags">
+    <span class="tag win">34 checks vs 4 metrics</span>
+    <span class="tag win">Local-first (code stays on machine)</span>
+    <span class="tag win">Security + architecture included</span>
+    <span class="tag">Best for: hosted dashboard + GPA score</span>
+  </div>
+</div>
+
+<div class="card">
+  <h3><a href="vs-snyk.html">vs Snyk</a></h3>
+  <p>Security platform. Deep dependency CVE database, container scanning, IaC security.</p>
+  <div class="tags">
+    <span class="tag win">Full code health (not just security)</span>
+    <span class="tag win">Architecture + testing + AI readiness</span>
+    <span class="tag lose">Shallower dependency CVE coverage</span>
+    <span class="tag lose">No IaC or container image scanning</span>
+    <span class="tag">Best together: Snyk for deps, vcqa for code</span>
+  </div>
+</div>
+
+<div class="card">
+  <h3><a href="vs-eslint.html">vs ESLint</a></h3>
+  <p>Code linter. 500+ lint rules for style and bug patterns. The industry standard.</p>
+  <div class="tags">
+    <span class="tag win">34 checks beyond linting</span>
+    <span class="tag win">Delegates to your ESLint automatically</span>
+    <span class="tag">Complementary — use both</span>
+  </div>
+</div>
+
+<h2>At a glance</h2>
+<table>
+<tr><th>Capability</th><th>VibeCode QA</th><th>SonarQube</th><th>CodeClimate</th><th>Snyk</th><th>ESLint</th></tr>
+<tr><td>Setup time</td><td class="v">5 seconds</td><td class="x">30-60 min</td><td class="n">5 min</td><td class="n">5 min</td><td class="n">5 min</td></tr>
+<tr><td>Checks/metrics</td><td class="v">34</td><td>500+ rules</td><td>4</td><td>CVE DB</td><td>500+ rules</td></tr>
+<tr><td>Architecture</td><td class="v">Yes</td><td class="x">No</td><td class="x">No</td><td class="x">No</td><td class="x">No</td></tr>
+<tr><td>Testing assessment</td><td class="v">Yes</td><td>Coverage</td><td>Coverage</td><td class="x">No</td><td class="x">No</td></tr>
+<tr><td>AI readiness</td><td class="v">Yes</td><td class="x">No</td><td class="x">No</td><td class="x">No</td><td class="x">No</td></tr>
+<tr><td>AI-powered fix</td><td class="v">Yes</td><td class="x">No</td><td class="x">No</td><td>Fix PRs</td><td>--fix</td></tr>
+<tr><td>Delta reports</td><td class="v">Yes</td><td class="v">Yes</td><td class="v">Yes</td><td class="v">Yes</td><td class="x">No</td></tr>
+<tr><td>MCP for agents</td><td class="v">Yes</td><td class="x">No</td><td class="x">No</td><td class="x">No</td><td class="x">No</td></tr>
+<tr><td>Self-hosted</td><td class="v">Not needed</td><td class="x">Required</td><td class="n">SaaS</td><td class="n">SaaS</td><td class="v">Local</td></tr>
+<tr><td>Cost</td><td class="v">Free</td><td>$150+/mo</td><td>$16/user/mo</td><td>$25/dev/mo</td><td class="v">Free</td></tr>
+</table>
+
+<a class="cta" href="https://vibecodeqa.online">Try it now: npx @vibecodeqa/cli</a>
+</body>
+</html>
