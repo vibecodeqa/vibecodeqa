@@ -14,7 +14,7 @@ flowchart TD
   B --> C{Monorepo?}
   C -->|yes| D[Resolve packages<br/>pnpm · turbo · nx · melos]
   C -->|no| E[Single source root]
-  D --> F[Run 25 checks]
+  D --> F[Run 34 checks]
   E --> F
   F --> G[Per-check score 0–100]
   G --> H[Weighted composite]

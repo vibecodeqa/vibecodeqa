@@ -44,4 +44,4 @@ The five **AI Analysis** checks carry weight 0 — they surface deeper findings 
 - **Severity-weighted penalties.** Where a check aggregates many findings (e.g. Best Practices), errors cost more than warnings, which cost more than infos — so missing a nice-to-have doesn't read like a critical bug.
 - **Trends over time.** Every scan is saved to `.vibe-check/history/` (last 30). The report shows your score delta, plus new and fixed issues versus the previous run.
 
-See [the 25 checks](checks.md) for each check's weight and what drives its sub-score.
+See [the 34 checks](checks.md) for each check's weight and what drives its sub-score.

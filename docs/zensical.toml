@@ -17,7 +17,7 @@ site_name = "VibeCode QA"
 # meaningful description of the site content for use by search engines.
 #
 # Read more: https://zensical.org/docs/setup/basics/#site_description
-site_description = "Documentation for VibeCode QA — the code health scanner for the AI coding era. 25 checks, scoring, CI integration, and reference."
+site_description = "Documentation for VibeCode QA — the code health scanner for the AI coding era. 34 checks, scoring, CI integration, and reference."
 
 # The site_author attribute. This is used in the HTML head element.
 #
@@ -48,7 +48,7 @@ Copyright &copy; 2026 VibeCode QA &middot; <a href="https://vibecodeqa.online">v
 # Read more: https://zensical.org/docs/setup/navigation/
 nav = [
   { "Overview" = "index.md" },
-  { "The 25 checks" = "checks.md" },
+  { "The 34 checks" = "checks.md" },
   { "Scoring" = "scoring.md" },
   { "Architecture" = "architecture.md" },
   { "Supported stacks" = "stacks.md" },

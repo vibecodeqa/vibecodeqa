@@ -2,9 +2,9 @@
 icon: lucide/list-checks
 ---
 
-# The 25 checks
+# The 34 checks
 
-VibeCode QA runs **25 checks across 7 categories**. Each check is scored 0–100 and weighted into a single composite score (weights sum to 100; the five AI Analysis checks are weight 0 — informational). Every issue in the report ships with a copy-pasteable fix prompt.
+VibeCode QA runs **34 checks across 7 categories**. Each check is scored 0–100 and weighted into a single composite score (weights sum to 100; the five AI Analysis checks are weight 0 — informational). Every issue in the report ships with a copy-pasteable fix prompt.
 
 ## Foundations <small>(23% of score)</small>
 
