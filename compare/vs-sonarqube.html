@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeCode QA vs SonarQube — Comparison</title>
+<meta name="description" content="Compare VibeCode QA and SonarQube for code quality scanning. Zero config vs enterprise setup. 29 checks including AI readiness.">
+<link rel="icon" href="../favicon.svg">
+<link rel="canonical" href="https://vibecodeqa.online/compare/vs-sonarqube.html">
+<style>
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308;--fail:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;max-width:900px;margin:0 auto}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+h1{font-size:2rem;font-weight:900;margin-bottom:0.5rem}
+h2{font-size:1.3rem;font-weight:800;margin-top:2.5rem;margin-bottom:0.8rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+p{color:var(--muted);font-size:0.9rem;margin-bottom:1rem}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.85rem}
+th{text-align:left;padding:0.6rem;border-bottom:2px solid var(--border);color:var(--muted);font-size:0.75rem;text-transform:uppercase}
+td{padding:0.6rem;border-bottom:1px solid var(--border)}
+.v{color:var(--pass);font-weight:700}.x{color:var(--fail);font-weight:700}
+.nav{margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;flex-wrap:wrap}
+.cta{display:inline-block;background:var(--accent);color:#fff;padding:0.6rem 1.5rem;border-radius:6px;font-weight:700;margin-top:1rem}
+.cta:hover{opacity:0.9;text-decoration:none}
+code{font-family:"SF Mono",Menlo,monospace;font-size:0.85em;background:var(--card);padding:0.15rem 0.4rem;border-radius:4px}
+.hero-sub{font-size:1.1rem;color:var(--text);margin-bottom:1.5rem}
+</style>
+</head>
+<body>
+<div class="nav">
+<a href="https://vibecodeqa.online">Home</a>
+<a href="vs-codeclimate.html">vs CodeClimate</a>
+<a href="vs-eslint.html">vs ESLint</a>
+</div>
+
+<h1>VibeCode QA vs SonarQube</h1>
+<p class="hero-sub">SonarQube is enterprise code quality. VibeCode QA is what developers actually use.</p>
+
+<h2>Side by side</h2>
+<table>
+<tr><th></th><th>VibeCode QA</th><th>SonarQube</th></tr>
+<tr><td>Setup</td><td class="v">npx @vibecodeqa/cli</td><td class="x">Docker + DB + config + tokens</td></tr>
+<tr><td>Time to first scan</td><td class="v">5 seconds</td><td class="x">30-60 minutes</td></tr>
+<tr><td>Config needed</td><td class="v">Zero</td><td class="x">sonar-project.properties + server</td></tr>
+<tr><td>Self-hosted server</td><td class="v">Not needed</td><td class="x">Required (Java + PostgreSQL)</td></tr>
+<tr><td>Checks</td><td>29 checks, 7 categories</td><td>500+ rules per language</td></tr>
+<tr><td>AI readiness checks</td><td class="v">Yes (confusion index, context locality)</td><td class="x">No</td></tr>
+<tr><td>AI-powered fix</td><td class="v">Yes (Claude)</td><td class="x">No</td></tr>
+<tr><td>Architecture diagrams</td><td class="v">6 interactive SVGs</td><td class="x">No</td></tr>
+<tr><td>MCP for AI agents</td><td class="v">Yes (6 tools)</td><td class="x">No</td></tr>
+<tr><td>Monorepo support</td><td class="v">pnpm/npm/yarn/turborepo/nx/melos</td><td>Via multi-module config</td></tr>
+<tr><td>Vue/Svelte SFC</td><td class="v">Native (script extraction)</td><td>Plugin required</td></tr>
+<tr><td>Dart/Flutter</td><td class="v">Built-in</td><td class="x">Community plugin</td></tr>
+<tr><td>Cost</td><td class="v">Free (CLI + Action)</td><td>Free tier limited, $150+/mo for teams</td></tr>
+<tr><td>Report format</td><td>Self-contained HTML, JSON, SARIF, Markdown</td><td>Web dashboard (requires server)</td></tr>
+<tr><td>GitHub integration</td><td class="v">Action + App + PR comments + SARIF</td><td>GitHub App (separate install)</td></tr>
+</table>
+
+<h2>When to use SonarQube</h2>
+<p>SonarQube is the right choice when you need enterprise compliance, multi-language coverage (Java, C#, C++, Python), or your org already runs it. It has deeper analysis for compiled languages and extensive rule customization.</p>
+
+<h2>When to use VibeCode QA</h2>
+<p>VibeCode QA is the right choice for TypeScript/JavaScript/Dart teams that want code quality without infrastructure. No server to maintain, no tokens to configure, no Docker to run. One command, full report. Plus AI readiness checks that no other tool offers — critical for teams using AI coding assistants.</p>
+
+<a class="cta" href="https://vibecodeqa.online">Try it now: npx @vibecodeqa/cli</a>
+</body>
+</html>

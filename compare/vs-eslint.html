@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeCode QA vs ESLint — Comparison</title>
+<meta name="description" content="Compare VibeCode QA and ESLint. ESLint finds lint issues. VibeCode QA scores your entire codebase across 29 dimensions.">
+<link rel="icon" href="../favicon.svg">
+<link rel="canonical" href="https://vibecodeqa.online/compare/vs-eslint.html">
+<style>
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308;--fail:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;max-width:900px;margin:0 auto}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+h1{font-size:2rem;font-weight:900;margin-bottom:0.5rem}
+h2{font-size:1.3rem;font-weight:800;margin-top:2.5rem;margin-bottom:0.8rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+p{color:var(--muted);font-size:0.9rem;margin-bottom:1rem}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.85rem}
+th{text-align:left;padding:0.6rem;border-bottom:2px solid var(--border);color:var(--muted);font-size:0.75rem;text-transform:uppercase}
+td{padding:0.6rem;border-bottom:1px solid var(--border)}
+.v{color:var(--pass);font-weight:700}.x{color:var(--fail);font-weight:700}
+.nav{margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;flex-wrap:wrap}
+.cta{display:inline-block;background:var(--accent);color:#fff;padding:0.6rem 1.5rem;border-radius:6px;font-weight:700;margin-top:1rem}
+.cta:hover{opacity:0.9;text-decoration:none}
+code{font-family:"SF Mono",Menlo,monospace;font-size:0.85em;background:var(--card);padding:0.15rem 0.4rem;border-radius:4px}
+.hero-sub{font-size:1.1rem;color:var(--text);margin-bottom:1.5rem}
+</style>
+</head>
+<body>
+<div class="nav">
+<a href="https://vibecodeqa.online">Home</a>
+<a href="vs-sonarqube.html">vs SonarQube</a>
+<a href="vs-codeclimate.html">vs CodeClimate</a>
+</div>
+
+<h1>VibeCode QA vs ESLint</h1>
+<p class="hero-sub">ESLint enforces code style. VibeCode QA measures code health.</p>
+
+<p>They're complementary, not competing. vcqa actually runs your ESLint as part of its Lint check. But vcqa goes far beyond linting:</p>
+
+<h2>Side by side</h2>
+<table>
+<tr><th></th><th>VibeCode QA</th><th>ESLint</th></tr>
+<tr><td>Purpose</td><td>Holistic code health scoring</td><td>Code style + bug pattern linting</td></tr>
+<tr><td>Scope</td><td class="v">29 checks: security, testing, architecture, AI readiness, env, containers, memory</td><td>Lint rules only</td></tr>
+<tr><td>Config</td><td class="v">Zero config</td><td>eslint.config.js required</td></tr>
+<tr><td>Linting</td><td>Delegates to your ESLint/Biome (auto-detected)</td><td class="v">Native (500+ rules)</td></tr>
+<tr><td>Security</td><td class="v">31 CWE patterns + secret detection + npm audit</td><td>Only with eslint-plugin-security</td></tr>
+<tr><td>Testing</td><td class="v">Pyramid, coverage, execution, quality metrics</td><td class="x">No</td></tr>
+<tr><td>Architecture</td><td class="v">Import graph, circular deps, god modules, SVG diagrams</td><td class="x">No (eslint-plugin-import for basic cycle detection)</td></tr>
+<tr><td>Complexity</td><td class="v">Cognitive complexity per function</td><td>Only with complexity rule</td></tr>
+<tr><td>Duplication</td><td class="v">Copy-paste detection</td><td class="x">No</td></tr>
+<tr><td>Type checking</td><td class="v">Runs tsc --noEmit</td><td>Only with typescript-eslint type-aware rules</td></tr>
+<tr><td>AI readiness</td><td class="v">Confusion index + context locality</td><td class="x">No</td></tr>
+<tr><td>AI-powered fix</td><td class="v">Claude-powered fixes</td><td>--fix (pattern-based only)</td></tr>
+<tr><td>Score</td><td class="v">Weighted composite 0-100 with grade</td><td class="x">No score (pass/fail per file)</td></tr>
+<tr><td>Report</td><td class="v">HTML dashboard with charts + diagrams</td><td>Text/JSON output</td></tr>
+<tr><td>Trends</td><td class="v">Score timeline over 30 runs</td><td class="x">No</td></tr>
+</table>
+
+<h2>Use both</h2>
+<p>The best setup is ESLint (or Biome) for real-time lint feedback in your editor, plus VibeCode QA for the bigger picture — security, architecture, testing, and AI readiness. vcqa automatically uses your ESLint config, so you get lint results as part of the health score without duplicating work.</p>
+
+<pre><code>npx @vibecodeqa/cli   # runs your ESLint + 28 more checks</code></pre>
+
+<a class="cta" href="https://vibecodeqa.online">Try it now: npx @vibecodeqa/cli</a>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VibeCode QA vs CodeClimate — Comparison</title>
+<meta name="description" content="Compare VibeCode QA and CodeClimate Quality for code analysis. Local-first vs SaaS. 29 checks with AI fix vs 4 metrics.">
+<link rel="icon" href="../favicon.svg">
+<link rel="canonical" href="https://vibecodeqa.online/compare/vs-codeclimate.html">
+<style>
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308;--fail:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;max-width:900px;margin:0 auto}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+h1{font-size:2rem;font-weight:900;margin-bottom:0.5rem}
+h2{font-size:1.3rem;font-weight:800;margin-top:2.5rem;margin-bottom:0.8rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+p{color:var(--muted);font-size:0.9rem;margin-bottom:1rem}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.85rem}
+th{text-align:left;padding:0.6rem;border-bottom:2px solid var(--border);color:var(--muted);font-size:0.75rem;text-transform:uppercase}
+td{padding:0.6rem;border-bottom:1px solid var(--border)}
+.v{color:var(--pass);font-weight:700}.x{color:var(--fail);font-weight:700}
+.nav{margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;flex-wrap:wrap}
+.cta{display:inline-block;background:var(--accent);color:#fff;padding:0.6rem 1.5rem;border-radius:6px;font-weight:700;margin-top:1rem}
+.cta:hover{opacity:0.9;text-decoration:none}
+code{font-family:"SF Mono",Menlo,monospace;font-size:0.85em;background:var(--card);padding:0.15rem 0.4rem;border-radius:4px}
+.hero-sub{font-size:1.1rem;color:var(--text);margin-bottom:1.5rem}
+</style>
+</head>
+<body>
+<div class="nav">
+<a href="https://vibecodeqa.online">Home</a>
+<a href="vs-sonarqube.html">vs SonarQube</a>
+<a href="vs-eslint.html">vs ESLint</a>
+</div>
+
+<h1>VibeCode QA vs CodeClimate</h1>
+<p class="hero-sub">CodeClimate tracks 4 metrics. VibeCode QA runs 29 checks and fixes what it finds.</p>
+
+<h2>Side by side</h2>
+<table>
+<tr><th></th><th>VibeCode QA</th><th>CodeClimate Quality</th></tr>
+<tr><td>Checks</td><td class="v">29 (security, architecture, AI readiness, env, containers, memory)</td><td>4 metrics (maintainability, duplication, complexity, coverage)</td></tr>
+<tr><td>Runs where</td><td class="v">Local CLI + CI + editor</td><td>SaaS only (sends code to cloud)</td></tr>
+<tr><td>Data privacy</td><td class="v">Code never leaves your machine</td><td class="x">Code uploaded to CodeClimate servers</td></tr>
+<tr><td>AI-powered fix</td><td class="v">Yes — scans and fixes in one command</td><td class="x">No</td></tr>
+<tr><td>Security scanning</td><td class="v">31 CWE patterns + secret detection</td><td class="x">No (separate product: Velocity)</td></tr>
+<tr><td>Architecture analysis</td><td class="v">Import graph, circular deps, god modules, 6 SVG diagrams</td><td class="x">No</td></tr>
+<tr><td>AI readiness</td><td class="v">Confusion index + context locality</td><td class="x">No</td></tr>
+<tr><td>Testing pyramid</td><td class="v">Unit/integration/e2e detection + quality metrics</td><td>Coverage only</td></tr>
+<tr><td>Report</td><td class="v">Self-contained HTML (works offline)</td><td>Web dashboard (SaaS)</td></tr>
+<tr><td>VS Code extension</td><td class="v">Yes (inline diagnostics + AI fix)</td><td class="x">No</td></tr>
+<tr><td>MCP for AI agents</td><td class="v">6 tools</td><td class="x">No</td></tr>
+<tr><td>Monorepo</td><td class="v">Native (pnpm/npm/yarn/turborepo/nx/melos)</td><td>Manual multi-repo config</td></tr>
+<tr><td>Cost</td><td class="v">Free</td><td>Free for OSS, $16/user/mo for private</td></tr>
+<tr><td>GitHub Action</td><td class="v">One-line setup</td><td>Separate integration</td></tr>
+</table>
+
+<h2>When to use CodeClimate</h2>
+<p>CodeClimate Quality works well if you want a hosted dashboard with historical trends across many repos and your team is comfortable sending code to a third party. Its maintainability grade is a recognized industry metric.</p>
+
+<h2>When to use VibeCode QA</h2>
+<p>VibeCode QA is better when you want deep analysis (security, architecture, AI readiness) without sending code off your machine. It runs 7x more checks, includes AI-powered fixing, and works in your editor, CLI, CI, and AI agents simultaneously.</p>
+
+<a class="cta" href="https://vibecodeqa.online">Try it now: npx @vibecodeqa/cli</a>
+</body>
+</html>
