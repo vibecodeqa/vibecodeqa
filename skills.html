@@ -55,7 +55,16 @@ hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
 <h3>5. JSON output (pipe to other tools)</h3>
 <pre><code>npx @vibecodeqa/cli --json</code></pre>
 
-<h3>6. Live monitor (re-scans on file changes)</h3>
+<h3>6. Monorepos (auto-detected)</h3>
+<pre><code>npx @vibecodeqa/cli ~/my-monorepo</code></pre>
+<p>Auto-detects pnpm/npm/yarn/bun workspaces, turborepo, nx, lerna, and melos. Scans all packages, checks tsconfig strict per package, scopes confusion analysis per package. Supports <code>bun.lock</code> (text) and <code>bun.lockb</code> (binary). No config needed.</p>
+
+<h3>7. Delta reports (what changed)</h3>
+<pre><code>npx @vibecodeqa/cli fix        # baseline → fix → final scan → delta
+cat .vibe-check/delta.md       # markdown report of what changed</code></pre>
+<p>Every scan compares against the previous run. The <code>--markdown</code> and <code>--pr-comment</code> outputs include per-check score changes, fixed issues, and new issues.</p>
+
+<h3>8. Live monitor (re-scans on file changes)</h3>
 <pre><code>npx @vibecodeqa/cli monitor</code></pre>
 <p>Full-screen TUI dashboard. Press <code>c</code> for settings (thresholds, panel toggles). Press <code>q</code> to quit.</p>
 
