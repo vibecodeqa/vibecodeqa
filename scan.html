@@ -146,14 +146,35 @@ async function doScan() {
     document.getElementById('repo-name').textContent = repo + (data.language ? ' · ' + data.language : '') + (data.stars ? ' · ' + data.stars.toLocaleString() + ' stars' : '');
 
     const checksEl = document.getElementById('checks');
-    checksEl.innerHTML = data.checks.map(c => `
-      <div class="check-row">
-        <div class="check-grade grade-${c.grade}">${c.grade}</div>
-        <div class="check-name">${c.name}</div>
-        <div class="check-bar"><div class="check-bar-fill bar-${c.grade}" style="width:${c.score}%"></div></div>
-        <div class="check-detail">${c.detail}</div>
-      </div>
-    `).join('');
+    checksEl.textContent = '';
+    for (const c of data.checks) {
+      const grade = ['A', 'B', 'C', 'D', 'F'].includes(c.grade) ? c.grade : 'F';
+      const score = Math.max(0, Math.min(100, Number(c.score) || 0));
+      const row = document.createElement('div');
+      row.className = 'check-row';
+
+      const gradeEl = document.createElement('div');
+      gradeEl.className = `check-grade grade-${grade}`;
+      gradeEl.textContent = grade;
+
+      const nameEl = document.createElement('div');
+      nameEl.className = 'check-name';
+      nameEl.textContent = String(c.name || '');
+
+      const barEl = document.createElement('div');
+      barEl.className = 'check-bar';
+      const fillEl = document.createElement('div');
+      fillEl.className = `check-bar-fill bar-${grade}`;
+      fillEl.style.width = `${score}%`;
+      barEl.appendChild(fillEl);
+
+      const detailEl = document.createElement('div');
+      detailEl.className = 'check-detail';
+      detailEl.textContent = String(c.detail || '');
+
+      row.append(gradeEl, nameEl, barEl, detailEl);
+      checksEl.appendChild(row);
+    }
 
     document.getElementById('meta').textContent = (data.cached ? 'Cached result · ' : '') + 'Quick scan via GitHub API · For full analysis run npx @vibecodeqa/cli';
     document.getElementById('result').style.display = 'block';
