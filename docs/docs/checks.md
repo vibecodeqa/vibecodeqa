@@ -134,13 +134,21 @@ VibeCode QA runs **34 checks across 7 categories**. Each check is scored 0–100
 
 `weight 4%` · `high priority`
 
-**What it checks.** Checks common accessibility violations: images without alt text, click handlers on non-interactive elements without keyboard support, form controls without labels, autoFocus usage, positive tabIndex, and missing html lang attribute.
+**What it checks.** Runs standard static accessibility tools first, then applies VibeCode QA fallback heuristics for gaps.
+
+- JSX/TSX is checked with `eslint-plugin-jsx-a11y` through ESLint's programmatic `Linter` API.
+- Static HTML is checked with `html-validate:standard` and `html-validate:a11y`.
+- Built-in heuristics cover Vue/Svelte templates, missing accessible names, heading-order skips, missing landmarks, static color contrast, hidden focus indicators, click-only controls, autoFocus usage, positive tabIndex, dialog focus basics, and missing `html lang`.
+- Issues include `file`, `line`, `rule`, `selector`, WCAG category, severity, and a suggested fix when known.
 
 !!! warning "Why it matters"
-    1 in 4 adults has a disability (CDC). Missing alt text makes images invisible to screen readers. Click-only divs exclude keyboard users. Unlabeled inputs are unusable with assistive technology. Missing lang attribute breaks screen reader pronunciation.
+    Missing alt text makes images invisible to screen readers. Icon-only buttons and unlabeled inputs are unusable with assistive technology. Click-only controls, broken focus indicators, bad tab order, and weak dialog focus handling exclude keyboard users. Low contrast makes text unreadable for many users.
 
 !!! tip "How to fix"
-    Add alt text to all images (use alt="" for decorative). Use <button> for clickable elements, not <div onClick>. Label all form controls with <label>, aria-label, or aria-labelledby. Set lang on <html>.
+    Add alt text to all images (use alt="" for decorative). Give every button and form control an accessible name. Use native <button> and <a> elements for interactions. Keep semantic heading order and landmarks. Preserve visible focus states, avoid positive tabIndex, and run axe-core with Playwright against the built app for runtime validation.
+
+!!! info "Static vs runtime"
+    The built-in accessibility check is static: it reads source files and HTML without building the app. That keeps VCQA fast and zero-config. Runtime DOM auditing with `axe-core` / `@axe-core/playwright` is the next layer when a project can be built, served, and routed reliably.
 
 ### Best Practices
 
@@ -319,4 +327,3 @@ VibeCode QA runs **34 checks across 7 categories**. Each check is scored 0–100
 
 !!! tip "How to fix"
     Enable test-audit with a VibeCode QA Pro subscription. The LLM analyzes each test to determine if its assertions actually verify the behavior described in its name.
-

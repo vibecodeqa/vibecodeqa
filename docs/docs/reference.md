@@ -33,16 +33,19 @@ With no command it scans the current directory. In an interactive terminal the s
 | `--sarif` | Generate SARIF for GitHub Code Scanning |
 | `--top [N]` | Show the top N issues to fix (default 5) |
 | `--diff [base]` | Only report issues in changed files |
+| `--checks a,b,c` | Only run the named checks |
 | `--pr-comment` | Post score as a GitHub PR comment (needs `GITHUB_TOKEN`) |
 | `--annotations` | Emit GitHub Actions `::warning`/`::error` annotations |
-| `--upload` | Upload the report to the dashboard (needs `VCQA_TOKEN`) |
+| `--upload` | Upload the report to the dashboard (needs `VCQA_TOKEN`; `GITHUB_TOKEN` is not accepted for uploads) |
 | `--watch` | Re-scan on file changes |
 | `-v`, `--version` | Print version |
 | `-h`, `--help` | Show help |
 
 ## The `monitor` TUI
 
-A full-screen control panel that re-scans on change. Keys:
+A full-screen control panel that re-scans on change. It shows score movement, issue activity, git-changed files, file issue hotspots, and a codebase heatmap that combines source LOC, git status, line churn, scan issue counts, and live watcher hits.
+
+Keys:
 
 | Key | Action |
 |---|---|
@@ -51,6 +54,7 @@ A full-screen control panel that re-scans on change. Keys:
 | `/` | Search and filter issues |
 | `y` | Copy an AI fix-prompt to the clipboard |
 | `r` | Re-scan now |
+| `h` | Open the codebase heatmap |
 | `f` · `g` · `t` · `c` | Files · git changes · trends · config |
 | `?` | Keyboard help overlay |
 | `q` | Quit |
@@ -72,7 +76,7 @@ All output lands in `.vibe-check/`:
 
 ```json
 {
-  "version": "0.38.x",
+  "version": "0.44.x",
   "score": 92,
   "grade": "A",
   "checks": [

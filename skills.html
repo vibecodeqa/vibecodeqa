@@ -66,7 +66,7 @@ cat .vibe-check/delta.md       # markdown report of what changed</code></pre>
 
 <h3>8. Live monitor (re-scans on file changes)</h3>
 <pre><code>npx @vibecodeqa/cli monitor</code></pre>
-<p>Full-screen TUI dashboard. Press <code>c</code> for settings (thresholds, panel toggles). Press <code>q</code> to quit.</p>
+<p>Full-screen TUI dashboard. Press <code>h</code> for the codebase heatmap, <code>f</code> for files by issue count, <code>g</code> for git changes, and <code>c</code> for settings (thresholds, panel toggles). Press <code>q</code> to quit.</p>
 
 <h2>Output Files</h2>
 <ul>
@@ -77,7 +77,7 @@ cat .vibe-check/delta.md       # markdown report of what changed</code></pre>
 <li><code>.vibe-check/history/</code> — Last 30 reports for trend tracking</li>
 </ul>
 
-<h2>The 25 Checks</h2>
+<h2>The 34 Checks</h2>
 
 <h3>Foundations (23%)</h3>
 <ul>
@@ -195,11 +195,11 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: npx @vibecodeqa/cli --skip-tests --ci --sarif --pr-comment --annotations
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - run: npx @vibecodeqa/cli@0.44.0 --skip-tests --ci --sarif --pr-comment --annotations
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - uses: github/codeql-action/upload-sarif@v3
+      - uses: github/codeql-action/upload-sarif@b0c4fd77f6c559021d78430ec4d0d169ae74a4eb # v3
         if: always()
         with:
           sarif_file: .vibe-check/report.sarif</code></pre>

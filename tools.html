@@ -103,9 +103,9 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
 </tr>
 <tr>
   <td><b>Accessibility</b></td>
-  <td><span class="badge chosen">eslint-plugin-jsx-a11y</span></td>
-  <td><span class="badge fallback">built-in (regex)</span></td>
-  <td>Static a11y checking at lint-time. For runtime testing, add axe-core.</td>
+  <td><span class="badge chosen">eslint-plugin-jsx-a11y</span> + <span class="badge chosen">html-validate</span></td>
+  <td><span class="badge fallback">built-in heuristics</span></td>
+  <td>Standard static tools first: JSX/TSX via eslint-plugin-jsx-a11y, static HTML via html-validate a11y presets. VCQA heuristics cover Vue/Svelte/CSS gaps. For runtime DOM testing, add axe-core with Playwright.</td>
 </tr>
 <tr>
   <td><b>Security (SAST)</b></td>
@@ -302,7 +302,7 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
 <tr><td>Type Check</td><td>tsc</td><td>(included with typescript)</td></tr>
 <tr><td>Tests</td><td>vitest</td><td><code>pnpm add -D vitest</code></td></tr>
 <tr><td>React Hooks</td><td>eslint-plugin-react-hooks</td><td><code>pnpm add -D eslint eslint-plugin-react-hooks</code></td></tr>
-<tr><td>Accessibility</td><td>eslint-plugin-jsx-a11y</td><td><code>pnpm add -D eslint-plugin-jsx-a11y</code></td></tr>
+<tr><td>Accessibility</td><td>eslint-plugin-jsx-a11y + html-validate + axe-core</td><td><code>pnpm add -D eslint-plugin-jsx-a11y html-validate @axe-core/playwright</code></td></tr>
 <tr><td>Secrets</td><td>gitleaks</td><td><code>brew install gitleaks</code></td></tr>
 <tr><td>Dead Code</td><td>knip</td><td><code>pnpm add -D knip</code></td></tr>
 <tr><td>Duplication</td><td>jscpd</td><td><code>pnpm add -D jscpd</code></td></tr>

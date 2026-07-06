@@ -53,6 +53,7 @@ nav = [
   { "Architecture" = "architecture.md" },
   { "Supported stacks" = "stacks.md" },
   { "Tool delegation" = "tools.md" },
+  { "Documentation site" = "documentation.md" },
   { "CI integration" = "ci.md" },
   { "Configuration" = "configuration.md" },
   { "CLI reference" = "reference.md" },
