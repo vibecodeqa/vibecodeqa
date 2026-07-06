@@ -51,5 +51,6 @@ flowchart LR
 - [The 34 checks](checks.md) — what each one measures, why it matters, and how to fix it
 - [Scoring](scoring.md) — how the composite score is calculated
 - [Architecture](architecture.md) — how the scanner works under the hood
+- [Documentation site](documentation.md) — how this website's docs are built and published
 - [CI integration](ci.md) — quality gates, PR comments, GitHub Actions
 - [CLI reference](reference.md) — every command and flag

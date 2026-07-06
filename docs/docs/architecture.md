@@ -4,7 +4,7 @@ icon: lucide/network
 
 # Architecture
 
-VibeCode QA is a single zero-config CLI. It detects your stack, runs each check in isolation, folds the results into one weighted score, and emits a report. Everything runs locally — nothing is uploaded unless you pass `--upload`.
+VibeCode QA is a single zero-config CLI. It detects your stack, runs each check in isolation, folds the results into one weighted score, and emits a report. Everything runs locally — nothing is uploaded unless you pass `--upload` with a `VCQA_TOKEN`.
 
 ## The scan pipeline
 
@@ -43,7 +43,9 @@ flowchart LR
     K1[Knip] -.fallback.-> K2[skip]
   end
   subgraph React / a11y
-    R1[eslint plugins] -.fallback.-> R2[built-in heuristics]
+    R1[eslint-plugin-jsx-a11y] --> R2[normalized issues]
+    R3[html-validate] --> R2
+    R4[built-in heuristics] -.gaps.-> R2
   end
 ```
 
@@ -76,3 +78,9 @@ Weights sum to 100. The five AI Analysis checks are weight 0 — they surface fi
 | Markdown | `--markdown` | Paste into a PR or wiki |
 
 See the [CLI reference](reference.md) for every flag.
+
+## Hosted dashboard auth
+
+The hosted dashboard uses GitHub OAuth for repo discovery and settings, but the browser never receives the GitHub access token. The API stores the token server-side behind an HttpOnly session cookie, validates OAuth state on callback, and checks GitHub repo permissions before reading settings, uploading manual reports, triggering scans, or showing private report history.
+
+CLI uploads use a separate VibeCode QA platform token (`VCQA_TOKEN`). GitHub Actions `GITHUB_TOKEN` is intentionally not accepted for dashboard uploads.
