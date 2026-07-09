@@ -37,7 +37,22 @@
   },
   "installUrl": "https://www.npmjs.com/package/@vibecodeqa/cli",
   "downloadUrl": "https://www.npmjs.com/package/@vibecodeqa/cli",
-  "softwareVersion": "0.44.0",
+  "softwareVersion": "0.44.5",
+  "license": "https://opensource.org/licenses/MIT"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "VibeCode Monitor",
+  "description": "Desktop code-health cockpit that watches a repo, re-scans on save, and puts an AI copilot on every page. Signed and notarized for macOS; Windows and Linux builds too.",
+  "url": "https://vibecodeqa.online/#monitor",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "macOS, Windows, Linux",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "downloadUrl": "https://app.vibecodeqa.online/download/mac",
+  "softwareVersion": "0.2.0",
   "license": "https://opensource.org/licenses/MIT"
 }
 </script>
@@ -160,6 +175,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
   <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')">&#9776;</button>
   <div class="nav-links">
     <a href="#features">Features</a>
+    <a href="#monitor">Desktop App</a>
     <a href="/scan.html">Scan a Repo</a>
     <a href="#mcp">MCP</a>
     <a href="#pricing">Pricing</a>
@@ -180,6 +196,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
     <a href="#pricing" class="cta cta-ghost">See pricing</a>
   </div>
   <code class="install">npx @vibecodeqa/cli</code>
+  <div style="margin-top:1rem;font-size:0.85rem;color:var(--muted)">or <a href="#monitor">get the desktop Monitor app</a> for macOS, Windows &amp; Linux</div>
 </section>
 
 <!-- Stats -->
@@ -214,7 +231,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
   </div>
 
   <div class="terminal">
-    <div><span class="t-bold t-accent">vcqa</span> <span class="t-dim">v0.44.0</span></div>
+    <div><span class="t-bold t-accent">vcqa</span> <span class="t-dim">v0.44.5</span></div>
     <div><span class="t-dim">/Users/dev/my-project</span></div>
     <div><span class="t-dim">stack:</span> typescript + react + vite + vitest + biome + pnpm</div>
     <div><span class="t-dim">workspace:</span> pnpm monorepo — 4 packages</div>
@@ -345,25 +362,47 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
       <h3>Badge API</h3>
       <p>Embed <code>&lt;img src="api.vibecodeqa.online/badge/org/repo.svg"&gt;</code> in READMEs, dashboards, and store listings.</p>
     </div>
+    <div class="fcard">
+      <h3>GitHub App <span class="tag tag-new">New</span></h3>
+      <p>Install the <a href="https://github.com/apps/vibecode-qa">VibeCode QA GitHub App</a> to auto-scan every pull request — score and top issues as a PR comment, a pass/fail <strong>quality gate</strong> status check, and SARIF uploaded to the Security tab. Sets up the workflow for you on install.</p>
+    </div>
   </div>
 </div>
 </section>
 
-<!-- Live Monitor -->
+<!-- Desktop Monitor -->
 <section class="how" id="monitor">
 <div class="container">
-  <h2 style="text-align:center;font-size:2rem;font-weight:800">Live Monitor</h2>
-  <p class="section-sub" style="text-align:center">Real-time quality control panel. Like htop for code health.</p>
-  <div class="grid" style="grid-template-columns:repeat(2,1fr)">
+  <h2 style="text-align:center;font-size:2rem;font-weight:800">VibeCode Monitor — the desktop app</h2>
+  <p class="section-sub" style="text-align:center">A live code-health cockpit for your machine. Point it at a repo — it re-scans on every save and turns your report into interactive dashboards, with an AI copilot on every page.</p>
+
+  <div class="cta-row">
+    <a href="https://app.vibecodeqa.online/download/mac" class="cta">&#8595;&nbsp; Download for macOS</a>
+    <a href="https://app.vibecodeqa.online/download/windows" class="cta cta-ghost">Windows</a>
+    <a href="https://app.vibecodeqa.online/download/linux" class="cta cta-ghost">Linux</a>
+  </div>
+  <p style="text-align:center;color:var(--muted);font-size:0.78rem;margin-top:0.9rem">Universal build for Apple Silicon &amp; Intel &middot; signed &amp; notarized by Apple &middot; always the latest release</p>
+
+  <div class="grid" style="grid-template-columns:repeat(2,1fr);margin-top:2.5rem">
     <div class="fcard">
-      <h3>One Command <span class="tag tag-new">New</span></h3>
-      <p><code>npx @vibecodeqa/cli monitor</code> — full-screen TUI that watches your codebase and re-scans on every file change. Score, checks, issues, and activity log update live.</p>
+      <h3>A dozen live dashboards</h3>
+      <p>Health, dependency graph, complexity, clones, types, lint, security, dependencies, tests, trends, and file activity — each a focused, interactive view over your report. Click any finding to jump straight to the file.</p>
     </div>
     <div class="fcard">
-      <h3>Configurable</h3>
-      <p>Press <code>c</code> for settings: alert thresholds (score floor, drop sensitivity), scan debounce, toggle panels on/off. Persists to <code>.vibe-check/monitor.json</code>.</p>
+      <h3>Watches &amp; re-scans on save <span class="tag tag-new">New</span></h3>
+      <p>Runs <code>@vibecodeqa/cli</code> in the background and refreshes the instant you change a file. Your score, issues, and graphs stay live while you code — nothing to re-run.</p>
+    </div>
+    <div class="fcard">
+      <h3>AI Copilot on every page <span class="tag tag-unique">New</span></h3>
+      <p>A per-page chat that sees exactly what you're looking at. Ask it to explain the worst issue, read the source to validate a finding, draft a fix plan, write a note, or file a GitHub issue. <strong>Anthropic, OpenAI, or Gemini</strong> — your key, kept in your OS keychain. Every write is confirm-gated.</p>
+    </div>
+    <div class="fcard">
+      <h3>Signed, notarized, cross-platform</h3>
+      <p>The macOS build is Developer&nbsp;ID&ndash;signed and notarized by Apple — it just opens, no Gatekeeper warning. Windows <code>.msi</code>/<code>.exe</code> and Linux <code>.AppImage</code>/<code>.deb</code>/<code>.rpm</code> ship alongside every release.</p>
     </div>
   </div>
+
+  <p style="text-align:center;margin-top:1.5rem;color:var(--muted);font-size:0.85rem">Prefer the terminal? <code>npx @vibecodeqa/cli monitor</code> runs a full-screen TUI version.</p>
 </div>
 </section>
 
@@ -409,7 +448,7 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
   <div class="grid" style="grid-template-columns:repeat(3,1fr)">
     <div class="fcard">
       <h3>✅ Shipped</h3>
-      <p>MCP server · Config file · PR comments · Diff mode · Markdown output · GH Actions annotations · Badge API · Integration API · Coverage ingestion · Monorepo support</p>
+      <p><strong>Desktop Monitor app</strong> (signed &amp; notarized) · <strong>AI Copilot</strong> · <strong>GitHub App</strong> (PR scans + quality gates) · MCP server · Config file · PR comments · Diff mode · Markdown output · GH Actions annotations · Badge API · Coverage ingestion · Monorepo support</p>
     </div>
     <div class="fcard">
       <h3>🔜 Next</h3>
@@ -561,6 +600,8 @@ footer{border-top:1px solid var(--border);padding:3rem 2rem}
   <div class="footer-col">
     <h4>Product</h4>
     <a href="#features">Features</a>
+    <a href="#monitor">Desktop app</a>
+    <a href="https://app.vibecodeqa.online/download/mac">Download for macOS</a>
     <a href="#pricing">Pricing</a>
     <a href="#checks">All checks</a>
     <a href="https://www.npmjs.com/package/@vibecodeqa/cli">npm</a>
