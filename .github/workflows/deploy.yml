@@ -19,12 +19,29 @@ jobs:
       - name: Build docs
         run: cd docs && uvx zensical@0.0.43 build
 
-      # Assemble the publish directory: landing site at root, built docs at /docs.
+      # Build each gold-standard KB (a self-contained Zensical subsite under standards/).
+      - name: Build standards
+        run: |
+          for d in standards/*/; do
+            if [ -f "$d/zensical.toml" ]; then
+              echo "building standard: $d"
+              (cd "$d" && uvx zensical@0.0.43 build --strict)
+            fi
+          done
+
+      # Assemble the publish directory: landing site at root, docs at /docs, standards at /standards/<id>.
       - name: Assemble site
         run: |
           mkdir -p _site
-          rsync -a --exclude '_site' --exclude '.git' --exclude '.github' --exclude 'docs' ./ _site/
+          rsync -a --exclude '_site' --exclude '.git' --exclude '.github' --exclude 'docs' --exclude 'standards' ./ _site/
           cp -r docs/site _site/docs
+          mkdir -p _site/standards
+          # transparency: expose the machine-readable registry at a stable URL
+          cp standards/registry.json _site/standards/registry.json
+          for d in standards/*/; do
+            name=$(basename "$d")
+            [ -d "$d/site" ] && cp -r "$d/site" "_site/standards/$name"
+          done
 
       - uses: cloudflare/wrangler-action@v3
         with:

@@ -1,0 +1,2 @@
+/latest/*  /v1/:splat  302
+/latest    /v1/       302

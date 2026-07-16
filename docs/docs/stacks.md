@@ -41,3 +41,22 @@ Workspaces are detected and checks run per-package where it matters (types, lint
 | Components | `.vue` / `.svelte` SFC | widgets |
 
 If a check doesn't apply to your stack, it's skipped and excluded from the [score](scoring.md) rather than counted against you.
+
+## Gold-standard rubrics
+
+Detection is only half the story — once VibeCode QA knows *what* your code is, it judges it
+against a **published gold standard** for that archetype, not against a model's memory.
+
+Each standard is a versioned, reviewable rubric where every rule has a stable ID
+(`R-<AREA>-n`), the reason it exists, a ✅/❌ example, and a machine-readable detection
+signal. A project's standard is **composed** per slice — one archetype + its layers +
+cross-cutting concerns — so a monorepo is judged slice-by-slice against exactly the right
+rubrics.
+
+- **[React SPA — the react-spa standard](/standards/react-spa/)** — React, client-rendered,
+  static-hosted (no SSR). Edition v1 (React 19 · Vite 8 · Tailwind 4 · TS 6). *Published.*
+- More archetypes (`pages-fullstack`, `worker-edge`, `node-service`, `library`, …) and
+  layers (`d1-database`, `tailwind`, …) are on the way.
+
+The machine-readable catalog of standards and how repos resolve to them lives at
+[`/standards/registry.json`](/standards/registry.json).

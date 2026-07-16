@@ -1,0 +1,75 @@
+[project]
+site_name = "React SPA — Gold Standard"
+site_description = "The gold-standard reference for React single-page apps that are client-rendered and hosted as static files (no SSR, no server of their own). The rubric VibeCode QA judges react-spa repos against."
+site_author = "FreeDocStore"
+site_url = "https://vibecodeqa.online/standards/react-spa/"
+repo_url = "https://github.com/vibecodeqa/vibecodeqa"
+repo_name = "vibecodeqa/vibecodeqa"
+copyright = "The react-spa gold standard — the rubric VibeCode QA judges against."
+
+docs_dir = "docs"
+site_dir = "site"
+
+nav = [
+  { "Overview" = "index.md" },
+  { "Edition v1" = [
+    { "About this edition" = "v1/index.md" },
+    { "1 · Project setup" = "v1/project-setup.md" },
+    { "2 · TypeScript" = "v1/typescript.md" },
+    { "3 · Structure & routing" = "v1/structure-and-routing.md" },
+    { "4 · State & data" = "v1/state-and-data.md" },
+    { "5 · Styling" = "v1/styling.md" },
+    { "6 · Forms" = "v1/forms.md" },
+    { "7 · PWA & assets" = "v1/pwa-and-assets.md" },
+    { "8 · Performance" = "v1/performance.md" },
+    { "9 · Accessibility" = "v1/accessibility.md" },
+    { "10 · Testing" = "v1/testing.md" },
+    { "11 · Build & hosting" = "v1/build-and-hosting.md" },
+    { "12 · Security" = "v1/security.md" }
+  ] }
+]
+
+[project.theme]
+language = "en"
+features = [
+  "content.code.copy",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.path",
+  "navigation.sections",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight"
+]
+
+[[project.theme.palette]]
+scheme = "default"
+primary = "indigo"
+accent = "indigo"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "indigo"
+accent = "indigo"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.attr_list]
+[project.markdown_extensions.def_list]
+[project.markdown_extensions.footnotes]
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.toc]
+permalink = true
+[project.markdown_extensions.pymdownx.details]
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+line_spans = "__span"
+pygments_lang_class = true
+[project.markdown_extensions.pymdownx.inlinehilite]
+[project.markdown_extensions.pymdownx.magiclink]
+[project.markdown_extensions.pymdownx.superfences]
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true
