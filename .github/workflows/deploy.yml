@@ -36,7 +36,8 @@ jobs:
           rsync -a --exclude '_site' --exclude '.git' --exclude '.github' --exclude 'docs' --exclude 'standards' ./ _site/
           cp -r docs/site _site/docs
           mkdir -p _site/standards
-          # transparency: expose the machine-readable registry at a stable URL
+          # standards hub landing page + machine-readable registry at stable URLs
+          cp standards/index.html _site/standards/index.html
           cp standards/registry.json _site/standards/registry.json
           for d in standards/*/; do
             name=$(basename "$d")

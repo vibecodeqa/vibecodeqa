@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gold-Standard Rubrics — VibeCode QA</title>
+<meta name="description" content="The versioned gold standards VibeCode QA judges your code against — one per archetype, composed per slice. Not a model's memory: fixed, reviewable ground truth.">
+<link rel="icon" href="/favicon.svg">
+<style>
+:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308;--fail:#ef4444}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;max-width:900px;margin:0 auto}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+h1{font-size:2rem;font-weight:900;margin-bottom:0.3rem}
+h2{font-size:1.3rem;font-weight:800;margin-top:2.5rem;margin-bottom:0.8rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+h3{font-size:1rem;font-weight:700;margin-top:1.5rem;margin-bottom:0.4rem}
+p{color:var(--muted);font-size:0.85rem;margin-bottom:0.8rem}
+code{font-family:"SF Mono",Menlo,monospace;font-size:0.8em;background:var(--card);padding:0.15rem 0.4rem;border-radius:4px}
+pre{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;overflow-x:auto;font-size:0.8rem;margin:0.8rem 0;color:var(--accent)}
+table{width:100%;border-collapse:collapse;margin:0.8rem 0;font-size:0.8rem}
+th{text-align:left;padding:0.5rem;border-bottom:2px solid var(--border);color:var(--muted);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.04em}
+td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
+.badge{display:inline-block;padding:0.1rem 0.4rem;border-radius:4px;font-size:0.65rem;font-weight:700;white-space:nowrap}
+.live{background:#22c55e20;color:#22c55e;border:1px solid #22c55e40}
+.planned{background:#6b728020;color:#9ca3af;border:1px solid #6b728040}
+.nav{margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.nav a{font-size:0.82rem;color:var(--muted)}
+.logo{font-weight:900;font-size:1.1rem}.logo span{color:var(--accent)}
+.lead{font-size:1rem;color:var(--text);margin-bottom:1.5rem}
+.name{font-weight:600;color:var(--text)}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="logo"><span>VibeCode</span> QA</div>
+  <a href="/">Home</a>
+  <a href="/docs/">Docs</a>
+  <a href="/standards/"><b>Standards</b></a>
+  <a href="/stacks/typescript">Stacks</a>
+  <a href="https://github.com/vibecodeqa/cli">GitHub</a>
+</div>
+
+<h1>Gold-standard rubrics</h1>
+<p class="lead">The versioned standards VibeCode QA judges your code against — fixed, reviewable
+ground truth, not a model's memory of a blog post. Every rule has a stable ID
+(<code>R-&lt;AREA&gt;-n</code>), the reason it exists, a &check;/&cross; example, and a
+machine-readable detection signal.</p>
+
+<h2>How it works</h2>
+<p>Standards are <b>composed per slice</b>, not stamped one-per-stack. VibeCode QA detects what
+each part of your repo <em>is</em>, then judges it against exactly the right set:</p>
+<pre>your repo  →  slice it  →  1 archetype  +  N layers  +  cross-cutting  →  judge vs pinned edition</pre>
+<p>So a monorepo is judged slice-by-slice: a React SPA frontend against <code>react-spa</code>, a
+Cloudflare Functions API against <code>pages-fullstack</code>, an SDK against <code>library</code> — each
+with its own rubric. The machine-readable catalog (detection rules + editions) lives at
+<a href="/standards/registry.json"><code>/standards/registry.json</code></a>.</p>
+
+<h2>Archetypes <span style="font-size:0.7rem;color:var(--muted);font-weight:400">— the app-shape spine, one per slice</span></h2>
+<table>
+<tr><th>Standard</th><th>What it is</th><th>Status</th></tr>
+<tr><td><a href="/standards/react-spa/" class="name">react-spa</a></td><td>React, client-rendered, static-hosted. No SSR, no server of its own.</td><td><span class="badge live">v1 · LIVE</span></td></tr>
+<tr><td><span class="name">pages-fullstack</span></td><td>Static frontend + API co-deployed as Cloudflare Pages Functions.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">worker-edge</span></td><td>A standalone Cloudflare Worker / Durable Object service.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">node-service</span></td><td>A Node HTTP service or CLI. Not shipped to a browser.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">library</span></td><td>A published package consumed by other code.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">react-ssr</span></td><td>Server-rendered React (Next.js / React Router / Remix).</td><td><span class="badge planned">planned</span></td></tr>
+</table>
+
+<h2>Layers <span style="font-size:0.7rem;color:var(--muted);font-weight:400">— capabilities that compose onto an archetype</span></h2>
+<table>
+<tr><th>Standard</th><th>What it is</th><th>Status</th></tr>
+<tr><td><span class="name">d1-database</span></td><td>Cloudflare D1: schema, migrations, parameterized queries.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">mcp-server</span></td><td>Model Context Protocol tools: schemas, scopes, audit.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">tailwind</span></td><td>Tailwind v4 CSS-first, tokens in <code>@theme</code>, no runtime CSS-in-JS.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">tanstack-query</span></td><td>Server-cache for remote data: caching, dedupe, loading/error.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">zod-validation</span></td><td>Runtime schema validation at boundaries.</td><td><span class="badge planned">planned</span></td></tr>
+</table>
+
+<h2>Cross-cutting <span style="font-size:0.7rem;color:var(--muted);font-weight:400">— apply to every slice</span></h2>
+<table>
+<tr><th>Standard</th><th>What it is</th><th>Status</th></tr>
+<tr><td><span class="name">typescript</span></td><td>Strict flags, project references, no-any, typed boundaries.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">security</span></td><td>Secrets handling, XSS/injection, dependency supply chain.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">testing</span></td><td>Runner choice, behavior-not-implementation, coverage floor, CI.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">accessibility</span></td><td>Semantics, keyboard, focus, ARIA, contrast.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">dependencies</span></td><td>Lockfile pinning, audit, vetting, no rogue install scripts.</td><td><span class="badge planned">planned</span></td></tr>
+</table>
+
+<h2>Recipes <span style="font-size:0.7rem;color:var(--muted);font-weight:400">— blessed combos; the seam rules only</span></h2>
+<table>
+<tr><th>Standard</th><th>What it is</th><th>Status</th></tr>
+<tr><td><span class="name">react-spa-on-cloudflare-pages</span></td><td>SPA + Functions in one Pages project: same-origin <code>/api/*</code>, <code>_routes.json</code>, secrets in Functions.</td><td><span class="badge planned">planned</span></td></tr>
+</table>
+
+<h2>Editions never rot</h2>
+<p>A standard is <b>versioned on change</b>, not dated — a new edition is cut only when best
+practice materially shifts. Each carries a <b>review date</b> so a scan can flag <em>"judged
+against a standard last verified N months ago."</em> Today: <span class="badge live">react-spa v1</span>
+targets React&nbsp;19 · Vite&nbsp;8 · Tailwind&nbsp;4 · TS&nbsp;6, reviewed 2026-07.</p>
+
+<p style="margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem">
+Run it yourself: <code>npx @vibecodeqa/cli</code> · Machine-readable catalog:
+<a href="/standards/registry.json">registry.json</a></p>
+
+</body>
+</html>
