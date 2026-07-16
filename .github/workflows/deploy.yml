@@ -25,7 +25,9 @@ jobs:
           for d in standards/*/; do
             if [ -f "$d/zensical.toml" ]; then
               echo "building standard: $d"
-              (cd "$d" && uvx zensical@0.0.43 build --strict)
+              # No --strict: zensical 0.0.43 mis-flags bracket syntax in code spans
+              # (e.g. `w-[…px]`, `[#hex]`) as unresolved link references. Matches the docs build.
+              (cd "$d" && uvx zensical@0.0.43 build)
             fi
           done
 
