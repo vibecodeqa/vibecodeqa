@@ -42,21 +42,25 @@ Workspaces are detected and checks run per-package where it matters (types, lint
 
 If a check doesn't apply to your stack, it's skipped and excluded from the [score](scoring.md) rather than counted against you.
 
-## Gold-standard rubrics
+## Standards
 
 Detection is only half the story — once VibeCode QA knows *what* your code is, it judges it
-against a **published gold standard** for that archetype, not against a model's memory.
+against a **published, reviewable standard**, not against a model's memory.
 
 Each standard is a versioned, reviewable rubric where every rule has a stable ID
 (`R-<AREA>-n`), the reason it exists, a ✅/❌ example, and a machine-readable detection
-signal. A project's standard is **composed** per slice — one archetype + its layers +
-cross-cutting concerns — so a monorepo is judged slice-by-slice against exactly the right
-rubrics.
+signal. VibeCode QA does not re-create generic React, TypeScript, OWASP, WCAG, Cloudflare,
+or MCP doctrine. It cites those upstream standards, then authors the stack-specific glue:
+repo shape, runtime/deploy constraints, detection mapping, exception policy, and
+anti-patterns.
 
 - **[React SPA — the react-spa standard](/standards/react-spa/)** — React, client-rendered,
   static-hosted (no SSR). Edition v1 (React 19 · Vite 8 · Tailwind 4 · TS 6). *Published.*
-- More archetypes (`pages-fullstack`, `worker-edge`, `node-service`, `library`, …) and
-  layers (`d1-database`, `tailwind`, …) are on the way.
+- **[References](/standards/references)** — official specs and primary-source docs the
+  rubrics cite.
+- **[Compositions](/standards/compositions)** — individual stack items and composed VCQA
+  standards to author next.
 
-The machine-readable catalog of standards and how repos resolve to them lives at
+Machine-readable files live at [`/standards/references.json`](/standards/references.json),
+[`/standards/compositions.json`](/standards/compositions.json), and
 [`/standards/registry.json`](/standards/registry.json).

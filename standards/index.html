@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Gold-Standard Rubrics — VibeCode QA</title>
-<meta name="description" content="The versioned gold standards VibeCode QA judges your code against — one per archetype, composed per slice. Not a model's memory: fixed, reviewable ground truth.">
+<title>Standards — VibeCode QA</title>
+<meta name="description" content="The standards hub for VibeCode QA: authored rubrics, upstream references, composition maps, and machine-readable registries.">
 <link rel="icon" href="/favicon.svg">
 <style>
 :root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308;--fail:#ef4444}
@@ -37,78 +37,58 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
   <a href="/">Home</a>
   <a href="/docs/">Docs</a>
   <a href="/standards/"><b>Standards</b></a>
-  <a href="/standards/references.html">References</a>
-  <a href="/standards/compositions.html">Compositions</a>
+  <a href="/standards/references">References</a>
+  <a href="/standards/compositions">Compositions</a>
   <a href="/stacks/typescript">Stacks</a>
   <a href="https://github.com/vibecodeqa/cli">GitHub</a>
 </div>
 
-<h1>Gold-standard rubrics</h1>
-<p class="lead">The versioned standards VibeCode QA judges your code against — fixed, reviewable
-ground truth, not a model's memory of a blog post. Every rule has a stable ID
-(<code>R-&lt;AREA&gt;-n</code>), the reason it exists, a &check;/&cross; example, and a
-machine-readable detection signal.</p>
+<h1>Standards</h1>
+<p class="lead">This is the standards hub for VibeCode QA. It separates three things:
+authored rubrics, upstream authority references, and the composition plan that turns
+individual framework/platform docs into stack-specific VCQA standards.</p>
 
-<h2>How it works</h2>
-<p>Standards are <b>composed per slice</b>, not stamped one-per-stack. VibeCode QA detects what
-each part of your repo <em>is</em>, then judges it against exactly the right set:</p>
-<pre>your repo  →  slice it  →  1 archetype  +  N layers  +  cross-cutting  →  judge vs pinned edition</pre>
-<p>So a monorepo is judged slice-by-slice: a React SPA frontend against <code>react-spa</code>, a
-Cloudflare Functions API against <code>pages-fullstack</code>, an SDK against <code>library</code> — each
-with its own rubric. The machine-readable catalog (detection rules + editions) lives at
-<a href="/standards/registry.json"><code>/standards/registry.json</code></a>.</p>
-<p>The rubrics cite upstream authorities instead of re-creating framework doctrine. The
-external standards/source map lives at <a href="/standards/references.html">References</a>
-and <a href="/standards/references.json"><code>/standards/references.json</code></a>.</p>
-<p>The first composition map, from individual stack items to authored VCQA rubrics, lives at
-<a href="/standards/compositions.html">Compositions</a> and
-<a href="/standards/compositions.json"><code>/standards/compositions.json</code></a>.</p>
+<h2>How To Read This</h2>
+<p>VibeCode QA should not re-create generic React, TypeScript, OWASP, WCAG, Cloudflare,
+or MCP doctrine. Those sources already exist. VCQA standards cite them, then own the
+repo-shape and deploy-shape rules needed to judge real projects consistently.</p>
+<pre>upstream standards + stack items + deploy/runtime seams = VCQA rubric</pre>
 
-<h2>Archetypes <span style="font-size:0.7rem;color:var(--muted);font-weight:400">— the app-shape spine, one per slice</span></h2>
+<h2>Published Rubrics</h2>
 <table>
-<tr><th>Standard</th><th>What it is</th><th>Status</th></tr>
+<tr><th>Rubric</th><th>What it judges</th><th>Status</th></tr>
 <tr><td><a href="/standards/react-spa/" class="name">react-spa</a></td><td>React, client-rendered, static-hosted. No SSR, no server of its own.</td><td><span class="badge live">v1 · LIVE</span></td></tr>
-<tr><td><span class="name">pages-fullstack</span></td><td>Static frontend + API co-deployed as Cloudflare Pages Functions.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">worker-edge</span></td><td>A standalone Cloudflare Worker / Durable Object service.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">node-service</span></td><td>A Node HTTP service or CLI. Not shipped to a browser.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">library</span></td><td>A published package consumed by other code.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">react-ssr</span></td><td>Server-rendered React (Next.js / React Router / Remix).</td><td><span class="badge planned">planned</span></td></tr>
 </table>
 
-<h2>Layers <span style="font-size:0.7rem;color:var(--muted);font-weight:400">— capabilities that compose onto an archetype</span></h2>
+<h2>Authoring Maps</h2>
 <table>
-<tr><th>Standard</th><th>What it is</th><th>Status</th></tr>
-<tr><td><span class="name">d1-database</span></td><td>Cloudflare D1: schema, migrations, parameterized queries.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">mcp-server</span></td><td>Model Context Protocol tools: schemas, scopes, audit.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">tailwind</span></td><td>Tailwind v4 CSS-first, tokens in <code>@theme</code>, no runtime CSS-in-JS.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">tanstack-query</span></td><td>Server-cache for remote data: caching, dedupe, loading/error.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">zod-validation</span></td><td>Runtime schema validation at boundaries.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><th>Page</th><th>Purpose</th><th>Machine-readable file</th></tr>
+<tr><td><a href="/standards/references" class="name">References</a></td><td>Official specs and primary-source docs to cite before writing a VCQA rule.</td><td><a href="/standards/references.json"><code>references.json</code></a></td></tr>
+<tr><td><a href="/standards/compositions" class="name">Compositions</a></td><td>Individual stack items and the composed VCQA standards we should author.</td><td><a href="/standards/compositions.json"><code>compositions.json</code></a></td></tr>
+<tr><td><a href="/standards/registry.json" class="name">Resolver registry</a></td><td>Current detection catalog used by the standards resolver. This will evolve as authored stack standards replace early planned buckets.</td><td><a href="/standards/registry.json"><code>registry.json</code></a></td></tr>
 </table>
 
-<h2>Cross-cutting <span style="font-size:0.7rem;color:var(--muted);font-weight:400">— apply to every slice</span></h2>
+<h2>Next Standards To Author</h2>
 <table>
-<tr><th>Standard</th><th>What it is</th><th>Status</th></tr>
-<tr><td><span class="name">typescript</span></td><td>Strict flags, project references, no-any, typed boundaries.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">security</span></td><td>Secrets handling, XSS/injection, dependency supply chain.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">testing</span></td><td>Runner choice, behavior-not-implementation, coverage floor, CI.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">accessibility</span></td><td>Semantics, keyboard, focus, ARIA, contrast.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">dependencies</span></td><td>Lockfile pinning, audit, vetting, no rogue install scripts.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><th>Standard</th><th>Why it matters</th><th>Status</th></tr>
+<tr><td><span class="name">cloudflare-pages-fullstack</span></td><td>React/Vite frontend plus Cloudflare Pages Functions API: same-origin routing, middleware/auth, bindings, deployed vars, and SPA/API seams.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">cloudflare-d1-app</span></td><td>D1 migrations, local/remote parity, tenant database isolation, checksums, and query safety.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">cloudflare-worker-mcp-server</span></td><td>MCP over Cloudflare Workers with Durable Objects/KV, OAuth, tool safety, and per-environment isolation.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">tenant-deployed-cloudflare-saas</span></td><td>Tenant-scoped Pages/D1/Worker deployments, promotion gates, auth perimeter, and provisioning docs.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">node-cli-internal-tool</span></td><td>Credential resolution, exit-code contracts, noninteractive safety, structured output, and SDK reuse.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">typescript-sdk</span></td><td>Export maps, declarations, API contract freshness, typed errors, and consumer compatibility tests.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><span class="name">zensical-kb-site</span></td><td>Markdown as source of truth, generated site ignored, stable URLs, source references, and docs drift checks.</td><td><span class="badge planned">planned</span></td></tr>
 </table>
 
-<h2>Recipes <span style="font-size:0.7rem;color:var(--muted);font-weight:400">— blessed combos; the seam rules only</span></h2>
-<table>
-<tr><th>Standard</th><th>What it is</th><th>Status</th></tr>
-<tr><td><span class="name">react-spa-on-cloudflare-pages</span></td><td>SPA + Functions in one Pages project: same-origin <code>/api/*</code>, <code>_routes.json</code>, secrets in Functions.</td><td><span class="badge planned">planned</span></td></tr>
-</table>
-
-<h2>Editions never rot</h2>
-<p>A standard is <b>versioned on change</b>, not dated — a new edition is cut only when best
-practice materially shifts. Each carries a <b>review date</b> so a scan can flag <em>"judged
-against a standard last verified N months ago."</em> Today: <span class="badge live">react-spa v1</span>
-targets React&nbsp;19 · Vite&nbsp;8 · Tailwind&nbsp;4 · TS&nbsp;6, reviewed 2026-07.</p>
+<h2>Edition Policy</h2>
+<p>Authored rubrics are versioned on change, not dated. A new edition is cut only when
+the stack's best practice materially shifts. Each edition carries a review date so a scan
+can surface when a repo was judged against a stale rubric.</p>
 
 <p style="margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem">
-Run it yourself: <code>npx @vibecodeqa/cli</code> · Machine-readable catalog:
+Run it yourself: <code>npx @vibecodeqa/cli</code> · Sources:
+<a href="/standards/references.json">references.json</a> ·
+<a href="/standards/compositions.json">compositions.json</a> ·
 <a href="/standards/registry.json">registry.json</a></p>
 
 </body>
