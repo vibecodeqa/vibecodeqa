@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibecodeqa.online/standards/compositions.schema.json",
+  "title": "VibeCode QA Standards Composition Map",
+  "type": "object",
+  "required": ["version", "lastReviewed", "purpose", "principles", "stackItems", "composedStandards"],
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "lastReviewed": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "purpose": { "type": "string" },
+    "principles": { "type": "array", "items": { "type": "string" } },
+    "stackItems": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "references", "vcqaShouldOwn"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "kind": { "type": "string" },
+          "references": { "type": "array", "items": { "type": "string" } },
+          "vcqaShouldOwn": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "composedStandards": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "status", "stackItems", "ownedRules", "benefits"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "status": { "type": "string" },
+          "stackItems": { "type": "array", "items": { "type": "string" } },
+          "ownedRules": { "type": "array", "items": { "type": "string" } },
+          "benefits": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
