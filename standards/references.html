@@ -3,164 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>External Standards Registry - VibeCode QA</title>
-<meta name="description" content="Official specifications and primary-source documentation VibeCode QA uses when authoring stack-specific gold-standard rubrics.">
+<title>Standards References - VibeCode QA</title>
+<meta name="description" content="Official specifications and primary-source documentation VibeCode QA cites when authoring stack-specific standards.">
+<link rel="canonical" href="/docs/standards/references/">
+<meta http-equiv="refresh" content="0; url=/docs/standards/references/">
 <link rel="icon" href="/favicon.svg">
 <style>
-:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;max-width:1050px;margin:0 auto}
-a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
-h1{font-size:2rem;font-weight:900;margin-bottom:0.3rem}
-h2{font-size:1.2rem;font-weight:800;margin-top:2.5rem;margin-bottom:0.8rem;padding-top:1.4rem;border-top:1px solid var(--border)}
-p{color:var(--muted);font-size:0.86rem;margin-bottom:0.8rem}
-code{font-family:"SF Mono",Menlo,monospace;font-size:0.84em;background:var(--card);padding:0.15rem 0.4rem;border-radius:4px}
-table{width:100%;border-collapse:collapse;margin:0.8rem 0 1.4rem;font-size:0.78rem}
-th{text-align:left;padding:0.55rem;border-bottom:2px solid var(--border);color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.04em}
-td{padding:0.55rem;border-bottom:1px solid var(--border);vertical-align:top}
-.nav{margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
-.nav a{font-size:0.82rem;color:var(--muted)}
-.logo{font-weight:900;font-size:1.1rem}.logo span{color:var(--accent)}
-.lead{font-size:1rem;color:var(--text);margin-bottom:1.3rem;max-width:780px}
-.name{font-weight:700;color:var(--text)}
-.publisher{color:var(--muted);white-space:nowrap}
-.tags{color:var(--muted);font-size:0.72rem}
-.callout{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;margin:1rem 0 1.4rem}
-.callout p{margin:0}
-.pill{display:inline-block;padding:0.08rem 0.35rem;border-radius:4px;background:#818cf820;border:1px solid #818cf840;color:#c7d2fe;font-size:0.68rem;font-weight:700;margin-right:0.25rem;margin-bottom:0.2rem}
+body{font-family:Inter,system-ui,sans-serif;background:#09090b;color:#e5e5e5;line-height:1.6;padding:2rem;max-width:720px;margin:0 auto}
+a{color:#818cf8}
 </style>
 </head>
 <body>
-
-<div class="nav">
-  <div class="logo"><span>VibeCode</span> QA</div>
-  <a href="/">Home</a>
-  <a href="/docs/">Docs</a>
-  <a href="/standards/"><b>Standards</b></a>
-  <a href="/standards/references"><b>References</b></a>
-  <a href="/standards/compositions">Compositions</a>
-  <a href="https://github.com/vibecodeqa/cli">GitHub</a>
-</div>
-
-<h1>External standards registry</h1>
-<p class="lead">Primary sources VibeCode QA should cite when authoring stack-specific gold-standard KBs. This page is the authority map: official specifications, framework docs, platform docs, security standards, and testing guides.</p>
-
-<div class="callout">
-  <p><b>Authoring rule.</b> Do not re-create broad framework doctrine when an upstream standard already exists. VCQA standards compose these sources, then add only the stack shape, deployment constraints, detection mapping, exceptions, and anti-patterns needed to judge a repository.</p>
-</div>
-
-<p>Machine-readable version: <a href="/standards/references.json"><code>/standards/references.json</code></a>.</p>
-
-<h2>Web Platform</h2>
-<table>
-<tr><th>Reference</th><th>Publisher</th><th>Use it for</th><th>Tags</th></tr>
-<tr><td><a class="name" href="https://html.spec.whatwg.org/">HTML Living Standard</a></td><td class="publisher">WHATWG</td><td>HTML semantics, forms, navigation, browser integration.</td><td class="tags">html, browser, static-site</td></tr>
-<tr><td><a class="name" href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a></td><td class="publisher">W3C WAI</td><td>Accessibility conformance and success criteria.</td><td class="tags">a11y, ui, docs</td></tr>
-<tr><td><a class="name" href="https://www.w3.org/WAI/ARIA/apg/">WAI-ARIA Authoring Practices</a></td><td class="publisher">W3C WAI</td><td>ARIA widgets, keyboard interaction, focus behavior.</td><td class="tags">a11y, components</td></tr>
-<tr><td><a class="name" href="https://developer.mozilla.org/en-US/docs/Web">MDN Web Docs</a></td><td class="publisher">Mozilla</td><td>Browser APIs, compatibility, web platform explanations.</td><td class="tags">browser-api, css, js</td></tr>
-</table>
-
-<h2>Languages And Runtimes</h2>
-<table>
-<tr><th>Reference</th><th>Publisher</th><th>Use it for</th><th>Tags</th></tr>
-<tr><td><a class="name" href="https://www.typescriptlang.org/tsconfig/">TSConfig Reference</a></td><td class="publisher">TypeScript</td><td>Strictness flags, module resolution, project references.</td><td class="tags">typescript, strict</td></tr>
-<tr><td><a class="name" href="https://www.typescriptlang.org/docs/handbook/intro.html">TypeScript Handbook</a></td><td class="publisher">TypeScript</td><td>Type modeling, narrowing, generics, declaration files.</td><td class="tags">typescript, sdk</td></tr>
-<tr><td><a class="name" href="https://nodejs.org/docs/latest/api/">Node.js API Docs</a></td><td class="publisher">OpenJS Foundation</td><td>Runtime APIs, process behavior, streams, crypto, file system.</td><td class="tags">node, cli, service</td></tr>
-<tr><td><a class="name" href="https://nodejs.org/en/learn/getting-started/security-best-practices">Node.js Security Best Practices</a></td><td class="publisher">OpenJS Foundation</td><td>Node runtime security posture and dependency/input guidance.</td><td class="tags">node, security</td></tr>
-<tr><td><a class="name" href="https://docs.npmjs.com/cli/v10/configuring-npm/package-json">package.json</a></td><td class="publisher">npm</td><td>Package metadata, bin, exports, files, scripts, engines.</td><td class="tags">npm, package, library</td></tr>
-<tr><td><a class="name" href="https://pnpm.io/workspaces">pnpm Workspaces</a></td><td class="publisher">pnpm</td><td>Workspace layout, workspace protocol, recursive scripts.</td><td class="tags">monorepo, workspace</td></tr>
-<tr><td><a class="name" href="https://dart.dev/effective-dart">Effective Dart</a></td><td class="publisher">Dart</td><td>Dart style, documentation, usage and design guidance.</td><td class="tags">dart, flutter</td></tr>
-</table>
-
-<h2>Frontend Frameworks And Build Tools</h2>
-<table>
-<tr><th>Reference</th><th>Publisher</th><th>Use it for</th><th>Tags</th></tr>
-<tr><td><a class="name" href="https://react.dev/">React Documentation</a></td><td class="publisher">React</td><td>Components, hooks, state, effects, compiler guidance.</td><td class="tags">react, spa, ssr</td></tr>
-<tr><td><a class="name" href="https://react.dev/reference/rules/rules-of-hooks">Rules of Hooks</a></td><td class="publisher">React</td><td>Hook call placement and custom hook constraints.</td><td class="tags">react, hooks</td></tr>
-<tr><td><a class="name" href="https://reactrouter.com/">React Router</a></td><td class="publisher">React Router</td><td>Routing modes, data routers, framework mode, SPA fallback implications.</td><td class="tags">react-router, spa</td></tr>
-<tr><td><a class="name" href="https://vite.dev/guide/">Vite Guide</a></td><td class="publisher">Vite</td><td>Dev server, production build, static deployment, env variables.</td><td class="tags">vite, build</td></tr>
-<tr><td><a class="name" href="https://vite.dev/guide/static-deploy">Vite Static Deploy</a></td><td class="publisher">Vite</td><td>Static hosting expectations and SPA deployment guidance.</td><td class="tags">vite, static-hosting</td></tr>
-<tr><td><a class="name" href="https://nextjs.org/docs">Next.js Documentation</a></td><td class="publisher">Vercel</td><td>App Router, server components, route handlers, deployment.</td><td class="tags">next, react-ssr</td></tr>
-<tr><td><a class="name" href="https://nextjs.org/docs/app/guides/data-security">Next.js Data Security</a></td><td class="publisher">Next.js</td><td>Server component data boundaries, DTOs, sensitive data handling.</td><td class="tags">next, security</td></tr>
-<tr><td><a class="name" href="https://vuejs.org/guide/introduction.html">Vue.js Guide</a></td><td class="publisher">Vue</td><td>Composition API, SFCs, reactivity, app structure.</td><td class="tags">vue</td></tr>
-<tr><td><a class="name" href="https://vuejs.org/style-guide/">Vue Style Guide</a></td><td class="publisher">Vue</td><td>Vue-specific conventions, component naming, anti-patterns.</td><td class="tags">vue, components</td></tr>
-<tr><td><a class="name" href="https://svelte.dev/docs">Svelte Documentation</a></td><td class="publisher">Svelte</td><td>Svelte syntax, runes, compiler warnings, component model.</td><td class="tags">svelte</td></tr>
-<tr><td><a class="name" href="https://svelte.dev/docs/kit">SvelteKit Documentation</a></td><td class="publisher">Svelte</td><td>Routing, load functions, server endpoints, deployment adapters.</td><td class="tags">sveltekit</td></tr>
-<tr><td><a class="name" href="https://angular.dev/">Angular Documentation</a></td><td class="publisher">Angular</td><td>Signals, templates, dependency injection, Angular CLI.</td><td class="tags">angular</td></tr>
-<tr><td><a class="name" href="https://docs.astro.build/">Astro Documentation</a></td><td class="publisher">Astro</td><td>Content collections, islands architecture, static/SSR output.</td><td class="tags">astro, content-site</td></tr>
-</table>
-
-<h2>Cloudflare Edge Stack</h2>
-<table>
-<tr><th>Reference</th><th>Publisher</th><th>Use it for</th><th>Tags</th></tr>
-<tr><td><a class="name" href="https://developers.cloudflare.com/pages/functions/">Pages Functions</a></td><td class="publisher">Cloudflare</td><td>Functions directory, middleware, routing, bindings, runtime configuration.</td><td class="tags">pages, functions</td></tr>
-<tr><td><a class="name" href="https://developers.cloudflare.com/pages/functions/routing/">Pages Functions Routing</a></td><td class="publisher">Cloudflare</td><td>File-based routes, dynamic segments, route matching.</td><td class="tags">pages, routing</td></tr>
-<tr><td><a class="name" href="https://developers.cloudflare.com/pages/functions/middleware/">Pages Functions Middleware</a></td><td class="publisher">Cloudflare</td><td>Middleware chains, error handling, authentication middleware.</td><td class="tags">pages, middleware</td></tr>
-<tr><td><a class="name" href="https://developers.cloudflare.com/workers/">Workers Documentation</a></td><td class="publisher">Cloudflare</td><td>Worker runtime, bindings, compatibility dates, deployment.</td><td class="tags">workers, edge</td></tr>
-<tr><td><a class="name" href="https://developers.cloudflare.com/workers/best-practices/">Workers Best Practices</a></td><td class="publisher">Cloudflare</td><td>Worker production patterns, anti-patterns, performance and reliability.</td><td class="tags">workers, reliability</td></tr>
-<tr><td><a class="name" href="https://developers.cloudflare.com/d1/">D1 Documentation</a></td><td class="publisher">Cloudflare</td><td>D1 database model, bindings, local/remote database behavior.</td><td class="tags">d1, database</td></tr>
-<tr><td><a class="name" href="https://developers.cloudflare.com/d1/reference/migrations/">D1 Migrations</a></td><td class="publisher">Cloudflare</td><td>SQL migration files, migrations folder, versioned database changes.</td><td class="tags">d1, migrations</td></tr>
-<tr><td><a class="name" href="https://developers.cloudflare.com/durable-objects/">Durable Objects</a></td><td class="publisher">Cloudflare</td><td>Durable Object model, bindings, storage, stateful coordination.</td><td class="tags">durable-objects</td></tr>
-<tr><td><a class="name" href="https://developers.cloudflare.com/durable-objects/best-practices/">Durable Objects Best Practices</a></td><td class="publisher">Cloudflare</td><td>Object design, storage, RPC, error handling, anti-patterns.</td><td class="tags">durable-objects, reliability</td></tr>
-<tr><td><a class="name" href="https://developers.cloudflare.com/use-cases/saas/data-isolation/">SaaS Data Isolation</a></td><td class="publisher">Cloudflare</td><td>Tenant data isolation and Cloudflare SaaS architecture references.</td><td class="tags">saas, tenancy</td></tr>
-<tr><td><a class="name" href="https://developers.cloudflare.com/cloudflare-one/identity/service-tokens/">Cloudflare Access Service Tokens</a></td><td class="publisher">Cloudflare</td><td>Service token behavior and Access policy integration.</td><td class="tags">access, machine-auth</td></tr>
-</table>
-
-<h2>APIs, Auth, Validation, And AI Protocols</h2>
-<table>
-<tr><th>Reference</th><th>Publisher</th><th>Use it for</th><th>Tags</th></tr>
-<tr><td><a class="name" href="https://spec.openapis.org/oas/latest.html">OpenAPI Specification</a></td><td class="publisher">OpenAPI Initiative</td><td>HTTP API contracts, client generation, operation schemas.</td><td class="tags">api, sdk</td></tr>
-<tr><td><a class="name" href="https://json-schema.org/specification">JSON Schema</a></td><td class="publisher">JSON Schema</td><td>JSON validation, machine-readable schemas, config contracts.</td><td class="tags">schema, validation</td></tr>
-<tr><td><a class="name" href="https://zod.dev/">Zod Documentation</a></td><td class="publisher">Zod</td><td>Runtime validation, schema inference, safe parsing.</td><td class="tags">zod, validation</td></tr>
-<tr><td><a class="name" href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1">OAuth 2.1</a></td><td class="publisher">IETF</td><td>Authorization code flow, PKCE, bearer token handling.</td><td class="tags">oauth, auth</td></tr>
-<tr><td><a class="name" href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect Core</a></td><td class="publisher">OpenID Foundation</td><td>ID tokens, claims, authentication flows.</td><td class="tags">oidc, login</td></tr>
-<tr><td><a class="name" href="https://modelcontextprotocol.io/specification/2025-06-18">MCP Specification</a></td><td class="publisher">Model Context Protocol</td><td>Protocol messages, tools, resources, prompts, transports.</td><td class="tags">mcp, ai-tools</td></tr>
-<tr><td><a class="name" href="https://modelcontextprotocol.io/specification/draft/basic/authorization">MCP Authorization</a></td><td class="publisher">Model Context Protocol</td><td>Remote MCP authorization and protected resource metadata.</td><td class="tags">mcp, oauth</td></tr>
-<tr><td><a class="name" href="https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices">MCP Security Best Practices</a></td><td class="publisher">Model Context Protocol</td><td>Tool poisoning defenses, authorization risks, prompt injection considerations.</td><td class="tags">mcp, security</td></tr>
-<tr><td><a class="name" href="https://github.com/modelcontextprotocol/typescript-sdk">MCP TypeScript SDK</a></td><td class="publisher">Model Context Protocol</td><td>Server implementation patterns, tool schemas, transport support.</td><td class="tags">mcp, typescript</td></tr>
-</table>
-
-<h2>Security, CI, And Testing</h2>
-<table>
-<tr><th>Reference</th><th>Publisher</th><th>Use it for</th><th>Tags</th></tr>
-<tr><td><a class="name" href="https://owasp.org/www-project-application-security-verification-standard/">OWASP ASVS</a></td><td class="publisher">OWASP</td><td>Security requirements, authentication, access control, session handling.</td><td class="tags">security, web-app</td></tr>
-<tr><td><a class="name" href="https://cheatsheetseries.owasp.org/">OWASP Cheat Sheet Series</a></td><td class="publisher">OWASP</td><td>Topic-specific secure implementation guidance.</td><td class="tags">security</td></tr>
-<tr><td><a class="name" href="https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html">CSRF Prevention Cheat Sheet</a></td><td class="publisher">OWASP</td><td>CSRF controls, SameSite cookies, origin checks, custom headers.</td><td class="tags">csrf, cookie-auth</td></tr>
-<tr><td><a class="name" href="https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html">Session Management Cheat Sheet</a></td><td class="publisher">OWASP</td><td>Session ID handling, cookie attributes, timeout and renewal.</td><td class="tags">sessions, auth</td></tr>
-<tr><td><a class="name" href="https://docs.github.com/en/actions/reference/security/secure-use">GitHub Actions Secure Use</a></td><td class="publisher">GitHub</td><td>Workflow permissions, untrusted code, third-party actions, secret handling.</td><td class="tags">ci, actions</td></tr>
-<tr><td><a class="name" href="https://docs.github.com/actions/how-tos/secure-your-work/security-harden-deployments">GitHub Actions Deployment Hardening</a></td><td class="publisher">GitHub</td><td>OIDC for cloud deployments, environment protection, deployment hardening.</td><td class="tags">ci, deployment</td></tr>
-<tr><td><a class="name" href="https://vitest.dev/guide/">Vitest Guide</a></td><td class="publisher">Vitest</td><td>Test runner setup, coverage, watch vs run mode.</td><td class="tags">unit-tests</td></tr>
-<tr><td><a class="name" href="https://playwright.dev/docs/best-practices">Playwright Best Practices</a></td><td class="publisher">Playwright</td><td>Locator strategy, test isolation, resilient browser tests.</td><td class="tags">e2e, browser-tests</td></tr>
-<tr><td><a class="name" href="https://testing-library.com/docs/guiding-principles">Testing Library Guiding Principles</a></td><td class="publisher">Testing Library</td><td>User-centered test style and implementation-detail avoidance.</td><td class="tags">component-tests</td></tr>
-</table>
-
-<h2>Apps, Extensions, And Packaging</h2>
-<table>
-<tr><th>Reference</th><th>Publisher</th><th>Use it for</th><th>Tags</th></tr>
-<tr><td><a class="name" href="https://code.visualstudio.com/api">VS Code Extension API</a></td><td class="publisher">Visual Studio Code</td><td>Extension structure, activation events, commands, webviews, testing.</td><td class="tags">vscode-extension</td></tr>
-<tr><td><a class="name" href="https://code.visualstudio.com/api/working-with-extensions/publishing-extension">VS Code Publishing Extensions</a></td><td class="publisher">Visual Studio Code</td><td>Marketplace metadata, engines.vscode, VSIX packaging.</td><td class="tags">vscode, marketplace</td></tr>
-<tr><td><a class="name" href="https://code.visualstudio.com/docs/configure/extensions/extension-runtime-security">VS Code Extension Runtime Security</a></td><td class="publisher">Visual Studio Code</td><td>Extension trust boundaries, runtime permissions, user risk model.</td><td class="tags">vscode, security</td></tr>
-<tr><td><a class="name" href="https://docs.github.com/en/actions/reference/workflows-and-actions/metadata-syntax">GitHub Action Metadata Syntax</a></td><td class="publisher">GitHub</td><td>action.yml schema, inputs, outputs, runs, branding.</td><td class="tags">github-action</td></tr>
-<tr><td><a class="name" href="https://docs.github.com/en/actions/sharing-automations/creating-actions">Creating Actions</a></td><td class="publisher">GitHub</td><td>JavaScript actions, composite actions, Docker actions.</td><td class="tags">github-action</td></tr>
-<tr><td><a class="name" href="https://v2.tauri.app/">Tauri Documentation</a></td><td class="publisher">Tauri</td><td>Tauri app structure, commands, capabilities, plugins, bundling.</td><td class="tags">tauri, desktop</td></tr>
-<tr><td><a class="name" href="https://www.electronjs.org/docs/latest/">Electron Documentation</a></td><td class="publisher">Electron</td><td>Main/renderer boundaries, IPC, security, packaging.</td><td class="tags">electron, desktop</td></tr>
-<tr><td><a class="name" href="https://docs.flutter.dev/">Flutter Documentation</a></td><td class="publisher">Flutter</td><td>Flutter app structure, widgets, testing, deployment.</td><td class="tags">flutter, mobile</td></tr>
-</table>
-
-<h2>Architecture And Documentation</h2>
-<table>
-<tr><th>Reference</th><th>Publisher</th><th>Use it for</th><th>Tags</th></tr>
-<tr><td><a class="name" href="https://github.com/joelparkerhenderson/architecture-decision-record">Architecture Decision Records</a></td><td class="publisher">Michael Nygard / community</td><td>ADR structure, decision history, docs-as-architecture.</td><td class="tags">adr, kb</td></tr>
-<tr><td><a class="name" href="https://c4model.com/">The C4 Model</a></td><td class="publisher">Structurizr</td><td>Context, container, component, and code diagrams.</td><td class="tags">architecture, diagrams</td></tr>
-<tr><td><a class="name" href="https://diataxis.fr/">Diataxis</a></td><td class="publisher">Diataxis</td><td>Tutorial, how-to, reference, and explanation structure.</td><td class="tags">docs, kb</td></tr>
-<tr><td><a class="name" href="https://zensical.org/docs/">Zensical Documentation</a></td><td class="publisher">Zensical</td><td>Zensical site configuration, Markdown authoring, static docs publishing.</td><td class="tags">zensical, publishing</td></tr>
-<tr><td><a class="name" href="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a></td><td class="publisher">Material for MkDocs</td><td>Docs navigation, search, admonitions, theme configuration.</td><td class="tags">mkdocs, docs</td></tr>
-</table>
-
-<p style="margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem">
-This page is a source map, not a rubric. The authored VCQA rubrics live under
-<a href="/standards/">/standards/</a>; the stack composition plan lives at
-<a href="/standards/compositions">Compositions</a>.</p>
-
+<h1>Standards References</h1>
+<p>The standards references now live in the docs KB:</p>
+<p><a href="/docs/standards/references/">Open Standards References</a></p>
+<p>Machine-readable registry: <a href="/standards/references.json">references.json</a></p>
 </body>
 </html>

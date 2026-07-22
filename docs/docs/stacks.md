@@ -56,9 +56,9 @@ anti-patterns.
 
 - **[React SPA — the react-spa standard](/standards/react-spa/)** — React, client-rendered,
   static-hosted (no SSR). Edition v1 (React 19 · Vite 8 · Tailwind 4 · TS 6). *Published.*
-- **[References](/standards/references)** — official specs and primary-source docs the
+- **[References](standards/references.md)** — official specs and primary-source docs the
   rubrics cite.
-- **[Compositions](/standards/compositions)** — individual stack items and composed VCQA
+- **[Compositions](standards/compositions.md)** — individual stack items and composed VCQA
   standards to author next.
 
 Machine-readable files live at [`/standards/references.json`](/standards/references.json),

@@ -52,6 +52,11 @@ nav = [
   { "Scoring" = "scoring.md" },
   { "Architecture" = "architecture.md" },
   { "Supported stacks" = "stacks.md" },
+  { "Standards" = [
+    { "Overview" = "standards/index.md" },
+    { "References" = "standards/references.md" },
+    { "Compositions" = "standards/compositions.md" },
+  ] },
   { "Tool delegation" = "tools.md" },
   { "CI integration" = "ci.md" },
   { "Configuration" = "configuration.md" },

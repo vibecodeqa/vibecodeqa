@@ -3,105 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Standards Composition Map - VibeCode QA</title>
-<meta name="description" content="How VibeCode QA composes upstream framework and platform standards into stack-specific gold-standard rubrics.">
+<title>Standards Compositions - VibeCode QA</title>
+<meta name="description" content="How VibeCode QA composes upstream framework and platform standards into stack-specific rubrics.">
+<link rel="canonical" href="/docs/standards/compositions/">
+<meta http-equiv="refresh" content="0; url=/docs/standards/compositions/">
 <link rel="icon" href="/favicon.svg">
 <style>
-:root{--bg:#09090b;--card:#111115;--border:#1e1e24;--text:#e5e5e5;--muted:#6b7280;--accent:#818cf8;--pass:#22c55e;--warn:#eab308}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Inter",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:2rem;max-width:1050px;margin:0 auto}
-a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
-h1{font-size:2rem;font-weight:900;margin-bottom:0.3rem}
-h2{font-size:1.2rem;font-weight:800;margin-top:2.5rem;margin-bottom:0.8rem;padding-top:1.4rem;border-top:1px solid var(--border)}
-p{color:var(--muted);font-size:0.86rem;margin-bottom:0.8rem}
-code{font-family:"SF Mono",Menlo,monospace;font-size:0.84em;background:var(--card);padding:0.15rem 0.4rem;border-radius:4px}
-table{width:100%;border-collapse:collapse;margin:0.8rem 0 1.4rem;font-size:0.78rem}
-th{text-align:left;padding:0.55rem;border-bottom:2px solid var(--border);color:var(--muted);font-size:0.68rem;text-transform:uppercase;letter-spacing:0.04em}
-td{padding:0.55rem;border-bottom:1px solid var(--border);vertical-align:top}
-ul{margin-left:1rem;color:var(--muted);font-size:0.82rem}
-.nav{margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
-.nav a{font-size:0.82rem;color:var(--muted)}
-.logo{font-weight:900;font-size:1.1rem}.logo span{color:var(--accent)}
-.lead{font-size:1rem;color:var(--text);margin-bottom:1.3rem;max-width:780px}
-.name{font-weight:700;color:var(--text)}
-.badge{display:inline-block;padding:0.1rem 0.4rem;border-radius:4px;font-size:0.65rem;font-weight:700;white-space:nowrap}
-.live{background:#22c55e20;color:#22c55e;border:1px solid #22c55e40}
-.planned{background:#6b728020;color:#9ca3af;border:1px solid #6b728040}
-.callout{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem;margin:1rem 0 1.4rem}
-.callout p{margin:0}
+body{font-family:Inter,system-ui,sans-serif;background:#09090b;color:#e5e5e5;line-height:1.6;padding:2rem;max-width:720px;margin:0 auto}
+a{color:#818cf8}
 </style>
 </head>
 <body>
-
-<div class="nav">
-  <div class="logo"><span>VibeCode</span> QA</div>
-  <a href="/">Home</a>
-  <a href="/docs/">Docs</a>
-  <a href="/standards/"><b>Standards</b></a>
-  <a href="/standards/references">References</a>
-  <a href="/standards/compositions"><b>Compositions</b></a>
-  <a href="https://github.com/vibecodeqa/cli">GitHub</a>
-</div>
-
-<h1>Standards composition map</h1>
-<p class="lead">VCQA standards are built from upstream authorities plus the stack-specific glue needed to judge real repos. This page starts with individual stack items, then composes them into standards we should author.</p>
-
-<div class="callout">
-  <p><b>Decision.</b> We do not author a generic "React standard" or "TypeScript standard". React, TypeScript, WCAG, OWASP, Cloudflare, and MCP already publish the broad doctrine. VCQA standards define deployable stack shapes and cite those sources.</p>
-</div>
-
-<p>Machine-readable version: <a href="/standards/compositions.json"><code>/standards/compositions.json</code></a>.</p>
-
-<h2>Individual Stack Items</h2>
-<table>
-<tr><th>Item</th><th>Kind</th><th>Upstream references</th><th>VCQA owns</th></tr>
-<tr><td class="name">react</td><td>framework</td><td>React docs, Rules of Hooks</td><td>Detection mapping for hook/component anti-patterns; stack-specific conventions only where needed.</td></tr>
-<tr><td class="name">react-router</td><td>routing</td><td>React Router docs</td><td>SPA fallback expectations and route organization for static deployments.</td></tr>
-<tr><td class="name">vite</td><td>build tool</td><td>Vite guide, Vite static deploy</td><td>Build artifact expectations, env boundary, static hosting fit.</td></tr>
-<tr><td class="name">typescript</td><td>language</td><td>TSConfig Reference, TypeScript Handbook</td><td>Strictness enforcement by stack, generated-file exceptions, typed boundary checks.</td></tr>
-<tr><td class="name">web-accessibility</td><td>quality</td><td>WCAG 2.2, WAI-ARIA APG</td><td>Code-level detection mapping and UI acceptance gates.</td></tr>
-<tr><td class="name">web-security</td><td>security</td><td>OWASP ASVS, OWASP cheat sheets</td><td>Stack-specific auth, secret boundaries, detectable unsafe patterns, CI gates.</td></tr>
-<tr><td class="name">cloudflare-pages-functions</td><td>runtime</td><td>Cloudflare Pages Functions routing and middleware docs</td><td>Functions shape, same-origin API seam, SPA/functions route collision checks, binding policy.</td></tr>
-<tr><td class="name">cloudflare-workers</td><td>runtime</td><td>Cloudflare Workers docs and best practices</td><td>Compatibility-date policy, Worker deployment checks, runtime anti-patterns.</td></tr>
-<tr><td class="name">cloudflare-d1</td><td>database</td><td>D1 docs and migrations</td><td>Migration discipline, local/remote parity, tenant DB isolation, query-safety checks.</td></tr>
-<tr><td class="name">durable-objects</td><td>state</td><td>Durable Objects docs and best practices</td><td>Stateful object boundaries, migration/storage policy, binding checks.</td></tr>
-<tr><td class="name">mcp</td><td>protocol</td><td>MCP spec, authorization, security, TypeScript SDK</td><td>Tool safety, remote authorization, schema quality, auditability.</td></tr>
-<tr><td class="name">zod</td><td>validation</td><td>Zod docs</td><td>Boundary validation, safeParse/error shape, schema sharing across seams.</td></tr>
-<tr><td class="name">openapi</td><td>API contract</td><td>OpenAPI, JSON Schema</td><td>Contract freshness, generated client/server drift, operation coverage.</td></tr>
-<tr><td class="name">github-actions</td><td>CI</td><td>GitHub Actions secure use and OIDC/deployment hardening</td><td>Workflow permission gates, environment checks, required stack gates.</td></tr>
-<tr><td class="name">vscode-extension</td><td>extension</td><td>VS Code extension API, publishing, runtime security</td><td>Activation scope, webview/security policy, marketplace metadata checks.</td></tr>
-<tr><td class="name">github-action</td><td>automation</td><td>GitHub action metadata and creating actions docs</td><td>action.yml quality, input/output contract, token/permission guidance, release policy.</td></tr>
-<tr><td class="name">tauri</td><td>desktop</td><td>Tauri docs</td><td>Command/capability boundaries, secret storage, packaging/signing checks.</td></tr>
-<tr><td class="name">docs-kb</td><td>documentation</td><td>Zensical, Diataxis, ADR guidance, C4</td><td>Source/build separation, ADR freshness, published KB access policy, architecture drift gates.</td></tr>
-</table>
-
-<h2>Composed Standards To Author</h2>
-<table>
-<tr><th>Composed standard</th><th>Status</th><th>Composes</th><th>Owned rule surface</th><th>Benefits</th></tr>
-<tr><td class="name">react-spa-static</td><td><span class="badge live">authored as react-spa v1</span></td><td>react, react-router, vite, typescript, accessibility, security, Vitest, Playwright</td><td>Static SPA boundary, client env policy, routing fallback, build output and asset hygiene.</td><td>VCQA app web dashboard; CRM app frontend.</td></tr>
-<tr><td class="name">cloudflare-pages-fullstack</td><td><span class="badge planned">planned</span></td><td>react-spa-static, Pages Functions, TypeScript, security, GitHub Actions</td><td>Same-origin API seam, Functions route shape, middleware/auth placement, bindings, deployed vars, SPA/functions deploy assembly.</td><td>CRM app; future VCQA dashboard patterns.</td></tr>
-<tr><td class="name">cloudflare-d1-app</td><td><span class="badge planned">planned</span></td><td>D1, TypeScript, security, GitHub Actions</td><td>Versioned migrations, checksums/drift guard, local apply test, staging/prod/tenant DB isolation, parameterized queries.</td><td>CRM Pages Functions with D1.</td></tr>
-<tr><td class="name">cloudflare-worker-mcp-server</td><td><span class="badge planned">planned</span></td><td>Workers, Durable Objects, MCP, Zod, TypeScript, security, GitHub Actions</td><td>Remote MCP auth, tool schemas, permission boundaries, DO/KV storage, per-env OAuth isolation, audit trail.</td><td>CRM MCP Worker.</td></tr>
-<tr><td class="name">tenant-deployed-cloudflare-saas</td><td><span class="badge planned">planned</span></td><td>Pages Functions, D1, Workers, GitHub Actions, security, docs-kb</td><td>Tenant isolation, promotion gates, per-tenant D1/secrets, deployment alias auth perimeter, provisioning docs.</td><td>CRM tenant deployment model.</td></tr>
-<tr><td class="name">node-cli-internal-tool</td><td><span class="badge planned">planned</span></td><td>Node, TypeScript, OpenAPI, security</td><td>Exit-code contract, credential resolution, prod/staging safety defaults, structured output, SDK reuse.</td><td>CRM CLI; VCQA CLI.</td></tr>
-<tr><td class="name">typescript-sdk</td><td><span class="badge planned">planned</span></td><td>TypeScript, OpenAPI, Zod, Vitest</td><td>Export map/declarations, contract freshness, credential boundary, typed error model, compatibility tests.</td><td>CRM SDK; future VCQA schema/client packages.</td></tr>
-<tr><td class="name">github-action-package</td><td><span class="badge planned">planned</span></td><td>GitHub Action, GitHub Actions, Node, TypeScript</td><td>Metadata completeness, minimum permissions, input validation, runtime/dependency policy, release tag policy.</td><td>VCQA action repo.</td></tr>
-<tr><td class="name">vscode-extension-package</td><td><span class="badge planned">planned</span></td><td>VS Code Extension, TypeScript, Node, security</td><td>Activation scope, workspace trust, command/webview boundaries, marketplace metadata, extension tests.</td><td>VCQA VS Code repo.</td></tr>
-<tr><td class="name">tauri-react-desktop</td><td><span class="badge planned">planned</span></td><td>Tauri, React, TypeScript, security, docs-kb</td><td>Command/capability boundaries, keychain storage, file-watch safety, signing, frontend/backend contract typing.</td><td>VCQA desktop monitor.</td></tr>
-<tr><td class="name">zensical-kb-site</td><td><span class="badge planned">planned</span></td><td>docs-kb, GitHub Actions</td><td>Markdown is source of truth, generated site ignored, stable URLs, tracked source references, docs drift checks.</td><td>VCQA docs/standards; CRM docs.</td></tr>
-</table>
-
-<h2>Authoring Order</h2>
-<p>Start with the stack standards that have the highest reuse and the clearest repo evidence:</p>
-<ul>
-  <li><code>cloudflare-pages-fullstack</code>: unlocks CRM's app/functions shape.</li>
-  <li><code>cloudflare-d1-app</code>: captures migration and tenant database discipline.</li>
-  <li><code>cloudflare-worker-mcp-server</code>: captures MCP over Workers, Durable Objects, OAuth, and tool safety.</li>
-  <li><code>node-cli-internal-tool</code>, <code>typescript-sdk</code>, and <code>zensical-kb-site</code>: cover the shared supporting packages and documentation model.</li>
-</ul>
-
-<p style="margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);font-size:0.78rem">
-This is the composition plan. Authored rubrics live under <a href="/standards/">/standards/</a>; source authorities live in <a href="/standards/references">References</a>.</p>
-
+<h1>Standards Compositions</h1>
+<p>The standards composition map now lives in the docs KB:</p>
+<p><a href="/docs/standards/compositions/">Open Standards Compositions</a></p>
+<p>Machine-readable map: <a href="/standards/compositions.json">compositions.json</a></p>
 </body>
 </html>
