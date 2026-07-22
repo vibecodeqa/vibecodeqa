@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibecodeqa.online/standards/references.schema.json",
+  "title": "VibeCode QA External Standards References",
+  "type": "object",
+  "required": ["version", "lastReviewed", "purpose", "categories"],
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "lastReviewed": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "purpose": { "type": "string" },
+    "policy": {
+      "type": "object",
+      "properties": {
+        "sourcePreference": { "type": "array", "items": { "type": "string" } },
+        "authoringRule": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "description", "references"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "references": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "title", "publisher", "url", "appliesTo", "useFor"],
+              "properties": {
+                "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+                "title": { "type": "string" },
+                "publisher": { "type": "string" },
+                "url": { "type": "string", "format": "uri" },
+                "appliesTo": { "type": "array", "items": { "type": "string" } },
+                "useFor": { "type": "array", "items": { "type": "string" } }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

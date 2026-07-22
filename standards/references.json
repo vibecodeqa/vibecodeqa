@@ -1,0 +1,602 @@
+{
+  "$schema": "./references.schema.json",
+  "version": 1,
+  "lastReviewed": "2026-07-22",
+  "purpose": "External standards and primary-source references VibeCode QA should cite when authoring stack-specific gold-standard KBs. This registry is not the VCQA rubric itself; it is the authority map for where each rubric should look first.",
+  "policy": {
+    "sourcePreference": [
+      "Official specification",
+      "Official project or vendor documentation",
+      "Recognized independent standard body",
+      "Mature ecosystem documentation",
+      "Vendor-neutral implementation guide"
+    ],
+    "authoringRule": "VCQA standards should compose and cite these sources. Do not re-create broad framework doctrine when an upstream standard already exists; author only the stack shape, deployment constraints, detection mapping, exceptions, and anti-patterns needed to judge a repo."
+  },
+  "categories": [
+    {
+      "id": "web-platform",
+      "title": "Web platform",
+      "description": "Baseline browser, markup, accessibility, and web API references.",
+      "references": [
+        {
+          "id": "html-living-standard",
+          "title": "HTML Living Standard",
+          "publisher": "WHATWG",
+          "url": "https://html.spec.whatwg.org/",
+          "appliesTo": ["html", "browser-app", "static-site", "spa", "ssr"],
+          "useFor": ["HTML semantics", "forms", "navigation", "browser integration"]
+        },
+        {
+          "id": "wcag-22",
+          "title": "Web Content Accessibility Guidelines (WCAG) 2.2",
+          "publisher": "W3C WAI",
+          "url": "https://www.w3.org/TR/WCAG22/",
+          "appliesTo": ["ui", "website", "web-app", "documentation-site"],
+          "useFor": ["Accessibility conformance", "perceivable/operable/understandable/robust criteria"]
+        },
+        {
+          "id": "wai-aria",
+          "title": "WAI-ARIA Authoring Practices Guide",
+          "publisher": "W3C WAI",
+          "url": "https://www.w3.org/WAI/ARIA/apg/",
+          "appliesTo": ["ui", "component-library", "web-app"],
+          "useFor": ["ARIA widget patterns", "keyboard interaction", "focus behavior"]
+        },
+        {
+          "id": "mdn-web-docs",
+          "title": "MDN Web Docs",
+          "publisher": "Mozilla",
+          "url": "https://developer.mozilla.org/en-US/docs/Web",
+          "appliesTo": ["browser-app", "javascript", "css", "html"],
+          "useFor": ["Browser API behavior", "compatibility", "web platform explanations"]
+        }
+      ]
+    },
+    {
+      "id": "languages-runtimes",
+      "title": "Languages and runtimes",
+      "description": "Language, runtime, package manager, and CLI baseline references.",
+      "references": [
+        {
+          "id": "typescript-tsconfig",
+          "title": "TSConfig Reference",
+          "publisher": "TypeScript",
+          "url": "https://www.typescriptlang.org/tsconfig/",
+          "appliesTo": ["typescript", "tsconfig", "strict-types"],
+          "useFor": ["Strictness flags", "module resolution", "project references"]
+        },
+        {
+          "id": "typescript-handbook",
+          "title": "TypeScript Handbook",
+          "publisher": "TypeScript",
+          "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
+          "appliesTo": ["typescript", "library", "sdk", "app"],
+          "useFor": ["Type modeling", "narrowing", "generics", "declaration files"]
+        },
+        {
+          "id": "node-docs",
+          "title": "Node.js Documentation",
+          "publisher": "OpenJS Foundation",
+          "url": "https://nodejs.org/docs/latest/api/",
+          "appliesTo": ["node-service", "node-cli", "node-library"],
+          "useFor": ["Runtime APIs", "process behavior", "streams", "crypto", "file system"]
+        },
+        {
+          "id": "node-security-best-practices",
+          "title": "Node.js Security Best Practices",
+          "publisher": "OpenJS Foundation",
+          "url": "https://nodejs.org/en/learn/getting-started/security-best-practices",
+          "appliesTo": ["node-service", "node-cli", "server-side-javascript"],
+          "useFor": ["Node runtime security posture", "dependency and input handling guidance"]
+        },
+        {
+          "id": "npm-package-json",
+          "title": "package.json",
+          "publisher": "npm",
+          "url": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json",
+          "appliesTo": ["npm-package", "library", "cli", "workspace"],
+          "useFor": ["Package metadata", "bin", "exports", "files", "scripts", "engines"]
+        },
+        {
+          "id": "pnpm-workspaces",
+          "title": "pnpm Workspaces",
+          "publisher": "pnpm",
+          "url": "https://pnpm.io/workspaces",
+          "appliesTo": ["monorepo", "workspace", "typescript-project-references"],
+          "useFor": ["Workspace layout", "workspace protocol", "recursive scripts"]
+        },
+        {
+          "id": "dart-effective",
+          "title": "Effective Dart",
+          "publisher": "Dart",
+          "url": "https://dart.dev/effective-dart",
+          "appliesTo": ["dart", "flutter"],
+          "useFor": ["Dart style", "documentation", "usage and design guidance"]
+        }
+      ]
+    },
+    {
+      "id": "frontend-frameworks",
+      "title": "Frontend frameworks and build tools",
+      "description": "Framework authorities to reference from stack-specific UI standards.",
+      "references": [
+        {
+          "id": "react-docs",
+          "title": "React Documentation",
+          "publisher": "Meta / React",
+          "url": "https://react.dev/",
+          "appliesTo": ["react", "react-spa", "react-ssr"],
+          "useFor": ["Components", "hooks", "state", "effects", "React compiler guidance"]
+        },
+        {
+          "id": "react-rules-of-hooks",
+          "title": "Rules of Hooks",
+          "publisher": "React",
+          "url": "https://react.dev/reference/rules/rules-of-hooks",
+          "appliesTo": ["react", "react-components", "hooks"],
+          "useFor": ["Hook call placement", "custom hook constraints", "lint mapping"]
+        },
+        {
+          "id": "react-router-docs",
+          "title": "React Router Documentation",
+          "publisher": "React Router",
+          "url": "https://reactrouter.com/",
+          "appliesTo": ["react-spa", "react-router", "react-fullstack"],
+          "useFor": ["Routing modes", "data routers", "framework mode", "SPA fallback implications"]
+        },
+        {
+          "id": "vite-guide",
+          "title": "Vite Guide",
+          "publisher": "Vite",
+          "url": "https://vite.dev/guide/",
+          "appliesTo": ["vite", "spa", "frontend-build"],
+          "useFor": ["Dev server", "production build", "static deployment", "env variables"]
+        },
+        {
+          "id": "vite-static-deploy",
+          "title": "Deploying a Static Site",
+          "publisher": "Vite",
+          "url": "https://vite.dev/guide/static-deploy",
+          "appliesTo": ["vite", "static-site", "spa"],
+          "useFor": ["Static hosting expectations", "SPA deployment guidance"]
+        },
+        {
+          "id": "next-docs",
+          "title": "Next.js Documentation",
+          "publisher": "Vercel",
+          "url": "https://nextjs.org/docs",
+          "appliesTo": ["nextjs", "react-ssr", "react-fullstack"],
+          "useFor": ["App Router", "server components", "route handlers", "deployment"]
+        },
+        {
+          "id": "next-data-security",
+          "title": "Data Security",
+          "publisher": "Next.js",
+          "url": "https://nextjs.org/docs/app/guides/data-security",
+          "appliesTo": ["nextjs", "react-server-components", "server-data"],
+          "useFor": ["Server component data boundaries", "DTOs", "sensitive data handling"]
+        },
+        {
+          "id": "vue-docs",
+          "title": "Vue.js Guide",
+          "publisher": "Vue",
+          "url": "https://vuejs.org/guide/introduction.html",
+          "appliesTo": ["vue", "vue-spa", "vue-ssr"],
+          "useFor": ["Composition API", "SFCs", "reactivity", "app structure"]
+        },
+        {
+          "id": "vue-style-guide",
+          "title": "Vue Style Guide",
+          "publisher": "Vue",
+          "url": "https://vuejs.org/style-guide/",
+          "appliesTo": ["vue", "vue-components"],
+          "useFor": ["Vue-specific conventions", "component naming", "anti-patterns"]
+        },
+        {
+          "id": "svelte-docs",
+          "title": "Svelte Documentation",
+          "publisher": "Svelte",
+          "url": "https://svelte.dev/docs",
+          "appliesTo": ["svelte", "sveltekit"],
+          "useFor": ["Svelte syntax", "runes", "compiler warnings", "component model"]
+        },
+        {
+          "id": "sveltekit-docs",
+          "title": "SvelteKit Documentation",
+          "publisher": "Svelte",
+          "url": "https://svelte.dev/docs/kit",
+          "appliesTo": ["sveltekit", "svelte-fullstack", "svelte-ssr"],
+          "useFor": ["Routing", "load functions", "server endpoints", "deployment adapters"]
+        },
+        {
+          "id": "angular-docs",
+          "title": "Angular Documentation",
+          "publisher": "Google / Angular",
+          "url": "https://angular.dev/",
+          "appliesTo": ["angular", "angular-spa"],
+          "useFor": ["Signals", "templates", "dependency injection", "Angular CLI"]
+        },
+        {
+          "id": "astro-docs",
+          "title": "Astro Documentation",
+          "publisher": "Astro",
+          "url": "https://docs.astro.build/",
+          "appliesTo": ["astro", "static-site", "content-site"],
+          "useFor": ["Content collections", "islands architecture", "static/SSR output"]
+        }
+      ]
+    },
+    {
+      "id": "edge-cloudflare",
+      "title": "Cloudflare edge stack",
+      "description": "Cloudflare platform references for Pages, Workers, D1, Durable Objects, and SaaS isolation.",
+      "references": [
+        {
+          "id": "cloudflare-pages-functions",
+          "title": "Pages Functions",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/pages/functions/",
+          "appliesTo": ["cloudflare-pages-fullstack", "pages-functions", "react-spa-on-cloudflare-pages"],
+          "useFor": ["Functions directory", "middleware", "routing", "bindings", "runtime configuration"]
+        },
+        {
+          "id": "cloudflare-pages-functions-routing",
+          "title": "Pages Functions Routing",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/pages/functions/routing/",
+          "appliesTo": ["pages-functions", "cloudflare-pages-fullstack"],
+          "useFor": ["File-based routes", "dynamic segments", "route matching"]
+        },
+        {
+          "id": "cloudflare-pages-functions-middleware",
+          "title": "Pages Functions Middleware",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/pages/functions/middleware/",
+          "appliesTo": ["pages-functions", "auth-middleware", "api-edge"],
+          "useFor": ["Middleware chains", "error handling", "authentication middleware"]
+        },
+        {
+          "id": "cloudflare-workers",
+          "title": "Workers Documentation",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/workers/",
+          "appliesTo": ["cloudflare-worker", "edge-api", "mcp-worker"],
+          "useFor": ["Worker runtime", "bindings", "compatibility dates", "deployment"]
+        },
+        {
+          "id": "cloudflare-workers-best-practices",
+          "title": "Workers Best Practices",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/workers/best-practices/",
+          "appliesTo": ["cloudflare-worker", "edge-api"],
+          "useFor": ["Worker production patterns", "anti-patterns", "performance and reliability"]
+        },
+        {
+          "id": "cloudflare-d1",
+          "title": "D1 Documentation",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/d1/",
+          "appliesTo": ["d1-database", "cloudflare-pages-fullstack", "cloudflare-worker"],
+          "useFor": ["D1 database model", "bindings", "local/remote database behavior"]
+        },
+        {
+          "id": "cloudflare-d1-migrations",
+          "title": "D1 Migrations",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/d1/reference/migrations/",
+          "appliesTo": ["d1-database", "database-migrations"],
+          "useFor": ["SQL migration files", "migrations folder", "versioned database changes"]
+        },
+        {
+          "id": "cloudflare-durable-objects",
+          "title": "Durable Objects Documentation",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/durable-objects/",
+          "appliesTo": ["durable-objects", "stateful-worker", "mcp-worker"],
+          "useFor": ["Durable Object model", "bindings", "storage", "stateful coordination"]
+        },
+        {
+          "id": "cloudflare-durable-objects-best-practices",
+          "title": "Durable Objects Best Practices",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/durable-objects/best-practices/",
+          "appliesTo": ["durable-objects", "stateful-worker"],
+          "useFor": ["Object design", "storage", "RPC", "error handling", "anti-patterns"]
+        },
+        {
+          "id": "cloudflare-saas-data-isolation",
+          "title": "SaaS Data Isolation",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/use-cases/saas/data-isolation/",
+          "appliesTo": ["multi-tenant-saas", "cloudflare-saas", "tenant-isolation"],
+          "useFor": ["Tenant data isolation", "Cloudflare SaaS architecture references"]
+        },
+        {
+          "id": "cloudflare-access-service-tokens",
+          "title": "Service tokens",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/cloudflare-one/identity/service-tokens/",
+          "appliesTo": ["cloudflare-access", "machine-auth", "edge-perimeter"],
+          "useFor": ["Service token behavior", "Access policy integration"]
+        }
+      ]
+    },
+    {
+      "id": "apis-auth-and-ai",
+      "title": "APIs, auth, validation, and AI protocols",
+      "description": "Contract, authentication, authorization, schema, and AI-tool protocol references.",
+      "references": [
+        {
+          "id": "openapi",
+          "title": "OpenAPI Specification",
+          "publisher": "OpenAPI Initiative",
+          "url": "https://spec.openapis.org/oas/latest.html",
+          "appliesTo": ["rest-api", "sdk", "api-contract"],
+          "useFor": ["HTTP API contracts", "client generation", "operation schemas"]
+        },
+        {
+          "id": "json-schema",
+          "title": "JSON Schema",
+          "publisher": "JSON Schema",
+          "url": "https://json-schema.org/specification",
+          "appliesTo": ["api-contract", "validation", "configuration"],
+          "useFor": ["JSON validation", "machine-readable schemas", "config contracts"]
+        },
+        {
+          "id": "zod-docs",
+          "title": "Zod Documentation",
+          "publisher": "Zod",
+          "url": "https://zod.dev/",
+          "appliesTo": ["zod-validation", "runtime-validation", "typescript-boundaries"],
+          "useFor": ["Runtime validation", "schema inference", "safe parsing"]
+        },
+        {
+          "id": "oauth-21",
+          "title": "OAuth 2.1 Authorization Framework",
+          "publisher": "IETF",
+          "url": "https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1",
+          "appliesTo": ["oauth", "authorization", "remote-mcp", "web-app-auth"],
+          "useFor": ["Authorization code flow", "PKCE", "bearer token handling"]
+        },
+        {
+          "id": "openid-connect-core",
+          "title": "OpenID Connect Core",
+          "publisher": "OpenID Foundation",
+          "url": "https://openid.net/specs/openid-connect-core-1_0.html",
+          "appliesTo": ["oidc", "login", "identity"],
+          "useFor": ["ID tokens", "claims", "authentication flows"]
+        },
+        {
+          "id": "mcp-spec",
+          "title": "Model Context Protocol Specification",
+          "publisher": "Model Context Protocol",
+          "url": "https://modelcontextprotocol.io/specification/2025-06-18",
+          "appliesTo": ["mcp-server", "mcp-client", "ai-tools"],
+          "useFor": ["Protocol messages", "tools", "resources", "prompts", "transports"]
+        },
+        {
+          "id": "mcp-authorization",
+          "title": "MCP Authorization",
+          "publisher": "Model Context Protocol",
+          "url": "https://modelcontextprotocol.io/specification/draft/basic/authorization",
+          "appliesTo": ["remote-mcp", "mcp-server", "oauth"],
+          "useFor": ["Remote MCP authorization", "resource server behavior", "protected resource metadata"]
+        },
+        {
+          "id": "mcp-security",
+          "title": "MCP Security Best Practices",
+          "publisher": "Model Context Protocol",
+          "url": "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices",
+          "appliesTo": ["mcp-server", "mcp-client", "ai-tools"],
+          "useFor": ["Tool poisoning defenses", "authorization risks", "prompt injection considerations"]
+        },
+        {
+          "id": "mcp-typescript-sdk",
+          "title": "MCP TypeScript SDK",
+          "publisher": "Model Context Protocol",
+          "url": "https://github.com/modelcontextprotocol/typescript-sdk",
+          "appliesTo": ["mcp-server", "typescript", "node", "worker"],
+          "useFor": ["Server implementation patterns", "tool schemas", "transport support"]
+        }
+      ]
+    },
+    {
+      "id": "security-ci-testing",
+      "title": "Security, CI, and testing",
+      "description": "Security verification, CI hardening, and automated test references.",
+      "references": [
+        {
+          "id": "owasp-asvs",
+          "title": "Application Security Verification Standard",
+          "publisher": "OWASP",
+          "url": "https://owasp.org/www-project-application-security-verification-standard/",
+          "appliesTo": ["web-app-security", "api-security", "secure-development"],
+          "useFor": ["Security requirements", "authentication", "access control", "session handling"]
+        },
+        {
+          "id": "owasp-cheat-sheets",
+          "title": "OWASP Cheat Sheet Series",
+          "publisher": "OWASP",
+          "url": "https://cheatsheetseries.owasp.org/",
+          "appliesTo": ["security", "web-app", "api", "auth"],
+          "useFor": ["Topic-specific secure implementation guidance"]
+        },
+        {
+          "id": "owasp-csrf-cheat-sheet",
+          "title": "Cross-Site Request Forgery Prevention Cheat Sheet",
+          "publisher": "OWASP",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+          "appliesTo": ["web-app", "cookie-auth", "mutating-requests"],
+          "useFor": ["CSRF controls", "same-site cookies", "origin checks", "custom headers"]
+        },
+        {
+          "id": "owasp-session-management",
+          "title": "Session Management Cheat Sheet",
+          "publisher": "OWASP",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
+          "appliesTo": ["session-auth", "web-app-auth", "cookies"],
+          "useFor": ["Session ID handling", "cookie attributes", "timeout and renewal"]
+        },
+        {
+          "id": "github-actions-secure-use",
+          "title": "Secure use reference",
+          "publisher": "GitHub",
+          "url": "https://docs.github.com/en/actions/reference/security/secure-use",
+          "appliesTo": ["github-actions", "ci", "supply-chain"],
+          "useFor": ["Workflow permissions", "untrusted code", "third-party actions", "secret handling"]
+        },
+        {
+          "id": "github-actions-oidc",
+          "title": "Security hardening your deployments",
+          "publisher": "GitHub",
+          "url": "https://docs.github.com/actions/how-tos/secure-your-work/security-harden-deployments",
+          "appliesTo": ["github-actions", "deployment", "oidc"],
+          "useFor": ["OIDC for cloud deployments", "environment protection", "deployment hardening"]
+        },
+        {
+          "id": "vitest-guide",
+          "title": "Vitest Guide",
+          "publisher": "Vitest",
+          "url": "https://vitest.dev/guide/",
+          "appliesTo": ["unit-tests", "vite", "typescript-tests"],
+          "useFor": ["Test runner setup", "coverage", "watch vs run mode"]
+        },
+        {
+          "id": "playwright-best-practices",
+          "title": "Playwright Best Practices",
+          "publisher": "Microsoft / Playwright",
+          "url": "https://playwright.dev/docs/best-practices",
+          "appliesTo": ["e2e-tests", "browser-tests", "web-app"],
+          "useFor": ["Locator strategy", "test isolation", "resilient browser tests"]
+        },
+        {
+          "id": "testing-library-guiding-principles",
+          "title": "Testing Library Guiding Principles",
+          "publisher": "Testing Library",
+          "url": "https://testing-library.com/docs/guiding-principles",
+          "appliesTo": ["component-tests", "ui-tests", "react", "vue", "svelte"],
+          "useFor": ["User-centered test style", "DOM queries", "implementation-detail avoidance"]
+        }
+      ]
+    },
+    {
+      "id": "apps-extensions-and-packaging",
+      "title": "Apps, extensions, and packaging",
+      "description": "Editor, desktop, mobile, and distribution references.",
+      "references": [
+        {
+          "id": "vscode-extension-api",
+          "title": "Extension API",
+          "publisher": "Visual Studio Code",
+          "url": "https://code.visualstudio.com/api",
+          "appliesTo": ["vscode-extension", "editor-extension"],
+          "useFor": ["Extension structure", "activation events", "commands", "webviews", "testing"]
+        },
+        {
+          "id": "vscode-extension-publishing",
+          "title": "Publishing Extensions",
+          "publisher": "Visual Studio Code",
+          "url": "https://code.visualstudio.com/api/working-with-extensions/publishing-extension",
+          "appliesTo": ["vscode-extension", "marketplace"],
+          "useFor": ["Marketplace metadata", "engines.vscode", "VSIX packaging", "publisher requirements"]
+        },
+        {
+          "id": "vscode-extension-runtime-security",
+          "title": "Extension Runtime Security",
+          "publisher": "Visual Studio Code",
+          "url": "https://code.visualstudio.com/docs/configure/extensions/extension-runtime-security",
+          "appliesTo": ["vscode-extension", "extension-security"],
+          "useFor": ["Extension trust boundaries", "runtime permissions", "user risk model"]
+        },
+        {
+          "id": "github-actions-metadata",
+          "title": "Metadata syntax for GitHub Actions",
+          "publisher": "GitHub",
+          "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/metadata-syntax",
+          "appliesTo": ["github-action", "action-yml"],
+          "useFor": ["action.yml schema", "inputs", "outputs", "runs", "branding"]
+        },
+        {
+          "id": "github-actions-creating-actions",
+          "title": "Creating actions",
+          "publisher": "GitHub",
+          "url": "https://docs.github.com/en/actions/sharing-automations/creating-actions",
+          "appliesTo": ["github-action", "ci-automation"],
+          "useFor": ["JavaScript actions", "composite actions", "Docker actions"]
+        },
+        {
+          "id": "tauri-docs",
+          "title": "Tauri Documentation",
+          "publisher": "Tauri",
+          "url": "https://v2.tauri.app/",
+          "appliesTo": ["tauri", "desktop-app", "rust-webview"],
+          "useFor": ["Tauri app structure", "commands", "capabilities", "plugins", "bundling"]
+        },
+        {
+          "id": "electron-docs",
+          "title": "Electron Documentation",
+          "publisher": "Electron",
+          "url": "https://www.electronjs.org/docs/latest/",
+          "appliesTo": ["electron", "desktop-app"],
+          "useFor": ["Main/renderer process boundaries", "IPC", "security", "packaging"]
+        },
+        {
+          "id": "flutter-docs",
+          "title": "Flutter Documentation",
+          "publisher": "Flutter",
+          "url": "https://docs.flutter.dev/",
+          "appliesTo": ["flutter", "mobile-app", "desktop-app"],
+          "useFor": ["Flutter app structure", "widgets", "testing", "deployment"]
+        }
+      ]
+    },
+    {
+      "id": "architecture-docs",
+      "title": "Architecture and documentation",
+      "description": "Architecture decision and knowledge-base references.",
+      "references": [
+        {
+          "id": "adr-github",
+          "title": "Architecture Decision Records",
+          "publisher": "Michael Nygard / joelparkerhenderson",
+          "url": "https://github.com/joelparkerhenderson/architecture-decision-record",
+          "appliesTo": ["adr", "architecture-docs", "knowledge-base"],
+          "useFor": ["ADR structure", "decision history", "docs-as-architecture"]
+        },
+        {
+          "id": "c4-model",
+          "title": "The C4 Model",
+          "publisher": "Structurizr",
+          "url": "https://c4model.com/",
+          "appliesTo": ["architecture-docs", "system-design", "diagrams"],
+          "useFor": ["Context/container/component/code diagrams", "architecture communication"]
+        },
+        {
+          "id": "diataxis",
+          "title": "Diataxis",
+          "publisher": "Diataxis",
+          "url": "https://diataxis.fr/",
+          "appliesTo": ["documentation", "knowledge-base", "developer-docs"],
+          "useFor": ["Tutorial/how-to/reference/explanation structure"]
+        },
+        {
+          "id": "zensical-docs",
+          "title": "Zensical Documentation",
+          "publisher": "Zensical",
+          "url": "https://zensical.org/docs/",
+          "appliesTo": ["zensical", "documentation-site", "kb-publishing"],
+          "useFor": ["Zensical site configuration", "Markdown authoring", "static docs publishing"]
+        },
+        {
+          "id": "mkdocs-material",
+          "title": "Material for MkDocs",
+          "publisher": "Material for MkDocs",
+          "url": "https://squidfunk.github.io/mkdocs-material/",
+          "appliesTo": ["mkdocs", "documentation-site"],
+          "useFor": ["Docs navigation", "search", "admonitions", "theme configuration"]
+        }
+      ]
+    }
+  ]
+}

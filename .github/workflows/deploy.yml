@@ -41,6 +41,9 @@ jobs:
           # standards hub landing page + machine-readable registry at stable URLs
           cp standards/index.html _site/standards/index.html
           cp standards/registry.json _site/standards/registry.json
+          cp standards/references.html _site/standards/references.html
+          cp standards/references.json _site/standards/references.json
+          cp standards/references.schema.json _site/standards/references.schema.json
           for d in standards/*/; do
             name=$(basename "$d")
             [ -d "$d/site" ] && cp -r "$d/site" "_site/standards/$name"
