@@ -16,11 +16,12 @@ describe deployable shapes, not isolated frameworks.
 - [Cloudflare Worker MCP Server](cloudflare-worker-mcp-server.md): remote MCP on Workers
   with authorization, tool schemas, storage boundaries, and auditability. Full rubric:
   [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/).
+- [Tenant-Deployed Cloudflare SaaS](tenant-deployed-cloudflare-saas.md): per-tenant
+  Cloudflare deployment, provisioning, promotion, D1 state, aliases, and auditability.
+  Full rubric: [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/).
 
 ## Planned charters
 
-- [Tenant-Deployed Cloudflare SaaS](tenant-deployed-cloudflare-saas.md): per-tenant
-  Cloudflare deployment and provisioning model.
 - [Node CLI Internal Tool](node-cli-internal-tool.md): Node CLIs used by developers, CI,
   or operators.
 - [TypeScript SDK](typescript-sdk.md): package/API compatibility for TypeScript client

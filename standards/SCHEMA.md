@@ -85,6 +85,10 @@ Predicate operators (JSON, composable via `all` / `any` / `not`):
 Predicates must be **cheap and file-local** — the resolver never runs the project; it
 reads manifests and file listings only. Deterministic in, deterministic out.
 
+A registry entry may also declare `sliceKinds` to limit where it applies after slicing.
+For example, `d1-database` applies to `functions` and `package` slices so migrations in a
+fullstack app folder do not make the frontend slice look database-backed.
+
 ## 5. Editions
 
 Standards are **versioned on change, not dated.** A new edition is cut only when best
@@ -145,21 +149,21 @@ A single command classifies a real hybrid monorepo into its true composition:
 
 ```
 # app             [frontend]  archetype: react-spa@v1
-                              layers: d1-database@v1
                               cross-cutting: typescript, security, testing, accessibility, dependencies
 # app/functions   [functions] archetype: pages-fullstack@v1
                               layers: d1-database@v1
 # packages/cli    [package]   archetype: node-service [PLANNED]
 # packages/mcp-worker         archetype: cloudflare-worker-mcp-server@v1
 # packages/sdk    [package]   archetype: library [PLANNED]
-Repo recipes: react-spa-on-cloudflare-pages@v1
+Repo recipes: tenant-deployed-cloudflare-saas@v1, react-spa-on-cloudflare-pages@v1
 ```
 
 `react-spa@v1`, `pages-fullstack@v1`, `d1-database@v1`,
-`cloudflare-worker-mcp-server@v1`, and the `react-spa-on-cloudflare-pages` alias are
-published today. The remaining mapped gaps are `node-service`, `library`, and the
-cross-cutters. The product app is not "a stack that needs its own KB" - it is `react-spa`
-+ `pages-fullstack` + `d1-database` + `cloudflare-worker-mcp-server` + `node-service` +
+`cloudflare-worker-mcp-server@v1`, `tenant-deployed-cloudflare-saas@v1`, and the
+`react-spa-on-cloudflare-pages` alias are published today. The remaining mapped gaps are
+`node-service`, `library`, and the cross-cutters. The product app is not "a stack that
+needs its own product KB" - it is `react-spa` + `pages-fullstack` + `d1-database` +
+`cloudflare-worker-mcp-server` + `tenant-deployed-cloudflare-saas` + `node-service` +
 `library` + cross-cutters, most of which are reused by other Cloudflare-Pages fullstack
 repos.
 
@@ -202,16 +206,16 @@ Example authored standard:
 }
 ```
 
-Example planned charter:
+Example composed standard:
 
 ```json
 {
   "id": "tenant-deployed-cloudflare-saas",
-  "status": "planned",
+  "status": "authored",
   "aliases": [],
   "docsUrl": "/docs/standards/stacks/tenant-deployed-cloudflare-saas/",
-  "standardUrl": null,
-  "latestEdition": null
+  "standardUrl": "/standards/tenant-deployed-cloudflare-saas/v1/",
+  "latestEdition": "v1"
 }
 ```
 

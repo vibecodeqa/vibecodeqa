@@ -257,6 +257,30 @@
           "useFor": ["Middleware chains", "error handling", "authentication middleware"]
         },
         {
+          "id": "cloudflare-pages-preview-deployments",
+          "title": "Pages Preview Deployments",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/pages/configuration/preview-deployments/",
+          "appliesTo": ["cloudflare-pages", "preview-deployments", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["Preview URLs", "preview aliases", "Access protection", "preview indexing posture"]
+        },
+        {
+          "id": "cloudflare-pages-branch-build-controls",
+          "title": "Pages Branch Build Controls",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/pages/configuration/branch-build-controls/",
+          "appliesTo": ["cloudflare-pages", "release-branches", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["Production branch control", "preview branch control", "release policy"]
+        },
+        {
+          "id": "cloudflare-pages-direct-upload-ci",
+          "title": "Direct Upload with Continuous Integration",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/",
+          "appliesTo": ["cloudflare-pages", "ci-deploy", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["CI-managed Pages deploys", "artifact promotion", "deployment traceability"]
+        },
+        {
           "id": "cloudflare-workers",
           "title": "Workers Documentation",
           "publisher": "Cloudflare",
@@ -271,6 +295,46 @@
           "url": "https://developers.cloudflare.com/workers/best-practices/",
           "appliesTo": ["cloudflare-worker", "edge-api"],
           "useFor": ["Worker production patterns", "anti-patterns", "performance and reliability"]
+        },
+        {
+          "id": "cloudflare-workers-environments",
+          "title": "Workers Environments",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/workers/wrangler/environments/",
+          "appliesTo": ["cloudflare-worker", "wrangler", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["Environment-specific configuration", "binding selection", "deployment isolation"]
+        },
+        {
+          "id": "cloudflare-workers-bindings",
+          "title": "Workers Bindings",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/workers/runtime-apis/bindings/",
+          "appliesTo": ["cloudflare-worker", "bindings", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["Resource bindings", "runtime configuration", "service boundaries"]
+        },
+        {
+          "id": "cloudflare-workers-secrets",
+          "title": "Workers Secrets",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/workers/configuration/secrets/",
+          "appliesTo": ["cloudflare-worker", "secrets", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["Secret configuration", "secret scope", "secret handling"]
+        },
+        {
+          "id": "cloudflare-workers-preview-urls",
+          "title": "Workers Preview URLs",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/workers/versions-and-deployments/preview-urls/",
+          "appliesTo": ["cloudflare-worker", "preview-deployments", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["Worker preview exposure", "preview URL policy"]
+        },
+        {
+          "id": "cloudflare-workers-versions-deployments",
+          "title": "Workers Versions and Deployments",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/workers/versions-and-deployments/",
+          "appliesTo": ["cloudflare-worker", "deployment-versioning", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["Worker versions", "deployments", "rollback and promotion evidence"]
         },
         {
           "id": "cloudflare-d1",
@@ -303,6 +367,22 @@
           "url": "https://developers.cloudflare.com/d1/configuration/environments/",
           "appliesTo": ["d1-database", "cloudflare-environments", "preview-database"],
           "useFor": ["Preview database IDs", "environment-specific D1 bindings"]
+        },
+        {
+          "id": "cloudflare-d1-time-travel",
+          "title": "D1 Time Travel and Backups",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/d1/reference/time-travel/",
+          "appliesTo": ["d1-database", "backup", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["Point-in-time restore", "backup bookmarks", "restore runbooks"]
+        },
+        {
+          "id": "cloudflare-d1-import-export",
+          "title": "D1 Import and Export Data",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/d1/best-practices/import-export-data/",
+          "appliesTo": ["d1-database", "backup", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["Tenant data export", "restore/fix-forward runbooks", "data preservation"]
         },
         {
           "id": "cloudflare-durable-objects",
@@ -343,6 +423,14 @@
           "url": "https://developers.cloudflare.com/agents/model-context-protocol/",
           "appliesTo": ["cloudflare-worker-mcp-server", "mcp-worker", "agents"],
           "useFor": ["MCP on Cloudflare Workers and Agents", "remote MCP server implementation"]
+        },
+        {
+          "id": "cloudflare-workers-github-actions",
+          "title": "Workers CI/CD with GitHub Actions",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/workers/ci-cd/external-cicd/github-actions/",
+          "appliesTo": ["cloudflare-worker", "github-actions", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["Wrangler deployment from GitHub Actions", "CI/CD setup", "Cloudflare deploy automation"]
         }
       ]
     },
@@ -463,6 +551,30 @@
           "useFor": ["Session ID handling", "cookie attributes", "timeout and renewal"]
         },
         {
+          "id": "owasp-multi-tenant-security",
+          "title": "Multi Tenant Security Cheat Sheet",
+          "publisher": "OWASP",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Multi_Tenant_Security_Cheat_Sheet.html",
+          "appliesTo": ["multi-tenant-saas", "tenant-isolation", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["Tenant isolation risks", "multi-tenant security design", "shared-resource risk"]
+        },
+        {
+          "id": "owasp-authorization-cheat-sheet",
+          "title": "Authorization Cheat Sheet",
+          "publisher": "OWASP",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+          "appliesTo": ["authorization", "access-control", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["Server-side authorization", "least privilege", "tenant access checks"]
+        },
+        {
+          "id": "owasp-secrets-management-cheat-sheet",
+          "title": "Secrets Management Cheat Sheet",
+          "publisher": "OWASP",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+          "appliesTo": ["secrets", "credential-management", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["Secret lifecycle", "rotation", "revocation", "safe logging"]
+        },
+        {
           "id": "github-actions-secure-use",
           "title": "Secure use reference",
           "publisher": "GitHub",
@@ -477,6 +589,14 @@
           "url": "https://docs.github.com/actions/how-tos/secure-your-work/security-harden-deployments",
           "appliesTo": ["github-actions", "deployment", "oidc"],
           "useFor": ["OIDC for cloud deployments", "environment protection", "deployment hardening"]
+        },
+        {
+          "id": "github-actions-deployment-environments",
+          "title": "Deployments and Environments",
+          "publisher": "GitHub",
+          "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
+          "appliesTo": ["github-actions", "deployment-environments", "tenant-deployed-cloudflare-saas"],
+          "useFor": ["Environment protection rules", "deployment approvals", "environment-scoped secrets"]
         },
         {
           "id": "vitest-guide",

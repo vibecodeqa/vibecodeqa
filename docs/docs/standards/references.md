@@ -59,17 +59,28 @@ constraints, detection mapping, exceptions, and anti-patterns needed to judge a 
 | [Pages Functions](https://developers.cloudflare.com/pages/functions/) | Cloudflare | Functions directory, middleware, routing, bindings, runtime configuration. |
 | [Pages Functions Routing](https://developers.cloudflare.com/pages/functions/routing/) | Cloudflare | File-based routes, dynamic segments, route matching. |
 | [Pages Functions Middleware](https://developers.cloudflare.com/pages/functions/middleware/) | Cloudflare | Middleware chains, error handling, authentication middleware. |
+| [Pages Preview Deployments](https://developers.cloudflare.com/pages/configuration/preview-deployments/) | Cloudflare | Preview URLs, preview aliases, Access protection, preview indexing posture. |
+| [Pages Branch Build Controls](https://developers.cloudflare.com/pages/configuration/branch-build-controls/) | Cloudflare | Production branch control, preview branch control, release policy. |
+| [Pages Direct Upload with CI](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/) | Cloudflare | CI-managed Pages deploys, artifact promotion, deployment traceability. |
 | [Workers Documentation](https://developers.cloudflare.com/workers/) | Cloudflare | Worker runtime, bindings, compatibility dates, deployment. |
 | [Workers Best Practices](https://developers.cloudflare.com/workers/best-practices/) | Cloudflare | Worker production patterns, anti-patterns, performance and reliability. |
+| [Workers Environments](https://developers.cloudflare.com/workers/wrangler/environments/) | Cloudflare | Environment-specific configuration, binding selection, deployment isolation. |
+| [Workers Bindings](https://developers.cloudflare.com/workers/runtime-apis/bindings/) | Cloudflare | Resource bindings, runtime configuration, service boundaries. |
+| [Workers Secrets](https://developers.cloudflare.com/workers/configuration/secrets/) | Cloudflare | Secret configuration, secret scope, secret handling. |
+| [Workers Preview URLs](https://developers.cloudflare.com/workers/versions-and-deployments/preview-urls/) | Cloudflare | Worker preview exposure and preview URL policy. |
+| [Workers Versions and Deployments](https://developers.cloudflare.com/workers/versions-and-deployments/) | Cloudflare | Worker versions, deployments, rollback and promotion evidence. |
 | [D1 Documentation](https://developers.cloudflare.com/d1/) | Cloudflare | D1 database model, bindings, local/remote database behavior. |
 | [D1 Migrations](https://developers.cloudflare.com/d1/reference/migrations/) | Cloudflare | SQL migration files, migrations folder, versioned database changes. |
 | [D1 Prepared Statement Methods](https://developers.cloudflare.com/d1/worker-api/prepared-statements/) | Cloudflare | Prepared statements, parameter binding, query result APIs. |
 | [D1 Environments](https://developers.cloudflare.com/d1/configuration/environments/) | Cloudflare | Preview database IDs and environment-specific D1 bindings. |
+| [D1 Time Travel and Backups](https://developers.cloudflare.com/d1/reference/time-travel/) | Cloudflare | Point-in-time restore, backup bookmarks, restore runbooks. |
+| [D1 Import and Export Data](https://developers.cloudflare.com/d1/best-practices/import-export-data/) | Cloudflare | Tenant data export, restore/fix-forward runbooks, data preservation. |
 | [Durable Objects](https://developers.cloudflare.com/durable-objects/) | Cloudflare | Durable Object model, bindings, storage, stateful coordination. |
 | [Durable Objects Best Practices](https://developers.cloudflare.com/durable-objects/best-practices/) | Cloudflare | Object design, storage, RPC, error handling, anti-patterns. |
 | [SaaS Data Isolation](https://developers.cloudflare.com/use-cases/saas/data-isolation/) | Cloudflare | Tenant data isolation and Cloudflare SaaS architecture references. |
 | [Cloudflare Access Service Tokens](https://developers.cloudflare.com/cloudflare-one/identity/service-tokens/) | Cloudflare | Service token behavior and Access policy integration. |
 | [Cloudflare Agents MCP](https://developers.cloudflare.com/agents/model-context-protocol/) | Cloudflare | MCP on Cloudflare Workers and Agents, remote MCP server implementation. |
+| [Workers CI/CD with GitHub Actions](https://developers.cloudflare.com/workers/ci-cd/external-cicd/github-actions/) | Cloudflare | Wrangler deployment from GitHub Actions, CI/CD setup, Cloudflare deploy automation. |
 
 ## APIs, auth, validation, and AI protocols
 
@@ -93,8 +104,12 @@ constraints, detection mapping, exceptions, and anti-patterns needed to judge a 
 | [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/) | OWASP | Topic-specific secure implementation guidance. |
 | [CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) | OWASP | CSRF controls, SameSite cookies, origin checks, custom headers. |
 | [Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html) | OWASP | Session ID handling, cookie attributes, timeout and renewal. |
+| [Multi Tenant Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Multi_Tenant_Security_Cheat_Sheet.html) | OWASP | Tenant isolation risks, multi-tenant security design, shared-resource risk. |
+| [Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) | OWASP | Server-side authorization, least privilege, tenant access checks. |
+| [Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) | OWASP | Secret lifecycle, rotation, revocation, safe logging. |
 | [GitHub Actions Secure Use](https://docs.github.com/en/actions/reference/security/secure-use) | GitHub | Workflow permissions, untrusted code, third-party actions, secret handling. |
 | [GitHub Actions Deployment Hardening](https://docs.github.com/actions/how-tos/secure-your-work/security-harden-deployments) | GitHub | OIDC for cloud deployments, environment protection, deployment hardening. |
+| [GitHub Actions Deployments and Environments](https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments) | GitHub | Environment protection rules, deployment approvals, environment-scoped secrets. |
 | [Vitest Guide](https://vitest.dev/guide/) | Vitest | Test runner setup, coverage, watch vs run mode. |
 | [Playwright Best Practices](https://playwright.dev/docs/best-practices) | Playwright | Locator strategy, test isolation, resilient browser tests. |
 | [Testing Library Guiding Principles](https://testing-library.com/docs/guiding-principles) | Testing Library | User-centered test style and implementation-detail avoidance. |

@@ -421,7 +421,7 @@
     },
     {
       "id": "tenant-deployed-cloudflare-saas",
-      "status": "planned",
+      "status": "authored",
       "stackItems": [
         "cloudflare-pages-functions",
         "cloudflare-d1",
@@ -441,8 +441,8 @@
         "Cloudflare SaaS tenant deployment model"
       ],
       "aliases": [],
-      "standardUrl": null,
-      "latestEdition": null,
+      "standardUrl": "/standards/tenant-deployed-cloudflare-saas/v1/",
+      "latestEdition": "v1",
       "docsUrl": "/docs/standards/stacks/tenant-deployed-cloudflare-saas/"
     },
     {

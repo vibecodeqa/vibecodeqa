@@ -25,30 +25,31 @@ The example app is **partially covered** today.
 |---|---|---|---|
 | `app` | React SPA with Vite, TypeScript, React Router, Vitest, Playwright | Covered by [React SPA v1](/standards/react-spa/v1/) | Shared cross-cutting standards for TypeScript, security, testing, accessibility, and dependency policy |
 | `app/functions` | Cloudflare Pages Functions API deployed with the SPA | Covered by [Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/) and [Cloudflare D1 App v1](/standards/cloudflare-d1-app/v1/) | Shared cross-cutting standards for TypeScript, security, testing, and dependency policy |
-| `app` D1 usage | D1 binding plus `migrations/` and tenant deployment scripts | Covered by [Cloudflare D1 App v1](/standards/cloudflare-d1-app/v1/) | Tenant-deployed SaaS recipe for customer/environment promotion |
+| repo tenant deployment | Tenant deployment scripts and per-environment Cloudflare resources | Covered by [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/) | Cross-cutting security, testing, dependency, and docs drift checks |
 | `packages/mcp-worker` | Cloudflare Worker remote MCP server with Zod and OAuth-related dependencies | Covered by [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/) | Shared cross-cutting standards for TypeScript, security, testing, and dependency policy |
 | `packages/cli` | Node command-line client using the SDK | Planned | [Node CLI Internal Tool](../stacks/node-cli-internal-tool.md) |
 | `packages/sdk` | Private TypeScript SDK package | Planned | [TypeScript SDK](../stacks/typescript-sdk.md) |
 | `packages/mcp` | Generated or build-output MCP artifact without a package manifest | No standard matched | Decide whether this should be generated output, a package, or removed from resolver scope |
-| repo | React SPA co-deployed with Pages Functions | Covered as an alias of [Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/) | SaaS-specific tenant recipe |
+| repo | React SPA, Pages Functions, D1, and Worker MCP in a tenant deployment model | Covered by [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/) and the Pages Fullstack alias | Cross-cutting policy rubrics |
 
 ## Resolver snapshot
 
 The standards resolver currently sees six slices:
 
 ```text
-app                  react-spa@v1 + d1-database@v1
+app                  react-spa@v1
 app/functions        pages-fullstack@v1 + d1-database@v1
 packages/cli         node-service [planned]
 packages/mcp         no archetype matched
 packages/mcp-worker  cloudflare-worker-mcp-server@v1
 packages/sdk         library [planned]
-repo recipe          react-spa-on-cloudflare-pages@v1
+repo recipe          tenant-deployed-cloudflare-saas@v1, react-spa-on-cloudflare-pages@v1
 ```
 
 The repo-level recipe `react-spa-on-cloudflare-pages` is treated as an alias of the
-authored Cloudflare Pages Fullstack rubric. The next useful recipe should add tenant
-deployment rules across Pages, Workers, D1, secrets, aliases, and promotion gates.
+authored Cloudflare Pages Fullstack rubric. `tenant-deployed-cloudflare-saas@v1` is the
+authored recipe that adds tenant deployment rules across Pages, Workers, D1, secrets,
+aliases, and promotion gates.
 
 ## What is already judgeable
 
@@ -105,6 +106,18 @@ the Worker-hosted MCP server. This standard is now judgeable. It covers:
 - per-environment OAuth/client isolation
 - audit trail expectations for mutating tools
 
+### Tenant-deployed Cloudflare SaaS standard
+
+Use [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/)
+for the repo-level deployment model. This standard is now judgeable. It covers:
+
+- tenant resource manifests and ownership
+- tenant/environment-scoped bindings and secrets
+- preview URL, alias, custom-domain, and indexing posture
+- promotion evidence across commit, deployment, Worker version, and D1 migration set
+- rollback/fix-forward runbooks that treat code and D1 state separately
+- tenant provisioning, deprovisioning, smoke tests, observability, and audit evidence
+
 ## What remains unjudged
 
 ### CLI and SDK standards
@@ -117,13 +130,6 @@ authored rubrics yet:
   reuse.
 - [TypeScript SDK](../stacks/typescript-sdk.md): export maps, declarations, OpenAPI
   contract freshness, typed errors, and consumer compatibility tests.
-
-### Tenant SaaS recipe
-
-[Tenant-Deployed Cloudflare SaaS](../stacks/tenant-deployed-cloudflare-saas.md) is still a
-planned charter. It should become the composed standard that judges per-tenant Pages,
-Workers, D1 databases, secrets, deployment aliases, promotion gates, provisioning docs,
-and tenant-aware observability.
 
 ## Combination-born guidelines
 
@@ -147,11 +153,9 @@ Cloudflare, D1, MCP, or TypeScript alone. They are born from the stack combinati
 
 ## Recommended authoring order
 
-1. Add a SaaS recipe that composes React SPA, Pages Fullstack, D1, Worker MCP, and tenant
-   deployment into one deployable application profile.
-2. Author Node CLI Internal Tool and TypeScript SDK once the app/runtime standards are
+1. Author Node CLI Internal Tool and TypeScript SDK once the app/runtime standards are
    stable enough to define shared package expectations.
-3. Decide whether cross-cutting TypeScript, security, testing, accessibility, and
+2. Decide whether cross-cutting TypeScript, security, testing, accessibility, and
    dependency standards should become full rubrics or remain stack-item guidance.
 
 ## Coverage status
@@ -160,6 +164,6 @@ The right claim is:
 
 ```text
 The frontend, Pages Functions, D1, and Worker MCP surfaces are covered by authored v1 rubrics.
-The React-on-Pages repo recipe is covered as a Cloudflare Pages Fullstack alias.
-CLI, SDK, tenant-specific SaaS recipe, and cross-cutting standards still need authored rubrics.
+The tenant deployment recipe and React-on-Pages repo recipe are covered by authored v1 rubrics.
+CLI, SDK, and cross-cutting standards still need authored rubrics.
 ```

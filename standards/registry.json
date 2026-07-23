@@ -159,6 +159,7 @@
       "url": "https://vibecodeqa.online/standards/cloudflare-d1-app",
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
+      "sliceKinds": ["functions", "package"],
       "status": "published",
       "detect": {
         "any": [
@@ -280,6 +281,35 @@
       "editions": []
     },
 
+    {
+      "id": "tenant-deployed-cloudflare-saas",
+      "type": "recipe",
+      "title": "Tenant-Deployed Cloudflare SaaS",
+      "summary": "A tenant-scoped Cloudflare SaaS deployment model composing Pages Functions, D1, Worker MCP, bindings, secrets, aliases, promotion gates, provisioning, and auditability.",
+      "url": "https://vibecodeqa.online/standards/tenant-deployed-cloudflare-saas",
+      "repo": "vibecodeqa/vibecodeqa",
+      "appliesTo": "repo",
+      "status": "published",
+      "composes": ["react-spa", "pages-fullstack", "d1-database", "cloudflare-worker-mcp-server"],
+      "detect": {
+        "all": [
+          { "matched": "react-spa" },
+          { "matched": "pages-fullstack" },
+          { "matched": "d1-database" },
+          { "matched": "cloudflare-worker-mcp-server" }
+        ]
+      },
+      "seamTopics": [
+        "tenant resource manifest for Pages, Workers, D1, bindings, secrets, routes, aliases, and owners",
+        "preview and tenant aliases as protected deployment surfaces",
+        "tenant-scoped D1 migration and restore/fix-forward runbooks",
+        "promotion gates that name tenant, environment, commit, deployment, and migration set",
+        "tenant-aware observability and mutating-operation audit trail"
+      ],
+      "editions": [
+        { "version": "v1", "path": "/v1", "status": "latest", "reviewed": "2026-07", "nextReview": "2027-07", "targets": { "cloudflarePagesFunctions": "latest", "cloudflareD1": "latest", "cloudflareWorkers": "latest", "mcp": "2025-11-25" } }
+      ]
+    },
     {
       "id": "react-spa-on-cloudflare-pages",
       "type": "recipe",

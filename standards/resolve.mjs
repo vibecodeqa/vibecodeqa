@@ -165,17 +165,19 @@ function evalPred(pred, s, matched) {
 function resolve(repo) {
   const slices = sliceRepo(repo);
   const byType = (t) => registry.standards.filter((x) => x.type === t);
+  const forKind = (std, kind) => !std.sliceKinds || std.sliceKinds.includes(kind);
   const repoMatched = new Set();
   const results = [];
 
   for (const slice of slices) {
     const s = signals(slice);
-    const archetypes = byType('archetype').filter((a) => evalPred(a.detect, s));
-    let layers = byType('layer').filter((l) => evalPred(l.detect, s));
+    const archetypes = byType('archetype').filter((a) => forKind(a, slice.kind) && evalPred(a.detect, s));
+    let layers = byType('layer').filter((l) => forKind(l, slice.kind) && evalPred(l.detect, s));
     const coveredLayerIds = new Set(archetypes.flatMap((a) => a.coveredLayers || []));
     layers = layers.filter((l) => !coveredLayerIds.has(l.id));
-    const cross = byType('cross-cutting').filter((c) => evalPred(c.detect, s));
+    const cross = byType('cross-cutting').filter((c) => forKind(c, slice.kind) && evalPred(c.detect, s));
     archetypes.forEach((a) => repoMatched.add(a.id));
+    layers.forEach((l) => repoMatched.add(l.id));
     results.push({ slice: slice.label, kind: slice.kind, archetypes, layers, cross });
   }
 

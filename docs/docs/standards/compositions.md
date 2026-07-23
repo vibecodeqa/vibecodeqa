@@ -49,13 +49,16 @@ isolation, query safety, and deployment gates.
 permission boundaries, storage policy, environment isolation, audit trail, and output
 safety.
 
+[Tenant-Deployed Cloudflare SaaS](stacks/tenant-deployed-cloudflare-saas.md) is authored
+as [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/).
+It composes [Cloudflare Pages Functions](items/cloudflare-pages-functions.md),
+[Cloudflare D1](items/cloudflare-d1.md), [Cloudflare Workers](items/cloudflare-workers.md),
+[GitHub Actions](items/github-actions.md), [Web Security](items/web-security.md), and
+[Docs KB](items/docs-kb.md). It owns tenant resource manifests, tenant/environment
+bindings, protected previews and aliases, promotion gates, D1 state runbooks,
+provisioning, observability, and auditability.
+
 ## Planned Stack Standards
-
-### Cloudflare
-
-- [Tenant-Deployed Cloudflare SaaS](stacks/tenant-deployed-cloudflare-saas.md): composes
-  Pages Functions, D1, Workers, GitHub Actions, security, and docs-KB practices for
-  tenant isolation, promotion gates, per-tenant secrets/databases, and provisioning docs.
 
 ### Packages and Tools
 
@@ -94,11 +97,10 @@ the composed standards that use it.
 
 ## Authoring Order
 
-1. [Tenant-Deployed Cloudflare SaaS](stacks/tenant-deployed-cloudflare-saas.md): composes
-   the now-authored Pages Fullstack, D1, and Worker MCP standards into a production tenant
-   deployment model.
-2. [Node CLI Internal Tool](stacks/node-cli-internal-tool.md) and
+1. [Node CLI Internal Tool](stacks/node-cli-internal-tool.md) and
    [TypeScript SDK](stacks/typescript-sdk.md): cover the operator and package surfaces in
    the Cloudflare SaaS example.
+2. Cross-cutting TypeScript, security, testing, accessibility, and dependency standards:
+   cover policies reused by every authored stack.
 3. [Zensical KB Site](stacks/zensical-kb-site.md): covers docs source-of-truth and
    publishing discipline.
