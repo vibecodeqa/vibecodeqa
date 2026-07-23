@@ -10,9 +10,12 @@ The machine-readable source for this map is
 <style>
 .vcqa-graph {
   --line: #d4d4d8;
+  --edge: #d4d4d8;
   --ink: #18181b;
   --muted: #71717a;
   --panel: #fafafa;
+  --canvas: #ffffff;
+  --chip-bg: #ffffff;
   --authored: #dcfce7;
   --authored-border: #22c55e;
   --planned: #f4f4f5;
@@ -21,6 +24,23 @@ The machine-readable source for this map is
   --item-border: #818cf8;
   --template: #fef3c7;
   --template-border: #f59e0b;
+}
+body[data-md-color-scheme="slate"] .vcqa-graph {
+  --line: #3f3f46;
+  --edge: #52525b;
+  --ink: #f4f4f5;
+  --muted: #a1a1aa;
+  --panel: #18181b;
+  --canvas: #0f1117;
+  --chip-bg: #27272a;
+  --authored: #052e16;
+  --authored-border: #16a34a;
+  --planned: #27272a;
+  --planned-border: #71717a;
+  --item: #1e1b4b;
+  --item-border: #6366f1;
+  --template: #451a03;
+  --template-border: #d97706;
 }
 .vcqa-graph .legend,
 .vcqa-graph .template-row,
@@ -83,6 +103,9 @@ The machine-readable source for this map is
 .vcqa-graph .title strong {
   color: var(--ink);
 }
+.vcqa-graph .node strong {
+  color: var(--ink);
+}
 .vcqa-graph .status {
   color: var(--muted);
   font-size: 0.78rem;
@@ -100,7 +123,8 @@ The machine-readable source for this map is
   border-radius: 999px;
   padding: 0.15rem 0.5rem;
   font-size: 0.78rem;
-  background: white;
+  color: var(--ink);
+  background: var(--chip-bg);
 }
 .vcqa-graph .chip.item {
   border-color: var(--item-border);
@@ -130,7 +154,7 @@ The machine-readable source for this map is
   overflow-x: auto;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: #ffffff;
+  background: var(--canvas);
 }
 .vcqa-graph .network-map {
   display: block;
@@ -140,6 +164,12 @@ The machine-readable source for this map is
 }
 .vcqa-graph .graph-node rect {
   stroke-width: 1.5;
+}
+.vcqa-graph .edges {
+  stroke: var(--edge);
+}
+.vcqa-graph marker path {
+  fill: var(--edge);
 }
 .vcqa-graph .graph-node text {
   fill: var(--ink);
