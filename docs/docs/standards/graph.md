@@ -42,6 +42,24 @@ body[data-md-color-scheme="slate"] .vcqa-graph {
   --template: #451a03;
   --template-border: #d97706;
 }
+html[data-darkreader-mode] .vcqa-graph,
+html[data-darkreader-scheme="dark"] .vcqa-graph {
+  --line: #3f3f46;
+  --edge: #71717a;
+  --ink: #f4f4f5;
+  --muted: #c4c4cc;
+  --panel: #181a20;
+  --canvas: #0b0d12;
+  --chip-bg: #20232b;
+  --authored: #13251a;
+  --authored-border: #4ade80;
+  --planned: #20232b;
+  --planned-border: #a1a1aa;
+  --item: #171f33;
+  --item-border: #93c5fd;
+  --template: #2a2114;
+  --template-border: #fbbf24;
+}
 .vcqa-graph .legend,
 .vcqa-graph .template-row,
 .vcqa-graph .standard-grid,
@@ -69,7 +87,16 @@ body[data-md-color-scheme="slate"] .vcqa-graph {
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 0.75rem;
+  color: var(--ink);
   background: var(--panel);
+}
+.vcqa-graph a {
+  color: #2563eb;
+}
+body[data-md-color-scheme="slate"] .vcqa-graph a,
+html[data-darkreader-mode] .vcqa-graph a,
+html[data-darkreader-scheme="dark"] .vcqa-graph a {
+  color: #93c5fd;
 }
 .vcqa-graph .standard-card.authored {
   border-left: 4px solid var(--authored-border);
@@ -155,6 +182,7 @@ body[data-md-color-scheme="slate"] .vcqa-graph {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--canvas);
+  color-scheme: light dark;
 }
 .vcqa-graph .network-map {
   display: block;
@@ -204,7 +232,7 @@ body[data-md-color-scheme="slate"] .vcqa-graph {
 }
 </style>
 
-<div class="vcqa-graph">
+<div class="vcqa-graph" data-darkreader-ignore>
 
 <div class="legend">
   <div class="node authored"><strong>Authored standard</strong><br><span class="kind">Versioned rubric with stable rule IDs.</span></div>
