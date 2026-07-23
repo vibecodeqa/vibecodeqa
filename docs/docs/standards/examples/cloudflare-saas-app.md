@@ -5,7 +5,7 @@ named for the reusable architecture: React SPA, Cloudflare Pages Functions, D1,
 Worker-hosted MCP, TypeScript packages, and operator tooling.
 
 For a product-neutral implementation of this stack, see
-[vibecodeqa/reference-cloudflare-saas](https://github.com/vibecodeqa/reference-cloudflare-saas).
+[vibecodeqa/ref-cloudflare-saas](https://github.com/vibecodeqa/ref-cloudflare-saas).
 That repository is a template and reference implementation; the standards remain the
 source of truth.
 
@@ -41,7 +41,7 @@ The example app is **partially covered** today.
 
 The open-source reference repo is:
 
-<https://github.com/vibecodeqa/reference-cloudflare-saas>
+<https://github.com/vibecodeqa/ref-cloudflare-saas>
 
 It complements the standards this way:
 

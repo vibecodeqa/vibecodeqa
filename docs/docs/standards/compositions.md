@@ -9,11 +9,11 @@ The machine-readable version lives at
 
 Product-neutral reference implementations:
 
-- [vibecodeqa/reference-react-spa](https://github.com/vibecodeqa/reference-react-spa)
+- [vibecodeqa/ref-react-spa](https://github.com/vibecodeqa/ref-react-spa)
   shows the smallest authored frontend archetype as a forkable template.
-- [vibecodeqa/reference-cloudflare-worker-mcp](https://github.com/vibecodeqa/reference-cloudflare-worker-mcp)
+- [vibecodeqa/ref-cloudflare-worker-mcp](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp)
   shows the remote MCP Worker archetype as a forkable template.
-- [vibecodeqa/reference-cloudflare-saas](https://github.com/vibecodeqa/reference-cloudflare-saas)
+- [vibecodeqa/ref-cloudflare-saas](https://github.com/vibecodeqa/ref-cloudflare-saas)
   shows how the authored Cloudflare SaaS standards fit together in one template repo.
 
 ## Decision

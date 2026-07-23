@@ -7,7 +7,7 @@ describe deployable shapes, not isolated frameworks.
 
 - [React SPA](react-spa.md): client-rendered React hosted as static files. Full rubric:
   [React SPA v1](/standards/react-spa/v1/). Template:
-  [reference-react-spa](https://github.com/vibecodeqa/reference-react-spa).
+  [ref-react-spa](https://github.com/vibecodeqa/ref-react-spa).
 - [Cloudflare Pages Fullstack](cloudflare-pages-fullstack.md): static frontend plus
   same-origin Pages Functions API. Full rubric:
   [Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/).
@@ -17,7 +17,7 @@ describe deployable shapes, not isolated frameworks.
 - [Cloudflare Worker MCP Server](cloudflare-worker-mcp-server.md): remote MCP on Workers
   with authorization, tool schemas, storage boundaries, and auditability. Full rubric:
   [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/). Template:
-  [reference-cloudflare-worker-mcp](https://github.com/vibecodeqa/reference-cloudflare-worker-mcp).
+  [ref-cloudflare-worker-mcp](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp).
 - [Tenant-Deployed Cloudflare SaaS](tenant-deployed-cloudflare-saas.md): per-tenant
   Cloudflare deployment, provisioning, promotion, D1 state, aliases, and auditability.
   Full rubric: [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/).
