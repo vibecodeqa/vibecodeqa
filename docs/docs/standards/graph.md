@@ -125,6 +125,53 @@ The machine-readable source for this map is
   color: var(--muted);
   font-size: 0.82rem;
 }
+.vcqa-graph .graph-scroll {
+  margin: 1rem 0 1.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+}
+.vcqa-graph .network-map {
+  display: block;
+  min-width: 960px;
+  width: 100%;
+  height: auto;
+}
+.vcqa-graph .graph-node rect {
+  stroke-width: 1.5;
+}
+.vcqa-graph .graph-node text {
+  fill: var(--ink);
+  font-size: 13px;
+  font-weight: 650;
+  text-anchor: middle;
+  pointer-events: none;
+}
+.vcqa-graph .graph-node .sub {
+  fill: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+.vcqa-graph .graph-node.item rect {
+  fill: var(--item);
+  stroke: var(--item-border);
+}
+.vcqa-graph .graph-node.authored rect {
+  fill: var(--authored);
+  stroke: var(--authored-border);
+}
+.vcqa-graph .graph-node.planned rect {
+  fill: var(--planned);
+  stroke: var(--planned-border);
+}
+.vcqa-graph .graph-node.template rect {
+  fill: var(--template);
+  stroke: var(--template-border);
+}
+.vcqa-graph .graph-node:hover rect {
+  stroke-width: 2.4;
+}
 </style>
 
 <div class="vcqa-graph">
@@ -135,6 +182,87 @@ The machine-readable source for this map is
   <div class="node item"><strong>Stack item leaf</strong><br><span class="kind">Framework, runtime, tool, protocol, or quality layer.</span></div>
   <div class="node template"><strong>Reference template</strong><br><span class="kind">Runnable repo with CI and a tracked VCQA report.</span></div>
 </div>
+
+<h2 id="network-map">Network Map</h2>
+
+<div class="graph-scroll" role="img" aria-label="Network graph connecting stack item leaves, authored standards, planned standards, and reference templates.">
+<svg class="network-map" viewBox="0 0 1380 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
+      <path d="M0,0 L8,3.5 L0,7 Z" fill="#a1a1aa" />
+    </marker>
+  </defs>
+
+  <g class="edges" stroke="#d4d4d8" stroke-width="1.4" fill="none" marker-end="url(#arrow)">
+    <!-- stack items to authored standards -->
+    <path d="M175 70 C420 70 460 130 610 170"/><path d="M175 110 C410 100 465 135 610 170"/><path d="M175 150 C405 130 470 150 610 170"/><path d="M175 190 C410 175 470 170 610 170"/><path d="M175 230 C410 210 470 185 610 170"/><path d="M175 270 C410 235 470 200 610 170"/><path d="M175 310 C410 260 470 215 610 170"/><path d="M175 350 C410 285 470 230 610 170"/>
+    <path d="M175 190 C420 220 500 255 610 285"/><path d="M175 270 C420 260 500 275 610 285"/><path d="M175 430 C420 380 500 320 610 285"/><path d="M610 170 C620 210 620 245 610 285"/>
+    <path d="M175 470 C420 415 500 395 610 400"/><path d="M175 430 C420 410 500 400 610 400"/><path d="M175 510 C420 455 500 420 610 400"/><path d="M175 190 C420 320 500 380 610 400"/><path d="M175 270 C420 360 500 390 610 400"/>
+    <path d="M175 510 C420 500 500 520 610 520"/><path d="M175 550 C420 515 500 520 610 520"/><path d="M175 590 C420 530 500 525 610 520"/><path d="M175 630 C420 540 500 530 610 520"/><path d="M175 190 C420 440 500 500 610 520"/><path d="M175 270 C420 470 500 510 610 520"/>
+    <path d="M175 430 C420 550 500 615 610 640"/><path d="M175 470 C420 575 500 620 610 640"/><path d="M175 510 C420 600 500 630 610 640"/><path d="M175 270 C420 590 500 630 610 640"/><path d="M175 670 C420 655 500 650 610 640"/>
+    <path d="M175 270 C430 670 520 740 610 760"/><path d="M175 430 C430 700 520 745 610 760"/><path d="M175 510 C430 720 520 755 610 760"/><path d="M175 590 C430 735 520 760 610 760"/><path d="M175 670 C430 760 520 770 610 760"/>
+
+    <!-- stack items to planned standards -->
+    <path d="M175 190 C420 180 825 90 1015 110"/><path d="M175 710 C430 690 825 140 1015 110"/><path d="M175 750 C430 720 825 160 1015 110"/><path d="M175 270 C430 300 825 120 1015 110"/>
+    <path d="M175 190 C430 270 825 220 1015 230"/><path d="M175 750 C430 520 825 260 1015 230"/><path d="M175 630 C430 470 825 250 1015 230"/><path d="M175 310 C430 340 825 230 1015 230"/>
+    <path d="M175 790 C430 650 825 360 1015 350"/><path d="M175 430 C430 470 825 360 1015 350"/><path d="M175 710 C430 610 825 370 1015 350"/><path d="M175 190 C430 430 825 360 1015 350"/>
+    <path d="M175 830 C430 760 825 475 1015 470"/><path d="M175 190 C430 500 825 470 1015 470"/><path d="M175 710 C430 650 825 490 1015 470"/><path d="M175 270 C430 550 825 480 1015 470"/>
+    <path d="M175 870 C430 820 825 600 1015 590"/><path d="M175 70 C430 300 825 570 1015 590"/><path d="M175 190 C430 430 825 590 1015 590"/><path d="M175 270 C430 520 825 600 1015 590"/><path d="M175 670 C430 680 825 610 1015 590"/>
+    <path d="M175 670 C430 710 825 710 1015 710"/><path d="M175 430 C430 600 825 700 1015 710"/>
+
+    <!-- standards to templates -->
+    <path d="M755 170 C830 150 895 125 955 100"/><path d="M755 760 C835 610 900 300 955 100"/>
+    <path d="M755 520 C820 465 895 395 955 340"/><path d="M755 760 C830 620 900 440 955 340"/>
+    <path d="M755 170 C835 240 890 455 955 580"/><path d="M755 285 C835 330 890 490 955 580"/><path d="M755 400 C835 430 890 535 955 580"/><path d="M755 520 C835 530 890 565 955 580"/><path d="M755 640 C835 625 890 600 955 580"/><path d="M755 760 C835 710 900 635 955 580"/>
+  </g>
+
+  <g class="nodes">
+    <!-- item leaves -->
+    <a href="/docs/standards/items/react/"><g class="graph-node item" transform="translate(30 52)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">react</text></g></a>
+    <a href="/docs/standards/items/react-router/"><g class="graph-node item" transform="translate(30 92)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">react-router</text></g></a>
+    <a href="/docs/standards/items/vite/"><g class="graph-node item" transform="translate(30 132)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">vite</text></g></a>
+    <a href="/docs/standards/items/typescript/"><g class="graph-node item" transform="translate(30 172)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">typescript</text></g></a>
+    <a href="/docs/standards/items/web-accessibility/"><g class="graph-node item" transform="translate(30 212)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">web-accessibility</text></g></a>
+    <a href="/docs/standards/items/web-security/"><g class="graph-node item" transform="translate(30 252)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">web-security</text></g></a>
+    <a href="/docs/standards/items/vitest/"><g class="graph-node item" transform="translate(30 292)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">vitest</text></g></a>
+    <a href="/docs/standards/items/playwright/"><g class="graph-node item" transform="translate(30 332)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">playwright</text></g></a>
+    <a href="/docs/standards/items/github-actions/"><g class="graph-node item" transform="translate(30 412)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">github-actions</text></g></a>
+    <a href="/docs/standards/items/cloudflare-pages-functions/"><g class="graph-node item" transform="translate(30 452)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">pages-functions</text></g></a>
+    <a href="/docs/standards/items/cloudflare-workers/"><g class="graph-node item" transform="translate(30 492)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">workers</text></g></a>
+    <a href="/docs/standards/items/durable-objects/"><g class="graph-node item" transform="translate(30 532)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">durable-objects</text></g></a>
+    <a href="/docs/standards/items/mcp/"><g class="graph-node item" transform="translate(30 572)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">mcp</text></g></a>
+    <a href="/docs/standards/items/zod/"><g class="graph-node item" transform="translate(30 612)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">zod</text></g></a>
+    <a href="/docs/standards/items/docs-kb/"><g class="graph-node item" transform="translate(30 652)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">docs-kb</text></g></a>
+    <a href="/docs/standards/items/node/"><g class="graph-node item" transform="translate(30 692)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">node</text></g></a>
+    <a href="/docs/standards/items/openapi/"><g class="graph-node item" transform="translate(30 732)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">openapi</text></g></a>
+    <a href="/docs/standards/items/github-action/"><g class="graph-node item" transform="translate(30 772)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">github-action</text></g></a>
+    <a href="/docs/standards/items/vscode-extension/"><g class="graph-node item" transform="translate(30 812)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">vscode-extension</text></g></a>
+    <a href="/docs/standards/items/tauri/"><g class="graph-node item" transform="translate(30 852)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">tauri</text></g></a>
+
+    <!-- authored standards -->
+    <a href="/docs/standards/stacks/react-spa/"><g class="graph-node authored" transform="translate(610 140)"><rect width="145" height="60" rx="8"/><text x="72.5" y="25">react-spa</text><text class="sub" x="72.5" y="43">authored v1</text></g></a>
+    <a href="/docs/standards/stacks/cloudflare-pages-fullstack/"><g class="graph-node authored" transform="translate(610 255)"><rect width="145" height="60" rx="8"/><text x="72.5" y="23">pages</text><text x="72.5" y="39">fullstack</text><text class="sub" x="72.5" y="54">authored v1</text></g></a>
+    <a href="/docs/standards/stacks/cloudflare-d1-app/"><g class="graph-node authored" transform="translate(610 370)"><rect width="145" height="60" rx="8"/><text x="72.5" y="25">d1-app</text><text class="sub" x="72.5" y="43">authored v1</text></g></a>
+    <a href="/docs/standards/stacks/cloudflare-worker-mcp-server/"><g class="graph-node authored" transform="translate(610 490)"><rect width="145" height="60" rx="8"/><text x="72.5" y="23">worker-mcp</text><text x="72.5" y="39">server</text><text class="sub" x="72.5" y="54">authored v1</text></g></a>
+    <a href="/docs/standards/stacks/tenant-deployed-cloudflare-saas/"><g class="graph-node authored" transform="translate(610 610)"><rect width="145" height="60" rx="8"/><text x="72.5" y="23">tenant</text><text x="72.5" y="39">cloudflare-saas</text><text class="sub" x="72.5" y="54">authored v1</text></g></a>
+    <a href="/standards/security/v1/"><g class="graph-node authored" transform="translate(610 730)"><rect width="145" height="60" rx="8"/><text x="72.5" y="25">security</text><text class="sub" x="72.5" y="43">authored v1</text></g></a>
+
+    <!-- planned standards -->
+    <a href="/docs/standards/stacks/node-cli-internal-tool/"><g class="graph-node planned" transform="translate(1015 80)"><rect width="170" height="60" rx="8"/><text x="85" y="24">node-cli</text><text x="85" y="40">internal-tool</text><text class="sub" x="85" y="55">planned</text></g></a>
+    <a href="/docs/standards/stacks/typescript-sdk/"><g class="graph-node planned" transform="translate(1015 200)"><rect width="170" height="60" rx="8"/><text x="85" y="25">typescript-sdk</text><text class="sub" x="85" y="43">planned</text></g></a>
+    <a href="/docs/standards/stacks/github-action-package/"><g class="graph-node planned" transform="translate(1015 320)"><rect width="170" height="60" rx="8"/><text x="85" y="24">github-action</text><text x="85" y="40">package</text><text class="sub" x="85" y="55">planned</text></g></a>
+    <a href="/docs/standards/stacks/vscode-extension-package/"><g class="graph-node planned" transform="translate(1015 440)"><rect width="170" height="60" rx="8"/><text x="85" y="24">vscode-extension</text><text x="85" y="40">package</text><text class="sub" x="85" y="55">planned</text></g></a>
+    <a href="/docs/standards/stacks/tauri-react-desktop/"><g class="graph-node planned" transform="translate(1015 560)"><rect width="170" height="60" rx="8"/><text x="85" y="24">tauri-react</text><text x="85" y="40">desktop</text><text class="sub" x="85" y="55">planned</text></g></a>
+    <a href="/docs/standards/stacks/zensical-kb-site/"><g class="graph-node planned" transform="translate(1015 680)"><rect width="170" height="60" rx="8"/><text x="85" y="25">zensical-kb-site</text><text class="sub" x="85" y="43">planned</text></g></a>
+
+    <!-- templates -->
+    <a href="https://github.com/vibecodeqa/ref-react-spa"><g class="graph-node template" transform="translate(1220 70)"><rect width="130" height="60" rx="8"/><text x="65" y="24">ref-react-spa</text><text class="sub" x="65" y="43">A 94</text></g></a>
+    <a href="https://github.com/vibecodeqa/ref-cloudflare-worker-mcp"><g class="graph-node template" transform="translate(1220 310)"><rect width="130" height="60" rx="8"/><text x="65" y="24">ref-worker-mcp</text><text class="sub" x="65" y="43">A 91</text></g></a>
+    <a href="https://github.com/vibecodeqa/ref-cloudflare-saas"><g class="graph-node template" transform="translate(1220 550)"><rect width="130" height="60" rx="8"/><text x="65" y="24">ref-saas</text><text class="sub" x="65" y="43">A 91</text></g></a>
+  </g>
+</svg>
+</div>
+
 
 <h2 id="reference-templates">Reference Templates</h2>
 
