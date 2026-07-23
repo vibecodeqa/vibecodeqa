@@ -62,6 +62,11 @@ example.
 
 ## Reference implementations
 
+Reference implementations are one public GitHub template repo per reusable stack archetype
+or high-value stack composition. The intent is not to generate every possible combination
+up front; it is to keep a curated set where each repo demonstrates a standard, carries CI,
+and tracks its own VCQA report.
+
 - [vibecodeqa/reference-react-spa](https://github.com/vibecodeqa/reference-react-spa):
   open-source template repository for the React SPA stack. It demonstrates Vite,
   TypeScript, React Router, Vitest, Playwright, static build gates, client environment
@@ -75,6 +80,18 @@ example.
   open-source template repository for the Cloudflare SaaS stack. It demonstrates React
   SPA, Cloudflare Pages Functions, D1, Worker MCP, SDK, CLI, tenant manifests, runbooks,
   CI gates, and a tracked VCQA report.
+
+Next template candidates:
+
+- `reference-cloudflare-pages-fullstack`: React SPA plus same-origin Pages Functions.
+- `reference-cloudflare-d1-app`: D1 migrations, local apply checks, bindings, and query
+  safety without the rest of the SaaS composition.
+- `reference-node-cli-internal-tool`: credential resolution, exit-code contracts,
+  structured output, and CI-safe defaults.
+- `reference-typescript-sdk`: export maps, declarations, typed errors, generated client
+  drift checks, and consumer compatibility tests.
+- `reference-zensical-kb-site`: Markdown source of truth, stable docs URLs, references,
+  generated-site policy, and docs smoke checks.
 
 ## Machine-readable files
 
