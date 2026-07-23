@@ -10,13 +10,15 @@ describe deployable shapes, not isolated frameworks.
 - [Cloudflare Pages Fullstack](cloudflare-pages-fullstack.md): static frontend plus
   same-origin Pages Functions API. Full rubric:
   [Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/).
+- [Cloudflare D1 App](cloudflare-d1-app.md): D1 migrations, bindings, query safety, and
+  environment isolation. Full rubric:
+  [Cloudflare D1 App v1](/standards/cloudflare-d1-app/v1/).
+- [Cloudflare Worker MCP Server](cloudflare-worker-mcp-server.md): remote MCP on Workers
+  with authorization, tool schemas, storage boundaries, and auditability. Full rubric:
+  [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/).
 
 ## Planned charters
 
-- [Cloudflare D1 App](cloudflare-d1-app.md): D1 migrations, bindings, query safety, and
-  environment isolation.
-- [Cloudflare Worker MCP Server](cloudflare-worker-mcp-server.md): remote MCP on Workers
-  with authorization, tool schemas, storage boundaries, and auditability.
 - [Tenant-Deployed Cloudflare SaaS](tenant-deployed-cloudflare-saas.md): per-tenant
   Cloudflare deployment and provisioning model.
 - [Node CLI Internal Tool](node-cli-internal-tool.md): Node CLIs used by developers, CI,

@@ -63,10 +63,13 @@ constraints, detection mapping, exceptions, and anti-patterns needed to judge a 
 | [Workers Best Practices](https://developers.cloudflare.com/workers/best-practices/) | Cloudflare | Worker production patterns, anti-patterns, performance and reliability. |
 | [D1 Documentation](https://developers.cloudflare.com/d1/) | Cloudflare | D1 database model, bindings, local/remote database behavior. |
 | [D1 Migrations](https://developers.cloudflare.com/d1/reference/migrations/) | Cloudflare | SQL migration files, migrations folder, versioned database changes. |
+| [D1 Prepared Statement Methods](https://developers.cloudflare.com/d1/worker-api/prepared-statements/) | Cloudflare | Prepared statements, parameter binding, query result APIs. |
+| [D1 Environments](https://developers.cloudflare.com/d1/configuration/environments/) | Cloudflare | Preview database IDs and environment-specific D1 bindings. |
 | [Durable Objects](https://developers.cloudflare.com/durable-objects/) | Cloudflare | Durable Object model, bindings, storage, stateful coordination. |
 | [Durable Objects Best Practices](https://developers.cloudflare.com/durable-objects/best-practices/) | Cloudflare | Object design, storage, RPC, error handling, anti-patterns. |
 | [SaaS Data Isolation](https://developers.cloudflare.com/use-cases/saas/data-isolation/) | Cloudflare | Tenant data isolation and Cloudflare SaaS architecture references. |
 | [Cloudflare Access Service Tokens](https://developers.cloudflare.com/cloudflare-one/identity/service-tokens/) | Cloudflare | Service token behavior and Access policy integration. |
+| [Cloudflare Agents MCP](https://developers.cloudflare.com/agents/model-context-protocol/) | Cloudflare | MCP on Cloudflare Workers and Agents, remote MCP server implementation. |
 
 ## APIs, auth, validation, and AI protocols
 
@@ -77,8 +80,8 @@ constraints, detection mapping, exceptions, and anti-patterns needed to judge a 
 | [Zod Documentation](https://zod.dev/) | Zod | Runtime validation, schema inference, safe parsing. |
 | [OAuth 2.1](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1) | IETF | Authorization code flow, PKCE, bearer token handling. |
 | [OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html) | OpenID Foundation | ID tokens, claims, authentication flows. |
-| [MCP Specification](https://modelcontextprotocol.io/specification/2025-06-18) | Model Context Protocol | Protocol messages, tools, resources, prompts, transports. |
-| [MCP Authorization](https://modelcontextprotocol.io/specification/draft/basic/authorization) | Model Context Protocol | Remote MCP authorization and protected resource metadata. |
+| [MCP Specification](https://modelcontextprotocol.io/specification/2025-11-25) | Model Context Protocol | Protocol messages, tools, resources, prompts, transports. |
+| [MCP Authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) | Model Context Protocol | Remote MCP authorization and protected resource metadata. |
 | [MCP Security Best Practices](https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices) | Model Context Protocol | Tool poisoning defenses, authorization risks, prompt injection considerations. |
 | [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) | Model Context Protocol | Server implementation patterns, tool schemas, transport support. |
 

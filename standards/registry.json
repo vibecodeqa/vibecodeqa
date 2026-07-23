@@ -56,6 +56,29 @@
       ]
     },
     {
+      "id": "cloudflare-worker-mcp-server",
+      "type": "archetype",
+      "title": "Cloudflare Worker MCP Server",
+      "summary": "A remote MCP server hosted on Cloudflare Workers, with Worker-bound authorization, tool schemas, validation, storage boundaries, and auditability.",
+      "url": "https://vibecodeqa.online/standards/cloudflare-worker-mcp-server",
+      "repo": "vibecodeqa/vibecodeqa",
+      "appliesTo": "slice",
+      "status": "published",
+      "detect": {
+        "all": [
+          { "anyFile": ["wrangler.toml", "wrangler.jsonc", "wrangler.json"] },
+          { "anyFileGlob": ["src/**/*.{ts,js}"] },
+          { "anyDep": ["@modelcontextprotocol/sdk"] },
+          { "noneFileGlob": ["functions/**/*.{ts,js}", "index.html"] }
+        ]
+      },
+      "recommends": ["typescript", "security", "testing", "dependencies"],
+      "coveredLayers": ["mcp-server", "zod-validation", "durable-objects"],
+      "editions": [
+        { "version": "v1", "path": "/v1", "status": "latest", "reviewed": "2026-07", "nextReview": "2027-07", "targets": { "cloudflareWorkers": "latest", "mcp": "2025-11-25", "typescript": "6" } }
+      ]
+    },
+    {
       "id": "worker-edge",
       "type": "archetype",
       "title": "Cloudflare Worker",
@@ -68,6 +91,7 @@
         "all": [
           { "anyFile": ["wrangler.toml", "wrangler.jsonc", "wrangler.json"] },
           { "anyFileGlob": ["src/**/*.{ts,js}"] },
+          { "noneDep": ["@modelcontextprotocol/sdk"] },
           { "noneFileGlob": ["functions/**/*.{ts,js}", "index.html"] }
         ]
       },
@@ -132,17 +156,19 @@
       "type": "layer",
       "title": "Cloudflare D1",
       "summary": "SQLite-at-the-edge: schema, migrations discipline, parameterized queries, local/remote parity.",
-      "url": "https://vibecodeqa.online/standards/d1-database",
+      "url": "https://vibecodeqa.online/standards/cloudflare-d1-app",
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
-      "status": "planned",
+      "status": "published",
       "detect": {
         "any": [
           { "config": "wrangler.toml:d1_databases" },
           { "anyFileGlob": ["migrations/*.sql", "**/migrations/*.sql"] }
         ]
       },
-      "editions": []
+      "editions": [
+        { "version": "v1", "path": "/v1", "status": "latest", "reviewed": "2026-07", "nextReview": "2027-07", "targets": { "cloudflareD1": "latest", "wrangler": "4", "typescript": "6" } }
+      ]
     },
     {
       "id": "mcp-server",

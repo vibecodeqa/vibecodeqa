@@ -39,6 +39,9 @@ Rules:
   is a hybrid that must be sub-sliced (see §3), or the registry has an overlap bug.
 - **Layers never stand alone.** `d1-database`, `mcp-server`, `tailwind` compose *onto* an
   archetype; they never replace it.
+- **Specific archetypes can cover generic layers.** `cloudflare-worker-mcp-server` covers
+  the generic `mcp-server` and `zod-validation` layer signals for that slice, so the
+  resolver does not report false gaps after the composed Worker MCP rubric is authored.
 - **Recipes contain only the seam.** A recipe holds the rules that live *between*
   primitives and never re-derives the upstream standards. If the seam is already fully
   covered by an authored stack standard, the recipe can be a published alias to that
@@ -142,21 +145,23 @@ A single command classifies a real hybrid monorepo into its true composition:
 
 ```
 # app             [frontend]  archetype: react-spa@v1
+                              layers: d1-database@v1
                               cross-cutting: typescript, security, testing, accessibility, dependencies
 # app/functions   [functions] archetype: pages-fullstack@v1
-                              layers: d1-database [PLANNED]
+                              layers: d1-database@v1
 # packages/cli    [package]   archetype: node-service [PLANNED]
-# packages/mcp-worker         archetype: worker-edge [PLANNED]
-                              layers: mcp-server, zod-validation [PLANNED]
+# packages/mcp-worker         archetype: cloudflare-worker-mcp-server@v1
 # packages/sdk    [package]   archetype: library [PLANNED]
 Repo recipes: react-spa-on-cloudflare-pages@v1
 ```
 
-`react-spa@v1`, `pages-fullstack@v1`, and the `react-spa-on-cloudflare-pages` alias are
-published today; the rest are mapped gaps. The product app is not "a stack that needs its
-own KB" - it is `react-spa` + `pages-fullstack` + `d1-database` + `node-service` +
-`worker-edge` + `mcp-server` + `library` + cross-cutters, most of which are reused by
-other Cloudflare-Pages fullstack repos.
+`react-spa@v1`, `pages-fullstack@v1`, `d1-database@v1`,
+`cloudflare-worker-mcp-server@v1`, and the `react-spa-on-cloudflare-pages` alias are
+published today. The remaining mapped gaps are `node-service`, `library`, and the
+cross-cutters. The product app is not "a stack that needs its own KB" - it is `react-spa`
++ `pages-fullstack` + `d1-database` + `cloudflare-worker-mcp-server` + `node-service` +
+`library` + cross-cutters, most of which are reused by other Cloudflare-Pages fullstack
+repos.
 
 ## Files
 
@@ -201,10 +206,10 @@ Example planned charter:
 
 ```json
 {
-  "id": "cloudflare-pages-fullstack",
+  "id": "tenant-deployed-cloudflare-saas",
   "status": "planned",
   "aliases": [],
-  "docsUrl": "/docs/standards/stacks/cloudflare-pages-fullstack/",
+  "docsUrl": "/docs/standards/stacks/tenant-deployed-cloudflare-saas/",
   "standardUrl": null,
   "latestEdition": null
 }

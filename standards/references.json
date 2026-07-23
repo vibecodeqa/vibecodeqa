@@ -289,6 +289,22 @@
           "useFor": ["SQL migration files", "migrations folder", "versioned database changes"]
         },
         {
+          "id": "cloudflare-d1-prepared-statements",
+          "title": "D1 Prepared Statement Methods",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/d1/worker-api/prepared-statements/",
+          "appliesTo": ["d1-database", "query-safety", "edge-sql"],
+          "useFor": ["Prepared statements", "parameter binding", "query result APIs"]
+        },
+        {
+          "id": "cloudflare-d1-environments",
+          "title": "D1 Environments",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/d1/configuration/environments/",
+          "appliesTo": ["d1-database", "cloudflare-environments", "preview-database"],
+          "useFor": ["Preview database IDs", "environment-specific D1 bindings"]
+        },
+        {
           "id": "cloudflare-durable-objects",
           "title": "Durable Objects Documentation",
           "publisher": "Cloudflare",
@@ -319,6 +335,14 @@
           "url": "https://developers.cloudflare.com/cloudflare-one/identity/service-tokens/",
           "appliesTo": ["cloudflare-access", "machine-auth", "edge-perimeter"],
           "useFor": ["Service token behavior", "Access policy integration"]
+        },
+        {
+          "id": "cloudflare-agents-mcp",
+          "title": "Model Context Protocol (MCP)",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/agents/model-context-protocol/",
+          "appliesTo": ["cloudflare-worker-mcp-server", "mcp-worker", "agents"],
+          "useFor": ["MCP on Cloudflare Workers and Agents", "remote MCP server implementation"]
         }
       ]
     },
@@ -371,7 +395,7 @@
           "id": "mcp-spec",
           "title": "Model Context Protocol Specification",
           "publisher": "Model Context Protocol",
-          "url": "https://modelcontextprotocol.io/specification/2025-06-18",
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25",
           "appliesTo": ["mcp-server", "mcp-client", "ai-tools"],
           "useFor": ["Protocol messages", "tools", "resources", "prompts", "transports"]
         },
@@ -379,7 +403,7 @@
           "id": "mcp-authorization",
           "title": "MCP Authorization",
           "publisher": "Model Context Protocol",
-          "url": "https://modelcontextprotocol.io/specification/draft/basic/authorization",
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization",
           "appliesTo": ["remote-mcp", "mcp-server", "oauth"],
           "useFor": ["Remote MCP authorization", "resource server behavior", "protected resource metadata"]
         },

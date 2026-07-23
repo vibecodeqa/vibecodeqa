@@ -29,11 +29,11 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 |---|---|---|---|
 | React SPA | Authored | [React SPA charter](stacks/react-spa.md) | [React SPA v1](/standards/react-spa/v1/) |
 | Cloudflare Pages Fullstack | Authored | [Cloudflare Pages Fullstack charter](stacks/cloudflare-pages-fullstack.md) | [Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/) |
+| Cloudflare D1 App | Authored | [Cloudflare D1 App charter](stacks/cloudflare-d1-app.md) | [Cloudflare D1 App v1](/standards/cloudflare-d1-app/v1/) |
+| Cloudflare Worker MCP Server | Authored | [Cloudflare Worker MCP Server charter](stacks/cloudflare-worker-mcp-server.md) | [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/) |
 
 ## Planned stack charters
 
-- [Cloudflare D1 App](stacks/cloudflare-d1-app.md)
-- [Cloudflare Worker MCP Server](stacks/cloudflare-worker-mcp-server.md)
 - [Tenant-Deployed Cloudflare SaaS](stacks/tenant-deployed-cloudflare-saas.md)
 - [Node CLI Internal Tool](stacks/node-cli-internal-tool.md)
 - [TypeScript SDK](stacks/typescript-sdk.md)
@@ -42,8 +42,8 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 - [Tauri React Desktop](stacks/tauri-react-desktop.md)
 - [Zensical KB Site](stacks/zensical-kb-site.md)
 
-Cloudflare D1 App and Cloudflare Worker MCP Server are now the next standards to convert
-into full versioned rubrics.
+Tenant-Deployed Cloudflare SaaS, Node CLI Internal Tool, and TypeScript SDK are now the
+next standards to convert into full versioned rubrics for the Cloudflare SaaS example.
 
 ## Worked examples
 

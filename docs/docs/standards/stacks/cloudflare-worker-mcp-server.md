@@ -1,13 +1,12 @@
 # Cloudflare Worker MCP Server
 
-**Status:** Planned charter
+**Status:** Authored
 
 Remote MCP servers deployed on Cloudflare Workers, optionally using Durable Objects or KV/R2 for state.
 
 ## Full rubric
 
-No full versioned rubric has been authored yet.
-
+[Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/)
 
 ## Scope
 
@@ -50,26 +49,28 @@ Remote MCP servers deployed on Cloudflare Workers, optionally using Durable Obje
 - Authorization is enforced at the Worker boundary, not only by client convention.
 - Mutating tool calls need an audit trail or traceable event.
 
-## Candidate rules
+## Rule highlights
 
-These are not final rule IDs yet. They are the seed set for `v1`.
-
-- **R-MCP-1: Every tool has a narrow schema.** Tool inputs must be validated before side
-  effects; broad untyped objects are findings.
-- **R-MCP-2: Tool descriptions are reviewed as executable affordances.** Tool names and
-  descriptions should not invite unsafe or overly broad behavior.
-- **R-AUTH-1: Remote MCP requires boundary authorization.** The Worker must reject
-  unauthenticated or unauthorized calls before tool dispatch.
-- **R-SCOPE-1: Mutating tools require explicit scope.** Read-only and write-capable tools
-  should be distinguishable in permissions and documentation.
-- **R-STORE-1: Durable Object IDs are scoped.** Object IDs should include tenant, user, or
-  session boundaries where applicable.
-- **R-ENV-1: OAuth/client configuration is environment-specific.** Preview and production
-  credentials must not be interchangeable.
-- **R-AUDIT-1: Mutations leave an audit trail.** A mutating tool call should produce a
-  traceable event with actor, tool, target, and result.
-- **R-PROMPT-1: Tool output treats untrusted content as data.** Tool responses that include
-  repository/user content should not inject instructions back into the client context.
+- **R-SHAPE-1: Worker entrypoint owns the MCP endpoint.** Remote MCP routing is explicit
+  and non-MCP routes do not fall through into the protocol handler.
+- **R-AUTH-1: Worker boundary enforces authorization.** Protected MCP endpoints reject
+  unauthenticated or unauthorized requests before tool dispatch.
+- **R-AUTH-2: Protected resource metadata is published.** OAuth-protected MCP servers
+  expose protected resource metadata or a challenge path clients can discover.
+- **R-PERM-1: Tools map to narrow permissions.** Each tool has an enforceable permission
+  or scope, and mutating tools require write-capable grants.
+- **R-TOOL-1: Tool input schemas are narrow.** Tool parameters are concrete, bounded, and
+  advertised to clients instead of hidden in prose.
+- **R-VAL-1: Tool arguments are parsed before side effects.** Zod or equivalent runtime
+  validation happens before authorization-sensitive work or mutations.
+- **R-STATE-1: Durable Object IDs are scoped to the coordination boundary.** Tenant,
+  user, session, or resource state is not mixed through shared object IDs.
+- **R-AUDIT-1: Mutating tool calls leave an audit trail.** Actor, tool, target, scope,
+  outcome, timestamp, and request correlation are captured.
+- **R-OUT-1: Tool output is untrusted data.** External or user-controlled content returned
+  by tools is not treated as policy or instructions for further tool calls.
+- **R-DEPLOY-3: CI runs protocol and auth smoke tests before production.** Deploys prove
+  initialization, tool listing, representative calls, and unauthorized rejection.
 
 ## Anti-patterns
 
@@ -78,12 +79,6 @@ These are not final rule IDs yet. They are the seed set for `v1`.
 - Sharing Durable Object state across tenants through predictable object IDs.
 - Reusing production OAuth credentials in preview.
 - Logging prompt/tool content without redaction policy.
-
-## Open authoring questions
-
-- Which MCP authorization profile should `v1` target first?
-- Should audit trail be required for all tools or only mutating tools?
-- How should VCQA classify prompt-injection defenses that are only manually reviewable?
 
 ## Benefits
 

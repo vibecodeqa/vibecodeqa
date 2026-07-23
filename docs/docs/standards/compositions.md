@@ -31,21 +31,28 @@ It composes [React](items/react.md), [React Router](items/react-router.md),
 [TypeScript](items/typescript.md), [Web Security](items/web-security.md), and
 [GitHub Actions](items/github-actions.md).
 
+[Cloudflare D1 App](stacks/cloudflare-d1-app.md) is authored as
+[Cloudflare D1 App v1](/standards/cloudflare-d1-app/v1/). It composes
+[Cloudflare D1](items/cloudflare-d1.md),
+[Cloudflare Pages Functions](items/cloudflare-pages-functions.md),
+[Cloudflare Workers](items/cloudflare-workers.md), [TypeScript](items/typescript.md),
+[Web Security](items/web-security.md), and [GitHub Actions](items/github-actions.md). It
+owns migration discipline, drift checks, local apply tests, environment/tenant DB
+isolation, query safety, and deployment gates.
+
+[Cloudflare Worker MCP Server](stacks/cloudflare-worker-mcp-server.md) is authored as
+[Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/). It composes
+  [Cloudflare Workers](items/cloudflare-workers.md),
+  [Durable Objects](items/durable-objects.md), [MCP](items/mcp.md), [Zod](items/zod.md),
+  [TypeScript](items/typescript.md), [Web Security](items/web-security.md), and
+[GitHub Actions](items/github-actions.md). It owns remote MCP authorization, tool schemas,
+permission boundaries, storage policy, environment isolation, audit trail, and output
+safety.
+
 ## Planned Stack Standards
 
 ### Cloudflare
 
-- [Cloudflare D1 App](stacks/cloudflare-d1-app.md): composes
-  [Cloudflare D1](items/cloudflare-d1.md), [TypeScript](items/typescript.md),
-  [Web Security](items/web-security.md), and [GitHub Actions](items/github-actions.md).
-  It owns migration discipline, drift checks, local apply tests, environment/tenant DB
-  isolation, and query-safety rules.
-- [Cloudflare Worker MCP Server](stacks/cloudflare-worker-mcp-server.md): composes
-  [Cloudflare Workers](items/cloudflare-workers.md),
-  [Durable Objects](items/durable-objects.md), [MCP](items/mcp.md), [Zod](items/zod.md),
-  [TypeScript](items/typescript.md), [Web Security](items/web-security.md), and
-  [GitHub Actions](items/github-actions.md). It owns remote MCP authorization, tool
-  schemas, permission boundaries, storage policy, environment isolation, and audit trail.
 - [Tenant-Deployed Cloudflare SaaS](stacks/tenant-deployed-cloudflare-saas.md): composes
   Pages Functions, D1, Workers, GitHub Actions, security, and docs-KB practices for
   tenant isolation, promotion gates, per-tenant secrets/databases, and provisioning docs.
@@ -87,12 +94,11 @@ the composed standards that use it.
 
 ## Authoring Order
 
-1. [Cloudflare Pages Fullstack](stacks/cloudflare-pages-fullstack.md): unlocks the
-   React SPA plus Pages Functions shape in the Cloudflare SaaS example.
-2. [Cloudflare D1 App](stacks/cloudflare-d1-app.md): captures migration and tenant
-   database discipline.
-3. [Cloudflare Worker MCP Server](stacks/cloudflare-worker-mcp-server.md): captures MCP
-   over Workers, Durable Objects, OAuth, and tool safety.
-4. [Node CLI Internal Tool](stacks/node-cli-internal-tool.md),
-   [TypeScript SDK](stacks/typescript-sdk.md), and
-   [Zensical KB Site](stacks/zensical-kb-site.md): cover shared packages and docs.
+1. [Tenant-Deployed Cloudflare SaaS](stacks/tenant-deployed-cloudflare-saas.md): composes
+   the now-authored Pages Fullstack, D1, and Worker MCP standards into a production tenant
+   deployment model.
+2. [Node CLI Internal Tool](stacks/node-cli-internal-tool.md) and
+   [TypeScript SDK](stacks/typescript-sdk.md): cover the operator and package surfaces in
+   the Cloudflare SaaS example.
+3. [Zensical KB Site](stacks/zensical-kb-site.md): covers docs source-of-truth and
+   publishing discipline.

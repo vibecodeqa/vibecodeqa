@@ -171,7 +171,9 @@ function resolve(repo) {
   for (const slice of slices) {
     const s = signals(slice);
     const archetypes = byType('archetype').filter((a) => evalPred(a.detect, s));
-    const layers = byType('layer').filter((l) => evalPred(l.detect, s));
+    let layers = byType('layer').filter((l) => evalPred(l.detect, s));
+    const coveredLayerIds = new Set(archetypes.flatMap((a) => a.coveredLayers || []));
+    layers = layers.filter((l) => !coveredLayerIds.has(l.id));
     const cross = byType('cross-cutting').filter((c) => evalPred(c.detect, s));
     archetypes.forEach((a) => repoMatched.add(a.id));
     results.push({ slice: slice.label, kind: slice.kind, archetypes, layers, cross });

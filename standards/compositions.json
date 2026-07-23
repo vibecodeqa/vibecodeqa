@@ -368,9 +368,11 @@
     },
     {
       "id": "cloudflare-d1-app",
-      "status": "planned",
+      "status": "authored",
       "stackItems": [
         "cloudflare-d1",
+        "cloudflare-pages-functions",
+        "cloudflare-workers",
         "typescript",
         "web-security",
         "github-actions"
@@ -386,13 +388,13 @@
         "Cloudflare SaaS example D1 usage"
       ],
       "aliases": [],
-      "standardUrl": null,
-      "latestEdition": null,
+      "standardUrl": "/standards/cloudflare-d1-app/v1/",
+      "latestEdition": "v1",
       "docsUrl": "/docs/standards/stacks/cloudflare-d1-app/"
     },
     {
       "id": "cloudflare-worker-mcp-server",
-      "status": "planned",
+      "status": "authored",
       "stackItems": [
         "cloudflare-workers",
         "durable-objects",
@@ -413,8 +415,8 @@
         "Cloudflare SaaS example MCP Worker"
       ],
       "aliases": [],
-      "standardUrl": null,
-      "latestEdition": null,
+      "standardUrl": "/standards/cloudflare-worker-mcp-server/v1/",
+      "latestEdition": "v1",
       "docsUrl": "/docs/standards/stacks/cloudflare-worker-mcp-server/"
     },
     {
