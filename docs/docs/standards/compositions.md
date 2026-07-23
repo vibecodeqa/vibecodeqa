@@ -7,6 +7,9 @@ standards.
 The machine-readable version lives at
 [`/standards/compositions.json`](/standards/compositions.json).
 
+Use the [Standards Graph](graph.md) for the navigable visual version of this composition
+map.
+
 Product-neutral reference implementations:
 
 - [vibecodeqa/ref-react-spa](https://github.com/vibecodeqa/ref-react-spa)
