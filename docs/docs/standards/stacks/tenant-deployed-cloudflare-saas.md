@@ -14,6 +14,8 @@ when a repository operates tenant-scoped Cloudflare deployment surfaces.
 
 Reference implementation:
 [vibecodeqa/ref-cloudflare-saas](https://github.com/vibecodeqa/ref-cloudflare-saas).
+This repo complements official React, Vite, Cloudflare, D1, and MCP starters by showing
+their tenant-deployed SaaS composition with CI, runbooks, and a tracked VCQA report.
 Use it as a product-neutral template that demonstrates the stack; use the rubric as the
 source of truth for judgment.
 

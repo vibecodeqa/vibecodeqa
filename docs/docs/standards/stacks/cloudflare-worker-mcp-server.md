@@ -11,10 +11,13 @@ Remote MCP servers deployed on Cloudflare Workers, optionally using Durable Obje
 ## Reference implementation
 
 [vibecodeqa/ref-cloudflare-worker-mcp](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp)
-is the forkable template for this stack. It shows the expected Worker entrypoint,
+is the forkable template for this stack. It uses the MCP TypeScript SDK's Web Standard
+Streamable HTTP transport on Cloudflare Workers and shows the expected Worker entrypoint,
 protected resource metadata, authorization-before-dispatch path, scoped tool permissions,
 runtime validation, audit events, CI gates, and tracked VCQA report without tying the
-standard to any product.
+standard to any product. It complements, rather than replaces, the official
+[Cloudflare Workers templates](https://developers.cloudflare.com/workers/get-started/quickstarts/)
+and [MCP SDK examples](https://ts.sdk.modelcontextprotocol.io/).
 
 ## Scope
 

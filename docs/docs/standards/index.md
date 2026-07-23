@@ -67,19 +67,32 @@ or high-value stack composition. The intent is not to generate every possible co
 up front; it is to keep a curated set where each repo demonstrates a standard, carries CI,
 and tracks its own VCQA report.
 
+These templates do not replace vendor starters. Use official React, Vite, Cloudflare, MCP,
+and other ecosystem docs for basic project creation. VCQA templates show the extra
+composition layer: how upstream guidance, deploy/runtime seams, CI evidence, runbooks, and
+VCQA reports fit together.
+
 - [vibecodeqa/ref-react-spa](https://github.com/vibecodeqa/ref-react-spa):
   open-source template repository for the React SPA stack. It demonstrates Vite,
   TypeScript, React Router, Vitest, Playwright, static build gates, client environment
-  boundaries, and a tracked A-grade VCQA report.
+  boundaries, and a tracked A-grade VCQA report. Official starting points:
+  [React app from Scratch](https://react.dev/learn/build-a-react-app-from-scratch) and
+  [Vite getting started](https://vite.dev/guide/).
 - [vibecodeqa/ref-cloudflare-worker-mcp](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp):
   open-source template repository for the Cloudflare Worker MCP Server stack. It
-  demonstrates protected resource metadata, authorization before tool dispatch, scoped
-  tool permissions, Zod validation, audit events, runbooks, Wrangler dry-run deploys, and
-  a tracked A-grade VCQA report.
+  demonstrates the MCP TypeScript SDK's Web Standard Streamable HTTP transport on
+  Cloudflare Workers, protected resource metadata, authorization before tool dispatch,
+  scoped tool permissions, Zod validation, audit events, runbooks, Wrangler dry-run
+  deploys, and a tracked A-grade VCQA report. Official starting points:
+  [Cloudflare Workers templates](https://developers.cloudflare.com/workers/get-started/quickstarts/),
+  [Cloudflare templates](https://github.com/cloudflare/templates),
+  [MCP TypeScript SDK](https://ts.sdk.modelcontextprotocol.io/), and
+  [MCP Streamable HTTP transport](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports).
 - [vibecodeqa/ref-cloudflare-saas](https://github.com/vibecodeqa/ref-cloudflare-saas):
   open-source template repository for the Cloudflare SaaS stack. It demonstrates React
   SPA, Cloudflare Pages Functions, D1, Worker MCP, SDK, CLI, tenant manifests, runbooks,
-  CI gates, and a tracked VCQA report.
+  CI gates, and a tracked VCQA report. It exists because no single vendor starter owns
+  this full composition.
 
 Next template candidates:
 

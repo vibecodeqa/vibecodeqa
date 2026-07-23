@@ -79,11 +79,13 @@ repo-shape and deploy-shape rules needed to judge real projects consistently.</p
 <p>Reference implementations are product-neutral GitHub template repos. They complement
 the rubrics: the standard defines the rules, and the repo shows a passing implementation
 with CI and a tracked VCQA report. The pathway is one curated template per reusable stack
-archetype or high-value composition, not every possible combination up front.</p>
+archetype or high-value composition, not every possible combination up front. They do not
+replace official vendor starters; they show the VCQA composition layer on top of those
+starters.</p>
 <table>
 <tr><th>Repository</th><th>What it demonstrates</th><th>Score evidence</th></tr>
 <tr><td><a href="https://github.com/vibecodeqa/ref-react-spa" class="name">ref-react-spa</a></td><td>Small React SPA template: Vite, TypeScript, React Router, Vitest, Playwright, accessibility-oriented UI structure, static build gates, and public client configuration discipline.</td><td>A 94/100 in <code>docs/vcqa-report.md</code>; CI green.</td></tr>
-<tr><td><a href="https://github.com/vibecodeqa/ref-cloudflare-worker-mcp" class="name">ref-cloudflare-worker-mcp</a></td><td>Remote MCP-style Worker template: protected resource metadata, Worker-boundary authorization, scoped tool permissions, Zod validation, audit events, runbooks, and Wrangler dry-run deploy gates.</td><td>A 91/100 in <code>docs/vcqa-report.md</code>; CI green.</td></tr>
+<tr><td><a href="https://github.com/vibecodeqa/ref-cloudflare-worker-mcp" class="name">ref-cloudflare-worker-mcp</a></td><td>SDK-backed Streamable HTTP MCP Worker template: protected resource metadata, Worker-boundary authorization, scoped tool permissions, Zod validation, audit events, runbooks, and Wrangler dry-run deploy gates.</td><td>A 91/100 in <code>docs/vcqa-report.md</code>; CI green.</td></tr>
 <tr><td><a href="https://github.com/vibecodeqa/ref-cloudflare-saas" class="name">ref-cloudflare-saas</a></td><td>Product-neutral Cloudflare SaaS template: React SPA, Pages Functions, D1, Worker MCP, SDK, CLI, tenant manifests, runbooks, and CI gates.</td><td>Tracked VCQA report in <code>docs/vcqa-report.md</code></td></tr>
 </table>
 <p>Next candidates: <code>ref-cloudflare-pages-fullstack</code>,

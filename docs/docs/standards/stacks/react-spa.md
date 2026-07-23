@@ -13,7 +13,9 @@ Client-rendered React applications built as static files, with no server render 
 [vibecodeqa/ref-react-spa](https://github.com/vibecodeqa/ref-react-spa) is
 the forkable template for this stack. It shows the expected repo shape, CI gates, static
 build path, Playwright smoke coverage, and tracked VCQA report without tying the standard
-to any product.
+to any product. It complements, rather than replaces, the official
+[React](https://react.dev/learn/build-a-react-app-from-scratch) and
+[Vite](https://vite.dev/guide/) starter paths.
 
 ## Aliases
 
