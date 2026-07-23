@@ -43,6 +43,7 @@ constraints, detection mapping, exceptions, and anti-patterns needed to judge a 
 | [React Router](https://reactrouter.com/) | React Router | Routing modes, data routers, framework mode, SPA fallback implications. |
 | [Vite Guide](https://vite.dev/guide/) | Vite | Dev server, production build, static deployment, env variables. |
 | [Vite Static Deploy](https://vite.dev/guide/static-deploy) | Vite | Static hosting expectations and SPA deployment guidance. |
+| [Vite Env Variables and Modes](https://vite.dev/guide/env-and-mode) | Vite | Client-exposed environment variables, mode-specific config, public env prefixes. |
 | [Next.js Documentation](https://nextjs.org/docs) | Vercel | App Router, server components, route handlers, deployment. |
 | [Next.js Data Security](https://nextjs.org/docs/app/guides/data-security) | Next.js | Server component data boundaries, DTOs, sensitive data handling. |
 | [Vue.js Guide](https://vuejs.org/guide/introduction.html) | Vue | Composition API, SFCs, reactivity, app structure. |
@@ -107,6 +108,13 @@ constraints, detection mapping, exceptions, and anti-patterns needed to judge a 
 | [Multi Tenant Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Multi_Tenant_Security_Cheat_Sheet.html) | OWASP | Tenant isolation risks, multi-tenant security design, shared-resource risk. |
 | [Authorization Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html) | OWASP | Server-side authorization, least privilege, tenant access checks. |
 | [Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html) | OWASP | Secret lifecycle, rotation, revocation, safe logging. |
+| [Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html) | OWASP | Boundary validation, allowlisting, runtime input parsing. |
+| [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html) | OWASP | Parameterized queries, safe query APIs, SQL injection prevention. |
+| [Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html) | OWASP | Injection-prone interpreter boundaries, command/query construction. |
+| [SSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html) | OWASP | Outbound URL constraints, SSRF prevention, allowlisting. |
+| [XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html) | OWASP | Output encoding, HTML sanitization, dangerous browser sinks. |
+| [Error Handling Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html) | OWASP | Safe errors, exception handling, information disclosure prevention. |
+| [Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html) | OWASP | Security events, safe logging, audit evidence. |
 | [GitHub Actions Secure Use](https://docs.github.com/en/actions/reference/security/secure-use) | GitHub | Workflow permissions, untrusted code, third-party actions, secret handling. |
 | [GitHub Actions Deployment Hardening](https://docs.github.com/actions/how-tos/secure-your-work/security-harden-deployments) | GitHub | OIDC for cloud deployments, environment protection, deployment hardening. |
 | [GitHub Actions Deployments and Environments](https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments) | GitHub | Environment protection rules, deployment approvals, environment-scoped secrets. |

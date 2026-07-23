@@ -96,6 +96,11 @@
       "references": [
         "owasp-asvs",
         "owasp-cheat-sheets",
+        "owasp-authorization-cheat-sheet",
+        "owasp-secrets-management-cheat-sheet",
+        "owasp-input-validation-cheat-sheet",
+        "owasp-sql-injection-prevention",
+        "owasp-logging-cheat-sheet",
         "owasp-csrf-cheat-sheet",
         "owasp-session-management"
       ],
@@ -444,6 +449,34 @@
       "standardUrl": "/standards/tenant-deployed-cloudflare-saas/v1/",
       "latestEdition": "v1",
       "docsUrl": "/docs/standards/stacks/tenant-deployed-cloudflare-saas/"
+    },
+    {
+      "id": "security",
+      "status": "authored",
+      "stackItems": [
+        "web-security",
+        "github-actions",
+        "cloudflare-workers",
+        "mcp",
+        "docs-kb"
+      ],
+      "ownedRules": [
+        "server-side authorization boundary checks",
+        "client/server secret exposure and environment-scope checks",
+        "input validation and injection-prone boundary checks",
+        "output safety for browser, logs, tool responses, and generated content",
+        "tenant, preview, staging, and production isolation signals",
+        "GitHub Actions and deployment permission gates",
+        "security logging, audit, and incident evidence expectations"
+      ],
+      "benefits": [
+        "Cloudflare SaaS example security coverage",
+        "all VCQA app, API, Worker, MCP, CLI, SDK, and CI surfaces"
+      ],
+      "aliases": [],
+      "standardUrl": "/standards/security/v1/",
+      "latestEdition": "v1",
+      "docsUrl": "/docs/standards/items/web-security/"
     },
     {
       "id": "node-cli-internal-tool",

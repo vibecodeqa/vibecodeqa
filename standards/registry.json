@@ -240,9 +240,11 @@
       "url": "https://vibecodeqa.online/standards/security",
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
-      "status": "planned",
+      "status": "published",
       "detect": { "always": true },
-      "editions": []
+      "editions": [
+        { "version": "v1", "path": "/v1", "status": "latest", "reviewed": "2026-07", "nextReview": "2027-07", "targets": { "owaspAsvs": "5.0.0", "owaspCheatSheets": "latest", "githubActions": "latest", "cloudflareWorkers": "latest" } }
+      ]
     },
     {
       "id": "testing",

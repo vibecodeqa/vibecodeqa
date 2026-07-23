@@ -58,7 +58,26 @@ It composes [Cloudflare Pages Functions](items/cloudflare-pages-functions.md),
 bindings, protected previews and aliases, promotion gates, D1 state runbooks,
 provisioning, observability, and auditability.
 
+[Security](items/web-security.md) is authored as
+[Security v1](/standards/security/v1/). It is cross-cutting rather than a deployable
+stack standard. It composes OWASP-backed [Web Security](items/web-security.md),
+[GitHub Actions](items/github-actions.md), Cloudflare runtime boundaries, MCP tool
+boundaries, and docs/runbook evidence. It owns authorization boundary checks, secret
+exposure checks, input/output safety, tenant/environment isolation, deploy permissions,
+security logging, and incident evidence.
+
 ## Planned Stack Standards
+
+### Cross-Cutting
+
+- Testing: applies to every slice; owns required test layers, smoke checks, CI evidence,
+  and failure artifacts.
+- TypeScript: applies to typed slices; owns strictness policy, generated-file exceptions,
+  typed boundaries, and project references.
+- Dependency Hygiene: applies to package-managed slices; owns lockfile, audit, install
+  script, license, runtime, and supply-chain risk gates.
+- Accessibility: applies to UI slices; owns scan/manual acceptance gates that compose
+  WCAG and WAI-ARIA guidance into stack-specific review.
 
 ### Packages and Tools
 
@@ -97,10 +116,10 @@ the composed standards that use it.
 
 ## Authoring Order
 
-1. [Node CLI Internal Tool](stacks/node-cli-internal-tool.md) and
+1. [Testing](items/vitest.md), TypeScript, and Dependency Hygiene cross-cutting standards:
+   remove the remaining repo-wide gaps shown by the resolver.
+2. [Node CLI Internal Tool](stacks/node-cli-internal-tool.md) and
    [TypeScript SDK](stacks/typescript-sdk.md): cover the operator and package surfaces in
    the Cloudflare SaaS example.
-2. Cross-cutting TypeScript, security, testing, accessibility, and dependency standards:
-   cover policies reused by every authored stack.
 3. [Zensical KB Site](stacks/zensical-kb-site.md): covers docs source-of-truth and
    publishing discipline.

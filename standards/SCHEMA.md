@@ -149,23 +149,25 @@ A single command classifies a real hybrid monorepo into its true composition:
 
 ```
 # app             [frontend]  archetype: react-spa@v1
-                              cross-cutting: typescript, security, testing, accessibility, dependencies
+                              cross-cutting: typescript, security@v1, testing, accessibility, dependencies
 # app/functions   [functions] archetype: pages-fullstack@v1
                               layers: d1-database@v1
+                              cross-cutting: typescript, security@v1, testing, dependencies
 # packages/cli    [package]   archetype: node-service [PLANNED]
 # packages/mcp-worker         archetype: cloudflare-worker-mcp-server@v1
+                              cross-cutting: typescript, security@v1, testing, dependencies
 # packages/sdk    [package]   archetype: library [PLANNED]
 Repo recipes: tenant-deployed-cloudflare-saas@v1, react-spa-on-cloudflare-pages@v1
 ```
 
 `react-spa@v1`, `pages-fullstack@v1`, `d1-database@v1`,
-`cloudflare-worker-mcp-server@v1`, `tenant-deployed-cloudflare-saas@v1`, and the
-`react-spa-on-cloudflare-pages` alias are published today. The remaining mapped gaps are
-`node-service`, `library`, and the cross-cutters. The product app is not "a stack that
-needs its own product KB" - it is `react-spa` + `pages-fullstack` + `d1-database` +
-`cloudflare-worker-mcp-server` + `tenant-deployed-cloudflare-saas` + `node-service` +
-`library` + cross-cutters, most of which are reused by other Cloudflare-Pages fullstack
-repos.
+`cloudflare-worker-mcp-server@v1`, `tenant-deployed-cloudflare-saas@v1`, `security@v1`,
+and the `react-spa-on-cloudflare-pages` alias are published today. The remaining mapped
+gaps are `node-service`, `library`, and the unauthored cross-cutters. The product app is
+not "a stack that needs its own product KB" - it is `react-spa` + `pages-fullstack` +
+`d1-database` + `cloudflare-worker-mcp-server` + `tenant-deployed-cloudflare-saas` +
+`security` + `node-service` + `library` + cross-cutters, most of which are reused by
+other Cloudflare-Pages fullstack repos.
 
 ## Files
 

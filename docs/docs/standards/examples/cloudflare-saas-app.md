@@ -23,10 +23,10 @@ The example app is **partially covered** today.
 
 | Repo slice | Detected shape | Coverage today | Next needed standard |
 |---|---|---|---|
-| `app` | React SPA with Vite, TypeScript, React Router, Vitest, Playwright | Covered by [React SPA v1](/standards/react-spa/v1/) | Shared cross-cutting standards for TypeScript, security, testing, accessibility, and dependency policy |
-| `app/functions` | Cloudflare Pages Functions API deployed with the SPA | Covered by [Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/) and [Cloudflare D1 App v1](/standards/cloudflare-d1-app/v1/) | Shared cross-cutting standards for TypeScript, security, testing, and dependency policy |
-| repo tenant deployment | Tenant deployment scripts and per-environment Cloudflare resources | Covered by [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/) | Cross-cutting security, testing, dependency, and docs drift checks |
-| `packages/mcp-worker` | Cloudflare Worker remote MCP server with Zod and OAuth-related dependencies | Covered by [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/) | Shared cross-cutting standards for TypeScript, security, testing, and dependency policy |
+| `app` | React SPA with Vite, TypeScript, React Router, Vitest, Playwright | Covered by [React SPA v1](/standards/react-spa/v1/) and [Security v1](/standards/security/v1/) | Shared cross-cutting standards for TypeScript, testing, accessibility, and dependency policy |
+| `app/functions` | Cloudflare Pages Functions API deployed with the SPA | Covered by [Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/), [Cloudflare D1 App v1](/standards/cloudflare-d1-app/v1/), and [Security v1](/standards/security/v1/) | Shared cross-cutting standards for TypeScript, testing, and dependency policy |
+| repo tenant deployment | Tenant deployment scripts and per-environment Cloudflare resources | Covered by [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/) and [Security v1](/standards/security/v1/) | Testing, dependency, and docs drift checks |
+| `packages/mcp-worker` | Cloudflare Worker remote MCP server with Zod and OAuth-related dependencies | Covered by [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/) and [Security v1](/standards/security/v1/) | Shared cross-cutting standards for TypeScript, testing, and dependency policy |
 | `packages/cli` | Node command-line client using the SDK | Planned | [Node CLI Internal Tool](../stacks/node-cli-internal-tool.md) |
 | `packages/sdk` | Private TypeScript SDK package | Planned | [TypeScript SDK](../stacks/typescript-sdk.md) |
 | `packages/mcp` | Generated or build-output MCP artifact without a package manifest | No standard matched | Decide whether this should be generated output, a package, or removed from resolver scope |
@@ -43,6 +43,7 @@ packages/cli         node-service [planned]
 packages/mcp         no archetype matched
 packages/mcp-worker  cloudflare-worker-mcp-server@v1
 packages/sdk         library [planned]
+cross-cutting        security@v1 applies to every slice
 repo recipe          tenant-deployed-cloudflare-saas@v1, react-spa-on-cloudflare-pages@v1
 ```
 
@@ -118,6 +119,19 @@ for the repo-level deployment model. This standard is now judgeable. It covers:
 - rollback/fix-forward runbooks that treat code and D1 state separately
 - tenant provisioning, deprovisioning, smoke tests, observability, and audit evidence
 
+### Security standard
+
+Use [Security v1](/standards/security/v1/) across all slices. This standard is now
+judgeable. It covers:
+
+- server-side authorization boundaries
+- client/server secret exposure
+- runtime input validation, SQL injection, command execution, and outbound URL safety
+- browser output, raw HTML, tool output, and safe error handling
+- preview/staging/production and tenant isolation checks
+- GitHub Actions permissions, deployment credentials, and protected production mutation
+- security logging, audit trails, and incident evidence
+
 ## What remains unjudged
 
 ### CLI and SDK standards
@@ -155,8 +169,8 @@ Cloudflare, D1, MCP, or TypeScript alone. They are born from the stack combinati
 
 1. Author Node CLI Internal Tool and TypeScript SDK once the app/runtime standards are
    stable enough to define shared package expectations.
-2. Decide whether cross-cutting TypeScript, security, testing, accessibility, and
-   dependency standards should become full rubrics or remain stack-item guidance.
+2. Decide whether cross-cutting TypeScript, testing, accessibility, and dependency
+   standards should become full rubrics or remain stack-item guidance.
 
 ## Coverage status
 
@@ -164,6 +178,6 @@ The right claim is:
 
 ```text
 The frontend, Pages Functions, D1, and Worker MCP surfaces are covered by authored v1 rubrics.
-The tenant deployment recipe and React-on-Pages repo recipe are covered by authored v1 rubrics.
-CLI, SDK, and cross-cutting standards still need authored rubrics.
+The tenant deployment recipe, React-on-Pages repo recipe, and security baseline are covered by authored v1 rubrics.
+CLI, SDK, testing, TypeScript, dependency, and accessibility standards still need authored rubrics.
 ```

@@ -1,0 +1,70 @@
+[project]
+site_name = "Security - Gold Standard"
+site_description = "The gold-standard cross-cutting security rubric VibeCode QA judges across app, API, Worker, MCP, CLI, SDK, and CI boundaries."
+site_author = "VibeCode QA"
+site_url = "https://vibecodeqa.online/standards/security/"
+repo_url = "https://github.com/vibecodeqa/vibecodeqa"
+repo_name = "vibecodeqa/vibecodeqa"
+copyright = "The security gold standard - the rubric VibeCode QA judges against."
+
+docs_dir = "docs"
+site_dir = "site"
+
+nav = [
+  { "Overview" = "index.md" },
+  { "Edition v1" = [
+    { "About this edition" = "v1/index.md" },
+    { "1 - Authorization boundaries" = "v1/authorization-boundaries.md" },
+    { "2 - Secrets and environment exposure" = "v1/secrets-and-environment-exposure.md" },
+    { "3 - Input, query, and command safety" = "v1/input-query-and-command-safety.md" },
+    { "4 - Output, browser, and tool safety" = "v1/output-browser-and-tool-safety.md" },
+    { "5 - Tenant and environment isolation" = "v1/tenant-and-environment-isolation.md" },
+    { "6 - CI and deployment security" = "v1/ci-and-deployment-security.md" },
+    { "7 - Logging and incident evidence" = "v1/logging-and-incident-evidence.md" }
+  ] }
+]
+
+[project.theme]
+language = "en"
+features = [
+  "content.code.copy",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.path",
+  "navigation.sections",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight"
+]
+
+[[project.theme.palette]]
+scheme = "default"
+primary = "indigo"
+accent = "indigo"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "indigo"
+accent = "indigo"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.attr_list]
+[project.markdown_extensions.def_list]
+[project.markdown_extensions.footnotes]
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.toc]
+permalink = true
+[project.markdown_extensions.pymdownx.details]
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+line_spans = "__span"
+pygments_lang_class = true
+[project.markdown_extensions.pymdownx.inlinehilite]
+[project.markdown_extensions.pymdownx.magiclink]
+[project.markdown_extensions.pymdownx.superfences]
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true

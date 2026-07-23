@@ -4,6 +4,12 @@ Web security is the cross-cutting security item for browser/server seams, deploy
 boundaries, sessions, authorization, secrets, and injection risks. VCQA delegates generic
 security doctrine to OWASP and records only the stack-specific review surfaces here.
 
+## Full rubric
+
+[Security v1](/standards/security/v1/) is the authored cross-cutting rubric. Use this
+item page for source ownership and composition context; use the rubric for rule-by-rule
+judgment.
+
 ## Upstream references
 
 - [Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/)
@@ -14,6 +20,8 @@ security doctrine to OWASP and records only the stack-specific review surfaces h
 - [Secrets Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html)
 - [Input Validation Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html)
 - [SQL Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html)
+- [Logging Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html)
+- [GitHub Actions Secure Use](https://docs.github.com/en/actions/reference/security/secure-use)
 
 ## What upstream owns
 
@@ -35,6 +43,8 @@ security doctrine to OWASP and records only the stack-specific review surfaces h
   composed stack supports per-tenant Cloudflare deployments.
 - **SEC-CI:** security-sensitive deployment jobs depend on tests/builds and use minimum
   permissions; GitHub Actions owns the workflow mechanics.
+- **SEC-LOG:** security-sensitive events are logged with useful context and without
+  leaking secrets, credentials, or sensitive tenant data.
 
 ## Detection signals
 

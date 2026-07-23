@@ -162,6 +162,14 @@
           "useFor": ["Static hosting expectations", "SPA deployment guidance"]
         },
         {
+          "id": "vite-env-and-mode",
+          "title": "Env Variables and Modes",
+          "publisher": "Vite",
+          "url": "https://vite.dev/guide/env-and-mode",
+          "appliesTo": ["vite", "spa", "client-env"],
+          "useFor": ["Client-exposed environment variables", "mode-specific config", "public env prefixes"]
+        },
+        {
           "id": "next-docs",
           "title": "Next.js Documentation",
           "publisher": "Vercel",
@@ -573,6 +581,62 @@
           "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
           "appliesTo": ["secrets", "credential-management", "tenant-deployed-cloudflare-saas"],
           "useFor": ["Secret lifecycle", "rotation", "revocation", "safe logging"]
+        },
+        {
+          "id": "owasp-input-validation-cheat-sheet",
+          "title": "Input Validation Cheat Sheet",
+          "publisher": "OWASP",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html",
+          "appliesTo": ["input-validation", "api-security", "runtime-validation"],
+          "useFor": ["Boundary validation", "allowlisting", "runtime input parsing"]
+        },
+        {
+          "id": "owasp-sql-injection-prevention",
+          "title": "SQL Injection Prevention Cheat Sheet",
+          "publisher": "OWASP",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+          "appliesTo": ["sql", "database", "query-safety"],
+          "useFor": ["Parameterized queries", "safe query APIs", "SQL injection prevention"]
+        },
+        {
+          "id": "owasp-injection-prevention",
+          "title": "Injection Prevention Cheat Sheet",
+          "publisher": "OWASP",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
+          "appliesTo": ["injection", "command-execution", "interpreter-boundaries"],
+          "useFor": ["Injection-prone interpreter boundaries", "command/query construction"]
+        },
+        {
+          "id": "owasp-ssrf-prevention",
+          "title": "Server Side Request Forgery Prevention Cheat Sheet",
+          "publisher": "OWASP",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+          "appliesTo": ["ssrf", "outbound-fetch", "webhooks"],
+          "useFor": ["Outbound URL constraints", "SSRF prevention", "allowlisting"]
+        },
+        {
+          "id": "owasp-xss-prevention",
+          "title": "Cross Site Scripting Prevention Cheat Sheet",
+          "publisher": "OWASP",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
+          "appliesTo": ["xss", "browser-output", "html-rendering"],
+          "useFor": ["Output encoding", "HTML sanitization", "dangerous browser sinks"]
+        },
+        {
+          "id": "owasp-error-handling-cheat-sheet",
+          "title": "Error Handling Cheat Sheet",
+          "publisher": "OWASP",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html",
+          "appliesTo": ["error-handling", "api-security", "safe-output"],
+          "useFor": ["Safe errors", "exception handling", "information disclosure prevention"]
+        },
+        {
+          "id": "owasp-logging-cheat-sheet",
+          "title": "Logging Cheat Sheet",
+          "publisher": "OWASP",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+          "appliesTo": ["logging", "audit", "incident-response"],
+          "useFor": ["Security events", "safe logging", "audit evidence"]
         },
         {
           "id": "github-actions-secure-use",
