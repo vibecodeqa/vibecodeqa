@@ -6,8 +6,9 @@ coverage, unresolved gaps, and the next standard to author.
 
 ## Examples
 
-- [CRM stack coverage](crm.md): maps `~/work/crm` to React SPA, Cloudflare Pages
-  Fullstack, D1, MCP Worker, CLI, and SDK standards.
+- [Cloudflare SaaS app coverage](cloudflare-saas-app.md): maps a real
+  React/Cloudflare/D1/MCP repository to React SPA, Cloudflare Pages Fullstack, D1, MCP
+  Worker, CLI, and SDK standards.
 
 ## How to read these pages
 
@@ -17,4 +18,3 @@ coverage, unresolved gaps, and the next standard to author.
   needs to be authored.
 - **Gap** means the resolver found a stack item or composed standard the repo needs, but
   VCQA does not yet have enough standard text to judge it consistently.
-

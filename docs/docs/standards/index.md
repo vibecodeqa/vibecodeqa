@@ -47,8 +47,9 @@ into full versioned rubrics.
 
 ## Worked examples
 
-- [CRM stack coverage](examples/crm.md): how `~/work/crm` maps to authored standards,
-  planned standards, and the next authoring gaps.
+- [Cloudflare SaaS app coverage](examples/cloudflare-saas-app.md): how a real
+  React/Cloudflare/D1/MCP repository maps to authored standards, planned standards, and
+  the next authoring gaps.
 
 ## Machine-readable files
 

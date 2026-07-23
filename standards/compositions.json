@@ -331,7 +331,7 @@
       ],
       "benefits": [
         "vibecodeqa/app web dashboard",
-        "crm/app frontend"
+        "Cloudflare SaaS example frontend"
       ],
       "aliases": [
         "react-spa-static"
@@ -358,7 +358,7 @@
         "SPA/functions deploy assembly"
       ],
       "benefits": [
-        "crm/app",
+        "Cloudflare SaaS example app",
         "future VCQA fullstack dashboard patterns"
       ],
       "aliases": [],
@@ -383,7 +383,7 @@
         "parameterized query enforcement"
       ],
       "benefits": [
-        "crm/app/functions with D1"
+        "Cloudflare SaaS example D1 usage"
       ],
       "aliases": [],
       "standardUrl": null,
@@ -410,7 +410,7 @@
         "tool audit trail"
       ],
       "benefits": [
-        "crm/packages/mcp-worker"
+        "Cloudflare SaaS example MCP Worker"
       ],
       "aliases": [],
       "standardUrl": null,
@@ -436,7 +436,7 @@
         "tenant provisioning documentation"
       ],
       "benefits": [
-        "crm tenant deployment model"
+        "Cloudflare SaaS tenant deployment model"
       ],
       "aliases": [],
       "standardUrl": null,
@@ -460,7 +460,7 @@
         "SDK reuse instead of API duplication"
       ],
       "benefits": [
-        "crm/packages/cli",
+        "Cloudflare SaaS example CLI",
         "vcqa/cli"
       ],
       "aliases": [],
@@ -485,7 +485,7 @@
         "consumer compatibility tests"
       ],
       "benefits": [
-        "crm/packages/sdk",
+        "Cloudflare SaaS example SDK",
         "future VCQA schema/client packages"
       ],
       "aliases": [],
@@ -583,7 +583,7 @@
       "benefits": [
         "vibecodeqa/docs",
         "vibecodeqa/standards",
-        "crm/docs"
+        "Cloudflare SaaS example docs"
       ],
       "aliases": [],
       "standardUrl": null,

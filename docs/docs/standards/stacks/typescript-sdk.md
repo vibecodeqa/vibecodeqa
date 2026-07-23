@@ -48,5 +48,5 @@ TypeScript packages consumed as SDKs or client libraries by other projects.
 
 ## Benefits
 
-- crm/packages/sdk.
+- Cloudflare SaaS example SDK.
 - future VCQA schema/client packages.

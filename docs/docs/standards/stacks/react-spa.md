@@ -56,4 +56,4 @@ Client-rendered React applications built as static files, with no server render 
 ## Benefits
 
 - vibecodeqa/app web dashboard.
-- crm/app frontend.
+- Cloudflare SaaS example frontend.

@@ -78,9 +78,9 @@ These are not final rule IDs yet. They are the seed set for `v1`.
 ## Open authoring questions
 
 - Should VCQA require checksums, or allow any ledger that proves migration identity?
-- What minimum tenant isolation model should pass for the CRM use case?
+- What minimum tenant isolation model should pass for the Cloudflare SaaS example?
 - Should rollback be required, or is forward-fix documentation enough for D1?
 
 ## Benefits
 
-- crm/app/functions with D1.
+- Cloudflare SaaS example D1 usage.

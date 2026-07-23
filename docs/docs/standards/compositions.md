@@ -87,8 +87,8 @@ the composed standards that use it.
 
 ## Authoring Order
 
-1. [Cloudflare Pages Fullstack](stacks/cloudflare-pages-fullstack.md): unlocks CRM's
-   `app/functions` shape.
+1. [Cloudflare Pages Fullstack](stacks/cloudflare-pages-fullstack.md): unlocks the
+   React SPA plus Pages Functions shape in the Cloudflare SaaS example.
 2. [Cloudflare D1 App](stacks/cloudflare-d1-app.md): captures migration and tenant
    database discipline.
 3. [Cloudflare Worker MCP Server](stacks/cloudflare-worker-mcp-server.md): captures MCP

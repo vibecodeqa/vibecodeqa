@@ -48,5 +48,5 @@ Node-based command-line tools used by developers, CI, operators, or internal aut
 
 ## Benefits
 
-- crm/packages/cli.
+- Cloudflare SaaS example CLI.
 - vcqa/cli.

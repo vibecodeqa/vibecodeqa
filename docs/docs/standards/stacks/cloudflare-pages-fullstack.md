@@ -76,5 +76,5 @@ A static frontend co-deployed with Cloudflare Pages Functions, usually with same
 
 ## Benefits
 
-- crm/app.
+- Cloudflare SaaS example app.
 - future VCQA fullstack dashboard patterns.

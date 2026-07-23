@@ -55,8 +55,8 @@ A "slice" is the unit that gets one archetype. Slicing rules:
    `functions` sub-slice — because a static SPA and an edge API are different archetypes
    with different rubrics, even in one folder.
 
-This is why `~/work/crm`'s `app/` resolves to `app` → `react-spa` **and**
-`app/functions` → `pages-fullstack`, not one confused verdict.
+This is why a Cloudflare SaaS app can resolve its `app/` frontend to `react-spa` **and**
+its `app/functions` API to `pages-fullstack`, not one confused verdict.
 
 ## 4. Detection DSL
 
@@ -136,7 +136,7 @@ Two consequences that make the vision real:
   no-no), because a judge matches **violations**. The "what's bad" corpus is queryable on
   its own.
 
-## 8. Worked example — `~/work/crm`
+## 8. Worked example — Cloudflare SaaS app
 
 A single command classifies a real hybrid monorepo into its true composition:
 
@@ -153,10 +153,10 @@ Repo recipes: react-spa-on-cloudflare-pages@v1
 ```
 
 `react-spa@v1`, `pages-fullstack@v1`, and the `react-spa-on-cloudflare-pages` alias are
-published today; the rest are mapped gaps. The CRM isn't "a stack that needs its own KB" —
-it's `react-spa` + `pages-fullstack` + `d1-database` + `node-service` + `worker-edge` +
-`mcp-server` + `library` + cross-cutters, most of which are reused by other
-Cloudflare-Pages fullstack repos.
+published today; the rest are mapped gaps. The product app is not "a stack that needs its
+own KB" - it is `react-spa` + `pages-fullstack` + `d1-database` + `node-service` +
+`worker-edge` + `mcp-server` + `library` + cross-cutters, most of which are reused by
+other Cloudflare-Pages fullstack repos.
 
 ## Files
 

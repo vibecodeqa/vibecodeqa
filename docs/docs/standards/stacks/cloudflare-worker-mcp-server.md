@@ -87,4 +87,4 @@ These are not final rule IDs yet. They are the seed set for `v1`.
 
 ## Benefits
 
-- crm/packages/mcp-worker.
+- Cloudflare SaaS example MCP Worker.
