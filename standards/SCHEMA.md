@@ -143,7 +143,7 @@ A single command classifies a real hybrid monorepo into its true composition:
 ```
 # app             [frontend]  archetype: react-spa@v1
                               cross-cutting: typescript, security, testing, accessibility, dependencies
-# app/functions   [functions] archetype: pages-fullstack [PLANNED]
+# app/functions   [functions] archetype: pages-fullstack@v1
                               layers: d1-database [PLANNED]
 # packages/cli    [package]   archetype: node-service [PLANNED]
 # packages/mcp-worker         archetype: worker-edge [PLANNED]
@@ -152,10 +152,10 @@ A single command classifies a real hybrid monorepo into its true composition:
 Repo recipes: react-spa-on-cloudflare-pages [PLANNED]
 ```
 
-Only `react-spa@v1` is published today; everything else is a mapped gap. The CRM isn't "a
-stack that needs its own KB" — it's `react-spa` (done) + `pages-fullstack` + `d1-database`
-+ `node-service` + `worker-edge` + `mcp-server` + `library` + cross-cutters, most of which
-are reused by every other Cloudflare-Pages fullstack repo in the ecosystem.
+`react-spa@v1` and `pages-fullstack@v1` are published today; the rest are mapped gaps. The
+CRM isn't "a stack that needs its own KB" — it's `react-spa` + `pages-fullstack` +
+`d1-database` + `node-service` + `worker-edge` + `mcp-server` + `library` +
+cross-cutters, most of which are reused by other Cloudflare-Pages fullstack repos.
 
 ## Files
 

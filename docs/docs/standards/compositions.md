@@ -13,7 +13,7 @@ We do not author a generic "React standard" or "TypeScript standard". React, Typ
 WCAG, OWASP, Cloudflare, and MCP already publish the broad doctrine. VibeCode QA standards
 define deployable stack shapes and cite those sources.
 
-## Authored Standard
+## Authored Standards
 
 [React SPA](stacks/react-spa.md) is authored as
 [React SPA v1](/standards/react-spa/v1/). The older name `react-spa-static` is an alias,
@@ -24,17 +24,17 @@ It composes [React](items/react.md), [React Router](items/react-router.md),
 [Web Accessibility](items/web-accessibility.md), [Web Security](items/web-security.md),
 [Vitest](items/vitest.md), and [Playwright](items/playwright.md).
 
+[Cloudflare Pages Fullstack](stacks/cloudflare-pages-fullstack.md) is authored as
+[Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/). It composes
+[React SPA](stacks/react-spa.md),
+[Cloudflare Pages Functions](items/cloudflare-pages-functions.md),
+[TypeScript](items/typescript.md), [Web Security](items/web-security.md), and
+[GitHub Actions](items/github-actions.md).
+
 ## Planned Stack Standards
 
 ### Cloudflare
 
-- [Cloudflare Pages Fullstack](stacks/cloudflare-pages-fullstack.md): composes
-  [React SPA](stacks/react-spa.md),
-  [Cloudflare Pages Functions](items/cloudflare-pages-functions.md),
-  [TypeScript](items/typescript.md), [Web Security](items/web-security.md), and
-  [GitHub Actions](items/github-actions.md). It owns the same-origin `/api` seam,
-  Functions route shape, auth middleware placement, bindings, deployed vars, and
-  frontend/functions assembly.
 - [Cloudflare D1 App](stacks/cloudflare-d1-app.md): composes
   [Cloudflare D1](items/cloudflare-d1.md), [TypeScript](items/typescript.md),
   [Web Security](items/web-security.md), and [GitHub Actions](items/github-actions.md).

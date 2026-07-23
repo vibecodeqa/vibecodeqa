@@ -7,11 +7,12 @@ describe deployable shapes, not isolated frameworks.
 
 - [React SPA](react-spa.md): client-rendered React hosted as static files. Full rubric:
   [React SPA v1](/standards/react-spa/v1/).
+- [Cloudflare Pages Fullstack](cloudflare-pages-fullstack.md): static frontend plus
+  same-origin Pages Functions API. Full rubric:
+  [Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/).
 
 ## Planned charters
 
-- [Cloudflare Pages Fullstack](cloudflare-pages-fullstack.md): static frontend plus
-  same-origin Pages Functions API.
 - [Cloudflare D1 App](cloudflare-d1-app.md): D1 migrations, bindings, query safety, and
   environment isolation.
 - [Cloudflare Worker MCP Server](cloudflare-worker-mcp-server.md): remote MCP on Workers

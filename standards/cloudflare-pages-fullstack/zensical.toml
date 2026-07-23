@@ -1,0 +1,70 @@
+[project]
+site_name = "Cloudflare Pages Fullstack - Gold Standard"
+site_description = "The gold-standard reference for static frontends co-deployed with Cloudflare Pages Functions. The rubric VibeCode QA judges cloudflare-pages-fullstack repos against."
+site_author = "VibeCode QA"
+site_url = "https://vibecodeqa.online/standards/cloudflare-pages-fullstack/"
+repo_url = "https://github.com/vibecodeqa/vibecodeqa"
+repo_name = "vibecodeqa/vibecodeqa"
+copyright = "The cloudflare-pages-fullstack gold standard - the rubric VibeCode QA judges against."
+
+docs_dir = "docs"
+site_dir = "site"
+
+nav = [
+  { "Overview" = "index.md" },
+  { "Edition v1" = [
+    { "About this edition" = "v1/index.md" },
+    { "1 - Project shape" = "v1/project-shape.md" },
+    { "2 - Routing seams" = "v1/routing-seams.md" },
+    { "3 - Auth and security" = "v1/auth-and-security.md" },
+    { "4 - Environment and bindings" = "v1/environment-and-bindings.md" },
+    { "5 - Typing and validation" = "v1/typing-and-validation.md" },
+    { "6 - Deployment and CI" = "v1/deployment-and-ci.md" },
+    { "7 - Testing and observability" = "v1/testing-and-observability.md" }
+  ] }
+]
+
+[project.theme]
+language = "en"
+features = [
+  "content.code.copy",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.path",
+  "navigation.sections",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight"
+]
+
+[[project.theme.palette]]
+scheme = "default"
+primary = "indigo"
+accent = "indigo"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "indigo"
+accent = "indigo"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.attr_list]
+[project.markdown_extensions.def_list]
+[project.markdown_extensions.footnotes]
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.toc]
+permalink = true
+[project.markdown_extensions.pymdownx.details]
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+line_spans = "__span"
+pygments_lang_class = true
+[project.markdown_extensions.pymdownx.inlinehilite]
+[project.markdown_extensions.pymdownx.magiclink]
+[project.markdown_extensions.pymdownx.superfences]
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true

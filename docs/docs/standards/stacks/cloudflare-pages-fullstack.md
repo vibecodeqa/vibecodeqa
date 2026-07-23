@@ -1,13 +1,12 @@
 # Cloudflare Pages Fullstack
 
-**Status:** Planned charter
+**Status:** Authored
 
 A static frontend co-deployed with Cloudflare Pages Functions, usually with same-origin `/api/*` routes.
 
 ## Full rubric
 
-No full versioned rubric has been authored yet.
-
+[Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/)
 
 ## Scope
 
@@ -47,9 +46,7 @@ A static frontend co-deployed with Cloudflare Pages Functions, usually with same
 - Protected API routes need middleware/server-side enforcement, not client-only guards.
 - Bindings and secrets are environment-scoped; preview must not reuse production secrets accidentally.
 
-## Candidate rules
-
-These are not final rule IDs yet. They are the seed set for `v1`.
+## Rule highlights
 
 - **R-SEAM-1: Reserve the API namespace.** Pages Functions own `/api/*`; the SPA router
   must not define user-facing routes that shadow that namespace.
@@ -76,12 +73,6 @@ These are not final rule IDs yet. They are the seed set for `v1`.
 - Letting `/api/*` be handled by the SPA fallback.
 - Deploying frontend assets without the matching Functions version.
 - Sharing production bindings with preview deployments.
-
-## Open authoring questions
-
-- Should the standard prescribe `/api/*`, or allow a documented alternative namespace?
-- Which auth providers should have first-class examples?
-- Should D1-specific bindings live here or only in [Cloudflare D1 App](cloudflare-d1-app.md)?
 
 ## Benefits
 

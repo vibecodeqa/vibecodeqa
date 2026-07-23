@@ -342,7 +342,7 @@
     },
     {
       "id": "cloudflare-pages-fullstack",
-      "status": "planned",
+      "status": "authored",
       "stackItems": [
         "react-spa",
         "cloudflare-pages-functions",
@@ -362,8 +362,8 @@
         "future VCQA fullstack dashboard patterns"
       ],
       "aliases": [],
-      "standardUrl": null,
-      "latestEdition": null,
+      "standardUrl": "/standards/cloudflare-pages-fullstack/v1/",
+      "latestEdition": "v1",
       "docsUrl": "/docs/standards/stacks/cloudflare-pages-fullstack/"
     },
     {

@@ -37,12 +37,12 @@
     {
       "id": "pages-fullstack",
       "type": "archetype",
-      "title": "Cloudflare Pages Functions (fullstack)",
+      "title": "Cloudflare Pages Fullstack",
       "summary": "Server-side API co-deployed with a static frontend as Cloudflare Pages Functions. Edge runtime, bindings, no long-lived server.",
-      "url": "https://vibecodeqa.online/standards/pages-fullstack",
+      "url": "https://vibecodeqa.online/standards/cloudflare-pages-fullstack",
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
-      "status": "planned",
+      "status": "published",
       "detect": {
         "all": [
           { "file": "wrangler.toml" },
@@ -51,7 +51,9 @@
       },
       "recommends": ["typescript", "security", "dependencies"],
       "optionalLayers": ["d1-database", "r2-storage", "cf-access"],
-      "editions": []
+      "editions": [
+        { "version": "v1", "path": "/v1", "status": "latest", "reviewed": "2026-07", "nextReview": "2027-07", "targets": { "cloudflarePagesFunctions": "latest", "typescript": "6" } }
+      ]
     },
     {
       "id": "worker-edge",

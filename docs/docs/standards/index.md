@@ -27,10 +27,10 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 | Standard | Status | Charter | Full rubric |
 |---|---|---|---|
 | React SPA | Authored | [React SPA charter](stacks/react-spa.md) | [React SPA v1](/standards/react-spa/v1/) |
+| Cloudflare Pages Fullstack | Authored | [Cloudflare Pages Fullstack charter](stacks/cloudflare-pages-fullstack.md) | [Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/) |
 
 ## Planned stack charters
 
-- [Cloudflare Pages Fullstack](stacks/cloudflare-pages-fullstack.md)
 - [Cloudflare D1 App](stacks/cloudflare-d1-app.md)
 - [Cloudflare Worker MCP Server](stacks/cloudflare-worker-mcp-server.md)
 - [Tenant-Deployed Cloudflare SaaS](stacks/tenant-deployed-cloudflare-saas.md)
@@ -41,8 +41,8 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 - [Tauri React Desktop](stacks/tauri-react-desktop.md)
 - [Zensical KB Site](stacks/zensical-kb-site.md)
 
-The first three charters are now seeded with candidate rule IDs, anti-patterns, and open
-authoring questions. They are the next standards to convert into full versioned rubrics.
+Cloudflare D1 App and Cloudflare Worker MCP Server are now the next standards to convert
+into full versioned rubrics.
 
 ## Machine-readable files
 
