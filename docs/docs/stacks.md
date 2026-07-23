@@ -58,8 +58,8 @@ anti-patterns.
   static-hosted (no SSR). Edition v1 (React 19 · Vite 8 · Tailwind 4 · TS 6). *Published.*
 - **[References](standards/references.md)** — official specs and primary-source docs the
   rubrics cite.
-- **[Compositions](standards/compositions.md)** — individual stack items and composed VCQA
-  standards to author next.
+- **[Compositions](standards/compositions.md)** — linked stack items and composed VCQA
+  standards, including planned charters.
 
 Machine-readable files live at [`/standards/references.json`](/standards/references.json),
 [`/standards/compositions.json`](/standards/compositions.json), and

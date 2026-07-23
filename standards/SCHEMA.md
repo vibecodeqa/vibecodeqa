@@ -162,9 +162,53 @@ are reused by every other Cloudflare-Pages fullstack repo in the ecosystem.
 | File | Role |
 | --- | --- |
 | `registry.json` | the standards catalog + detection predicates + editions |
+| `references.json` | official upstream standards and primary-source documentation |
+| `compositions.json` | human/tool navigation map from stack items to composed VCQA standards |
 | `resolve.mjs` | reference resolver: repo → per-slice standard set + gaps |
 | `SCHEMA.md` | this document |
 
 > The **standards** registry (which KB to *judge against*) is deliberately separate from
 > `site/registry.json`, the **publishing** registry (which KB repos deploy where). Producer:
 > FreeDocStore. Primary consumer: VibeCode QA.
+
+## 9. Composition URLs and docs catalog
+
+`compositions.json` powers the docs catalog under `/docs/standards/`. It deliberately
+contains URLs for humans and tools:
+
+| Field | Applies to | Meaning |
+| --- | --- | --- |
+| `docsUrl` | stack item, composed standard | The docs KB page that explains scope, references, detection signals, and VCQA-owned rule surface. |
+| `standardUrl` | composed standard | The latest full, versioned, judgeable rubric URL. `null` means the standard is only a charter today. |
+| `latestEdition` | composed standard | Latest authored edition such as `v1`. `null` means no edition has been authored. |
+| `aliases` | composed standard | Historical or internal names that resolve to the canonical standard ID. |
+
+Example authored standard:
+
+```json
+{
+  "id": "react-spa",
+  "status": "authored",
+  "aliases": ["react-spa-static"],
+  "docsUrl": "/docs/standards/stacks/react-spa/",
+  "standardUrl": "/standards/react-spa/v1/",
+  "latestEdition": "v1"
+}
+```
+
+Example planned charter:
+
+```json
+{
+  "id": "cloudflare-pages-fullstack",
+  "status": "planned",
+  "aliases": [],
+  "docsUrl": "/docs/standards/stacks/cloudflare-pages-fullstack/",
+  "standardUrl": null,
+  "latestEdition": null
+}
+```
+
+The docs KB is the discovery and explanation surface. `/standards/<id>/vN/` is reserved
+for full rubrics a judge can cite rule-by-rule. `/standards/*.json` remains the
+machine-readable registry layer.

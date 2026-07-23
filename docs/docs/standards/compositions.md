@@ -1,64 +1,62 @@
 # Standards Compositions
 
-VibeCode QA standards are built from upstream authorities plus the stack-specific glue
-needed to judge real repositories.
+VibeCode QA standards are built from upstream authorities plus the stack-specific glue needed to judge real repositories. This page is the map; each row links to a charter or item page with scope, references, detection signals, and example rules.
 
-The machine-readable version lives at
-[`/standards/compositions.json`](/standards/compositions.json).
+The machine-readable version lives at [`/standards/compositions.json`](/standards/compositions.json).
 
 ## Decision
 
-We do not author a generic "React standard" or "TypeScript standard". React, TypeScript,
-WCAG, OWASP, Cloudflare, and MCP already publish the broad doctrine. VibeCode QA standards
-define deployable stack shapes and cite those sources.
+We do not author a generic "React standard" or "TypeScript standard". React, TypeScript, WCAG, OWASP, Cloudflare, and MCP already publish the broad doctrine. VibeCode QA standards define deployable stack shapes and cite those sources.
+
+## Authored standard
+
+- [React SPA](stacks/react-spa.md): charter and map for the authored [React SPA v1 rubric](/standards/react-spa/v1/). The older name `react-spa-static` is treated as an alias, not a separate standard.
+
+## Composed standards
+
+| Composed standard | Status | Composes | Owned rule surface |
+|---|---|---|---|
+| [React SPA](stacks/react-spa.md) | Authored: [v1](/standards/react-spa/v1/) | [React](items/react.md), [React Router](items/react-router.md), [Vite](items/vite.md), [TypeScript](items/typescript.md), [Web Accessibility](items/web-accessibility.md), [Web Security](items/web-security.md), [Vitest](items/vitest.md), [Playwright](items/playwright.md) | static SPA boundary; client env vars are non-secret only; SPA routing fallback; build output and asset hygiene |
+| [Cloudflare Pages Fullstack](stacks/cloudflare-pages-fullstack.md) | Planned charter | [React SPA](stacks/react-spa.md), [Cloudflare Pages Functions](items/cloudflare-pages-functions.md), [TypeScript](items/typescript.md), [Web Security](items/web-security.md), [GitHub Actions](items/github-actions.md) | same-origin /api seam; functions route shape; middleware/auth placement; bindings and deployed vars; SPA/functions deploy assembly |
+| [Cloudflare D1 App](stacks/cloudflare-d1-app.md) | Planned charter | [Cloudflare D1](items/cloudflare-d1.md), [TypeScript](items/typescript.md), [Web Security](items/web-security.md), [GitHub Actions](items/github-actions.md) | append-only/versioned migrations; migration checksum or drift guard; local apply test; staging/prod/tenant database isolation; parameterized query enforcement |
+| [Cloudflare Worker MCP Server](stacks/cloudflare-worker-mcp-server.md) | Planned charter | [Cloudflare Workers](items/cloudflare-workers.md), [Durable Objects](items/durable-objects.md), [Model Context Protocol](items/mcp.md), [Zod](items/zod.md), [TypeScript](items/typescript.md), [Web Security](items/web-security.md), [GitHub Actions](items/github-actions.md) | remote MCP authorization; tool schema and permission boundaries; Durable Object/KV storage policy; per-environment OAuth isolation; tool audit trail |
+| [Tenant-Deployed Cloudflare SaaS](stacks/tenant-deployed-cloudflare-saas.md) | Planned charter | [Cloudflare Pages Functions](items/cloudflare-pages-functions.md), [Cloudflare D1](items/cloudflare-d1.md), [Cloudflare Workers](items/cloudflare-workers.md), [GitHub Actions](items/github-actions.md), [Web Security](items/web-security.md), [Docs KB](items/docs-kb.md) | tenant instance isolation; staging/prod promotion gates; per-tenant D1 and secret boundaries; deployment alias auth perimeter; tenant provisioning documentation |
+| [Node CLI Internal Tool](stacks/node-cli-internal-tool.md) | Planned charter | [TypeScript](items/typescript.md), [Node.js](items/node.md), [OpenAPI](items/openapi.md), [Web Security](items/web-security.md) | noninteractive exit-code contract; credential resolution order; prod/staging safety defaults; structured output mode; SDK reuse instead of API duplication |
+| [TypeScript SDK](stacks/typescript-sdk.md) | Planned charter | [TypeScript](items/typescript.md), [OpenAPI](items/openapi.md), [Zod](items/zod.md), [Vitest](items/vitest.md) | export map and declaration quality; API contract freshness; credential boundary; typed error model; consumer compatibility tests |
+| [GitHub Action Package](stacks/github-action-package.md) | Planned charter | [GitHub Action Package](items/github-action.md), [GitHub Actions](items/github-actions.md), [Node.js](items/node.md), [TypeScript](items/typescript.md) | action.yml metadata completeness; minimum token permissions; input validation; pinned runtime/dependency policy; release tag policy |
+| [VS Code Extension Package](stacks/vscode-extension-package.md) | Planned charter | [VS Code Extension](items/vscode-extension.md), [TypeScript](items/typescript.md), [Node.js](items/node.md), [Web Security](items/web-security.md) | activation event scope; workspace trust behavior; command and webview boundaries; marketplace metadata; extension test coverage |
+| [Tauri React Desktop](stacks/tauri-react-desktop.md) | Planned charter | [Tauri](items/tauri.md), [React](items/react.md), [TypeScript](items/typescript.md), [Web Security](items/web-security.md), [Docs KB](items/docs-kb.md) | Tauri command/capability boundaries; keychain/secret storage; file-system watch safety; desktop packaging and signing; frontend/backend contract typing |
+| [Zensical KB Site](stacks/zensical-kb-site.md) | Planned charter | [Docs KB](items/docs-kb.md), [GitHub Actions](items/github-actions.md) | Markdown source is the source of truth; generated site is ignored; published URLs are stable; source references are tracked; docs drift checks where mirrors exist |
 
 ## Individual stack items
 
 | Item | Kind | Upstream references | VCQA owns |
 |---|---|---|---|
-| `node` | runtime | Node docs, Node security, npm `package.json` | Runtime and package metadata gates, CLI/service process safety, Node-specific security checks. |
-| `react` | framework | React docs, Rules of Hooks | Detection mapping for hook/component anti-patterns; stack-specific conventions only where needed. |
-| `react-router` | routing | React Router docs | SPA fallback expectations and route organization for static deployments. |
-| `vite` | build tool | Vite guide, Vite static deploy | Build artifact expectations, env boundary, static hosting fit. |
-| `typescript` | language | TSConfig Reference, TypeScript Handbook | Strictness enforcement by stack, generated-file exceptions, typed boundary checks. |
-| `web-accessibility` | quality | WCAG 2.2, WAI-ARIA APG | Code-level detection mapping and UI acceptance gates. |
-| `web-security` | security | OWASP ASVS, OWASP cheat sheets | Stack-specific auth, secret boundaries, detectable unsafe patterns, CI gates. |
-| `vitest` | testing | Vitest guide | Required test layers by stack, coverage and CI gate expectations. |
-| `playwright` | testing | Playwright best practices | E2E smoke coverage by deployable app shape, artifact and failure-report expectations. |
-| `cloudflare-pages-functions` | runtime | Pages Functions routing and middleware docs | Functions shape, same-origin API seam, SPA/functions route collision checks, binding policy. |
-| `cloudflare-workers` | runtime | Cloudflare Workers docs and best practices | Compatibility-date policy, Worker deployment checks, runtime anti-patterns. |
-| `cloudflare-d1` | database | D1 docs and migrations | Migration discipline, local/remote parity, tenant DB isolation, query-safety checks. |
-| `durable-objects` | state | Durable Objects docs and best practices | Stateful object boundaries, migration/storage policy, binding checks. |
-| `mcp` | protocol | MCP spec, authorization, security, TypeScript SDK | Tool safety, remote authorization, schema quality, auditability. |
-| `zod` | validation | Zod docs | Boundary validation, `safeParse`/error shape, schema sharing across seams. |
-| `openapi` | API contract | OpenAPI, JSON Schema | Contract freshness, generated client/server drift, operation coverage. |
-| `github-actions` | CI | GitHub Actions secure use and OIDC/deployment hardening | Workflow permission gates, environment checks, required stack gates. |
-| `vscode-extension` | extension | VS Code extension API, publishing, runtime security | Activation scope, webview/security policy, marketplace metadata checks. |
-| `github-action` | automation | GitHub action metadata and creating actions docs | `action.yml` quality, input/output contract, token/permission guidance, release policy. |
-| `tauri` | desktop | Tauri docs | Command/capability boundaries, secret storage, packaging/signing checks. |
-| `docs-kb` | documentation | Zensical, Diataxis, ADR guidance, C4 | Source/build separation, ADR freshness, published KB access policy, architecture drift gates. |
-
-## Composed standards to author
-
-| Composed standard | Status | Composes | Owned rule surface | Benefits |
-|---|---|---|---|---|
-| `react-spa-static` | Authored as `react-spa` v1 | React, React Router, Vite, TypeScript, accessibility, security, Vitest, Playwright | Static SPA boundary, client env policy, routing fallback, build output and asset hygiene. | VibeCode QA app web dashboard; CRM app frontend. |
-| `cloudflare-pages-fullstack` | Planned | `react-spa-static`, Pages Functions, TypeScript, security, GitHub Actions | Same-origin API seam, Functions route shape, middleware/auth placement, bindings, deployed vars, SPA/functions deploy assembly. | CRM app; future VibeCode QA dashboard patterns. |
-| `cloudflare-d1-app` | Planned | D1, TypeScript, security, GitHub Actions | Versioned migrations, checksums/drift guard, local apply test, staging/prod/tenant DB isolation, parameterized queries. | CRM Pages Functions with D1. |
-| `cloudflare-worker-mcp-server` | Planned | Workers, Durable Objects, MCP, Zod, TypeScript, security, GitHub Actions | Remote MCP auth, tool schemas, permission boundaries, DO/KV storage, per-env OAuth isolation, audit trail. | CRM MCP Worker. |
-| `tenant-deployed-cloudflare-saas` | Planned | Pages Functions, D1, Workers, GitHub Actions, security, docs-kb | Tenant isolation, promotion gates, per-tenant D1/secrets, deployment alias auth perimeter, provisioning docs. | CRM tenant deployment model. |
-| `node-cli-internal-tool` | Planned | Node, TypeScript, OpenAPI, security | Exit-code contract, credential resolution, prod/staging safety defaults, structured output, SDK reuse. | CRM CLI; VibeCode QA CLI. |
-| `typescript-sdk` | Planned | TypeScript, OpenAPI, Zod, Vitest | Export map/declarations, contract freshness, credential boundary, typed error model, compatibility tests. | CRM SDK; future VibeCode QA schema/client packages. |
-| `github-action-package` | Planned | GitHub Action, GitHub Actions, Node, TypeScript | Metadata completeness, minimum permissions, input validation, runtime/dependency policy, release tag policy. | VibeCode QA action repo. |
-| `vscode-extension-package` | Planned | VS Code Extension, TypeScript, Node, security | Activation scope, workspace trust, command/webview boundaries, marketplace metadata, extension tests. | VibeCode QA VS Code repo. |
-| `tauri-react-desktop` | Planned | Tauri, React, TypeScript, security, docs-kb | Command/capability boundaries, keychain storage, file-watch safety, signing, frontend/backend contract typing. | VibeCode QA desktop monitor. |
-| `zensical-kb-site` | Planned | docs-kb, GitHub Actions | Markdown is source of truth, generated site ignored, stable URLs, tracked source references, docs drift checks. | VibeCode QA docs/standards; CRM docs. |
+| [Node.js](items/node.md) | runtime | [Node.js Documentation](https://nodejs.org/docs/latest/api/), [Node.js Security Best Practices](https://nodejs.org/en/learn/getting-started/security-best-practices), [package.json](https://docs.npmjs.com/cli/v10/configuring-npm/package-json) | runtime and package metadata gates; CLI/service process safety; Node-specific security checks |
+| [React](items/react.md) | framework | [React Documentation](https://react.dev/), [Rules of Hooks](https://react.dev/reference/rules/rules-of-hooks) | component/routing conventions only where the stack shape requires them; detection mapping for hook and component anti-patterns |
+| [React Router](items/react-router.md) | routing | [React Router Documentation](https://reactrouter.com/) | SPA fallback expectations; route/module organization for static deployments |
+| [Vite](items/vite.md) | build-tool | [Vite Guide](https://vite.dev/guide/), [Deploying a Static Site](https://vite.dev/guide/static-deploy) | build artifact expectations; client environment-variable boundary; static hosting fit |
+| [TypeScript](items/typescript.md) | language | [TSConfig Reference](https://www.typescriptlang.org/tsconfig/), [TypeScript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html) | strictness enforcement by stack; exception policy for generated files; typed boundary checks |
+| [Web Accessibility](items/web-accessibility.md) | quality | [Web Content Accessibility Guidelines (WCAG) 2.2](https://www.w3.org/TR/WCAG22/), [WAI-ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/) | code-level detection mapping; minimum acceptance gates for UI stacks |
+| [Web Security](items/web-security.md) | security | [Application Security Verification Standard](https://owasp.org/www-project-application-security-verification-standard/), [OWASP Cheat Sheet Series](https://cheatsheetseries.owasp.org/), [Cross-Site Request Forgery Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html), [Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html) | stack-specific auth and secret boundaries; detectable unsafe patterns; security gates in CI |
+| [Vitest](items/vitest.md) | testing | [Vitest Guide](https://vitest.dev/guide/) | required test layers by stack; coverage and CI gate expectations |
+| [Playwright](items/playwright.md) | testing | [Playwright Best Practices](https://playwright.dev/docs/best-practices) | E2E smoke coverage by deployable app shape; artifact and failure-report expectations |
+| [Cloudflare Pages Functions](items/cloudflare-pages-functions.md) | runtime | [Pages Functions](https://developers.cloudflare.com/pages/functions/), [Pages Functions Routing](https://developers.cloudflare.com/pages/functions/routing/), [Pages Functions Middleware](https://developers.cloudflare.com/pages/functions/middleware/) | functions directory shape; same-origin API seam; SPA/functions route collision checks; binding and env policy |
+| [Cloudflare Workers](items/cloudflare-workers.md) | runtime | [Workers Documentation](https://developers.cloudflare.com/workers/), [Workers Best Practices](https://developers.cloudflare.com/workers/best-practices/) | compatibility-date policy; Worker-specific deployment and secrets checks; runtime anti-patterns |
+| [Cloudflare D1](items/cloudflare-d1.md) | database | [D1 Documentation](https://developers.cloudflare.com/d1/), [D1 Migrations](https://developers.cloudflare.com/d1/reference/migrations/) | migration discipline; local/remote parity checks; tenant database isolation; query-safety checks |
+| [Durable Objects](items/durable-objects.md) | state | [Durable Objects Documentation](https://developers.cloudflare.com/durable-objects/), [Durable Objects Best Practices](https://developers.cloudflare.com/durable-objects/best-practices/) | stateful object boundaries; migration and storage policy; DO binding checks |
+| [Model Context Protocol](items/mcp.md) | protocol | [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/2025-06-18), [MCP Authorization](https://modelcontextprotocol.io/specification/draft/basic/authorization), [MCP Security Best Practices](https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices), [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) | tool safety rubric; remote authorization policy; tool schema quality; auditability |
+| [Zod](items/zod.md) | validation | [Zod Documentation](https://zod.dev/) | boundary-validation expectations; safeParse/error-shape policy; schema sharing across API/client seams |
+| [OpenAPI](items/openapi.md) | api-contract | [OpenAPI Specification](https://spec.openapis.org/oas/latest.html), [JSON Schema](https://json-schema.org/specification) | contract freshness checks; generated client/server drift checks; operation coverage |
+| [GitHub Actions](items/github-actions.md) | ci | [Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use), [Security hardening your deployments](https://docs.github.com/actions/how-tos/secure-your-work/security-harden-deployments) | workflow permission gates; deployment environment checks; required test/build gates by stack |
+| [VS Code Extension](items/vscode-extension.md) | extension | [Extension API](https://code.visualstudio.com/api), [Publishing Extensions](https://code.visualstudio.com/api/working-with-extensions/publishing-extension), [Extension Runtime Security](https://code.visualstudio.com/docs/configure/extensions/extension-runtime-security) | activation scope; webview/security policy; marketplace metadata checks |
+| [GitHub Action Package](items/github-action.md) | automation | [Metadata syntax for GitHub Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/metadata-syntax), [Creating actions](https://docs.github.com/en/actions/sharing-automations/creating-actions), [Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use) | action.yml quality; input/output contract; token/permission guidance; pinning/versioning checks |
+| [Tauri](items/tauri.md) | desktop | [Tauri Documentation](https://v2.tauri.app/) | command/capability boundaries; secret storage expectations; desktop build/signing checks |
+| [Docs KB](items/docs-kb.md) | documentation | [Zensical Documentation](https://zensical.org/docs/), [Diataxis](https://diataxis.fr/), [Architecture Decision Records](https://github.com/joelparkerhenderson/architecture-decision-record), [The C4 Model](https://c4model.com/) | docs source/build separation; ADR freshness checks; published KB access policy; architecture drift gates |
 
 ## Authoring order
 
-Start with the stack standards that have the highest reuse and clearest repo evidence:
-
-1. `cloudflare-pages-fullstack`: unlocks CRM's `app/functions` shape.
-2. `cloudflare-d1-app`: captures migration and tenant database discipline.
-3. `cloudflare-worker-mcp-server`: captures MCP over Workers, Durable Objects, OAuth, and tool safety.
-4. `node-cli-internal-tool`, `typescript-sdk`, and `zensical-kb-site`: cover shared packages and documentation model.
+1. [Cloudflare Pages Fullstack](stacks/cloudflare-pages-fullstack.md): unlocks CRM's `app/functions` shape.
+2. [Cloudflare D1 App](stacks/cloudflare-d1-app.md): captures migration and tenant database discipline.
+3. [Cloudflare Worker MCP Server](stacks/cloudflare-worker-mcp-server.md): captures MCP over Workers, Durable Objects, OAuth, and tool safety.
+4. [Node CLI Internal Tool](stacks/node-cli-internal-tool.md), [TypeScript SDK](stacks/typescript-sdk.md), and [Zensical KB Site](stacks/zensical-kb-site.md): cover shared packages and documentation model.

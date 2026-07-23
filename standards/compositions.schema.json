@@ -5,6 +5,7 @@
   "type": "object",
   "required": ["version", "lastReviewed", "purpose", "principles", "stackItems", "composedStandards"],
   "properties": {
+    "$schema": { "type": "string" },
     "version": { "type": "integer", "minimum": 1 },
     "lastReviewed": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
     "purpose": { "type": "string" },
@@ -13,12 +14,13 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "kind", "references", "vcqaShouldOwn"],
+        "required": ["id", "kind", "references", "vcqaShouldOwn", "docsUrl"],
         "properties": {
           "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
           "kind": { "type": "string" },
           "references": { "type": "array", "items": { "type": "string" } },
-          "vcqaShouldOwn": { "type": "array", "items": { "type": "string" } }
+          "vcqaShouldOwn": { "type": "array", "items": { "type": "string" } },
+          "docsUrl": { "type": "string" }
         },
         "additionalProperties": false
       }
@@ -27,13 +29,17 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "status", "stackItems", "ownedRules", "benefits"],
+        "required": ["id", "status", "aliases", "stackItems", "ownedRules", "benefits", "docsUrl", "standardUrl", "latestEdition"],
         "properties": {
           "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
           "status": { "type": "string" },
+          "aliases": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9-]+$" } },
           "stackItems": { "type": "array", "items": { "type": "string" } },
           "ownedRules": { "type": "array", "items": { "type": "string" } },
-          "benefits": { "type": "array", "items": { "type": "string" } }
+          "benefits": { "type": "array", "items": { "type": "string" } },
+          "docsUrl": { "type": "string" },
+          "standardUrl": { "type": ["string", "null"] },
+          "latestEdition": { "type": ["string", "null"] }
         },
         "additionalProperties": false
       }

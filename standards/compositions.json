@@ -12,207 +12,583 @@
     {
       "id": "node",
       "kind": "runtime",
-      "references": ["node-docs", "node-security-best-practices", "npm-package-json"],
-      "vcqaShouldOwn": ["runtime and package metadata gates", "CLI/service process safety", "Node-specific security checks"]
+      "references": [
+        "node-docs",
+        "node-security-best-practices",
+        "npm-package-json"
+      ],
+      "vcqaShouldOwn": [
+        "runtime and package metadata gates",
+        "CLI/service process safety",
+        "Node-specific security checks"
+      ],
+      "docsUrl": "/docs/standards/items/node/"
     },
     {
       "id": "react",
       "kind": "framework",
-      "references": ["react-docs", "react-rules-of-hooks"],
-      "vcqaShouldOwn": ["component/routing conventions only where the stack shape requires them", "detection mapping for hook and component anti-patterns"]
+      "references": [
+        "react-docs",
+        "react-rules-of-hooks"
+      ],
+      "vcqaShouldOwn": [
+        "component/routing conventions only where the stack shape requires them",
+        "detection mapping for hook and component anti-patterns"
+      ],
+      "docsUrl": "/docs/standards/items/react/"
     },
     {
       "id": "react-router",
       "kind": "routing",
-      "references": ["react-router-docs"],
-      "vcqaShouldOwn": ["SPA fallback expectations", "route/module organization for static deployments"]
+      "references": [
+        "react-router-docs"
+      ],
+      "vcqaShouldOwn": [
+        "SPA fallback expectations",
+        "route/module organization for static deployments"
+      ],
+      "docsUrl": "/docs/standards/items/react-router/"
     },
     {
       "id": "vite",
       "kind": "build-tool",
-      "references": ["vite-guide", "vite-static-deploy"],
-      "vcqaShouldOwn": ["build artifact expectations", "client environment-variable boundary", "static hosting fit"]
+      "references": [
+        "vite-guide",
+        "vite-static-deploy"
+      ],
+      "vcqaShouldOwn": [
+        "build artifact expectations",
+        "client environment-variable boundary",
+        "static hosting fit"
+      ],
+      "docsUrl": "/docs/standards/items/vite/"
     },
     {
       "id": "typescript",
       "kind": "language",
-      "references": ["typescript-tsconfig", "typescript-handbook"],
-      "vcqaShouldOwn": ["strictness enforcement by stack", "exception policy for generated files", "typed boundary checks"]
+      "references": [
+        "typescript-tsconfig",
+        "typescript-handbook"
+      ],
+      "vcqaShouldOwn": [
+        "strictness enforcement by stack",
+        "exception policy for generated files",
+        "typed boundary checks"
+      ],
+      "docsUrl": "/docs/standards/items/typescript/"
     },
     {
       "id": "web-accessibility",
       "kind": "quality",
-      "references": ["wcag-22", "wai-aria"],
-      "vcqaShouldOwn": ["code-level detection mapping", "minimum acceptance gates for UI stacks"]
+      "references": [
+        "wcag-22",
+        "wai-aria"
+      ],
+      "vcqaShouldOwn": [
+        "code-level detection mapping",
+        "minimum acceptance gates for UI stacks"
+      ],
+      "docsUrl": "/docs/standards/items/web-accessibility/"
     },
     {
       "id": "web-security",
       "kind": "security",
-      "references": ["owasp-asvs", "owasp-cheat-sheets", "owasp-csrf-cheat-sheet", "owasp-session-management"],
-      "vcqaShouldOwn": ["stack-specific auth and secret boundaries", "detectable unsafe patterns", "security gates in CI"]
+      "references": [
+        "owasp-asvs",
+        "owasp-cheat-sheets",
+        "owasp-csrf-cheat-sheet",
+        "owasp-session-management"
+      ],
+      "vcqaShouldOwn": [
+        "stack-specific auth and secret boundaries",
+        "detectable unsafe patterns",
+        "security gates in CI"
+      ],
+      "docsUrl": "/docs/standards/items/web-security/"
     },
     {
       "id": "vitest",
       "kind": "testing",
-      "references": ["vitest-guide"],
-      "vcqaShouldOwn": ["required test layers by stack", "coverage and CI gate expectations"]
+      "references": [
+        "vitest-guide"
+      ],
+      "vcqaShouldOwn": [
+        "required test layers by stack",
+        "coverage and CI gate expectations"
+      ],
+      "docsUrl": "/docs/standards/items/vitest/"
     },
     {
       "id": "playwright",
       "kind": "testing",
-      "references": ["playwright-best-practices"],
-      "vcqaShouldOwn": ["E2E smoke coverage by deployable app shape", "artifact and failure-report expectations"]
+      "references": [
+        "playwright-best-practices"
+      ],
+      "vcqaShouldOwn": [
+        "E2E smoke coverage by deployable app shape",
+        "artifact and failure-report expectations"
+      ],
+      "docsUrl": "/docs/standards/items/playwright/"
     },
     {
       "id": "cloudflare-pages-functions",
       "kind": "runtime",
-      "references": ["cloudflare-pages-functions", "cloudflare-pages-functions-routing", "cloudflare-pages-functions-middleware"],
-      "vcqaShouldOwn": ["functions directory shape", "same-origin API seam", "SPA/functions route collision checks", "binding and env policy"]
+      "references": [
+        "cloudflare-pages-functions",
+        "cloudflare-pages-functions-routing",
+        "cloudflare-pages-functions-middleware"
+      ],
+      "vcqaShouldOwn": [
+        "functions directory shape",
+        "same-origin API seam",
+        "SPA/functions route collision checks",
+        "binding and env policy"
+      ],
+      "docsUrl": "/docs/standards/items/cloudflare-pages-functions/"
     },
     {
       "id": "cloudflare-workers",
       "kind": "runtime",
-      "references": ["cloudflare-workers", "cloudflare-workers-best-practices"],
-      "vcqaShouldOwn": ["compatibility-date policy", "Worker-specific deployment and secrets checks", "runtime anti-patterns"]
+      "references": [
+        "cloudflare-workers",
+        "cloudflare-workers-best-practices"
+      ],
+      "vcqaShouldOwn": [
+        "compatibility-date policy",
+        "Worker-specific deployment and secrets checks",
+        "runtime anti-patterns"
+      ],
+      "docsUrl": "/docs/standards/items/cloudflare-workers/"
     },
     {
       "id": "cloudflare-d1",
       "kind": "database",
-      "references": ["cloudflare-d1", "cloudflare-d1-migrations"],
-      "vcqaShouldOwn": ["migration discipline", "local/remote parity checks", "tenant database isolation", "query-safety checks"]
+      "references": [
+        "cloudflare-d1",
+        "cloudflare-d1-migrations"
+      ],
+      "vcqaShouldOwn": [
+        "migration discipline",
+        "local/remote parity checks",
+        "tenant database isolation",
+        "query-safety checks"
+      ],
+      "docsUrl": "/docs/standards/items/cloudflare-d1/"
     },
     {
       "id": "durable-objects",
       "kind": "state",
-      "references": ["cloudflare-durable-objects", "cloudflare-durable-objects-best-practices"],
-      "vcqaShouldOwn": ["stateful object boundaries", "migration and storage policy", "DO binding checks"]
+      "references": [
+        "cloudflare-durable-objects",
+        "cloudflare-durable-objects-best-practices"
+      ],
+      "vcqaShouldOwn": [
+        "stateful object boundaries",
+        "migration and storage policy",
+        "DO binding checks"
+      ],
+      "docsUrl": "/docs/standards/items/durable-objects/"
     },
     {
       "id": "mcp",
       "kind": "protocol",
-      "references": ["mcp-spec", "mcp-authorization", "mcp-security", "mcp-typescript-sdk"],
-      "vcqaShouldOwn": ["tool safety rubric", "remote authorization policy", "tool schema quality", "auditability"]
+      "references": [
+        "mcp-spec",
+        "mcp-authorization",
+        "mcp-security",
+        "mcp-typescript-sdk"
+      ],
+      "vcqaShouldOwn": [
+        "tool safety rubric",
+        "remote authorization policy",
+        "tool schema quality",
+        "auditability"
+      ],
+      "docsUrl": "/docs/standards/items/mcp/"
     },
     {
       "id": "zod",
       "kind": "validation",
-      "references": ["zod-docs"],
-      "vcqaShouldOwn": ["boundary-validation expectations", "safeParse/error-shape policy", "schema sharing across API/client seams"]
+      "references": [
+        "zod-docs"
+      ],
+      "vcqaShouldOwn": [
+        "boundary-validation expectations",
+        "safeParse/error-shape policy",
+        "schema sharing across API/client seams"
+      ],
+      "docsUrl": "/docs/standards/items/zod/"
     },
     {
       "id": "openapi",
       "kind": "api-contract",
-      "references": ["openapi", "json-schema"],
-      "vcqaShouldOwn": ["contract freshness checks", "generated client/server drift checks", "operation coverage"]
+      "references": [
+        "openapi",
+        "json-schema"
+      ],
+      "vcqaShouldOwn": [
+        "contract freshness checks",
+        "generated client/server drift checks",
+        "operation coverage"
+      ],
+      "docsUrl": "/docs/standards/items/openapi/"
     },
     {
       "id": "github-actions",
       "kind": "ci",
-      "references": ["github-actions-secure-use", "github-actions-oidc"],
-      "vcqaShouldOwn": ["workflow permission gates", "deployment environment checks", "required test/build gates by stack"]
+      "references": [
+        "github-actions-secure-use",
+        "github-actions-oidc"
+      ],
+      "vcqaShouldOwn": [
+        "workflow permission gates",
+        "deployment environment checks",
+        "required test/build gates by stack"
+      ],
+      "docsUrl": "/docs/standards/items/github-actions/"
     },
     {
       "id": "vscode-extension",
       "kind": "extension",
-      "references": ["vscode-extension-api", "vscode-extension-publishing", "vscode-extension-runtime-security"],
-      "vcqaShouldOwn": ["activation scope", "webview/security policy", "marketplace metadata checks"]
+      "references": [
+        "vscode-extension-api",
+        "vscode-extension-publishing",
+        "vscode-extension-runtime-security"
+      ],
+      "vcqaShouldOwn": [
+        "activation scope",
+        "webview/security policy",
+        "marketplace metadata checks"
+      ],
+      "docsUrl": "/docs/standards/items/vscode-extension/"
     },
     {
       "id": "github-action",
       "kind": "automation",
-      "references": ["github-actions-metadata", "github-actions-creating-actions", "github-actions-secure-use"],
-      "vcqaShouldOwn": ["action.yml quality", "input/output contract", "token/permission guidance", "pinning/versioning checks"]
+      "references": [
+        "github-actions-metadata",
+        "github-actions-creating-actions",
+        "github-actions-secure-use"
+      ],
+      "vcqaShouldOwn": [
+        "action.yml quality",
+        "input/output contract",
+        "token/permission guidance",
+        "pinning/versioning checks"
+      ],
+      "docsUrl": "/docs/standards/items/github-action/"
     },
     {
       "id": "tauri",
       "kind": "desktop",
-      "references": ["tauri-docs"],
-      "vcqaShouldOwn": ["command/capability boundaries", "secret storage expectations", "desktop build/signing checks"]
+      "references": [
+        "tauri-docs"
+      ],
+      "vcqaShouldOwn": [
+        "command/capability boundaries",
+        "secret storage expectations",
+        "desktop build/signing checks"
+      ],
+      "docsUrl": "/docs/standards/items/tauri/"
     },
     {
       "id": "docs-kb",
       "kind": "documentation",
-      "references": ["zensical-docs", "diataxis", "adr-github", "c4-model"],
-      "vcqaShouldOwn": ["docs source/build separation", "ADR freshness checks", "published KB access policy", "architecture drift gates"]
+      "references": [
+        "zensical-docs",
+        "diataxis",
+        "adr-github",
+        "c4-model"
+      ],
+      "vcqaShouldOwn": [
+        "docs source/build separation",
+        "ADR freshness checks",
+        "published KB access policy",
+        "architecture drift gates"
+      ],
+      "docsUrl": "/docs/standards/items/docs-kb/"
     }
   ],
   "composedStandards": [
     {
-      "id": "react-spa-static",
-      "status": "authored-as-react-spa-v1",
-      "stackItems": ["react", "react-router", "vite", "typescript", "web-accessibility", "web-security", "vitest", "playwright"],
-      "ownedRules": ["static SPA boundary", "client env vars are non-secret only", "SPA routing fallback", "build output and asset hygiene"],
-      "benefits": ["vibecodeqa/app web dashboard", "crm/app frontend"]
+      "id": "react-spa",
+      "status": "authored",
+      "stackItems": [
+        "react",
+        "react-router",
+        "vite",
+        "typescript",
+        "web-accessibility",
+        "web-security",
+        "vitest",
+        "playwright"
+      ],
+      "ownedRules": [
+        "static SPA boundary",
+        "client env vars are non-secret only",
+        "SPA routing fallback",
+        "build output and asset hygiene"
+      ],
+      "benefits": [
+        "vibecodeqa/app web dashboard",
+        "crm/app frontend"
+      ],
+      "aliases": [
+        "react-spa-static"
+      ],
+      "standardUrl": "/standards/react-spa/v1/",
+      "latestEdition": "v1",
+      "docsUrl": "/docs/standards/stacks/react-spa/"
     },
     {
       "id": "cloudflare-pages-fullstack",
       "status": "planned",
-      "stackItems": ["react-spa-static", "cloudflare-pages-functions", "typescript", "web-security", "github-actions"],
-      "ownedRules": ["same-origin /api seam", "functions route shape", "middleware/auth placement", "bindings and deployed vars", "SPA/functions deploy assembly"],
-      "benefits": ["crm/app", "future VCQA fullstack dashboard patterns"]
+      "stackItems": [
+        "react-spa",
+        "cloudflare-pages-functions",
+        "typescript",
+        "web-security",
+        "github-actions"
+      ],
+      "ownedRules": [
+        "same-origin /api seam",
+        "functions route shape",
+        "middleware/auth placement",
+        "bindings and deployed vars",
+        "SPA/functions deploy assembly"
+      ],
+      "benefits": [
+        "crm/app",
+        "future VCQA fullstack dashboard patterns"
+      ],
+      "aliases": [],
+      "standardUrl": null,
+      "latestEdition": null,
+      "docsUrl": "/docs/standards/stacks/cloudflare-pages-fullstack/"
     },
     {
       "id": "cloudflare-d1-app",
       "status": "planned",
-      "stackItems": ["cloudflare-d1", "typescript", "web-security", "github-actions"],
-      "ownedRules": ["append-only/versioned migrations", "migration checksum or drift guard", "local apply test", "staging/prod/tenant database isolation", "parameterized query enforcement"],
-      "benefits": ["crm/app/functions with D1"]
+      "stackItems": [
+        "cloudflare-d1",
+        "typescript",
+        "web-security",
+        "github-actions"
+      ],
+      "ownedRules": [
+        "append-only/versioned migrations",
+        "migration checksum or drift guard",
+        "local apply test",
+        "staging/prod/tenant database isolation",
+        "parameterized query enforcement"
+      ],
+      "benefits": [
+        "crm/app/functions with D1"
+      ],
+      "aliases": [],
+      "standardUrl": null,
+      "latestEdition": null,
+      "docsUrl": "/docs/standards/stacks/cloudflare-d1-app/"
     },
     {
       "id": "cloudflare-worker-mcp-server",
       "status": "planned",
-      "stackItems": ["cloudflare-workers", "durable-objects", "mcp", "zod", "typescript", "web-security", "github-actions"],
-      "ownedRules": ["remote MCP authorization", "tool schema and permission boundaries", "Durable Object/KV storage policy", "per-environment OAuth isolation", "tool audit trail"],
-      "benefits": ["crm/packages/mcp-worker"]
+      "stackItems": [
+        "cloudflare-workers",
+        "durable-objects",
+        "mcp",
+        "zod",
+        "typescript",
+        "web-security",
+        "github-actions"
+      ],
+      "ownedRules": [
+        "remote MCP authorization",
+        "tool schema and permission boundaries",
+        "Durable Object/KV storage policy",
+        "per-environment OAuth isolation",
+        "tool audit trail"
+      ],
+      "benefits": [
+        "crm/packages/mcp-worker"
+      ],
+      "aliases": [],
+      "standardUrl": null,
+      "latestEdition": null,
+      "docsUrl": "/docs/standards/stacks/cloudflare-worker-mcp-server/"
     },
     {
       "id": "tenant-deployed-cloudflare-saas",
       "status": "planned",
-      "stackItems": ["cloudflare-pages-functions", "cloudflare-d1", "cloudflare-workers", "github-actions", "web-security", "docs-kb"],
-      "ownedRules": ["tenant instance isolation", "staging/prod promotion gates", "per-tenant D1 and secret boundaries", "deployment alias auth perimeter", "tenant provisioning documentation"],
-      "benefits": ["crm tenant deployment model"]
+      "stackItems": [
+        "cloudflare-pages-functions",
+        "cloudflare-d1",
+        "cloudflare-workers",
+        "github-actions",
+        "web-security",
+        "docs-kb"
+      ],
+      "ownedRules": [
+        "tenant instance isolation",
+        "staging/prod promotion gates",
+        "per-tenant D1 and secret boundaries",
+        "deployment alias auth perimeter",
+        "tenant provisioning documentation"
+      ],
+      "benefits": [
+        "crm tenant deployment model"
+      ],
+      "aliases": [],
+      "standardUrl": null,
+      "latestEdition": null,
+      "docsUrl": "/docs/standards/stacks/tenant-deployed-cloudflare-saas/"
     },
     {
       "id": "node-cli-internal-tool",
       "status": "planned",
-      "stackItems": ["typescript", "node", "openapi", "web-security"],
-      "ownedRules": ["noninteractive exit-code contract", "credential resolution order", "prod/staging safety defaults", "structured output mode", "SDK reuse instead of API duplication"],
-      "benefits": ["crm/packages/cli", "vcqa/cli"]
+      "stackItems": [
+        "typescript",
+        "node",
+        "openapi",
+        "web-security"
+      ],
+      "ownedRules": [
+        "noninteractive exit-code contract",
+        "credential resolution order",
+        "prod/staging safety defaults",
+        "structured output mode",
+        "SDK reuse instead of API duplication"
+      ],
+      "benefits": [
+        "crm/packages/cli",
+        "vcqa/cli"
+      ],
+      "aliases": [],
+      "standardUrl": null,
+      "latestEdition": null,
+      "docsUrl": "/docs/standards/stacks/node-cli-internal-tool/"
     },
     {
       "id": "typescript-sdk",
       "status": "planned",
-      "stackItems": ["typescript", "openapi", "zod", "vitest"],
-      "ownedRules": ["export map and declaration quality", "API contract freshness", "credential boundary", "typed error model", "consumer compatibility tests"],
-      "benefits": ["crm/packages/sdk", "future VCQA schema/client packages"]
+      "stackItems": [
+        "typescript",
+        "openapi",
+        "zod",
+        "vitest"
+      ],
+      "ownedRules": [
+        "export map and declaration quality",
+        "API contract freshness",
+        "credential boundary",
+        "typed error model",
+        "consumer compatibility tests"
+      ],
+      "benefits": [
+        "crm/packages/sdk",
+        "future VCQA schema/client packages"
+      ],
+      "aliases": [],
+      "standardUrl": null,
+      "latestEdition": null,
+      "docsUrl": "/docs/standards/stacks/typescript-sdk/"
     },
     {
       "id": "github-action-package",
       "status": "planned",
-      "stackItems": ["github-action", "github-actions", "node", "typescript"],
-      "ownedRules": ["action.yml metadata completeness", "minimum token permissions", "input validation", "pinned runtime/dependency policy", "release tag policy"],
-      "benefits": ["vibecodeqa/action"]
+      "stackItems": [
+        "github-action",
+        "github-actions",
+        "node",
+        "typescript"
+      ],
+      "ownedRules": [
+        "action.yml metadata completeness",
+        "minimum token permissions",
+        "input validation",
+        "pinned runtime/dependency policy",
+        "release tag policy"
+      ],
+      "benefits": [
+        "vibecodeqa/action"
+      ],
+      "aliases": [],
+      "standardUrl": null,
+      "latestEdition": null,
+      "docsUrl": "/docs/standards/stacks/github-action-package/"
     },
     {
       "id": "vscode-extension-package",
       "status": "planned",
-      "stackItems": ["vscode-extension", "typescript", "node", "web-security"],
-      "ownedRules": ["activation event scope", "workspace trust behavior", "command and webview boundaries", "marketplace metadata", "extension test coverage"],
-      "benefits": ["vibecodeqa/vscode"]
+      "stackItems": [
+        "vscode-extension",
+        "typescript",
+        "node",
+        "web-security"
+      ],
+      "ownedRules": [
+        "activation event scope",
+        "workspace trust behavior",
+        "command and webview boundaries",
+        "marketplace metadata",
+        "extension test coverage"
+      ],
+      "benefits": [
+        "vibecodeqa/vscode"
+      ],
+      "aliases": [],
+      "standardUrl": null,
+      "latestEdition": null,
+      "docsUrl": "/docs/standards/stacks/vscode-extension-package/"
     },
     {
       "id": "tauri-react-desktop",
       "status": "planned",
-      "stackItems": ["tauri", "react", "typescript", "web-security", "docs-kb"],
-      "ownedRules": ["Tauri command/capability boundaries", "keychain/secret storage", "file-system watch safety", "desktop packaging and signing", "frontend/backend contract typing"],
-      "benefits": ["vibecodeqa/app desktop monitor"]
+      "stackItems": [
+        "tauri",
+        "react",
+        "typescript",
+        "web-security",
+        "docs-kb"
+      ],
+      "ownedRules": [
+        "Tauri command/capability boundaries",
+        "keychain/secret storage",
+        "file-system watch safety",
+        "desktop packaging and signing",
+        "frontend/backend contract typing"
+      ],
+      "benefits": [
+        "vibecodeqa/app desktop monitor"
+      ],
+      "aliases": [],
+      "standardUrl": null,
+      "latestEdition": null,
+      "docsUrl": "/docs/standards/stacks/tauri-react-desktop/"
     },
     {
       "id": "zensical-kb-site",
       "status": "planned",
-      "stackItems": ["docs-kb", "github-actions"],
-      "ownedRules": ["Markdown source is the source of truth", "generated site is ignored", "published URLs are stable", "source references are tracked", "docs drift checks where mirrors exist"],
-      "benefits": ["vibecodeqa/docs", "vibecodeqa/standards", "crm/docs"]
+      "stackItems": [
+        "docs-kb",
+        "github-actions"
+      ],
+      "ownedRules": [
+        "Markdown source is the source of truth",
+        "generated site is ignored",
+        "published URLs are stable",
+        "source references are tracked",
+        "docs drift checks where mirrors exist"
+      ],
+      "benefits": [
+        "vibecodeqa/docs",
+        "vibecodeqa/standards",
+        "crm/docs"
+      ],
+      "aliases": [],
+      "standardUrl": null,
+      "latestEdition": null,
+      "docsUrl": "/docs/standards/stacks/zensical-kb-site/"
     }
   ]
 }

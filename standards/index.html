@@ -37,6 +37,7 @@ td{padding:0.5rem;border-bottom:1px solid var(--border);vertical-align:top}
   <a href="/">Home</a>
   <a href="/docs/">Docs</a>
   <a href="/standards/"><b>Standards</b></a>
+  <a href="/docs/standards/">Catalog</a>
   <a href="/docs/standards/references/">References</a>
   <a href="/docs/standards/compositions/">Compositions</a>
   <a href="/stacks/typescript">Stacks</a>
@@ -57,12 +58,13 @@ repo-shape and deploy-shape rules needed to judge real projects consistently.</p
 <h2>Published Rubrics</h2>
 <table>
 <tr><th>Rubric</th><th>What it judges</th><th>Status</th></tr>
-<tr><td><a href="/standards/react-spa/" class="name">react-spa</a></td><td>React, client-rendered, static-hosted. No SSR, no server of its own.</td><td><span class="badge live">v1 · LIVE</span></td></tr>
+<tr><td><a href="/standards/react-spa/v1/" class="name">react-spa</a></td><td>React, client-rendered, static-hosted. No SSR, no server of its own.</td><td><span class="badge live">v1 · LIVE</span></td></tr>
 </table>
 
 <h2>Authoring Maps</h2>
 <table>
 <tr><th>Page</th><th>Purpose</th><th>Machine-readable file</th></tr>
+<tr><td><a href="/docs/standards/" class="name">Standards catalog</a></td><td>Human-readable catalog of authored rubrics, planned stack charters, and individual stack items.</td><td><a href="/standards/compositions.json"><code>compositions.json</code></a></td></tr>
 <tr><td><a href="/docs/standards/references/" class="name">References</a></td><td>Official specs and primary-source docs to cite before writing a VCQA rule.</td><td><a href="/standards/references.json"><code>references.json</code></a></td></tr>
 <tr><td><a href="/docs/standards/compositions/" class="name">Compositions</a></td><td>Individual stack items and the composed VCQA standards we should author.</td><td><a href="/standards/compositions.json"><code>compositions.json</code></a></td></tr>
 <tr><td><a href="/standards/registry.json" class="name">Resolver registry</a></td><td>Current detection catalog used by the standards resolver. This will evolve as authored stack standards replace early planned buckets.</td><td><a href="/standards/registry.json"><code>registry.json</code></a></td></tr>
@@ -71,13 +73,16 @@ repo-shape and deploy-shape rules needed to judge real projects consistently.</p
 <h2>Next Standards To Author</h2>
 <table>
 <tr><th>Standard</th><th>Why it matters</th><th>Status</th></tr>
-<tr><td><span class="name">cloudflare-pages-fullstack</span></td><td>React/Vite frontend plus Cloudflare Pages Functions API: same-origin routing, middleware/auth, bindings, deployed vars, and SPA/API seams.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">cloudflare-d1-app</span></td><td>D1 migrations, local/remote parity, tenant database isolation, checksums, and query safety.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">cloudflare-worker-mcp-server</span></td><td>MCP over Cloudflare Workers with Durable Objects/KV, OAuth, tool safety, and per-environment isolation.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">tenant-deployed-cloudflare-saas</span></td><td>Tenant-scoped Pages/D1/Worker deployments, promotion gates, auth perimeter, and provisioning docs.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">node-cli-internal-tool</span></td><td>Credential resolution, exit-code contracts, noninteractive safety, structured output, and SDK reuse.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">typescript-sdk</span></td><td>Export maps, declarations, API contract freshness, typed errors, and consumer compatibility tests.</td><td><span class="badge planned">planned</span></td></tr>
-<tr><td><span class="name">zensical-kb-site</span></td><td>Markdown as source of truth, generated site ignored, stable URLs, source references, and docs drift checks.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><a href="/docs/standards/stacks/cloudflare-pages-fullstack/" class="name">cloudflare-pages-fullstack</a></td><td>React/Vite frontend plus Cloudflare Pages Functions API: same-origin routing, middleware/auth, bindings, deployed vars, and SPA/API seams.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><a href="/docs/standards/stacks/cloudflare-d1-app/" class="name">cloudflare-d1-app</a></td><td>D1 migrations, local/remote parity, tenant database isolation, checksums, and query safety.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><a href="/docs/standards/stacks/cloudflare-worker-mcp-server/" class="name">cloudflare-worker-mcp-server</a></td><td>MCP over Cloudflare Workers with Durable Objects/KV, OAuth, tool safety, and per-environment isolation.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><a href="/docs/standards/stacks/tenant-deployed-cloudflare-saas/" class="name">tenant-deployed-cloudflare-saas</a></td><td>Tenant-scoped Pages/D1/Worker deployments, promotion gates, auth perimeter, and provisioning docs.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><a href="/docs/standards/stacks/node-cli-internal-tool/" class="name">node-cli-internal-tool</a></td><td>Credential resolution, exit-code contracts, noninteractive safety, structured output, and SDK reuse.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><a href="/docs/standards/stacks/typescript-sdk/" class="name">typescript-sdk</a></td><td>Export maps, declarations, API contract freshness, typed errors, and consumer compatibility tests.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><a href="/docs/standards/stacks/github-action-package/" class="name">github-action-package</a></td><td>Action metadata, minimum permissions, input validation, runtime/dependency policy, and release tags.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><a href="/docs/standards/stacks/vscode-extension-package/" class="name">vscode-extension-package</a></td><td>Activation scope, workspace trust, command/webview boundaries, marketplace metadata, and extension tests.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><a href="/docs/standards/stacks/tauri-react-desktop/" class="name">tauri-react-desktop</a></td><td>Tauri command/capability boundaries, secure storage, file-system safety, packaging, and frontend/backend typing.</td><td><span class="badge planned">planned</span></td></tr>
+<tr><td><a href="/docs/standards/stacks/zensical-kb-site/" class="name">zensical-kb-site</a></td><td>Markdown as source of truth, generated site ignored, stable URLs, source references, and docs drift checks.</td><td><span class="badge planned">planned</span></td></tr>
 </table>
 
 <h2>Edition Policy</h2>
