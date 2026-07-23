@@ -19,6 +19,9 @@ their tenant-deployed SaaS composition with CI, runbooks, and a tracked VCQA rep
 Use it as a product-neutral template that demonstrates the stack; use the rubric as the
 source of truth for judgment.
 
+VCQA report:
+[A 91/100](https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md).
+
 The rubric has stable rule IDs across:
 
 - suitability and deployment shape

@@ -43,6 +43,10 @@ The open-source reference repo is:
 
 <https://github.com/vibecodeqa/ref-cloudflare-saas>
 
+The published VCQA report is:
+
+<https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md>
+
 It complements the standards this way:
 
 - The standards define stable rule IDs, upstream references, and judgment criteria.

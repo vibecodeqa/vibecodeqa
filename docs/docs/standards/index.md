@@ -77,7 +77,8 @@ VCQA reports fit together.
   TypeScript, React Router, Vitest, Playwright, static build gates, client environment
   boundaries, and a tracked A-grade VCQA report. Official starting points:
   [React app from Scratch](https://react.dev/learn/build-a-react-app-from-scratch) and
-  [Vite getting started](https://vite.dev/guide/).
+  [Vite getting started](https://vite.dev/guide/). Report:
+  [A 94/100](https://github.com/vibecodeqa/ref-react-spa/blob/main/docs/vcqa-report.md).
 - [vibecodeqa/ref-cloudflare-worker-mcp](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp):
   open-source template repository for the Cloudflare Worker MCP Server stack. It
   demonstrates the MCP TypeScript SDK's Web Standard Streamable HTTP transport on
@@ -88,11 +89,14 @@ VCQA reports fit together.
   [Cloudflare templates](https://github.com/cloudflare/templates),
   [MCP TypeScript SDK](https://ts.sdk.modelcontextprotocol.io/), and
   [MCP Streamable HTTP transport](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports).
+  Report:
+  [A 91/100](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/vcqa-report.md).
 - [vibecodeqa/ref-cloudflare-saas](https://github.com/vibecodeqa/ref-cloudflare-saas):
   open-source template repository for the Cloudflare SaaS stack. It demonstrates React
   SPA, Cloudflare Pages Functions, D1, Worker MCP, SDK, CLI, tenant manifests, runbooks,
   CI gates, and a tracked VCQA report. It exists because no single vendor starter owns
-  this full composition.
+  this full composition. Report:
+  [A 91/100](https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md).
 
 Next template candidates:
 

@@ -19,6 +19,9 @@ standard to any product. It complements, rather than replaces, the official
 [Cloudflare Workers templates](https://developers.cloudflare.com/workers/get-started/quickstarts/)
 and [MCP SDK examples](https://ts.sdk.modelcontextprotocol.io/).
 
+VCQA report:
+[A 91/100](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/vcqa-report.md).
+
 ## Scope
 
 Remote MCP servers deployed on Cloudflare Workers, optionally using Durable Objects or KV/R2 for state.

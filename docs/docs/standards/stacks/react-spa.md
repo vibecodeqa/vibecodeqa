@@ -17,6 +17,9 @@ to any product. It complements, rather than replaces, the official
 [React](https://react.dev/learn/build-a-react-app-from-scratch) and
 [Vite](https://vite.dev/guide/) starter paths.
 
+VCQA report:
+[A 94/100](https://github.com/vibecodeqa/ref-react-spa/blob/main/docs/vcqa-report.md).
+
 ## Aliases
 
 - `react-spa-static`
