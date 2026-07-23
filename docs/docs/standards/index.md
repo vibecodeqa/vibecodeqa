@@ -62,6 +62,15 @@ example.
 
 ## Reference implementations
 
+- [vibecodeqa/reference-react-spa](https://github.com/vibecodeqa/reference-react-spa):
+  open-source template repository for the React SPA stack. It demonstrates Vite,
+  TypeScript, React Router, Vitest, Playwright, static build gates, client environment
+  boundaries, and a tracked A-grade VCQA report.
+- [vibecodeqa/reference-cloudflare-worker-mcp](https://github.com/vibecodeqa/reference-cloudflare-worker-mcp):
+  open-source template repository for the Cloudflare Worker MCP Server stack. It
+  demonstrates protected resource metadata, authorization before tool dispatch, scoped
+  tool permissions, Zod validation, audit events, runbooks, Wrangler dry-run deploys, and
+  a tracked A-grade VCQA report.
 - [vibecodeqa/reference-cloudflare-saas](https://github.com/vibecodeqa/reference-cloudflare-saas):
   open-source template repository for the Cloudflare SaaS stack. It demonstrates React
   SPA, Cloudflare Pages Functions, D1, Worker MCP, SDK, CLI, tenant manifests, runbooks,

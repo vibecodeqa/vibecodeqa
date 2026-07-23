@@ -7,9 +7,14 @@ standards.
 The machine-readable version lives at
 [`/standards/compositions.json`](/standards/compositions.json).
 
-Product-neutral reference implementation:
-[vibecodeqa/reference-cloudflare-saas](https://github.com/vibecodeqa/reference-cloudflare-saas).
-It shows how the authored Cloudflare SaaS standards fit together in one template repo.
+Product-neutral reference implementations:
+
+- [vibecodeqa/reference-react-spa](https://github.com/vibecodeqa/reference-react-spa)
+  shows the smallest authored frontend archetype as a forkable template.
+- [vibecodeqa/reference-cloudflare-worker-mcp](https://github.com/vibecodeqa/reference-cloudflare-worker-mcp)
+  shows the remote MCP Worker archetype as a forkable template.
+- [vibecodeqa/reference-cloudflare-saas](https://github.com/vibecodeqa/reference-cloudflare-saas)
+  shows how the authored Cloudflare SaaS standards fit together in one template repo.
 
 ## Decision
 

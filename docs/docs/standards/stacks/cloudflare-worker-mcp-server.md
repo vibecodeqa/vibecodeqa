@@ -8,6 +8,14 @@ Remote MCP servers deployed on Cloudflare Workers, optionally using Durable Obje
 
 [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/)
 
+## Reference implementation
+
+[vibecodeqa/reference-cloudflare-worker-mcp](https://github.com/vibecodeqa/reference-cloudflare-worker-mcp)
+is the forkable template for this stack. It shows the expected Worker entrypoint,
+protected resource metadata, authorization-before-dispatch path, scoped tool permissions,
+runtime validation, audit events, CI gates, and tracked VCQA report without tying the
+standard to any product.
+
 ## Scope
 
 Remote MCP servers deployed on Cloudflare Workers, optionally using Durable Objects or KV/R2 for state.
