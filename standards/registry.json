@@ -258,11 +258,11 @@
       "id": "react-spa-on-cloudflare-pages",
       "type": "recipe",
       "title": "React SPA on Cloudflare Pages (with Functions)",
-      "summary": "Blessed combo: a react-spa frontend co-deployed with a pages-fullstack API in one Pages project. Contains only the SEAM rules; composes the primitives.",
-      "url": "https://vibecodeqa.online/standards/react-spa-on-cloudflare-pages",
+      "summary": "Alias for the authored Cloudflare Pages Fullstack rubric when a React SPA and Pages Functions API are co-deployed in one Pages project.",
+      "url": "https://vibecodeqa.online/standards/cloudflare-pages-fullstack",
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "repo",
-      "status": "planned",
+      "status": "published",
       "composes": ["react-spa", "pages-fullstack"],
       "detect": { "all": [ { "matched": "react-spa" }, { "matched": "pages-fullstack" } ] },
       "seamTopics": [
@@ -272,7 +272,9 @@
         "shared types between functions and app via a workspace package",
         "one Pages deploy builds both; migrations gate the build"
       ],
-      "editions": []
+      "editions": [
+        { "version": "v1", "path": "/v1", "status": "latest", "reviewed": "2026-07", "nextReview": "2027-07", "targets": { "cloudflarePagesFunctions": "latest", "react": "19", "vite": "8", "typescript": "6" } }
+      ]
     }
   ]
 }

@@ -18,6 +18,7 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 
 - [References](references.md): official specs and primary-source docs to cite before writing a VibeCode QA rule.
 - [Compositions](compositions.md): the linked map of stack items and composed standards.
+- [Examples](examples/index.md): real repositories mapped to authored standards and open gaps.
 - [Authoring](authoring.md): lifecycle and templates for creating new standards.
 - [Stack standards](stacks/index.md): authored rubrics and planned stack charters.
 - [Stack items](items/index.md): reusable building blocks and upstream ownership.
@@ -43,6 +44,11 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 
 Cloudflare D1 App and Cloudflare Worker MCP Server are now the next standards to convert
 into full versioned rubrics.
+
+## Worked examples
+
+- [CRM stack coverage](examples/crm.md): how `~/work/crm` maps to authored standards,
+  planned standards, and the next authoring gaps.
 
 ## Machine-readable files
 

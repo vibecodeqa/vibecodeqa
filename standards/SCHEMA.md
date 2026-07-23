@@ -39,10 +39,10 @@ Rules:
   is a hybrid that must be sub-sliced (see §3), or the registry has an overlap bug.
 - **Layers never stand alone.** `d1-database`, `mcp-server`, `tailwind` compose *onto* an
   archetype; they never replace it.
-- **Recipes contain only the seam.** `react-spa-on-cloudflare-pages` holds the rules that
-  live *between* `react-spa` and `pages-fullstack` (same-origin `/api/*`, `_routes.json`,
-  secrets-in-Functions). It **references** the primitives, never re-derives them. Author a
-  recipe only for combos you actively bless.
+- **Recipes contain only the seam.** A recipe holds the rules that live *between*
+  primitives and never re-derives the upstream standards. If the seam is already fully
+  covered by an authored stack standard, the recipe can be a published alias to that
+  standard. Author a separate recipe only for combos you actively bless.
 
 ## 3. Slicing a repo
 
@@ -149,13 +149,14 @@ A single command classifies a real hybrid monorepo into its true composition:
 # packages/mcp-worker         archetype: worker-edge [PLANNED]
                               layers: mcp-server, zod-validation [PLANNED]
 # packages/sdk    [package]   archetype: library [PLANNED]
-Repo recipes: react-spa-on-cloudflare-pages [PLANNED]
+Repo recipes: react-spa-on-cloudflare-pages@v1
 ```
 
-`react-spa@v1` and `pages-fullstack@v1` are published today; the rest are mapped gaps. The
-CRM isn't "a stack that needs its own KB" — it's `react-spa` + `pages-fullstack` +
-`d1-database` + `node-service` + `worker-edge` + `mcp-server` + `library` +
-cross-cutters, most of which are reused by other Cloudflare-Pages fullstack repos.
+`react-spa@v1`, `pages-fullstack@v1`, and the `react-spa-on-cloudflare-pages` alias are
+published today; the rest are mapped gaps. The CRM isn't "a stack that needs its own KB" —
+it's `react-spa` + `pages-fullstack` + `d1-database` + `node-service` + `worker-edge` +
+`mcp-server` + `library` + cross-cutters, most of which are reused by other
+Cloudflare-Pages fullstack repos.
 
 ## Files
 

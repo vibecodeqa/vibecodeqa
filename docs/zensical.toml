@@ -57,6 +57,7 @@ nav = [
     { "Authoring" = "standards/authoring.md" },
     { "References" = "standards/references.md" },
     { "Compositions" = "standards/compositions.md" },
+    { "Examples" = "standards/examples/index.md" },
     { "Stack standards" = "standards/stacks/index.md" },
     { "Stack items" = "standards/items/index.md" },
   ] },
