@@ -19,8 +19,8 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 - [References](references.md): official specs and primary-source docs to cite before writing a VibeCode QA rule.
 - [Compositions](compositions.md): the linked map of stack items and composed standards.
 - [Authoring](authoring.md): lifecycle and templates for creating new standards.
-- Stack charters under [stacks/](stacks/react-spa.md): scope, detection signals, VCQA-owned rule surface, and combination-born guidelines.
-- Stack items under [items/](items/react.md): upstream ownership and how the item composes into standards.
+- [Stack standards](stacks/index.md): authored rubrics and planned stack charters.
+- [Stack items](items/index.md): reusable building blocks and upstream ownership.
 
 ## Authored standards
 
@@ -40,6 +40,9 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 - [VS Code Extension Package](stacks/vscode-extension-package.md)
 - [Tauri React Desktop](stacks/tauri-react-desktop.md)
 - [Zensical KB Site](stacks/zensical-kb-site.md)
+
+The first three charters are now seeded with candidate rule IDs, anti-patterns, and open
+authoring questions. They are the next standards to convert into full versioned rubrics.
 
 ## Machine-readable files
 
