@@ -4,6 +4,11 @@ This example maps a real product repository to the VibeCode QA standards catalog
 named for the reusable architecture: React SPA, Cloudflare Pages Functions, D1,
 Worker-hosted MCP, TypeScript packages, and operator tooling.
 
+For a product-neutral implementation of this stack, see
+[vibecodeqa/reference-cloudflare-saas](https://github.com/vibecodeqa/reference-cloudflare-saas).
+That repository is a template and reference implementation; the standards remain the
+source of truth.
+
 ## What this teaches
 
 This example is not teaching a product domain. It teaches how VCQA should decompose a real
@@ -31,6 +36,24 @@ The example app is **partially covered** today.
 | `packages/sdk` | Private TypeScript SDK package | Planned | [TypeScript SDK](../stacks/typescript-sdk.md) |
 | `packages/mcp` | Generated or build-output MCP artifact without a package manifest | No standard matched | Decide whether this should be generated output, a package, or removed from resolver scope |
 | repo | React SPA, Pages Functions, D1, and Worker MCP in a tenant deployment model | Covered by [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/) and the Pages Fullstack alias | Cross-cutting policy rubrics |
+
+## Reference implementation
+
+The open-source reference repo is:
+
+<https://github.com/vibecodeqa/reference-cloudflare-saas>
+
+It complements the standards this way:
+
+- The standards define stable rule IDs, upstream references, and judgment criteria.
+- The repo shows one concrete implementation that can be inspected, forked, and scanned.
+- The tracked VCQA report in `docs/vcqa-report.md` gives an example of what a high-scoring
+  implementation looks like.
+- When standards change, this repo becomes a regression fixture: either the template is
+  updated, or the standard/checker needs review.
+
+The repo is intentionally generic. It is not CRM-specific and should not contain product
+domain assumptions.
 
 ## Resolver snapshot
 

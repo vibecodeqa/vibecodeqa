@@ -7,6 +7,10 @@ standards.
 The machine-readable version lives at
 [`/standards/compositions.json`](/standards/compositions.json).
 
+Product-neutral reference implementation:
+[vibecodeqa/reference-cloudflare-saas](https://github.com/vibecodeqa/reference-cloudflare-saas).
+It shows how the authored Cloudflare SaaS standards fit together in one template repo.
+
 ## Decision
 
 We do not author a generic "React standard" or "TypeScript standard". React, TypeScript,

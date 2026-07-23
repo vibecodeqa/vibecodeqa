@@ -60,6 +60,13 @@ example.
   React/Cloudflare/D1/MCP repository maps to authored standards, planned standards, and
   the next authoring gaps.
 
+## Reference implementations
+
+- [vibecodeqa/reference-cloudflare-saas](https://github.com/vibecodeqa/reference-cloudflare-saas):
+  open-source template repository for the Cloudflare SaaS stack. It demonstrates React
+  SPA, Cloudflare Pages Functions, D1, Worker MCP, SDK, CLI, tenant manifests, runbooks,
+  CI gates, and a tracked VCQA report.
+
 ## Machine-readable files
 
 - [`/standards/references.json`](/standards/references.json): external source registry.

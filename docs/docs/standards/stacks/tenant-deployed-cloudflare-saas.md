@@ -12,6 +12,11 @@ part of the product contract.
 Use [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/)
 when a repository operates tenant-scoped Cloudflare deployment surfaces.
 
+Reference implementation:
+[vibecodeqa/reference-cloudflare-saas](https://github.com/vibecodeqa/reference-cloudflare-saas).
+Use it as a product-neutral template that demonstrates the stack; use the rubric as the
+source of truth for judgment.
+
 The rubric has stable rule IDs across:
 
 - suitability and deployment shape
