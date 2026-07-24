@@ -100,18 +100,25 @@ VCQA reports fit together.
   than this exact repo shape; it applies when tenant identity changes deployable Cloudflare
   resources, environments, data bindings, domains, or operational evidence. Report:
   [A 91/100](https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md).
+- [vibecodeqa/ref-node-cli-internal-tool](https://github.com/vibecodeqa/ref-node-cli-internal-tool):
+  open-source template repository for the Node CLI Internal Tool stack. It demonstrates
+  strict TypeScript, stable exit codes, credential resolution order, production safety
+  guards, structured output, parser tests, and executable smoke checks. Report:
+  [A 92/100](https://github.com/vibecodeqa/ref-node-cli-internal-tool/blob/main/docs/vcqa-report.md).
 
 Next template candidates:
 
 - `ref-cloudflare-pages-fullstack`: React SPA plus same-origin Pages Functions.
 - `ref-cloudflare-d1-app`: D1 migrations, local apply checks, bindings, and query
   safety without the rest of the SaaS composition.
-- `ref-node-cli-internal-tool`: credential resolution, exit-code contracts,
-  structured output, and CI-safe defaults.
 - `ref-typescript-sdk`: export maps, declarations, typed errors, generated client
   drift checks, and consumer compatibility tests.
 - `ref-zensical-kb-site`: Markdown source of truth, stable docs URLs, references,
   generated-site policy, and docs smoke checks.
+- `ref-vscode-extension-package`: activation scope, workspace trust, command/webview
+  boundaries, marketplace metadata, and extension tests.
+- `ref-tauri-react-desktop`: Tauri command/capability boundaries, secure storage,
+  file-system safety, packaging, and frontend/backend typing.
 
 ## Machine-readable files
 
