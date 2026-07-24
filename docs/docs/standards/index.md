@@ -26,20 +26,32 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 - [Stack standards](stacks/index.md): authored rubrics and planned stack charters.
 - [Stack items](items/index.md): reusable building blocks and upstream ownership.
 
-## Authored standards
+## Authored stack rubrics
 
-| Standard | Status | Charter | Full rubric |
-|---|---|---|---|
-| React SPA | Authored | [React SPA charter](stacks/react-spa.md) | [React SPA v1](/standards/react-spa/v1/) |
-| Cloudflare Pages Fullstack | Authored | [Cloudflare Pages Fullstack charter](stacks/cloudflare-pages-fullstack.md) | [Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/) |
-| Cloudflare D1 App | Authored | [Cloudflare D1 App charter](stacks/cloudflare-d1-app.md) | [Cloudflare D1 App v1](/standards/cloudflare-d1-app/v1/) |
-| Cloudflare Worker MCP Server | Authored | [Cloudflare Worker MCP Server charter](stacks/cloudflare-worker-mcp-server.md) | [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/) |
-| Tenant-Deployed Cloudflare SaaS | Authored | [Tenant-Deployed Cloudflare SaaS charter](stacks/tenant-deployed-cloudflare-saas.md) | [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/) |
-| Security | Authored | [Web Security item](items/web-security.md) | [Security v1](/standards/security/v1/) |
-| Testing | Authored | [Vitest item](items/vitest.md) and [Playwright item](items/playwright.md) | [Testing v1](/standards/testing/v1/) |
-| TypeScript | Authored | [TypeScript item](items/typescript.md) | [TypeScript v1](/standards/typescript/v1/) |
+These are deployable stack shapes with full versioned rubrics and stack charter pages.
+
+| Stack standard | Charter | Full rubric |
+|---|---|---|
+| React SPA | [React SPA charter](stacks/react-spa.md) | [React SPA v1](/standards/react-spa/v1/) |
+| Cloudflare Pages Fullstack (`react-spa-on-cloudflare-pages` alias) | [Cloudflare Pages Fullstack charter](stacks/cloudflare-pages-fullstack.md) | [Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/) |
+| Cloudflare D1 App | [Cloudflare D1 App charter](stacks/cloudflare-d1-app.md) | [Cloudflare D1 App v1](/standards/cloudflare-d1-app/v1/) |
+| Cloudflare Worker MCP Server | [Cloudflare Worker MCP Server charter](stacks/cloudflare-worker-mcp-server.md) | [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/) |
+| Tenant-Deployed Cloudflare SaaS | [Tenant-Deployed Cloudflare SaaS charter](stacks/tenant-deployed-cloudflare-saas.md) | [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/) |
+
+## Authored cross-cutting rubrics
+
+These are first-class authored standards, but they are not deployable stack charters. They
+apply across stack shapes when the relevant item leaves are present.
+
+| Cross-cutting standard | Catalog page | Full rubric |
+|---|---|---|
+| Security | [Web Security item](items/web-security.md) | [Security v1](/standards/security/v1/) |
+| Testing | [Vitest item](items/vitest.md), [Playwright item](items/playwright.md), and [GitHub Actions item](items/github-actions.md) | [Testing v1](/standards/testing/v1/) |
+| TypeScript | [TypeScript item](items/typescript.md) | [TypeScript v1](/standards/typescript/v1/) |
 
 ## Planned stack charters
+
+These pages have charters and composition maps, but no full versioned rubric yet.
 
 - [Node CLI Internal Tool](stacks/node-cli-internal-tool.md)
 - [TypeScript SDK](stacks/typescript-sdk.md)
@@ -55,6 +67,17 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 
 Dependency Hygiene, Node CLI Internal Tool, TypeScript SDK, and Accessibility are now the
 next standards to convert into full versioned rubrics for the Cloudflare SaaS example.
+
+## Catalog entry points
+
+- [Stack standards](stacks/index.md): authored stack rubrics and planned stack charters.
+- [Stack items](items/index.md): reusable framework, runtime, protocol, testing, CI, docs,
+  and security leaves.
+- [Standards graph](graph.md): linked map of authored stack rubrics, cross-cutting
+  rubrics, planned stack charters, item leaves, templates, and VCQA reports.
+- [Assessment reports](assessments/index.md): dated reviews for every stack charter page.
+- [Examples](examples/index.md): real repositories mapped to authored rubrics and planned
+  gaps.
 
 ## Worked examples
 

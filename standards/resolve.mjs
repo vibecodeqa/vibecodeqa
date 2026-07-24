@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// FreeDocStore standards resolver (reference implementation).
+// VibeCode QA standards resolver (reference implementation).
 //
 // Given a repo, it: (1) slices the repo into judgeable units, (2) gathers signals
 // per slice, (3) evaluates the registry's detect predicates, and (4) composes the

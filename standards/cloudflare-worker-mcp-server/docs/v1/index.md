@@ -4,6 +4,7 @@
     **Targets:** Cloudflare Workers, remote MCP, TypeScript, Zod, optional Durable Objects
     **Reviewed:** 2026-07; **Next review due:** 2027-07
     **Status:** latest; **Pin as:** `cloudflare-worker-mcp-server@v1`
+    **Canonical URL:** <https://vibecodeqa.online/standards/cloudflare-worker-mcp-server/v1/>
 
 This edition captures the gold standard for remote MCP servers hosted on Cloudflare
 Workers. It focuses on the seam between HTTP transport, OAuth authorization, tool schema

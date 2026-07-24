@@ -4,6 +4,9 @@ Security is the cross-cutting VCQA standard for application, deployment, and aut
 boundaries. It applies to browser apps, server routes, Cloudflare Workers and Pages
 Functions, MCP tools, CLIs, SDKs, and CI workflows.
 
+Canonical version URL:
+<https://vibecodeqa.online/standards/security/v1/>
+
 This standard does not re-create OWASP doctrine. OWASP ASVS and the OWASP Cheat Sheet
 Series remain the broad authority. VCQA owns the repo-level and stack-composition checks:
 where authorization happens, where secrets can leak, how untrusted input crosses runtime

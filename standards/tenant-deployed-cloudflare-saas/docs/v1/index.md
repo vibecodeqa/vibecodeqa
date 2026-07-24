@@ -4,6 +4,7 @@
     **Targets:** Cloudflare Pages · Workers · resource bindings · Wrangler · GitHub Actions · optional Pages Functions/D1
     **Reviewed:** 2026-07 · **Next review due:** 2027-07
     **Status:** latest · **Pin as:** `tenant-deployed-cloudflare-saas@v1`
+    **Canonical URL:** <https://vibecodeqa.online/standards/tenant-deployed-cloudflare-saas/v1/>
 
 This edition captures the gold standard for a tenant-scoped SaaS deployment model on
 Cloudflare. It focuses on the seams between tenant resources, preview exposure, binding

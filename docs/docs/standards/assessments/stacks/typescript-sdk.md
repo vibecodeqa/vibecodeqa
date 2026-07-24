@@ -2,16 +2,20 @@
 
 Date: 2026-07-25
 Assessor: Independent AI Agent C
-Target: `docs/docs/standards/stacks/typescript-sdk.md`
+Target scope: Stack page assessment only
+Source target: [`docs/docs/standards/stacks/typescript-sdk.md`](../../stacks/typescript-sdk.md)
+Live target: <https://vibecodeqa.online/docs/standards/stacks/typescript-sdk/>
+Published assessment URL: <https://vibecodeqa.online/docs/standards/assessments/stacks/typescript-sdk/>
 Commit: `e47a3d44ed97f2b52d7a12a97387796564503ad6`
 
 ## Verdict
 
-partial - This is a strong planned charter and probably the most mature of the three pages
-Agent C assessed. It identifies the right SDK-specific contract risks: export maps,
-declaration/runtime alignment, generated client drift, runtime validation, typed errors,
-credential boundaries, consumer fixture tests, SemVer, and reproducible publish artifacts.
-It is still not a full rubric because it lacks severity, exception handling, concrete CI
+draft - Score: **65/100**. This is a strong planned charter and probably the most mature
+of the three pages Agent C assessed, but the published score falls in the draft band. It
+identifies the right SDK-specific contract risks: export maps, declaration/runtime
+alignment, generated client drift, runtime validation, typed errors, credential
+boundaries, consumer fixture tests, SemVer, and reproducible publish artifacts. It is
+still not a full rubric because it lacks severity, exception handling, concrete CI
 artifacts, maintenance metadata, and direct proof for benefit claims.
 
 ## Findings

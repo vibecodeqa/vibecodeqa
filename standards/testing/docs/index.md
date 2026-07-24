@@ -4,6 +4,9 @@ The Testing standard is the cross-cutting VibeCode QA rubric for proving behavio
 code ships. It applies to every repo slice unless a slice is explicitly non-executable
 documentation or generated output.
 
+Canonical version URL:
+<https://vibecodeqa.online/standards/testing/v1/>
+
 Testing is not measured by test count alone. A repo passes this standard when tests cover
 the behavior users, operators, maintainers, and downstream consumers rely on, and when the
 CI pipeline leaves enough evidence to trust the result.

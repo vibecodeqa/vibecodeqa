@@ -17,11 +17,14 @@ jobs:
       # Build the documentation site (Zensical, pinned). uv manages its own Python.
       - uses: astral-sh/setup-uv@v8.1.0
       - name: Build docs
-        run: cd docs && uvx zensical@0.0.43 build
+        run: |
+          node docs/validate-assessments.mjs
+          cd docs && uvx zensical@0.0.43 build
 
       # Build each gold-standard KB (a self-contained Zensical subsite under standards/).
       - name: Build standards
         run: |
+          node standards/validate-registry.mjs
           for d in standards/*/; do
             if [ -f "$d/zensical.toml" ]; then
               echo "building standard: $d"
@@ -37,10 +40,12 @@ jobs:
           mkdir -p _site
           rsync -a --exclude '_site' --exclude '.git' --exclude '.github' --exclude 'docs' --exclude 'standards' ./ _site/
           cp -r docs/site _site/docs
+          cp docs/site/404.html _site/404.html
           mkdir -p _site/standards
           # standards hub landing page + machine-readable registry at stable URLs
           cp standards/index.html _site/standards/index.html
           cp standards/registry.json _site/standards/registry.json
+          cp standards/registry.schema.json _site/standards/registry.schema.json
           cp standards/references.html _site/standards/references.html
           cp standards/references.json _site/standards/references.json
           cp standards/references.schema.json _site/standards/references.schema.json
@@ -51,6 +56,37 @@ jobs:
             name=$(basename "$d")
             [ -d "$d/site" ] && cp -r "$d/site" "_site/standards/$name"
           done
+          {
+            echo "# Authored standards use /v1/ as canonical. /latest is an alias only."
+            for d in standards/*/; do
+              name=$(basename "$d")
+              if [ -d "_site/standards/$name/v1" ]; then
+                echo "/standards/$name/latest/* /standards/$name/v1/:splat 302"
+                echo "/standards/$name/latest /standards/$name/v1/ 302"
+                echo "/standards/$name/ /standards/$name/v1/ 302"
+                echo "/standards/$name /standards/$name/v1/ 302"
+              fi
+            done
+            node <<'NODE'
+          const fs = require("node:fs");
+          const registry = JSON.parse(fs.readFileSync("standards/registry.json", "utf8"));
+          for (const standard of registry.standards) {
+            if (fs.existsSync(`_site/standards/${standard.id}/v1`)) {
+              continue;
+            }
+
+            if (!standard.docsUrl) {
+              continue;
+            }
+
+            const docsUrl = standard.docsUrl.startsWith("/")
+              ? standard.docsUrl
+              : `/${standard.docsUrl}`;
+            console.log(`/standards/${standard.id}/ ${docsUrl} 302`);
+            console.log(`/standards/${standard.id} ${docsUrl} 302`);
+          }
+          NODE
+          } > _site/_redirects
 
       - uses: cloudflare/wrangler-action@v3
         with:

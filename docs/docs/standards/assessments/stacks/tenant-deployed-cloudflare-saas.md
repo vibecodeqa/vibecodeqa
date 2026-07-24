@@ -2,7 +2,10 @@
 
 Date: 2026-07-25
 Assessor: Independent AI Agent B
-Target: `docs/docs/standards/stacks/tenant-deployed-cloudflare-saas.md`
+Target scope: Stack page assessment only
+Source target: [`docs/docs/standards/stacks/tenant-deployed-cloudflare-saas.md`](../../stacks/tenant-deployed-cloudflare-saas.md)
+Live target: <https://vibecodeqa.online/docs/standards/stacks/tenant-deployed-cloudflare-saas/>
+Published assessment URL: <https://vibecodeqa.online/docs/standards/assessments/stacks/tenant-deployed-cloudflare-saas/>
 Commit: `e47a3d44ed97f2b52d7a12a97387796564503ad6`
 
 ## Verdict

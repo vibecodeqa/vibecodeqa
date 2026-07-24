@@ -8,6 +8,9 @@ It is useful for white-label deployments, regulated customer environments,
 tenant-specific release windows, and products where an incident must be contained to one
 tenant without taking every customer down.
 
+Canonical version URL:
+<https://vibecodeqa.online/standards/tenant-deployed-cloudflare-saas/v1/>
+
 ## Do not use this standard when
 
 - The product has one production deployment and one shared operational lifecycle.

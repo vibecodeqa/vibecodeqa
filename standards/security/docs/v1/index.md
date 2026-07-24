@@ -4,6 +4,7 @@
     **Targets:** browser apps · APIs · Cloudflare Workers/Pages Functions · MCP · CLIs · SDKs · GitHub Actions
     **Reviewed:** 2026-07 · **Next review due:** 2027-07
     **Status:** latest · **Pin as:** `security@v1`
+    **Canonical URL:** <https://vibecodeqa.online/standards/security/v1/>
 
 This edition captures the cross-cutting security baseline VibeCode QA applies across
 repo slices. It focuses on checkable code and deployment signals, then defers broad

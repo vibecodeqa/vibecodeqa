@@ -4,6 +4,7 @@
     **Targets:** browser apps · APIs · Cloudflare Workers/Pages Functions · MCP · CLIs · SDKs · extensions · desktop apps · GitHub Actions
     **Reviewed:** 2026-07 · **Next review due:** 2027-07
     **Status:** latest · **Pin as:** `typescript@v1`
+    **Canonical URL:** <https://vibecodeqa.online/standards/typescript/v1/>
 
 This edition captures the cross-cutting TypeScript baseline VibeCode QA applies across
 typed repo slices. It focuses on checkable static contracts and on places where TypeScript

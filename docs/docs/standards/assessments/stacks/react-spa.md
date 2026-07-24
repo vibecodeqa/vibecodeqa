@@ -2,7 +2,10 @@
 
 Date: 2026-07-25
 Assessor: Independent AI Agent A
-Target: `docs/docs/standards/stacks/react-spa.md`
+Target scope: Stack page assessment only
+Source target: [`docs/docs/standards/stacks/react-spa.md`](../../stacks/react-spa.md)
+Live target: <https://vibecodeqa.online/docs/standards/stacks/react-spa/>
+Published assessment URL: <https://vibecodeqa.online/docs/standards/assessments/stacks/react-spa/>
 Commit: `e47a3d44ed97f2b52d7a12a97387796564503ad6`
 
 ## Verdict

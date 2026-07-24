@@ -3,6 +3,9 @@
 This is the reference standard for one deployable stack shape: a static frontend
 co-deployed with Cloudflare Pages Functions.
 
+Canonical version URL:
+<https://vibecodeqa.online/standards/cloudflare-pages-fullstack/v1/>
+
 It exists because none of the upstream sources own the combined seam. React/Vite docs
 cover the frontend. Cloudflare docs cover Pages Functions. GitHub Actions docs cover CI.
 OWASP covers broad security. VCQA owns the repo-level rules that appear when these are

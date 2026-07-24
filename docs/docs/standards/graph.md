@@ -1,10 +1,11 @@
 # Standards Graph
 
 This graph shows how VibeCode QA turns upstream framework and platform guidance into
-judgeable stack standards. Stack items are leaves. Stack standards are composed nodes.
-Reference templates are runnable fixtures that prove the standard in CI. Some stack
-items are optional composition leaves: they are judged when present, but they do not
-define the minimum shape of the standard.
+judgeable standards. Stack items are leaves. Authored stack rubrics are deployable
+composition nodes. Authored cross-cutting rubrics are first-class standards that apply
+across many stack shapes. Reference templates are runnable fixtures that prove the
+standard in CI. Some stack items are optional composition leaves: they are judged when
+present, but they do not define the minimum shape of the standard.
 
 The machine-readable source for this map is
 [`/standards/compositions.json`](/standards/compositions.json).
@@ -24,6 +25,8 @@ The machine-readable source for this map is
   --chip-bg: var(--panel);
   --authored: var(--panel);
   --authored-border: #15803d;
+  --crosscut: var(--panel);
+  --crosscut-border: #7c3aed;
   --planned: var(--panel);
   --planned-border: #71717a;
   --item: var(--panel);
@@ -33,6 +36,7 @@ The machine-readable source for this map is
 }
 body[data-md-color-scheme="slate"] .vcqa-graph {
   --authored-border: #4ade80;
+  --crosscut-border: #c084fc;
   --planned-border: #a1a1aa;
   --item-border: #93c5fd;
   --template-border: #fbbf24;
@@ -76,6 +80,9 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
 .vcqa-graph .standard-card.authored {
   border-left: 4px solid var(--authored-border);
 }
+.vcqa-graph .standard-card.crosscut {
+  border-left: 4px solid var(--crosscut-border);
+}
 .vcqa-graph .standard-card.planned {
   border-left: 4px solid var(--planned-border);
 }
@@ -86,6 +93,10 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
 .vcqa-graph .node.authored {
   border-color: var(--authored-border);
   background: var(--authored);
+}
+.vcqa-graph .node.crosscut {
+  border-color: var(--crosscut-border);
+  background: var(--crosscut);
 }
 .vcqa-graph .node.planned {
   border-color: var(--planned-border);
@@ -135,6 +146,10 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
 .vcqa-graph .chip.standard {
   border-color: var(--authored-border);
   background: var(--authored);
+}
+.vcqa-graph .chip.crosscut {
+  border-color: var(--crosscut-border);
+  background: var(--crosscut);
 }
 .vcqa-graph .chip.template {
   border-color: var(--template-border);
@@ -202,6 +217,9 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
 .vcqa-graph .graph-node.authored rect {
   stroke: var(--authored-border);
 }
+.vcqa-graph .graph-node.crosscut rect {
+  stroke: var(--crosscut-border);
+}
 .vcqa-graph .graph-node.planned rect {
   stroke: var(--planned-border);
 }
@@ -216,16 +234,17 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
 <div class="vcqa-graph">
 
 <div class="legend">
-  <div class="node authored"><strong>Authored standard</strong><br><span class="kind">Versioned rubric with stable rule IDs.</span></div>
-  <div class="node planned"><strong>Planned standard</strong><br><span class="kind">Charter exists; full rubric is not published yet.</span></div>
+  <div class="node authored"><strong>Authored stack rubric</strong><br><span class="kind">Deployable stack standard with stable rule IDs.</span></div>
+  <div class="node crosscut"><strong>Authored cross-cutting rubric</strong><br><span class="kind">First-class rubric applied across stack shapes.</span></div>
+  <div class="node planned"><strong>Planned stack charter</strong><br><span class="kind">Charter exists; full rubric is not published yet.</span></div>
   <div class="node item"><strong>Stack item leaf</strong><br><span class="kind">Framework, runtime, tool, protocol, or quality layer.</span></div>
   <div class="node template"><strong>Reference template</strong><br><span class="kind">Runnable repo with CI and a tracked VCQA report.</span></div>
 </div>
 
 <h2 id="network-map">Network Map</h2>
 
-<div class="graph-scroll" role="img" aria-label="Network graph connecting stack item leaves, authored standards, planned standards, and reference templates.">
-<svg class="network-map" viewBox="0 0 1380 900" xmlns="http://www.w3.org/2000/svg">
+<div class="graph-scroll" role="img" aria-label="Network graph connecting stack item leaves, authored stack rubrics, authored cross-cutting rubrics, planned stack charters, and reference templates.">
+<svg class="network-map" viewBox="0 0 1380 1020" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
       <path d="M0,0 L8,3.5 L0,7 Z" fill="var(--edge)" />
@@ -233,15 +252,17 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
   </defs>
 
   <g class="edges" stroke="var(--edge)" stroke-width="1.35" fill="none" marker-end="url(#arrow)">
-    <!-- stack items to authored standards -->
+    <!-- stack items to authored stack and cross-cutting rubrics -->
     <path d="M175 70 C420 70 460 130 610 170"/><path d="M175 110 C410 100 465 135 610 170"/><path d="M175 150 C405 130 470 150 610 170"/><path d="M175 190 C410 175 470 170 610 170"/><path d="M175 230 C410 210 470 185 610 170"/><path d="M175 270 C410 235 470 200 610 170"/><path d="M175 310 C410 260 470 215 610 170"/><path d="M175 350 C410 285 470 230 610 170"/>
     <path d="M175 190 C420 220 500 255 610 285"/><path d="M175 270 C420 260 500 275 610 285"/><path d="M175 430 C420 380 500 320 610 285"/><path d="M610 170 C620 210 620 245 610 285"/>
     <path d="M175 470 C420 415 500 395 610 400"/><path d="M175 430 C420 410 500 400 610 400"/><path d="M175 510 C420 455 500 420 610 400"/><path d="M175 190 C420 320 500 380 610 400"/><path d="M175 270 C420 360 500 390 610 400"/>
     <path d="M175 510 C420 500 500 520 610 520"/><path d="M175 550 C420 515 500 520 610 520"/><path d="M175 590 C420 530 500 525 610 520"/><path d="M175 630 C420 540 500 530 610 520"/><path d="M175 190 C420 440 500 500 610 520"/><path d="M175 270 C420 470 500 510 610 520"/>
     <path d="M175 430 C420 550 500 615 610 640"/><path d="M175 470 C420 575 500 620 610 640"/><path d="M175 510 C420 600 500 630 610 640"/><path d="M175 270 C420 590 500 630 610 640"/><path d="M175 670 C420 655 500 650 610 640"/>
     <path d="M175 270 C430 670 520 740 610 760"/><path d="M175 430 C430 700 520 745 610 760"/><path d="M175 510 C430 720 520 755 610 760"/><path d="M175 590 C430 735 520 760 610 760"/><path d="M175 670 C430 760 520 770 610 760"/>
+    <path d="M175 310 C430 770 520 850 610 865"/><path d="M175 350 C430 800 520 860 610 865"/><path d="M175 430 C430 830 520 870 610 865"/>
+    <path d="M175 190 C430 860 520 955 610 970"/><path d="M175 710 C430 915 520 965 610 970"/><path d="M175 430 C430 895 520 960 610 970"/>
 
-    <!-- stack items to planned standards -->
+    <!-- stack items to planned stack charters -->
     <path d="M175 190 C420 180 825 90 1015 110"/><path d="M175 710 C430 690 825 140 1015 110"/><path d="M175 750 C430 720 825 160 1015 110"/><path d="M175 270 C430 300 825 120 1015 110"/>
     <path d="M175 190 C430 270 825 220 1015 230"/><path d="M175 750 C430 520 825 260 1015 230"/><path d="M175 630 C430 470 825 250 1015 230"/><path d="M175 310 C430 340 825 230 1015 230"/>
     <path d="M175 790 C430 650 825 360 1015 350"/><path d="M175 430 C430 470 825 360 1015 350"/><path d="M175 710 C430 610 825 370 1015 350"/><path d="M175 190 C430 430 825 360 1015 350"/>
@@ -250,9 +271,9 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     <path d="M175 670 C430 710 825 710 1015 710"/><path d="M175 430 C430 600 825 700 1015 710"/>
 
     <!-- standards to templates -->
-    <path d="M755 170 C880 150 1040 125 1220 100"/><path d="M755 760 C900 610 1045 300 1220 100"/>
-    <path d="M755 520 C900 465 1045 395 1220 340"/><path d="M755 760 C900 620 1045 440 1220 340"/>
-    <path d="M755 170 C900 240 1045 455 1220 580"/><path d="M755 285 C900 330 1045 490 1220 580"/><path d="M755 400 C900 430 1045 535 1220 580"/><path d="M755 520 C900 530 1045 565 1220 580"/><path d="M755 640 C900 625 1045 600 1220 580"/><path d="M755 760 C900 710 1045 635 1220 580"/>
+    <path d="M755 170 C880 150 1040 125 1220 100"/><path d="M755 760 C900 610 1045 300 1220 100"/><path d="M755 865 C900 665 1045 365 1220 100"/><path d="M755 970 C900 720 1045 430 1220 100"/>
+    <path d="M755 520 C900 465 1045 395 1220 340"/><path d="M755 760 C900 620 1045 440 1220 340"/><path d="M755 865 C900 700 1045 500 1220 340"/><path d="M755 970 C900 760 1045 560 1220 340"/>
+    <path d="M755 170 C900 240 1045 455 1220 580"/><path d="M755 285 C900 330 1045 490 1220 580"/><path d="M755 400 C900 430 1045 535 1220 580"/><path d="M755 520 C900 530 1045 565 1220 580"/><path d="M755 640 C900 625 1045 600 1220 580"/><path d="M755 760 C900 710 1045 635 1220 580"/><path d="M755 865 C900 805 1045 690 1220 580"/><path d="M755 970 C900 870 1045 740 1220 580"/>
   </g>
 
   <g class="nodes">
@@ -278,15 +299,19 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     <a href="/docs/standards/items/vscode-extension/"><g class="graph-node item" transform="translate(30 812)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">vscode-extension</text></g></a>
     <a href="/docs/standards/items/tauri/"><g class="graph-node item" transform="translate(30 852)"><rect width="145" height="28" rx="14"/><text x="72.5" y="18">tauri</text></g></a>
 
-    <!-- authored standards -->
+    <!-- authored stack rubrics -->
     <a href="/docs/standards/stacks/react-spa/"><g class="graph-node authored" transform="translate(610 140)"><rect width="145" height="60" rx="8"/><text x="72.5" y="25">react-spa</text><text class="sub" x="72.5" y="43">authored v1</text></g></a>
     <a href="/docs/standards/stacks/cloudflare-pages-fullstack/"><g class="graph-node authored" transform="translate(610 255)"><rect width="145" height="60" rx="8"/><text x="72.5" y="23">pages</text><text x="72.5" y="39">fullstack</text><text class="sub" x="72.5" y="54">authored v1</text></g></a>
     <a href="/docs/standards/stacks/cloudflare-d1-app/"><g class="graph-node authored" transform="translate(610 370)"><rect width="145" height="60" rx="8"/><text x="72.5" y="25">d1-app</text><text class="sub" x="72.5" y="43">authored v1</text></g></a>
     <a href="/docs/standards/stacks/cloudflare-worker-mcp-server/"><g class="graph-node authored" transform="translate(610 490)"><rect width="145" height="60" rx="8"/><text x="72.5" y="23">worker-mcp</text><text x="72.5" y="39">server</text><text class="sub" x="72.5" y="54">authored v1</text></g></a>
     <a href="/docs/standards/stacks/tenant-deployed-cloudflare-saas/"><g class="graph-node authored" transform="translate(610 610)"><rect width="145" height="60" rx="8"/><text x="72.5" y="23">tenant</text><text x="72.5" y="39">cloudflare-saas</text><text class="sub" x="72.5" y="54">authored v1</text></g></a>
-    <a href="/standards/security/v1/"><g class="graph-node authored" transform="translate(610 730)"><rect width="145" height="60" rx="8"/><text x="72.5" y="25">security</text><text class="sub" x="72.5" y="43">authored v1</text></g></a>
 
-    <!-- planned standards -->
+    <!-- authored cross-cutting rubrics -->
+    <a href="/standards/security/v1/"><g class="graph-node crosscut" transform="translate(610 730)"><rect width="145" height="60" rx="8"/><text x="72.5" y="25">security</text><text class="sub" x="72.5" y="43">authored v1</text></g></a>
+    <a href="/standards/testing/v1/"><g class="graph-node crosscut" transform="translate(610 835)"><rect width="145" height="60" rx="8"/><text x="72.5" y="25">testing</text><text class="sub" x="72.5" y="43">authored v1</text></g></a>
+    <a href="/standards/typescript/v1/"><g class="graph-node crosscut" transform="translate(610 940)"><rect width="145" height="60" rx="8"/><text x="72.5" y="25">typescript</text><text class="sub" x="72.5" y="43">authored v1</text></g></a>
+
+    <!-- planned stack charters -->
     <a href="/docs/standards/stacks/node-cli-internal-tool/"><g class="graph-node planned" transform="translate(1015 80)"><rect width="170" height="60" rx="8"/><text x="85" y="24">node-cli</text><text x="85" y="40">internal-tool</text><text class="sub" x="85" y="55">planned</text></g></a>
     <a href="/docs/standards/stacks/typescript-sdk/"><g class="graph-node planned" transform="translate(1015 200)"><rect width="170" height="60" rx="8"/><text x="85" y="25">typescript-sdk</text><text class="sub" x="85" y="43">planned</text></g></a>
     <a href="/docs/standards/stacks/github-action-package/"><g class="graph-node planned" transform="translate(1015 320)"><rect width="170" height="60" rx="8"/><text x="85" y="24">github-action</text><text x="85" y="40">package</text><text class="sub" x="85" y="55">planned</text></g></a>
@@ -310,7 +335,9 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-react-spa">ref-react-spa</a></strong><span class="status">A 94</span></div>
     <div class="chips">
       <a class="chip standard" href="/docs/standards/stacks/react-spa/">react-spa</a>
-      <a class="chip standard" href="/standards/security/v1/">security</a>
+      <a class="chip crosscut" href="/standards/security/v1/">security</a>
+      <a class="chip crosscut" href="/standards/testing/v1/">testing</a>
+      <a class="chip crosscut" href="/standards/typescript/v1/">typescript</a>
     </div>
     <div class="links"><a href="https://github.com/vibecodeqa/ref-react-spa/blob/main/docs/vcqa-report.md">VCQA report</a></div>
   </div>
@@ -318,7 +345,9 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-cloudflare-worker-mcp">ref-cloudflare-worker-mcp</a></strong><span class="status">A 91</span></div>
     <div class="chips">
       <a class="chip standard" href="/docs/standards/stacks/cloudflare-worker-mcp-server/">cloudflare-worker-mcp-server</a>
-      <a class="chip standard" href="/standards/security/v1/">security</a>
+      <a class="chip crosscut" href="/standards/security/v1/">security</a>
+      <a class="chip crosscut" href="/standards/testing/v1/">testing</a>
+      <a class="chip crosscut" href="/standards/typescript/v1/">typescript</a>
     </div>
     <div class="links"><a href="https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/vcqa-report.md">VCQA report</a></div>
   </div>
@@ -330,13 +359,15 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
       <a class="chip standard" href="/docs/standards/stacks/cloudflare-d1-app/">cloudflare-d1-app</a>
       <a class="chip standard" href="/docs/standards/stacks/cloudflare-worker-mcp-server/">cloudflare-worker-mcp-server</a>
       <a class="chip standard" href="/docs/standards/stacks/tenant-deployed-cloudflare-saas/">tenant-deployed-cloudflare-saas</a>
-      <a class="chip standard" href="/standards/security/v1/">security</a>
+      <a class="chip crosscut" href="/standards/security/v1/">security</a>
+      <a class="chip crosscut" href="/standards/testing/v1/">testing</a>
+      <a class="chip crosscut" href="/standards/typescript/v1/">typescript</a>
     </div>
     <div class="links"><a href="https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md">VCQA report</a></div>
   </div>
 </div>
 
-<h2 id="authored-standards">Authored Standards</h2>
+<h2 id="authored-stack-rubrics">Authored Stack Rubrics</h2>
 
 <div class="standard-grid">
   <div class="standard-card authored">
@@ -357,7 +388,7 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
 
   <div class="standard-card authored">
     <div class="title"><strong><a href="/docs/standards/stacks/cloudflare-pages-fullstack/">cloudflare-pages-fullstack</a></strong><span class="status">authored v1</span></div>
-    <div class="kind">Static frontend plus same-origin Pages Functions API.</div>
+    <div class="kind">Static frontend plus same-origin Pages Functions API. Alias: <code>react-spa-on-cloudflare-pages</code>.</div>
     <div class="chips">
       <a class="chip standard" href="/docs/standards/stacks/react-spa/">react-spa</a>
       <a class="chip item" href="/docs/standards/items/cloudflare-pages-functions/">cloudflare-pages-functions</a>
@@ -413,8 +444,12 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     </div>
     <div class="links"><a href="/standards/tenant-deployed-cloudflare-saas/v1/">rubric</a><a href="https://github.com/vibecodeqa/ref-cloudflare-saas">template</a><a href="https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md">report</a></div>
   </div>
+</div>
 
-  <div class="standard-card authored">
+<h2 id="authored-cross-cutting-rubrics">Authored Cross-Cutting Rubrics</h2>
+
+<div class="standard-grid">
+  <div class="standard-card crosscut">
     <div class="title"><strong><a href="/docs/standards/items/web-security/">security</a></strong><span class="status">authored v1</span></div>
     <div class="kind">Cross-cutting security baseline across app, API, Worker, MCP, CLI, SDK, CI, and docs surfaces.</div>
     <div class="chips">
@@ -426,9 +461,31 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     </div>
     <div class="links"><a href="/standards/security/v1/">rubric</a></div>
   </div>
+
+  <div class="standard-card crosscut">
+    <div class="title"><strong><a href="/docs/standards/items/vitest/">testing</a></strong><span class="status">authored v1</span></div>
+    <div class="kind">Cross-cutting test quality across unit, integration, UI, E2E, smoke, coverage, mocks, fixtures, snapshots, and CI evidence.</div>
+    <div class="chips">
+      <a class="chip item" href="/docs/standards/items/vitest/">vitest</a>
+      <a class="chip item" href="/docs/standards/items/playwright/">playwright</a>
+      <a class="chip item" href="/docs/standards/items/github-actions/">github-actions</a>
+    </div>
+    <div class="links"><a href="/standards/testing/v1/">rubric</a></div>
+  </div>
+
+  <div class="standard-card crosscut">
+    <div class="title"><strong><a href="/docs/standards/items/typescript/">typescript</a></strong><span class="status">authored v1</span></div>
+    <div class="kind">Cross-cutting type safety for strict compiler settings, unsafe types, runtime boundaries, generated code, declarations, and CI gates.</div>
+    <div class="chips">
+      <a class="chip item" href="/docs/standards/items/typescript/">typescript</a>
+      <a class="chip item" href="/docs/standards/items/node/">node</a>
+      <a class="chip item" href="/docs/standards/items/github-actions/">github-actions</a>
+    </div>
+    <div class="links"><a href="/standards/typescript/v1/">rubric</a></div>
+  </div>
 </div>
 
-<h2 id="planned-standards">Planned Standards</h2>
+<h2 id="planned-stack-charters">Planned Stack Charters</h2>
 
 <div class="standard-grid">
   <div class="standard-card planned">
@@ -502,8 +559,9 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
 
 <ul>
   <li>A stack item can feed several standards. <code>typescript</code>, <code>web-security</code>, and <code>github-actions</code> are intentionally shared across many stack shapes.</li>
-  <li><code>react-spa</code> is both an authored standard and an input to <code>cloudflare-pages-fullstack</code>.</li>
+  <li><code>react-spa</code> is both an authored stack rubric and an input to <code>cloudflare-pages-fullstack</code>.</li>
+  <li><code>security</code>, <code>testing</code>, and <code>typescript</code> are authored cross-cutting rubrics, so they are shown separately from deployable stack standards.</li>
   <li>Dashed chips are optional/example leaves: they appear in reference templates but only apply to repositories that use that component.</li>
   <li>Reference templates are examples, not vendor-starter replacements. They point to the relevant standard and to a committed VCQA report.</li>
-  <li>Planned standards are included so the graph shows the pathway, not only what is already published.</li>
+  <li>Planned stack charters are included so the graph shows the pathway, not only what is already published.</li>
 </ul>

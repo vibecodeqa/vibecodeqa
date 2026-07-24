@@ -4,6 +4,7 @@
     **Targets:** Cloudflare Workers/Pages Functions · D1 · Wrangler migrations · TypeScript · GitHub Actions
     **Reviewed:** 2026-07 · **Next review due:** 2027-07
     **Status:** latest · **Pin as:** `cloudflare-d1-app@v1`
+    **Canonical URL:** <https://vibecodeqa.online/standards/cloudflare-d1-app/v1/>
 
 This edition captures the gold standard for a D1-backed Cloudflare app. It focuses on the
 seam between platform bindings, SQL migration history, tenant/environment isolation, query

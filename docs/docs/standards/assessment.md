@@ -26,13 +26,13 @@ Do not combine the scores into one number until each target has its own evidence
 
 Use a 100-point score only after the written findings are complete.
 
-| Band | Meaning |
-|---:|---|
-| 95-100 | Gold reference. Strong enough to cite as the canonical VCQA example. |
-| 85-94 | Good reference. Useful and credible, with known bounded gaps. |
-| 70-84 | Partial reference. Valuable as a fixture, but not enough to define best practice. |
-| 50-69 | Draft. Shows direction, but key evidence or behavior is missing. |
-| 0-49 | Not reliable. Claims are materially unsupported or misleading. |
+| Band | Verdict label | Meaning |
+|---:|---|---|
+| 95-100 | gold | Strong enough to cite as the canonical VCQA example. |
+| 85-94 | good | Useful and credible, with known bounded gaps. |
+| 70-84 | partial | Valuable as a fixture, but not enough to define best practice. |
+| 50-69 | draft | Shows direction, but key evidence or behavior is missing. |
+| 0-49 | unreliable | Claims are materially unsupported or misleading. |
 
 Scores must be conservative. Passing CI is evidence, not a score by itself.
 
@@ -121,7 +121,10 @@ Every independent assessment report should use this structure:
 
 Date: <YYYY-MM-DD>
 Assessor: <agent/model or reviewer>
-Target: <repo/rubric URL>
+Target scope: <stack page|rubric|reference repo|composition|VCQA self-assessment>
+Source target: <source file, repo, or rubric URL>
+Live target: <published target URL or n/a>
+Published assessment URL: <published report URL>
 Commit: <sha or published edition>
 
 ## Verdict

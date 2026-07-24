@@ -3,6 +3,9 @@
 This is the reference standard for one deployable stack shape: a remote Model Context
 Protocol server hosted on Cloudflare Workers.
 
+Canonical version URL:
+<https://vibecodeqa.online/standards/cloudflare-worker-mcp-server/v1/>
+
 It exists because none of the upstream sources own the combined seam. MCP defines the
 protocol, authorization model, and tool contracts. Cloudflare defines the Worker runtime,
 Agents helpers, bindings, Durable Objects, and deployment mechanics. Zod defines runtime
@@ -40,4 +43,3 @@ Functions and a static frontend are co-deployed, use
 - auditability for mutating tool calls
 - treatment of tool output and fetched content as untrusted model input
 - deploy gates for protocol, authorization, type, and preview checks
-

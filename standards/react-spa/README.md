@@ -4,8 +4,9 @@ The **gold-standard reference** for the `react-spa` archetype — React apps tha
 **client-rendered and hosted as static files** (no SSR, no server of their own; data via
 external APIs or a platform SDK).
 
-Published by [FreeDocStore](https://github.com/FreeDocStore) at
-**<https://react-spa.freedocstore.online/>**.
+Published by VibeCode QA at:
+
+<https://vibecodeqa.online/standards/react-spa/v1/>
 
 ## What this is
 
@@ -29,7 +30,9 @@ carries a **review date** so it can't silently rot.
 | --- | --- | --- | --- | --- |
 | `v1` | React 19 · Vite 8 · Tailwind 4 · TS 6 | 2026-07 | 2027-07 | latest |
 
-`react-spa.freedocstore.online/latest` redirects to the current edition.
+The canonical URL for this edition is
+<https://vibecodeqa.online/standards/react-spa/v1/>. The deployed `/latest` route is only
+a convenience redirect to the current edition.
 
 ## Structure
 
@@ -51,4 +54,5 @@ the custom domain on every push to `main`. Manual edits happen in GitHub.
 
 1. Re-verify every rule against the current ecosystem.
 2. If nothing material changed, bump `Reviewed:` on the edition front page.
-3. If it did, copy `docs/v1/` → `docs/v2/`, revise, and move `latest`.
+3. If it did, copy `docs/v1/` → `docs/v2/`, revise, and update the deployed `latest`
+   redirect target.

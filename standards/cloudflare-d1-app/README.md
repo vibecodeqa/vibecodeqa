@@ -6,7 +6,7 @@ deploy with environment-specific database boundaries.
 
 Published by VibeCode QA at:
 
-<https://vibecodeqa.online/standards/cloudflare-d1-app/>
+<https://vibecodeqa.online/standards/cloudflare-d1-app/v1/>
 
 ## What this is
 

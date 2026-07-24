@@ -2,12 +2,16 @@
 
 Date: 2026-07-25
 Assessor: Independent AI Agent C
-Target: `docs/docs/standards/stacks/github-action-package.md`
+Target scope: Stack page assessment only
+Source target: [`docs/docs/standards/stacks/github-action-package.md`](../../stacks/github-action-package.md)
+Live target: <https://vibecodeqa.online/docs/standards/stacks/github-action-package/>
+Published assessment URL: <https://vibecodeqa.online/docs/standards/assessments/stacks/github-action-package/>
 Commit: `e47a3d44ed97f2b52d7a12a97387796564503ad6`
 
 ## Verdict
 
-draft - This page identifies a valid planned stack, but it is too thin to be a useful
+unreliable - Score: **25/100**. This page identifies a valid planned stack, but the
+published score falls in the unreliable band because it is too thin to be a useful
 assessment charter yet. It names the basic surface area: `action.yml`, minimum
 permissions, input validation, runtime/dependency policy, and release tags. It lacks
 teaching focus, upstream references on the stack page, candidate rules, anti-patterns,

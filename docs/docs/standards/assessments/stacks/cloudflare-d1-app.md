@@ -2,16 +2,20 @@
 
 Date: 2026-07-25
 Assessor: Independent AI Agent A
-Target: `docs/docs/standards/stacks/cloudflare-d1-app.md`
+Target scope: Stack page assessment only
+Source target: [`docs/docs/standards/stacks/cloudflare-d1-app.md`](../../stacks/cloudflare-d1-app.md)
+Live target: <https://vibecodeqa.online/docs/standards/stacks/cloudflare-d1-app/>
+Published assessment URL: <https://vibecodeqa.online/docs/standards/assessments/stacks/cloudflare-d1-app/>
 Commit: `e47a3d44ed97f2b52d7a12a97387796564503ad6`
 
 ## Verdict
 
-good - The Cloudflare D1 App page is the strongest of the pages this agent reviewed. It
-has clear scope, concrete VCQA-owned rules, strong checkability, and primary-source
-references in the versioned rubric. It still falls short of gold because there is no
-dedicated reference repo yet, severity is not explicit per rule, and exception policy is
-only partially encoded.
+partial - Score: **83/100**. The Cloudflare D1 App page is the strongest of the pages this
+agent reviewed, but the published score falls in the partial band. It has clear scope,
+concrete VCQA-owned rules, strong checkability, and primary-source references in the
+versioned rubric. It still falls short of good because there is no dedicated reference
+repo yet, severity is not explicit per rule, and exception policy is only partially
+encoded.
 
 ## Findings
 

@@ -2,7 +2,10 @@
 
 Date: 2026-07-25
 Assessor: Independent AI Agent B
-Target: `docs/docs/standards/stacks/cloudflare-worker-mcp-server.md`
+Target scope: Stack page assessment only
+Source target: [`docs/docs/standards/stacks/cloudflare-worker-mcp-server.md`](../../stacks/cloudflare-worker-mcp-server.md)
+Live target: <https://vibecodeqa.online/docs/standards/stacks/cloudflare-worker-mcp-server/>
+Published assessment URL: <https://vibecodeqa.online/docs/standards/assessments/stacks/cloudflare-worker-mcp-server/>
 Commit: `e47a3d44ed97f2b52d7a12a97387796564503ad6`
 
 ## Verdict

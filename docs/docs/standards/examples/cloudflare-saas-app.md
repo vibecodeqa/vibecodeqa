@@ -65,11 +65,11 @@ The standards resolver currently sees six slices:
 
 ```text
 app                  react-spa@v1
-app/functions        pages-fullstack@v1 + d1-database@v1
-packages/cli         node-service [planned]
+app/functions        cloudflare-pages-fullstack@v1 + cloudflare-d1-app@v1
+packages/cli         node-cli-internal-tool [planned]
 packages/mcp         no archetype matched
 packages/mcp-worker  cloudflare-worker-mcp-server@v1
-packages/sdk         library [planned]
+packages/sdk         typescript-sdk [planned]
 cross-cutting        security@v1 applies to every slice
 repo recipe          tenant-deployed-cloudflare-saas@v1, react-spa-on-cloudflare-pages@v1
 ```

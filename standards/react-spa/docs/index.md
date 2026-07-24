@@ -5,6 +5,9 @@ This is the **reference standard for one application archetype**: a React app th
 its own. Data comes from external APIs or a platform SDK; the whole app compiles to a
 folder of static assets behind a CDN.
 
+Canonical version URL:
+<https://vibecodeqa.online/standards/react-spa/v1/>
+
 It exists to be **judged against**. [VibeCode QA](https://vibecodeqa.online) detects a
 repo's archetype, loads the matching standard, and scores the code against its rules. A
 human reading a review sees *"fails **R-BUILD-2** — assets use absolute base"* and can
@@ -59,6 +62,6 @@ vcqa pins an edition (`react-spa@v1`) and surfaces the review date as a stalenes
 
 ---
 
-*FreeDocStore publishes one such standard per archetype (`react-spa`, `react-ssr`,
-`vue-spa`, `node-service`, `flutter-app`, …). Each is the gold standard a scanner judges
+*VibeCode QA publishes one such standard per archetype (`react-spa`, `react-ssr`,
+`vue-spa`, `node-service`, `flutter-app`, ...). Each is the gold standard a scanner judges
 that archetype against.*

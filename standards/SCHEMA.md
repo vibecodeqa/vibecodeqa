@@ -1,4 +1,4 @@
-# FreeDocStore Standards Registry & Composition Model
+# VibeCode QA Standards Registry & Composition Model
 
 The connective tissue between the gold-standard KBs and the tools that judge code
 against them. It answers one question deterministically:
@@ -37,7 +37,7 @@ Rules:
 
 - **Exactly one archetype per slice.** Two archetypes matching one slice means the slice
   is a hybrid that must be sub-sliced (see §3), or the registry has an overlap bug.
-- **Layers never stand alone.** `d1-database`, `mcp-server`, `tailwind` compose *onto* an
+- **Layers never stand alone.** `cloudflare-d1-app`, `mcp-server`, `tailwind` compose *onto* an
   archetype; they never replace it.
 - **Specific archetypes can cover generic layers.** `cloudflare-worker-mcp-server` covers
   the generic `mcp-server` and `zod-validation` layer signals for that slice, so the
@@ -59,7 +59,7 @@ A "slice" is the unit that gets one archetype. Slicing rules:
    with different rubrics, even in one folder.
 
 This is why a Cloudflare SaaS app can resolve its `app/` frontend to `react-spa` **and**
-its `app/functions` API to `pages-fullstack`, not one confused verdict.
+its `app/functions` API to `cloudflare-pages-fullstack`, not one confused verdict.
 
 ## 4. Detection DSL
 
@@ -86,7 +86,7 @@ Predicates must be **cheap and file-local** — the resolver never runs the proj
 reads manifests and file listings only. Deterministic in, deterministic out.
 
 A registry entry may also declare `sliceKinds` to limit where it applies after slicing.
-For example, `d1-database` applies to `functions` and `package` slices so migrations in a
+For example, `cloudflare-d1-app` applies to `functions` and `package` slices so migrations in a
 fullstack app folder do not make the frontend slice look database-backed.
 
 ## 5. Editions
@@ -150,23 +150,23 @@ A single command classifies a real hybrid monorepo into its true composition:
 ```
 # app             [frontend]  archetype: react-spa@v1
                               cross-cutting: typescript, security@v1, testing, accessibility, dependencies
-# app/functions   [functions] archetype: pages-fullstack@v1
-                              layers: d1-database@v1
+# app/functions   [functions] archetype: cloudflare-pages-fullstack@v1
+                              layers: cloudflare-d1-app@v1
                               cross-cutting: typescript, security@v1, testing, dependencies
-# packages/cli    [package]   archetype: node-service [PLANNED]
+# packages/cli    [package]   archetype: node-cli-internal-tool [PLANNED]
 # packages/mcp-worker         archetype: cloudflare-worker-mcp-server@v1
                               cross-cutting: typescript, security@v1, testing, dependencies
-# packages/sdk    [package]   archetype: library [PLANNED]
+# packages/sdk    [package]   archetype: typescript-sdk [PLANNED]
 Repo recipes: tenant-deployed-cloudflare-saas@v1, react-spa-on-cloudflare-pages@v1
 ```
 
-`react-spa@v1`, `pages-fullstack@v1`, `d1-database@v1`,
+`react-spa@v1`, `cloudflare-pages-fullstack@v1`, `cloudflare-d1-app@v1`,
 `cloudflare-worker-mcp-server@v1`, `tenant-deployed-cloudflare-saas@v1`, `security@v1`,
 and the `react-spa-on-cloudflare-pages` alias are published today. The remaining mapped
-gaps are `node-service`, `library`, and the unauthored cross-cutters. The product app is
-not "a stack that needs its own product KB" - it is `react-spa` + `pages-fullstack` +
-`d1-database` + `cloudflare-worker-mcp-server` + `tenant-deployed-cloudflare-saas` +
-`security` + `node-service` + `library` + cross-cutters, most of which are reused by
+gaps are `node-cli-internal-tool`, `typescript-sdk`, and the unauthored cross-cutters. The product app is
+not "a stack that needs its own product KB" - it is `react-spa` + `cloudflare-pages-fullstack` +
+`cloudflare-d1-app` + `cloudflare-worker-mcp-server` + `tenant-deployed-cloudflare-saas` +
+`security` + `node-cli-internal-tool` + `typescript-sdk` + cross-cutters, most of which are reused by
 other Cloudflare-Pages fullstack repos.
 
 ## Files
@@ -179,9 +179,9 @@ other Cloudflare-Pages fullstack repos.
 | `resolve.mjs` | reference resolver: repo → per-slice standard set + gaps |
 | `SCHEMA.md` | this document |
 
-> The **standards** registry (which KB to *judge against*) is deliberately separate from
-> `site/registry.json`, the **publishing** registry (which KB repos deploy where). Producer:
-> FreeDocStore. Primary consumer: VibeCode QA.
+> The **standards** registry (which rubric to *judge against*) is deliberately separate from
+> any future publishing registry (which rubric repos deploy where). Primary consumer:
+> VibeCode QA.
 
 ## 9. Composition URLs and docs catalog
 

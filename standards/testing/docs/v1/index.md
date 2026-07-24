@@ -4,6 +4,7 @@
     **Targets:** browser apps · APIs · Cloudflare Workers/Pages Functions · MCP · CLIs · SDKs · desktop apps · GitHub Actions
     **Reviewed:** 2026-07 · **Next review due:** 2027-07
     **Status:** latest · **Pin as:** `testing@v1`
+    **Canonical URL:** <https://vibecodeqa.online/standards/testing/v1/>
 
 This edition captures the cross-cutting testing baseline VibeCode QA applies across repo
 slices. It focuses on checkable evidence that behavior is safe to change, then lets each

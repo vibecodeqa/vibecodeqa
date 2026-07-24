@@ -4,6 +4,7 @@
     **Targets:** Cloudflare Pages Functions · static frontend · TypeScript · GitHub Actions
     **Reviewed:** 2026-07 · **Next review due:** 2027-07
     **Status:** latest · **Pin as:** `cloudflare-pages-fullstack@v1`
+    **Canonical URL:** <https://vibecodeqa.online/standards/cloudflare-pages-fullstack/v1/>
 
 This edition captures the gold standard for a static frontend co-deployed with
 Cloudflare Pages Functions. It focuses on the seam between frontend, edge API,

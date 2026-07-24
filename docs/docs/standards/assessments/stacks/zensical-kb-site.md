@@ -2,7 +2,10 @@
 
 Date: 2026-07-25
 Assessor: Independent AI Agent D
-Target: `docs/docs/standards/stacks/zensical-kb-site.md`
+Target scope: Stack page assessment only
+Source target: [`docs/docs/standards/stacks/zensical-kb-site.md`](../../stacks/zensical-kb-site.md)
+Live target: <https://vibecodeqa.online/docs/standards/stacks/zensical-kb-site/>
+Published assessment URL: <https://vibecodeqa.online/docs/standards/assessments/stacks/zensical-kb-site/>
 Commit: `e47a3d44ed97f2b52d7a12a97387796564503ad6`
 
 ## Verdict

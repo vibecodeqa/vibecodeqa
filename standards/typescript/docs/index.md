@@ -4,6 +4,9 @@ The TypeScript standard is the cross-cutting VibeCode QA rubric for typed source
 It applies when a repo slice contains TypeScript source or declares TypeScript as part of
 its build, package, runtime, or public API contract.
 
+Canonical version URL:
+<https://vibecodeqa.online/standards/typescript/v1/>
+
 This standard is not a generic TypeScript style guide. It defines the checkable glue VCQA
 owns across stack shapes: strictness, runtime compatibility, type escape policy, boundary
 validation, generated-code exceptions, declaration quality, and CI evidence.

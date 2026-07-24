@@ -1,7 +1,7 @@
 [project]
 site_name = "React SPA — Gold Standard"
 site_description = "The gold-standard reference for React single-page apps that are client-rendered and hosted as static files (no SSR, no server of their own). The rubric VibeCode QA judges react-spa repos against."
-site_author = "FreeDocStore"
+site_author = "VibeCode QA"
 site_url = "https://vibecodeqa.online/standards/react-spa/"
 repo_url = "https://github.com/vibecodeqa/vibecodeqa"
 repo_name = "vibecodeqa/vibecodeqa"

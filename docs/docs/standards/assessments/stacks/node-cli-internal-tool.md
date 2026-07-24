@@ -2,17 +2,21 @@
 
 Date: 2026-07-25
 Assessor: Independent AI Agent C
-Target: `docs/docs/standards/stacks/node-cli-internal-tool.md`
+Target scope: Stack page assessment only
+Source target: [`docs/docs/standards/stacks/node-cli-internal-tool.md`](../../stacks/node-cli-internal-tool.md)
+Live target: <https://vibecodeqa.online/docs/standards/stacks/node-cli-internal-tool/>
+Published assessment URL: <https://vibecodeqa.online/docs/standards/assessments/stacks/node-cli-internal-tool/>
 Commit: `e47a3d44ed97f2b52d7a12a97387796564503ad6`
 
 ## Verdict
 
-partial - This is a useful planned stack charter. It identifies a real recurring stack
-shape and names the right VCQA-owned risks: exit codes, stdout/stderr contracts,
-noninteractive operation, credential boundaries, production safety, dry-run behavior,
-idempotency, runtime policy, and SDK reuse. It is not yet a full rubric because it lacks
-severity levels, exception policy, CI evidence requirements, maintenance lifecycle, and
-concrete evidence mapping to an existing reference repo.
+draft - Score: **61/100**. This is a useful planned stack charter, but the published
+score falls in the draft band. It identifies a real recurring stack shape and names the
+right VCQA-owned risks: exit codes, stdout/stderr contracts, noninteractive operation,
+credential boundaries, production safety, dry-run behavior, idempotency, runtime policy,
+and SDK reuse. It is not yet a full rubric because it lacks severity levels, exception
+policy, CI evidence requirements, maintenance lifecycle, and concrete evidence mapping to
+an existing reference repo.
 
 ## Findings
 

@@ -4,6 +4,7 @@
     **Targets:** React 19 · Vite 8 · Tailwind CSS 4 · TypeScript 6 · pnpm · Node 22+
     **Reviewed:** 2026-07 · **Next review due:** 2027-07
     **Status:** latest · **Pin as:** `react-spa@v1`
+    **Canonical URL:** <https://vibecodeqa.online/standards/react-spa/v1/>
 
 This edition captures the gold standard for the **`react-spa`** archetype as of mid-2026.
 It is the rubric a scanner judges a matching repo against. Every prescription below is

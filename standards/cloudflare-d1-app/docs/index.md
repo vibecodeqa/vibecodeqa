@@ -3,6 +3,9 @@
 This is the reference standard for one deployable stack shape: a Cloudflare Worker or
 Pages Functions app that reads and writes Cloudflare D1 through platform bindings.
 
+Canonical version URL:
+<https://vibecodeqa.online/standards/cloudflare-d1-app/v1/>
+
 It exists because none of the upstream sources own the combined repo-level boundary.
 Cloudflare documents D1, Wrangler, Workers, Pages Functions, and bindings. GitHub documents
 workflow security. OWASP documents injection prevention. VCQA owns the rules that appear

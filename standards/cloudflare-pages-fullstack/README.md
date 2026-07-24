@@ -6,7 +6,7 @@ frontend co-deployed with Cloudflare Pages Functions, usually exposing same-orig
 
 Published by VibeCode QA at:
 
-<https://vibecodeqa.online/standards/cloudflare-pages-fullstack/>
+<https://vibecodeqa.online/standards/cloudflare-pages-fullstack/v1/>
 
 ## What this is
 

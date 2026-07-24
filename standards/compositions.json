@@ -683,6 +683,31 @@
       "standardUrl": null,
       "latestEdition": null,
       "docsUrl": "/docs/standards/stacks/zensical-kb-site/"
+    },
+    {
+      "id": "react-spa-on-cloudflare-pages",
+      "status": "authored",
+      "stackItems": [
+        "react-spa",
+        "cloudflare-pages-functions",
+        "typescript",
+        "web-security",
+        "github-actions"
+      ],
+      "ownedRules": [
+        "same-origin app/API deployment seam",
+        "SPA fallback and /api route ownership",
+        "shared deployment evidence for React app plus Pages Functions"
+      ],
+      "benefits": [
+        "Alias to Cloudflare Pages Fullstack for React SPA deployments on Cloudflare Pages"
+      ],
+      "aliases": [
+        "pages-fullstack"
+      ],
+      "standardUrl": "/standards/cloudflare-pages-fullstack/v1/",
+      "latestEdition": "v1",
+      "docsUrl": "/docs/standards/stacks/cloudflare-pages-fullstack/"
     }
   ]
 }

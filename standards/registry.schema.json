@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vibecodeqa.online/standards/registry.schema.json",
+  "title": "VibeCode QA Standards Resolver Registry",
+  "type": "object",
+  "required": ["$schema", "version", "note", "signals", "standards"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "type": "integer", "minimum": 1 },
+    "note": { "type": "string" },
+    "signals": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "standards": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/standard" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "standard": {
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "title",
+        "summary",
+        "url",
+        "standardUrl",
+        "repo",
+        "appliesTo",
+        "status",
+        "detect",
+        "editions"
+      ],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "type": {
+          "type": "string",
+          "enum": ["archetype", "layer", "cross-cutting", "recipe"]
+        },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "url": { "type": ["string", "null"] },
+        "standardUrl": { "type": ["string", "null"] },
+        "docsUrl": { "type": ["string", "null"] },
+        "repo": { "type": "string" },
+        "appliesTo": {
+          "type": "string",
+          "enum": ["slice", "repo"]
+        },
+        "sliceKinds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["published", "planned"]
+        },
+        "aliases": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "detect": { "$ref": "#/$defs/predicate" },
+        "recommends": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "optionalLayers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "coveredLayers": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "composes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/id" }
+        },
+        "seamTopics": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "editions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/edition" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "edition": {
+      "type": "object",
+      "required": ["version", "path", "status", "reviewed", "nextReview", "targets"],
+      "properties": {
+        "version": { "$ref": "#/$defs/id" },
+        "path": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["latest", "retired"]
+        },
+        "reviewed": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}$"
+        },
+        "nextReview": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}$"
+        },
+        "targets": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "predicate": {
+      "type": "object",
+      "properties": {
+        "always": { "type": "boolean" },
+        "all": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/predicate" }
+        },
+        "any": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/predicate" }
+        },
+        "not": { "$ref": "#/$defs/predicate" },
+        "dep": { "type": "string" },
+        "anyDep": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "noneDep": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "file": { "type": "string" },
+        "anyFile": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "noneFile": {
+          "oneOf": [
+            { "type": "string" },
+            {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          ]
+        },
+        "fileGlob": { "type": "string" },
+        "anyFileGlob": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "noneFileGlob": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "config": { "type": "string" },
+        "matched": { "$ref": "#/$defs/id" }
+      },
+      "additionalProperties": false,
+      "minProperties": 1
+    }
+  }
+}
