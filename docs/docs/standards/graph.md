@@ -163,6 +163,8 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
   height: auto;
 }
 .vcqa-graph .graph-node rect {
+  fill: transparent !important;
+  fill-opacity: 0 !important;
   stroke-width: 2;
 }
 .vcqa-graph .edges {
@@ -172,9 +174,12 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
   fill: var(--edge);
 }
 .vcqa-graph .graph-node text {
-  fill: var(--ink);
+  fill: var(--ink) !important;
   font-size: 13px;
   font-weight: 650;
+  stroke: var(--canvas) !important;
+  stroke-width: 3px;
+  paint-order: stroke fill;
   text-anchor: middle;
   pointer-events: none;
 }
@@ -184,19 +189,15 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
   font-weight: 500;
 }
 .vcqa-graph .graph-node.item rect {
-  fill: var(--item);
   stroke: var(--item-border);
 }
 .vcqa-graph .graph-node.authored rect {
-  fill: var(--authored);
   stroke: var(--authored-border);
 }
 .vcqa-graph .graph-node.planned rect {
-  fill: var(--planned);
   stroke: var(--planned-border);
 }
 .vcqa-graph .graph-node.template rect {
-  fill: var(--template);
   stroke: var(--template-border);
 }
 .vcqa-graph .graph-node:hover rect {
