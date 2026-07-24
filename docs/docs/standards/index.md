@@ -34,6 +34,7 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 | Cloudflare Worker MCP Server | Authored | [Cloudflare Worker MCP Server charter](stacks/cloudflare-worker-mcp-server.md) | [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/) |
 | Tenant-Deployed Cloudflare SaaS | Authored | [Tenant-Deployed Cloudflare SaaS charter](stacks/tenant-deployed-cloudflare-saas.md) | [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/) |
 | Security | Authored | [Web Security item](items/web-security.md) | [Security v1](/standards/security/v1/) |
+| Testing | Authored | [Vitest item](items/vitest.md) and [Playwright item](items/playwright.md) | [Testing v1](/standards/testing/v1/) |
 
 ## Planned stack charters
 
@@ -46,14 +47,12 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 
 ## Planned cross-cutting standards
 
-- Testing
 - TypeScript
 - Dependency Hygiene
 - Accessibility
 
-Testing, TypeScript, Dependency Hygiene, Node CLI Internal Tool, and TypeScript SDK are
-now the next standards to convert into full versioned rubrics for the Cloudflare SaaS
-example.
+TypeScript, Dependency Hygiene, Node CLI Internal Tool, and TypeScript SDK are now the next
+standards to convert into full versioned rubrics for the Cloudflare SaaS example.
 
 ## Worked examples
 

@@ -78,12 +78,17 @@ boundaries, and docs/runbook evidence. It owns authorization boundary checks, se
 exposure checks, input/output safety, tenant/environment isolation, deploy permissions,
 security logging, and incident evidence.
 
+[Testing](items/vitest.md) is authored as [Testing v1](/standards/testing/v1/). It is
+cross-cutting rather than a deployable stack standard. It composes [Vitest](items/vitest.md),
+[Playwright](items/playwright.md), Testing Library guidance, and
+[GitHub Actions](items/github-actions.md). It owns behavior-focused strategy, required
+test layers, meaningful assertions, boundary tests, smoke tests, coverage/risk policy,
+mock and fixture discipline, CI evidence, and fake/flaky/generated test controls.
+
 ## Planned Stack Standards
 
 ### Cross-Cutting
 
-- Testing: applies to every slice; owns required test layers, smoke checks, CI evidence,
-  and failure artifacts.
 - TypeScript: applies to typed slices; owns strictness policy, generated-file exceptions,
   typed boundaries, and project references.
 - Dependency Hygiene: applies to package-managed slices; owns lockfile, audit, install
@@ -128,8 +133,8 @@ the composed standards that use it.
 
 ## Authoring Order
 
-1. [Testing](items/vitest.md), TypeScript, and Dependency Hygiene cross-cutting standards:
-   remove the remaining repo-wide gaps shown by the resolver.
+1. TypeScript and Dependency Hygiene cross-cutting standards: remove the remaining
+   repo-wide gaps shown by the resolver.
 2. [Node CLI Internal Tool](stacks/node-cli-internal-tool.md) and
    [TypeScript SDK](stacks/typescript-sdk.md): cover the operator and package surfaces in
    the Cloudflare SaaS example.
