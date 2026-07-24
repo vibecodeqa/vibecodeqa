@@ -3,8 +3,8 @@
 ## R-ENV-1 - Bindings are scoped by tenant and environment
 
 **Rule.** Preview, staging, production, and tenant-specific deployments must bind to the
-intended D1 databases, secrets, queues, buckets, service bindings, and OAuth clients by
-configuration.
+intended data resources, secrets, queues, buckets, service bindings, and OAuth clients
+by configuration.
 
 **Why.** Tenant and environment isolation fails when a deployment relies on operator
 memory to select resources.
@@ -58,7 +58,7 @@ that reuse production secrets across preview and staging.
 ## R-SECRET-2 - Preview and local cannot access production secrets
 
 **Rule.** Preview and local development must not use production tenant secrets,
-production D1 bindings, production webhooks, or production tenant API credentials unless
+production data bindings, production webhooks, or production tenant API credentials unless
 a reviewed exception exists.
 
 **Why.** Preview deployments are often easier to access and change more frequently than

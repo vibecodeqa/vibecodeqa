@@ -3,8 +3,8 @@
 ## R-PROV-1 - Tenant provisioning is repeatable
 
 **Rule.** A new tenant can be created from documented steps or automation covering
-Cloudflare resources, DNS, D1 migrations, secrets, bindings, access policy, smoke tests,
-observability, and rollback notes.
+Cloudflare resources, DNS, data migrations or storage setup, secrets, bindings, access
+policy, smoke tests, observability, and rollback notes.
 
 **Why.** Tenant deployment is an operational product feature. It cannot depend on one
 operator's memory.
@@ -53,10 +53,10 @@ state, or tribal knowledge.
 - GitHub Actions deployment environments:
   <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments>
 
-## R-SMOKE-1 - New tenant smoke proves auth, API, DB, and MCP boundaries
+## R-SMOKE-1 - New tenant smoke proves auth, API, data, and automation boundaries
 
 **Rule.** Tenant acceptance must include smoke checks for app routing, server-side auth,
-API access, D1 access, relevant Worker/MCP tools, logging, and audit output.
+API access, data-resource access, relevant Worker/MCP tools, logging, and audit output.
 
 **Why.** Tenant provisioning is not complete until the operational boundary has been
 tested end to end.

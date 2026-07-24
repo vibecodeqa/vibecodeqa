@@ -194,6 +194,8 @@ contains URLs for humans and tools:
 | `standardUrl` | composed standard | The latest full, versioned, judgeable rubric URL. `null` means the standard is only a charter today. |
 | `latestEdition` | composed standard | Latest authored edition such as `v1`. `null` means no edition has been authored. |
 | `aliases` | composed standard | Historical or internal names that resolve to the canonical standard ID. |
+| `stackItems` | composed standard | Core stack items that define the standard's required rule surface. |
+| `optionalStackItems` | composed standard | Adjacent stack items that commonly appear in reference repos but are only judged when present. |
 
 Example authored standard:
 
@@ -215,6 +217,8 @@ Example composed standard:
   "id": "tenant-deployed-cloudflare-saas",
   "status": "authored",
   "aliases": [],
+  "stackItems": ["cloudflare-workers", "github-actions", "web-security", "docs-kb"],
+  "optionalStackItems": ["cloudflare-pages-functions", "cloudflare-d1"],
   "docsUrl": "/docs/standards/stacks/tenant-deployed-cloudflare-saas/",
   "standardUrl": "/standards/tenant-deployed-cloudflare-saas/v1/",
   "latestEdition": "v1"

@@ -35,6 +35,7 @@
           "status": { "type": "string" },
           "aliases": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9-]+$" } },
           "stackItems": { "type": "array", "items": { "type": "string" } },
+          "optionalStackItems": { "type": "array", "items": { "type": "string" } },
           "ownedRules": { "type": "array", "items": { "type": "string" } },
           "benefits": { "type": "array", "items": { "type": "string" } },
           "docsUrl": { "type": "string" },

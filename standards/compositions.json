@@ -428,17 +428,19 @@
       "id": "tenant-deployed-cloudflare-saas",
       "status": "authored",
       "stackItems": [
-        "cloudflare-pages-functions",
-        "cloudflare-d1",
         "cloudflare-workers",
         "github-actions",
         "web-security",
         "docs-kb"
       ],
+      "optionalStackItems": [
+        "cloudflare-pages-functions",
+        "cloudflare-d1"
+      ],
       "ownedRules": [
         "tenant instance isolation",
         "staging/prod promotion gates",
-        "per-tenant D1 and secret boundaries",
+        "per-tenant data-resource and secret boundaries",
         "deployment alias auth perimeter",
         "tenant provisioning documentation"
       ],

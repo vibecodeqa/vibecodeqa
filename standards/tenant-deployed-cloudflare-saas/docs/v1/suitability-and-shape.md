@@ -23,8 +23,8 @@ tenant runbook explains the operational reason for tenant-level deployment.
 **Rule.** A product with one production deployment and no tenant-level deployment
 operations must not be judged as tenant-deployed Cloudflare SaaS.
 
-**Why.** Single-production SaaS still needs authorization, D1, and deployment standards,
-but it does not need tenant provisioning, alias, per-tenant migration, and per-tenant
+**Why.** Single-production SaaS still needs authorization, data-resource, and deployment
+standards, but it does not need tenant provisioning, alias, per-tenant migration, and per-tenant
 rollback rules.
 
 **vcqa.** If tenant identity appears only as an application field and no Cloudflare
@@ -38,7 +38,7 @@ resource varies by tenant, resolve the repo to lower-level stack standards only.
 ## R-SHAPE-1 - Deployable tenant surfaces are named
 
 **Rule.** The repo must name each deployable tenant surface it owns: Pages project,
-Pages Functions API, Worker, route, custom domain, D1 database, queue, bucket, Durable
+Pages Functions API, Worker, route, custom domain, data resource, queue, bucket, Durable
 Object namespace, service binding, or integration credential.
 
 **Why.** Operators cannot prove isolation, roll back a tenant, or investigate an incident
@@ -63,8 +63,9 @@ state the compensating isolation model.
 **Why.** Shared resources are sometimes appropriate, but they change the threat model and
 the operational blast radius.
 
-**vcqa.** Flag unclassified D1 databases, Workers, KV/R2/queues, secrets, API tokens,
-OAuth clients, and third-party credentials when a repo claims tenant isolation.
+**vcqa.** Flag unclassified databases, Workers, KV/R2/queues, Durable Object namespaces,
+secrets, API tokens, OAuth clients, and third-party credentials when a repo claims tenant
+isolation.
 
 **References.**
 

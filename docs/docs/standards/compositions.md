@@ -63,12 +63,12 @@ safety.
 
 [Tenant-Deployed Cloudflare SaaS](stacks/tenant-deployed-cloudflare-saas.md) is authored
 as [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/).
-It composes [Cloudflare Pages Functions](items/cloudflare-pages-functions.md),
-[Cloudflare D1](items/cloudflare-d1.md), [Cloudflare Workers](items/cloudflare-workers.md),
+It commonly composes [Cloudflare Workers](items/cloudflare-workers.md),
 [GitHub Actions](items/github-actions.md), [Web Security](items/web-security.md), and
-[Docs KB](items/docs-kb.md). It owns tenant resource manifests, tenant/environment
-bindings, protected previews and aliases, promotion gates, D1 state runbooks,
-provisioning, observability, and auditability.
+[Docs KB](items/docs-kb.md), plus [Cloudflare Pages Functions](items/cloudflare-pages-functions.md)
+or [Cloudflare D1](items/cloudflare-d1.md) when those surfaces are present. It owns
+tenant resource manifests, tenant/environment bindings, protected previews and aliases,
+promotion gates, data-state runbooks, provisioning, observability, and auditability.
 
 [Security](items/web-security.md) is authored as
 [Security v1](/standards/security/v1/). It is cross-cutting rather than a deployable

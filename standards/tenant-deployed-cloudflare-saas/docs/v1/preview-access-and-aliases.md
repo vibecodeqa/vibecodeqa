@@ -21,8 +21,8 @@ flows, or production-like integrations without a documented public-safe decision
 
 ## R-PREVIEW-2 - Preview data cannot mutate production tenant state
 
-**Rule.** Pull request previews and aliased previews must not write to production D1
-databases, production tenant integrations, production queues, or production webhooks
+**Rule.** Pull request previews and aliased previews must not write to production data
+resources, production tenant integrations, production queues, or production webhooks
 unless a documented and reviewed exception exists.
 
 **Why.** Preview code is usually less reviewed than production code and often runs before

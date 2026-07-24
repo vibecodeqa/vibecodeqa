@@ -1,6 +1,6 @@
 [project]
 site_name = "Tenant-Deployed Cloudflare SaaS - Gold Standard"
-site_description = "The gold-standard reference for tenant-scoped SaaS deployments on Cloudflare Pages, Workers, D1, bindings, aliases, promotion gates, provisioning, and auditability."
+site_description = "The gold-standard reference for tenant-scoped SaaS deployments on Cloudflare deployables, data resources, bindings, aliases, promotion gates, provisioning, and auditability."
 site_author = "VibeCode QA"
 site_url = "https://vibecodeqa.online/standards/tenant-deployed-cloudflare-saas/"
 repo_url = "https://github.com/vibecodeqa/vibecodeqa"
@@ -18,7 +18,7 @@ nav = [
     { "2 - Tenant resources" = "v1/tenant-resources.md" },
     { "3 - Environments, secrets, and bindings" = "v1/environments-secrets-and-bindings.md" },
     { "4 - Preview access and aliases" = "v1/preview-access-and-aliases.md" },
-    { "5 - Promotion, D1, and rollback" = "v1/promotion-d1-and-rollbacks.md" },
+    { "5 - Promotion, data, and rollback" = "v1/promotion-data-and-rollbacks.md" },
     { "6 - Provisioning and runbooks" = "v1/provisioning-and-runbooks.md" },
     { "7 - Observability and audit" = "v1/observability-and-audit.md" }
   ] }

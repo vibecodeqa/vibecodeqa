@@ -6,7 +6,7 @@
 environment, deployment or version, actor where available, and target resource context.
 
 **Why.** Tenant-specific incidents cannot be investigated from generic errors that omit
-which tenant, deployment, database, or Worker was affected.
+which tenant, deployment, data resource, or Worker was affected.
 
 **vcqa.** Flag logging and alerting code that lacks tenant and deployment identifiers for
 server-side requests, background jobs, MCP tools, migrations, and admin operations.
@@ -54,13 +54,13 @@ payloads while trying to diagnose auth and binding failures.
 ## R-INCIDENT-1 - Incident evidence includes tenant deployment and data state
 
 **Rule.** Tenant incident runbooks must collect the tenant manifest, active deployment or
-Worker version, Pages deployment URL, D1 migration state, recent admin/audit events, and
-affected aliases/domains.
+Worker version, deployment URL, data-resource migration or backup state, recent
+admin/audit events, and affected aliases/domains.
 
 **Why.** A tenant-deployed incident crosses code, config, data, and domain state.
 
 **vcqa.** Flag incident docs that do not tell responders how to reconstruct the current
-tenant deployment and D1 state.
+tenant deployment and data state.
 
 **References.**
 

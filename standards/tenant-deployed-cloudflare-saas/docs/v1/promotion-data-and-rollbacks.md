@@ -1,15 +1,16 @@
-# Promotion, D1, and rollback
+# Promotion, data resources, and rollback
 
 ## R-PROMOTE-1 - Promotion gates name tenant, environment, and artifact
 
 **Rule.** CI/CD promotion must record the tenant, target environment, actor, commit SHA,
-Pages deployment or Worker version/deployment, D1 migration set, and approval evidence.
+Cloudflare deployment or Worker version, data-resource migration or compatibility set,
+and approval evidence.
 
 **Why.** Tenant promotion must move known artifacts forward. Rebuilding ambiguous state at
 each step makes incidents hard to trace and roll back.
 
 **vcqa.** Flag production deploy workflows that do not bind a tenant/environment to a
-specific commit, deployment, migration set, and approval record.
+specific commit, deployment/version, migration or compatibility set, and approval record.
 
 **References.**
 
@@ -36,35 +37,39 @@ deployment environment, no release note, and no artifact or manifest reference.
 - GitHub Actions deployment environments:
   <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments>
 
-## R-D1-1 - Tenant D1 isolation is the default
+## R-DATA-1 - Tenant data-resource isolation is the default
 
-**Rule.** A tenant-deployed SaaS should use a per-tenant production D1 database unless a
-shared database model is documented, tested for tenant authorization, and accepted as an
-explicit risk.
+**Rule.** A tenant-deployed SaaS should use per-tenant production data resources unless a
+shared data model is documented, tested for tenant authorization, and accepted as an
+explicit risk. D1-backed tenants also apply the Cloudflare D1 App rubric.
 
-**Why.** D1 state is one of the highest-impact tenant boundaries. Shared state can be
+**Why.** Tenant data is one of the highest-impact tenant boundaries. Shared state can be
 valid, but it needs stronger proof than naming conventions.
 
-**vcqa.** Flag shared production D1 databases with no tenant-isolation design, no
-authorization tests, no query-scoping checks, and no risk acceptance.
+**vcqa.** Flag shared production databases, buckets, namespaces, Durable Objects, or
+external data bindings with no tenant-isolation design, no authorization tests, no
+resource-scoping checks, and no risk acceptance.
 
 **References.**
 
 - Cloudflare D1 environments:
   <https://developers.cloudflare.com/d1/configuration/environments/>
+- Cloudflare Workers bindings:
+  <https://developers.cloudflare.com/workers/runtime-apis/bindings/>
 - OWASP Multi Tenant Security Cheat Sheet:
   <https://cheatsheetseries.owasp.org/cheatsheets/Multi_Tenant_Security_Cheat_Sheet.html>
 
-## R-D1-2 - Migrations are promoted before traffic
+## R-DATA-2 - Data migrations or compatibility changes are promoted before traffic
 
-**Rule.** Tenant production traffic must not be shifted to code requiring a new D1 schema
-until that tenant's migration state is known, recorded, and compatible with the deployed
+**Rule.** Tenant production traffic must not be shifted to code requiring a new schema,
+bucket layout, object format, Durable Object state shape, or external data contract until
+that tenant's data-resource state is known, recorded, and compatible with the deployed
 version.
 
 **Why.** Code rollback and database state do not roll back together automatically.
 
-**vcqa.** Flag production deploys where migration application is manual, unordered,
-unrecorded, or not tied to the deployed tenant artifact.
+**vcqa.** Flag production deploys where data migration, compatibility, or restore state
+is manual, unordered, unrecorded, or not tied to the deployed tenant artifact.
 
 **References.**
 
@@ -73,17 +78,17 @@ unrecorded, or not tied to the deployed tenant artifact.
 - Cloudflare Workers versions and deployments:
   <https://developers.cloudflare.com/workers/versions-and-deployments/>
 
-## R-ROLL-1 - Rollback and fix-forward cover code and D1 state separately
+## R-ROLL-1 - Rollback and fix-forward cover code and data state separately
 
 **Rule.** The runbook must explain when to roll back code, when to fix forward, when to
-use D1 Time Travel or import/export, who approves destructive restore, and how tenant
-downtime or data loss is communicated.
+use platform backup/restore such as D1 Time Travel or import/export, who approves
+destructive restore, and how tenant downtime or data loss is communicated.
 
 **Why.** Worker versions and Pages deployments are not a full database rollback strategy.
-D1 point-in-time restore affects data state and requires tenant-specific approval.
+Data restore affects data state and requires tenant-specific approval.
 
-**vcqa.** Flag rollback docs that only mention redeploying code and do not cover D1 state,
-restore approval, backup evidence, or tenant communication.
+**vcqa.** Flag rollback docs that only mention redeploying code and do not cover data
+state, restore approval, backup evidence, or tenant communication.
 
 **References.**
 

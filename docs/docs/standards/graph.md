@@ -2,7 +2,9 @@
 
 This graph shows how VibeCode QA turns upstream framework and platform guidance into
 judgeable stack standards. Stack items are leaves. Stack standards are composed nodes.
-Reference templates are runnable fixtures that prove the standard in CI.
+Reference templates are runnable fixtures that prove the standard in CI. Some stack
+items are optional composition leaves: they are judged when present, but they do not
+define the minimum shape of the standard.
 
 The machine-readable source for this map is
 [`/standards/compositions.json`](/standards/compositions.json).
@@ -137,6 +139,14 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
 .vcqa-graph .chip.template {
   border-color: var(--template-border);
   background: var(--template);
+}
+.vcqa-graph .chip.optional {
+  border-style: dashed;
+}
+.vcqa-graph .chip-group-label {
+  color: var(--muted);
+  font-size: 0.75rem;
+  margin-top: 0.55rem;
 }
 .vcqa-graph .links {
   display: flex;
@@ -391,12 +401,15 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     <div class="title"><strong><a href="/docs/standards/stacks/tenant-deployed-cloudflare-saas/">tenant-deployed-cloudflare-saas</a></strong><span class="status">authored v1</span></div>
     <div class="kind">Tenant-scoped Cloudflare deployment, promotion, rollback, and evidence.</div>
     <div class="chips">
-      <a class="chip item" href="/docs/standards/items/cloudflare-pages-functions/">cloudflare-pages-functions</a>
-      <a class="chip item" href="/docs/standards/items/cloudflare-d1/">cloudflare-d1</a>
       <a class="chip item" href="/docs/standards/items/cloudflare-workers/">cloudflare-workers</a>
       <a class="chip item" href="/docs/standards/items/github-actions/">github-actions</a>
       <a class="chip item" href="/docs/standards/items/web-security/">web-security</a>
       <a class="chip item" href="/docs/standards/items/docs-kb/">docs-kb</a>
+    </div>
+    <div class="chip-group-label">Optional/example leaves</div>
+    <div class="chips">
+      <a class="chip item optional" href="/docs/standards/items/cloudflare-pages-functions/">cloudflare-pages-functions</a>
+      <a class="chip item optional" href="/docs/standards/items/cloudflare-d1/">cloudflare-d1</a>
     </div>
     <div class="links"><a href="/standards/tenant-deployed-cloudflare-saas/v1/">rubric</a><a href="https://github.com/vibecodeqa/ref-cloudflare-saas">template</a><a href="https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md">report</a></div>
   </div>
@@ -490,6 +503,7 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
 <ul>
   <li>A stack item can feed several standards. <code>typescript</code>, <code>web-security</code>, and <code>github-actions</code> are intentionally shared across many stack shapes.</li>
   <li><code>react-spa</code> is both an authored standard and an input to <code>cloudflare-pages-fullstack</code>.</li>
+  <li>Dashed chips are optional/example leaves: they appear in reference templates but only apply to repositories that use that component.</li>
   <li>Reference templates are examples, not vendor-starter replacements. They point to the relevant standard and to a committed VCQA report.</li>
   <li>Planned standards are included so the graph shows the pathway, not only what is already published.</li>
 </ul>

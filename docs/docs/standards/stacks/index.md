@@ -19,7 +19,7 @@ describe deployable shapes, not isolated frameworks.
   [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/). Template:
   [ref-cloudflare-worker-mcp](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp).
 - [Tenant-Deployed Cloudflare SaaS](tenant-deployed-cloudflare-saas.md): per-tenant
-  Cloudflare deployment, provisioning, promotion, D1 state, aliases, and auditability.
+  Cloudflare deployment, provisioning, promotion, data state, aliases, and auditability.
   Full rubric: [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/).
 
 ## Planned charters

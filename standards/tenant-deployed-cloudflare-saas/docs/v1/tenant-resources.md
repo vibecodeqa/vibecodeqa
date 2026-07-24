@@ -4,7 +4,7 @@
 
 **Rule.** Every production tenant must have a manifest, or an equivalent generated
 record, listing its Cloudflare account or project, Pages deployment surface, Worker
-surface, routes, custom domains, D1 databases, bindings, secrets, access policy, and
+surface, routes, custom domains, data resources, bindings, secrets, access policy, and
 owner.
 
 **Why.** Tenant operations need an auditable source of truth for what exists and who owns
@@ -25,8 +25,8 @@ production tenants that only exist in Cloudflare dashboard state or undocumented
 **Rule.** Shared resources must have documented tenant-scoping rules and tests or
 operational checks that prove cross-tenant access is blocked.
 
-**Why.** A shared Worker, D1 database, bucket, OAuth app, queue, or token can silently
-become the weakest tenant boundary.
+**Why.** A shared Worker, database, storage bucket or namespace, OAuth app, queue, or
+token can silently become the weakest tenant boundary.
 
 **vcqa.** Flag shared resources with no tenant authorization tests, no scoped query
 checks, no access policy, or no accepted risk note.
