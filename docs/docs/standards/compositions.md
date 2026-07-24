@@ -21,9 +21,10 @@ Product-neutral reference implementations:
 
 ## Decision
 
-We do not author a generic "React standard" or "TypeScript standard". React, TypeScript,
-WCAG, OWASP, Cloudflare, and MCP already publish the broad doctrine. VibeCode QA standards
-define deployable stack shapes and cite those sources.
+We do not author generic replacements for React, TypeScript, WCAG, OWASP, Cloudflare, or
+MCP doctrine. Those sources already publish the broad rules. VibeCode QA standards define
+deployable stack shapes, or narrow cross-cutting rubrics where VCQA owns checkable glue
+across many stack shapes.
 
 ## Authored Standards
 
@@ -85,12 +86,18 @@ cross-cutting rather than a deployable stack standard. It composes [Vitest](item
 test layers, meaningful assertions, boundary tests, smoke tests, coverage/risk policy,
 mock and fixture discipline, CI evidence, and fake/flaky/generated test controls.
 
+[TypeScript](items/typescript.md) is authored as
+[TypeScript v1](/standards/typescript/v1/). It is cross-cutting rather than a deployable
+stack standard. It composes the TypeScript item, runtime and module references, and
+[GitHub Actions](items/github-actions.md) evidence. It owns strict compiler config,
+runtime fit, project references, no-any and suppression policy, runtime boundary
+validation, emit/import discipline, generated exceptions, declarations and public APIs,
+and CI typecheck evidence.
+
 ## Planned Stack Standards
 
 ### Cross-Cutting
 
-- TypeScript: applies to typed slices; owns strictness policy, generated-file exceptions,
-  typed boundaries, and project references.
 - Dependency Hygiene: applies to package-managed slices; owns lockfile, audit, install
   script, license, runtime, and supply-chain risk gates.
 - Accessibility: applies to UI slices; owns scan/manual acceptance gates that compose
@@ -133,7 +140,7 @@ the composed standards that use it.
 
 ## Authoring Order
 
-1. TypeScript and Dependency Hygiene cross-cutting standards: remove the remaining
+1. Dependency Hygiene cross-cutting standard: remove the remaining package-managed
    repo-wide gaps shown by the resolver.
 2. [Node CLI Internal Tool](stacks/node-cli-internal-tool.md) and
    [TypeScript SDK](stacks/typescript-sdk.md): cover the operator and package surfaces in

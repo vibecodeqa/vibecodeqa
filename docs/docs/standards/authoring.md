@@ -13,7 +13,7 @@ This page defines how VibeCode QA standards are created, reviewed, and published
 
 ## Naming
 
-Use deployable stack IDs, not generic framework IDs, for full standards. Good examples: `react-spa`, `cloudflare-pages-fullstack`, `cloudflare-worker-mcp-server`. Avoid publishing a generic `react` or `typescript` standard; those are stack items backed by upstream references.
+Use deployable stack IDs, not generic framework IDs, for full standards. Good examples: `react-spa`, `cloudflare-pages-fullstack`, `cloudflare-worker-mcp-server`. Avoid publishing generic replacements for upstream framework doctrine. Cross-cutting standards such as `typescript` are allowed only when they define VCQA-owned, checkable glue across many stack shapes.
 
 Aliases are allowed only when a term was used previously. For example, `react-spa-static` is an alias for `react-spa`, not a separate standard.
 

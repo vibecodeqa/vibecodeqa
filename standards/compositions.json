@@ -509,6 +509,35 @@
       "docsUrl": "/docs/standards/items/vitest/"
     },
     {
+      "id": "typescript",
+      "status": "authored",
+      "stackItems": [
+        "typescript",
+        "node",
+        "github-actions"
+      ],
+      "ownedRules": [
+        "strict compiler settings for owned source",
+        "runtime-compatible lib, types, module, and moduleResolution",
+        "project references or explicit typecheck boundaries",
+        "unsafe any, assertion, and suppression controls",
+        "external data validation before trusted domain typing",
+        "type-only import and emit discipline",
+        "generated code and exception policy",
+        "declaration and public API type compatibility",
+        "CI typecheck gates and drift evidence"
+      ],
+      "benefits": [
+        "all VCQA typed app, Worker, MCP, CLI, SDK, extension, desktop, and CI surfaces",
+        "VCQA typecheck and type-safety scanner checks",
+        "Cloudflare SaaS example typed boundary gaps"
+      ],
+      "aliases": [],
+      "standardUrl": "/standards/typescript/v1/",
+      "latestEdition": "v1",
+      "docsUrl": "/docs/standards/items/typescript/"
+    },
+    {
       "id": "node-cli-internal-tool",
       "status": "planned",
       "stackItems": [

@@ -228,9 +228,11 @@
       "url": "https://vibecodeqa.online/standards/typescript",
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
-      "status": "planned",
+      "status": "published",
       "detect": { "any": [ { "dep": "typescript" }, { "anyFileGlob": ["**/*.ts", "**/*.tsx"] } ] },
-      "editions": []
+      "editions": [
+        { "version": "v1", "path": "/v1", "status": "latest", "reviewed": "2026-07", "nextReview": "2027-07", "targets": { "typescript": "6", "node": "22", "githubActions": "latest" } }
+      ]
     },
     {
       "id": "security",
