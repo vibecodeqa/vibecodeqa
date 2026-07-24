@@ -44,6 +44,25 @@
         },
         "additionalProperties": false
       }
+    },
+    "referenceImplementations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "repo", "url", "status", "demonstrates", "score", "reportUrl", "ci"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "repo": { "type": "string" },
+          "url": { "type": "string" },
+          "status": { "type": "string", "enum": ["published", "candidate"] },
+          "standards": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9-]+$" } },
+          "demonstrates": { "type": "string" },
+          "score": { "type": ["string", "null"] },
+          "reportUrl": { "type": ["string", "null"] },
+          "ci": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      }
     }
   },
   "additionalProperties": false

@@ -98,7 +98,13 @@ a **review date** so it can't silently rot:
 ```json
 { "version": "v1", "status": "latest",
   "reviewed": "2026-07", "nextReview": "2027-07",
-  "targets": { "react": "19", "vite": "8", "tailwind": "4", "typescript": "6" } }
+  "targets": { "react": "19", "vite": "8", "tailwind": "4", "typescript": "6" },
+  "lifecycle": {
+    "deprecated": false,
+    "supersededBy": null,
+    "errata": [],
+    "changelog": []
+  } }
 ```
 
 The resolver pins each applied standard to its `latest` edition (a repo may override with a
@@ -177,6 +183,7 @@ other Cloudflare-Pages fullstack repos.
 | `references.json` | official upstream standards and primary-source documentation |
 | `compositions.json` | human/tool navigation map from stack items to composed VCQA standards |
 | `resolve.mjs` | reference resolver: repo → per-slice standard set + gaps |
+| `generate-catalog.mjs` | deterministic generator for catalog/index/landing inventories |
 | `SCHEMA.md` | this document |
 
 > The **standards** registry (which rubric to *judge against*) is deliberately separate from
@@ -196,6 +203,7 @@ contains URLs for humans and tools:
 | `aliases` | composed standard | Historical or internal names that resolve to the canonical standard ID. |
 | `stackItems` | composed standard | Core stack items that define the standard's required rule surface. |
 | `optionalStackItems` | composed standard | Adjacent stack items that commonly appear in reference repos but are only judged when present. |
+| `referenceImplementations` | composition map | Product-neutral template repos, report links, CI evidence, demonstrated standards, and next candidates. |
 
 Example authored standard:
 
@@ -228,3 +236,15 @@ Example composed standard:
 The docs KB is the discovery and explanation surface. `/standards/<id>/vN/` is reserved
 for full rubrics a judge can cite rule-by-rule. `/standards/*.json` remains the
 machine-readable registry layer.
+
+Catalog tables, stack and item indexes, the root standards landing inventories, and
+reference implementation inventories are generated from metadata. Edit the JSON first,
+then run:
+
+```sh
+node standards/generate-catalog.mjs
+node standards/validate-registry.mjs
+```
+
+CI runs `node standards/generate-catalog.mjs --check` so hand-edited generated regions
+or stale metadata changes fail before deploy.

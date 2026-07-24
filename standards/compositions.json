@@ -366,7 +366,9 @@
         "Cloudflare SaaS example app",
         "future VCQA fullstack dashboard patterns"
       ],
-      "aliases": [],
+      "aliases": [
+        "pages-fullstack"
+      ],
       "standardUrl": "/standards/cloudflare-pages-fullstack/v1/",
       "latestEdition": "v1",
       "docsUrl": "/docs/standards/stacks/cloudflare-pages-fullstack/"
@@ -392,7 +394,10 @@
       "benefits": [
         "Cloudflare SaaS example D1 usage"
       ],
-      "aliases": [],
+      "aliases": [
+        "cloudflare-d1",
+        "d1-database"
+      ],
       "standardUrl": "/standards/cloudflare-d1-app/v1/",
       "latestEdition": "v1",
       "docsUrl": "/docs/standards/stacks/cloudflare-d1-app/"
@@ -557,7 +562,9 @@
         "Cloudflare SaaS example CLI",
         "vcqa/cli"
       ],
-      "aliases": [],
+      "aliases": [
+        "node-service"
+      ],
       "standardUrl": null,
       "latestEdition": null,
       "docsUrl": "/docs/standards/stacks/node-cli-internal-tool/"
@@ -582,7 +589,9 @@
         "Cloudflare SaaS example SDK",
         "future VCQA schema/client packages"
       ],
-      "aliases": [],
+      "aliases": [
+        "library"
+      ],
       "standardUrl": null,
       "latestEdition": null,
       "docsUrl": "/docs/standards/stacks/typescript-sdk/"
@@ -708,6 +717,171 @@
       "standardUrl": "/standards/cloudflare-pages-fullstack/v1/",
       "latestEdition": "v1",
       "docsUrl": "/docs/standards/stacks/cloudflare-pages-fullstack/"
+    }
+  ],
+  "referenceImplementations": [
+    {
+      "id": "ref-react-spa",
+      "repo": "vibecodeqa/ref-react-spa",
+      "url": "https://github.com/vibecodeqa/ref-react-spa",
+      "status": "published",
+      "standards": [
+        "react-spa",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "demonstrates": "Small React SPA template: Vite, TypeScript, React Router, Vitest, Playwright, accessibility-oriented UI structure, static build gates, and public client configuration discipline.",
+      "score": "94/100",
+      "reportUrl": "https://github.com/vibecodeqa/ref-react-spa/blob/main/docs/vcqa-report.md",
+      "ci": "green"
+    },
+    {
+      "id": "ref-cloudflare-worker-mcp",
+      "repo": "vibecodeqa/ref-cloudflare-worker-mcp",
+      "url": "https://github.com/vibecodeqa/ref-cloudflare-worker-mcp",
+      "status": "published",
+      "standards": [
+        "cloudflare-worker-mcp-server",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "demonstrates": "SDK-backed Streamable HTTP MCP Worker template: protected resource metadata, Worker-boundary authorization, scoped tool permissions, Zod validation, audit events, runbooks, and Wrangler dry-run deploy gates.",
+      "score": "91/100",
+      "reportUrl": "https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/vcqa-report.md",
+      "ci": "green"
+    },
+    {
+      "id": "ref-cloudflare-saas",
+      "repo": "vibecodeqa/ref-cloudflare-saas",
+      "url": "https://github.com/vibecodeqa/ref-cloudflare-saas",
+      "status": "published",
+      "standards": [
+        "react-spa",
+        "cloudflare-pages-fullstack",
+        "cloudflare-d1-app",
+        "cloudflare-worker-mcp-server",
+        "tenant-deployed-cloudflare-saas",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "demonstrates": "Product-neutral Cloudflare SaaS template: React SPA, Pages Functions, D1, Worker MCP, SDK, CLI, tenant manifests, runbooks, and CI gates.",
+      "score": "91/100",
+      "reportUrl": "https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md",
+      "ci": "green"
+    },
+    {
+      "id": "ref-node-cli-internal-tool",
+      "repo": "vibecodeqa/ref-node-cli-internal-tool",
+      "url": "https://github.com/vibecodeqa/ref-node-cli-internal-tool",
+      "status": "published",
+      "standards": [
+        "node-cli-internal-tool",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "demonstrates": "Small Node CLI template: TypeScript, stable exit codes, credential resolution, production safety guards, structured output, parser tests, and executable smoke checks.",
+      "score": "92/100",
+      "reportUrl": "https://github.com/vibecodeqa/ref-node-cli-internal-tool/blob/main/docs/vcqa-report.md",
+      "ci": "green"
+    },
+    {
+      "id": "ref-cloudflare-pages-fullstack",
+      "repo": "vibecodeqa/ref-cloudflare-pages-fullstack",
+      "url": "https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack",
+      "status": "candidate",
+      "standards": [
+        "cloudflare-pages-fullstack",
+        "react-spa",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "demonstrates": "React SPA plus same-origin Cloudflare Pages Functions API, route ownership, bindings, and deploy evidence.",
+      "score": null,
+      "reportUrl": null,
+      "ci": null
+    },
+    {
+      "id": "ref-cloudflare-d1-app",
+      "repo": "vibecodeqa/ref-cloudflare-d1-app",
+      "url": "https://github.com/vibecodeqa/ref-cloudflare-d1-app",
+      "status": "candidate",
+      "standards": [
+        "cloudflare-d1-app",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "demonstrates": "D1 migrations, local apply checks, bindings, query safety, and environment isolation without the broader SaaS composition.",
+      "score": null,
+      "reportUrl": null,
+      "ci": null
+    },
+    {
+      "id": "ref-typescript-sdk",
+      "repo": "vibecodeqa/ref-typescript-sdk",
+      "url": "https://github.com/vibecodeqa/ref-typescript-sdk",
+      "status": "candidate",
+      "standards": [
+        "typescript-sdk",
+        "typescript",
+        "testing",
+        "dependencies"
+      ],
+      "demonstrates": "Export maps, declarations, typed errors, generated client drift checks, and consumer compatibility tests.",
+      "score": null,
+      "reportUrl": null,
+      "ci": null
+    },
+    {
+      "id": "ref-zensical-kb-site",
+      "repo": "vibecodeqa/ref-zensical-kb-site",
+      "url": "https://github.com/vibecodeqa/ref-zensical-kb-site",
+      "status": "candidate",
+      "standards": [
+        "zensical-kb-site"
+      ],
+      "demonstrates": "Markdown source of truth, stable docs URLs, references, generated-site policy, and docs smoke checks.",
+      "score": null,
+      "reportUrl": null,
+      "ci": null
+    },
+    {
+      "id": "ref-vscode-extension-package",
+      "repo": "vibecodeqa/ref-vscode-extension-package",
+      "url": "https://github.com/vibecodeqa/ref-vscode-extension-package",
+      "status": "candidate",
+      "standards": [
+        "vscode-extension-package",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "demonstrates": "Activation scope, workspace trust, command/webview boundaries, marketplace metadata, and extension tests.",
+      "score": null,
+      "reportUrl": null,
+      "ci": null
+    },
+    {
+      "id": "ref-tauri-react-desktop",
+      "repo": "vibecodeqa/ref-tauri-react-desktop",
+      "url": "https://github.com/vibecodeqa/ref-tauri-react-desktop",
+      "status": "candidate",
+      "standards": [
+        "tauri-react-desktop",
+        "react-spa",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "demonstrates": "Tauri command/capability boundaries, secure storage, file-system safety, packaging, and frontend/backend typing.",
+      "score": null,
+      "reportUrl": null,
+      "ci": null
     }
   ]
 }

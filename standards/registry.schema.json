@@ -96,7 +96,7 @@
     },
     "edition": {
       "type": "object",
-      "required": ["version", "path", "status", "reviewed", "nextReview", "targets"],
+      "required": ["version", "path", "status", "reviewed", "nextReview", "targets", "lifecycle"],
       "properties": {
         "version": { "$ref": "#/$defs/id" },
         "path": { "type": "string" },
@@ -115,6 +115,23 @@
         "targets": {
           "type": "object",
           "additionalProperties": { "type": "string" }
+        },
+        "lifecycle": {
+          "type": "object",
+          "required": ["deprecated", "supersededBy", "errata", "changelog"],
+          "properties": {
+            "deprecated": { "type": "boolean" },
+            "supersededBy": { "type": ["string", "null"] },
+            "errata": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "changelog": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "additionalProperties": false
         }
       },
       "additionalProperties": false

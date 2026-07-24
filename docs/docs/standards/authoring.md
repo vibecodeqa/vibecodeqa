@@ -28,6 +28,30 @@ Standards are versioned on material change, not by calendar date.
 
 Each edition front page should include targets, reviewed date, next review due, status, and pin string. See [React SPA v1](/standards/react-spa/v1/) as the current exemplar.
 
+Edition lifecycle metadata lives in `standards/registry.json`. Each edition declares
+whether it is deprecated, what edition supersedes it when relevant, and any errata or
+changelog entries. Reports and scans must cite pinned `/standards/<id>/vN/` URLs, never
+`/latest`.
+
+## Generated catalog workflow
+
+The catalog surfaces are generated from the metadata registries while the explanatory prose
+around them remains hand-authored. Generated regions are marked with
+`BEGIN GENERATED:*` and `END GENERATED:*` comments.
+
+When adding or changing a standard:
+
+1. Update `standards/registry.json`, `standards/compositions.json`, and
+   `standards/references.json` first.
+2. Run `node standards/generate-catalog.mjs`.
+3. Run `node standards/validate-registry.mjs`.
+4. Author or revise the stack charter or rubric Markdown.
+5. Do not manually edit generated catalog tables, stack/item indexes, root standards
+   landing inventories, or reference implementation inventories.
+
+CI runs `node standards/generate-catalog.mjs --check` and fails if generated output is
+stale.
+
 ## Rule shape
 
 Each full-rubric rule uses a stable ID: `R-<AREA>-<n>`.
@@ -107,5 +131,7 @@ The edition index maps every rubric area and names the non-negotiables. Each are
 - [ ] The standard is stack-shaped and detectable.
 - [ ] Combination-born guidelines are explicit.
 - [ ] Rule IDs are stable and checkable.
-- [ ] JSON registry entries include docs URL, rubric URL when authored, status, aliases, and latest edition.
+- [ ] JSON registry entries include docs URL, pinned rubric URL when authored, status,
+      aliases, latest edition, and edition lifecycle metadata.
+- [ ] Generated catalog output has been refreshed with `node standards/generate-catalog.mjs`.
 - [ ] Zensical build passes.

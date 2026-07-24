@@ -80,10 +80,18 @@
             "vite": "8",
             "tailwind": "4",
             "typescript": "6"
+          },
+          "lifecycle": {
+            "deprecated": false,
+            "supersededBy": null,
+            "errata": [],
+            "changelog": []
           }
         }
       ],
-      "aliases": [],
+      "aliases": [
+        "react-spa-static"
+      ],
       "standardUrl": "https://vibecodeqa.online/standards/react-spa/v1/",
       "docsUrl": "/docs/standards/stacks/react-spa/"
     },
@@ -129,6 +137,12 @@
           "targets": {
             "cloudflarePagesFunctions": "latest",
             "typescript": "6"
+          },
+          "lifecycle": {
+            "deprecated": false,
+            "supersededBy": null,
+            "errata": [],
+            "changelog": []
           }
         }
       ],
@@ -196,6 +210,12 @@
             "cloudflareWorkers": "latest",
             "mcp": "2025-11-25",
             "typescript": "6"
+          },
+          "lifecycle": {
+            "deprecated": false,
+            "supersededBy": null,
+            "errata": [],
+            "changelog": []
           }
         }
       ],
@@ -401,12 +421,18 @@
             "cloudflareD1": "latest",
             "wrangler": "4",
             "typescript": "6"
+          },
+          "lifecycle": {
+            "deprecated": false,
+            "supersededBy": null,
+            "errata": [],
+            "changelog": []
           }
         }
       ],
       "aliases": [
-        "d1-database",
-        "cloudflare-d1"
+        "cloudflare-d1",
+        "d1-database"
       ],
       "standardUrl": "https://vibecodeqa.online/standards/cloudflare-d1-app/v1/",
       "docsUrl": "/docs/standards/stacks/cloudflare-d1-app/"
@@ -520,6 +546,12 @@
             "typescript": "6",
             "node": "22",
             "githubActions": "latest"
+          },
+          "lifecycle": {
+            "deprecated": false,
+            "supersededBy": null,
+            "errata": [],
+            "changelog": []
           }
         }
       ],
@@ -551,6 +583,12 @@
             "owaspCheatSheets": "latest",
             "githubActions": "latest",
             "cloudflareWorkers": "latest"
+          },
+          "lifecycle": {
+            "deprecated": false,
+            "supersededBy": null,
+            "errata": [],
+            "changelog": []
           }
         }
       ],
@@ -582,6 +620,12 @@
             "playwright": "latest",
             "testingLibrary": "latest",
             "githubActions": "latest"
+          },
+          "lifecycle": {
+            "deprecated": false,
+            "supersededBy": null,
+            "errata": [],
+            "changelog": []
           }
         }
       ],
@@ -677,6 +721,12 @@
             "cloudflareD1": "latest",
             "cloudflareWorkers": "latest",
             "mcp": "2025-11-25"
+          },
+          "lifecycle": {
+            "deprecated": false,
+            "supersededBy": null,
+            "errata": [],
+            "changelog": []
           }
         }
       ],
@@ -689,7 +739,7 @@
       "type": "recipe",
       "title": "React SPA on Cloudflare Pages (with Functions)",
       "summary": "Alias for the authored Cloudflare Pages Fullstack rubric when a React SPA and Pages Functions API are co-deployed in one Pages project.",
-      "url": "https://vibecodeqa.online/standards/react-spa-on-cloudflare-pages/v1/",
+      "url": "https://vibecodeqa.online/standards/cloudflare-pages-fullstack/v1/",
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "repo",
       "status": "published",
@@ -726,13 +776,19 @@
             "react": "19",
             "vite": "8",
             "typescript": "6"
+          },
+          "lifecycle": {
+            "deprecated": false,
+            "supersededBy": null,
+            "errata": [],
+            "changelog": []
           }
         }
       ],
       "aliases": [
         "pages-fullstack"
       ],
-      "standardUrl": "https://vibecodeqa.online/standards/react-spa-on-cloudflare-pages/v1/",
+      "standardUrl": "https://vibecodeqa.online/standards/cloudflare-pages-fullstack/v1/",
       "docsUrl": "/docs/standards/stacks/cloudflare-pages-fullstack/"
     },
     {
