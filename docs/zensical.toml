@@ -55,6 +55,7 @@ nav = [
   { "Standards" = [
     { "Overview" = "standards/index.md" },
     { "Authoring" = "standards/authoring.md" },
+    { "Assessment" = "standards/assessment.md" },
     { "References" = "standards/references.md" },
     { "Compositions" = "standards/compositions.md" },
     { "Graph" = "standards/graph.md" },

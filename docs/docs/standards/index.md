@@ -17,6 +17,7 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 ## How this section is organized
 
 - [References](references.md): official specs and primary-source docs to cite before writing a VibeCode QA rule.
+- [Assessment](assessment.md): criteria for judging rubrics, reference repos, and VCQA itself.
 - [Compositions](compositions.md): the linked map of stack items and composed standards.
 - [Graph](graph.md): navigable graph of stack standards, stack-item leaves, templates, and VCQA reports.
 - [Examples](examples/index.md): real repositories mapped to authored standards and open gaps.
