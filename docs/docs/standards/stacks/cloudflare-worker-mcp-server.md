@@ -282,3 +282,7 @@ unauthorized requests should fail before the MCP server dispatches tools.
   code review.
 - Helps reference templates and product repos prove their quality with the same
   rubric instead of relying on a demo-only starter.
+
+## Independent Assessment
+
+- [Cloudflare Worker MCP Server stack page assessment](../assessments/stacks/cloudflare-worker-mcp-server.md)

@@ -50,3 +50,7 @@ Tauri desktop applications with a React/TypeScript frontend and privileged nativ
 ## Benefits
 
 - vibecodeqa/app desktop monitor.
+
+## Independent Assessment
+
+- [Tauri React Desktop stack page assessment](../assessments/stacks/tauri-react-desktop.md)

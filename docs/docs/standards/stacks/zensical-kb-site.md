@@ -49,3 +49,7 @@ Markdown-authored documentation or knowledge-base sites built with Zensical and 
 - vibecodeqa/docs.
 - vibecodeqa/standards.
 - Cloudflare SaaS example docs.
+
+## Independent Assessment
+
+- [Zensical KB Site stack page assessment](../assessments/stacks/zensical-kb-site.md)

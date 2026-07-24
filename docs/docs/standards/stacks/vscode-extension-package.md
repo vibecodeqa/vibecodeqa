@@ -50,3 +50,7 @@ VS Code extensions with commands, activation events, webviews, or workspace inte
 ## Benefits
 
 - vibecodeqa/vscode.
+
+## Independent Assessment
+
+- [VS Code Extension Package stack page assessment](../assessments/stacks/vscode-extension-package.md)

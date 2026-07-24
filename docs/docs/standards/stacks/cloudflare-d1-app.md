@@ -85,3 +85,7 @@ Cloudflare Workers or Pages Functions using D1 with versioned SQL migrations and
 ## Benefits
 
 - Cloudflare SaaS example D1 usage.
+
+## Independent Assessment
+
+- [Cloudflare D1 App stack page assessment](../assessments/stacks/cloudflare-d1-app.md)

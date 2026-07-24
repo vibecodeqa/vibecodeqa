@@ -43,3 +43,9 @@ A stack standard should exist when a combination creates rules that no single up
 source owns. For example, Cloudflare D1 docs explain migrations, and GitHub Actions docs
 explain workflows, but VCQA must define the combined rule that CI applies D1 migrations to
 a clean local database before production promotion.
+
+## Independent Assessments
+
+Every stack page has a dated assessment report under
+[Standards Assessments](../assessments/index.md). These reports judge whether the page is
+clear, evidence-backed, checkable, and ready to define or support a full rubric.

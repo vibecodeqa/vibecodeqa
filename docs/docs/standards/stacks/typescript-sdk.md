@@ -142,3 +142,7 @@ TypeScript packages consumed as SDKs or client libraries by other projects.
 
 - Cloudflare SaaS example SDK.
 - future VCQA schema/client packages.
+
+## Independent Assessment
+
+- [TypeScript SDK stack page assessment](../assessments/stacks/typescript-sdk.md)

@@ -135,3 +135,7 @@ Node-based command-line tools used by developers, CI, operators, or internal aut
 
 - Cloudflare SaaS example CLI.
 - vcqa/cli.
+
+## Independent Assessment
+
+- [Node CLI Internal Tool stack page assessment](../assessments/stacks/node-cli-internal-tool.md)

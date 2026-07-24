@@ -278,3 +278,7 @@ database bindings used as tenant data resources.
   production-readiness concerns.
 - Gives Cloudflare SaaS repositories a reusable path to tenant-safe provisioning,
   promotion, rollback/fix-forward, observability, and auditability.
+
+## Independent Assessment
+
+- [Tenant-Deployed Cloudflare SaaS stack page assessment](../assessments/stacks/tenant-deployed-cloudflare-saas.md)

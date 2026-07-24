@@ -78,3 +78,7 @@ A static frontend co-deployed with Cloudflare Pages Functions, usually with same
 
 - Cloudflare SaaS example app.
 - future VCQA fullstack dashboard patterns.
+
+## Independent Assessment
+
+- [Cloudflare Pages Fullstack stack page assessment](../assessments/stacks/cloudflare-pages-fullstack.md)

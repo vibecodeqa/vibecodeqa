@@ -69,3 +69,7 @@ Client-rendered React applications built as static files, with no server render 
 
 - vibecodeqa/app web dashboard.
 - Cloudflare SaaS example frontend.
+
+## Independent Assessment
+
+- [React SPA stack page assessment](../assessments/stacks/react-spa.md)

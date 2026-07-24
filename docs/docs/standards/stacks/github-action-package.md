@@ -49,3 +49,7 @@ Reusable GitHub Actions published through `action.yml` and consumed by workflows
 ## Benefits
 
 - vibecodeqa/action.
+
+## Independent Assessment
+
+- [GitHub Action Package stack page assessment](../assessments/stacks/github-action-package.md)
