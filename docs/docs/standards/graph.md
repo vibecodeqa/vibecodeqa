@@ -176,9 +176,9 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
 .vcqa-graph .graph-node text {
   fill: var(--ink) !important;
   font-size: 13px;
-  font-weight: 650;
+  font-weight: 500;
   stroke: var(--canvas) !important;
-  stroke-width: 3px;
+  stroke-width: 2px;
   paint-order: stroke fill;
   text-anchor: middle;
   pointer-events: none;
@@ -186,7 +186,7 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
 .vcqa-graph .graph-node .sub {
   fill: var(--muted);
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 400;
 }
 .vcqa-graph .graph-node.item rect {
   stroke: var(--item-border);
