@@ -14,10 +14,12 @@ when a repository operates tenant-scoped Cloudflare deployment surfaces.
 
 Reference implementation:
 [vibecodeqa/ref-cloudflare-saas](https://github.com/vibecodeqa/ref-cloudflare-saas).
-This repo complements official React, Vite, Cloudflare, D1, and MCP starters by showing
-their tenant-deployed SaaS composition with CI, runbooks, and a tracked VCQA report.
-Use it as a product-neutral template that demonstrates the stack; use the rubric as the
-source of truth for judgment.
+This repo is one product-neutral fixture, not the definition of the stack. It
+combines React, Pages Functions, D1, a Worker MCP surface, SDK/CLI packages, CI,
+runbooks, and a tracked VCQA report so the standard can be inspected against a
+working example. Real repositories can omit the frontend, MCP surface, SDK, CLI,
+or D1 if their tenant deployment boundary is expressed through other Cloudflare
+resources. Use the rubric as the source of truth for judgment.
 
 VCQA report:
 [A 91/100](https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md).
@@ -34,9 +36,10 @@ The rubric has stable rule IDs across:
 
 ## Reference template map
 
-The reference repo is a composed fixture: React SPA, Pages Functions, D1,
-Worker MCP, SDK, CLI, tenant runbooks, and VCQA evidence live together so the
-tenant-deployed standard can be inspected in context.
+The reference repo is intentionally richer than the minimum stack. It shows one
+complete composition so teams can inspect code, config, runbooks, and evidence
+together. The standard does not require every repository to have each package or
+surface shown here.
 
 | Evidence | Where to look | What it proves |
 |---|---|---|
@@ -49,6 +52,24 @@ tenant-deployed standard can be inspected in context.
 | Tenant runbooks | [`docs/runbooks/`](https://github.com/vibecodeqa/ref-cloudflare-saas/tree/main/docs/runbooks) | Provisioning, promotion, rollback/restore, and incident response are operational controls in the repo. |
 | Quality gates | [`.github/workflows/ci.yml`](https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/.github/workflows/ci.yml) | Tests, builds, and VCQA evidence run before changes are trusted. |
 | Score evidence | [`docs/vcqa-report.md`](https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md) | The template carries a tracked VCQA score and visible gaps. |
+
+## Variants this standard covers
+
+Tenant-deployed Cloudflare SaaS is about tenant-scoped deployable surfaces, not
+one prescribed product shape.
+
+| Variant | Covered when |
+|---|---|
+| White-label customer app | Each tenant has its own Pages project, route, custom domain, Access policy, or environment binding. |
+| Regulated tenant environment | Customer data, credentials, D1 databases, or deployment approvals are isolated per tenant or tenant environment. |
+| Enterprise single-tenant deployment | One customer receives a dedicated production surface with separate promotion, rollback, and incident evidence. |
+| Regional or data-residency tenant | Tenant placement affects Cloudflare resources, D1/database selection, secrets, domains, or observability. |
+| Tenant-specific admin/automation plane | Workers, queues, MCP servers, CLIs, or SDKs operate tenant resources and must prove scoped permissions and auditability. |
+| Shared app with tenant deploy controls | The application artifact is shared, but tenant resource manifests, bindings, domains, secrets, or D1 databases vary by tenant. |
+
+The standard does not require React, MCP, a CLI, or an SDK. Those appear in the
+reference repo because they are common adjacent surfaces in a sophisticated
+Cloudflare SaaS, and because they show how cross-stack standards compose.
 
 ## What this teaches
 
@@ -72,9 +93,9 @@ standards instead.
 | 1 | Commit or tenant change | Change starts from a tracked commit, tenant request, or manifest update. |
 | 2 | GitHub Actions gates | CI proves build, tests, migrations, deploy config, and VCQA evidence. |
 | 3 | Tenant manifest | Tenant resources, environments, aliases, domains, and owners are named. |
-| 4 | Pages app and Functions | Frontend and same-origin API deploy as a known artifact. |
-| 5 | Tenant D1 database | Database binding, migration state, backup/restore posture, and tenant ownership are explicit. |
-| 6 | Worker or MCP surface | Background, admin, or MCP Workers use tenant-scoped bindings and permissions. |
+| 4 | App/API deployable | Pages, Workers, Pages Functions, or another Cloudflare deployable moves as a known artifact. |
+| 5 | Tenant data resource | D1, KV, R2, Durable Objects, or an external database binding has explicit tenant ownership. |
+| 6 | Worker or automation surface | Background, admin, MCP, queue, CLI, or SDK automation uses tenant-scoped bindings and permissions. |
 | 7 | Access, domains, and aliases | Preview, staging, production, and custom domains share the intended auth and indexing posture. |
 | 8 | Tenant smoke tests | Smoke tests prove the deployed tenant surface, not only local code. |
 | 9 | Deployment and audit evidence | Promotion, rollback, incident, and mutation evidence can be reviewed after the fact. |
@@ -88,18 +109,19 @@ path.
 
 | Need | Better fit |
 |---|---|
-| One production app serving every customer from shared deployables | Cloudflare Pages Fullstack plus D1 and web-security standards. |
+| One production app serving every customer from shared deployables | Cloudflare app/API standards plus D1 and web-security standards. |
 | Row-level multi-tenancy inside one database and one deployment | D1 app standard plus authorization and tenant data checks. |
 | White-label, regulated, or customer-specific deployment surfaces | Tenant-Deployed Cloudflare SaaS. |
-| Tenant-specific MCP/admin automation | Tenant-Deployed Cloudflare SaaS plus Cloudflare Worker MCP Server. |
+| Tenant-specific MCP/admin automation | Tenant-Deployed Cloudflare SaaS plus Cloudflare Worker MCP Server when the automation is exposed through MCP. |
 | Customer-specific release windows, rollback, domains, or Access policy | Tenant-Deployed Cloudflare SaaS. |
 | No operational budget for per-tenant provisioning and incident response | Do not choose tenant-deployed topology yet. |
 
 ## Scope
 
-- Tenant-deployed SaaS on Cloudflare Pages, Workers, or Pages Functions.
-- Per-tenant or per-tenant-environment D1 databases, bindings, secrets, routes,
-  aliases, and custom domains.
+- Tenant-deployed SaaS on Cloudflare Pages, Workers, Pages Functions, or related
+  Cloudflare deployable surfaces.
+- Per-tenant or per-tenant-environment data resources, bindings, secrets, routes,
+  aliases, custom domains, Access policies, or deployment environments.
 - CI/CD promotion from preview to staging to production using GitHub Actions and
   Wrangler or Cloudflare-managed deployments.
 - Tenant provisioning, deprovisioning, rollback, fix-forward, observability, and

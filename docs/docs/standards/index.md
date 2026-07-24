@@ -89,14 +89,15 @@ VCQA reports fit together.
   [Cloudflare Workers templates](https://developers.cloudflare.com/workers/get-started/quickstarts/),
   [Cloudflare templates](https://github.com/cloudflare/templates),
   [MCP TypeScript SDK](https://ts.sdk.modelcontextprotocol.io/), and
-  [MCP Streamable HTTP transport](https://modelcontextprotocol.io/specification/2025-03-26/basic/transports).
+  [MCP Streamable HTTP transport](https://modelcontextprotocol.io/specification/2025-11-25/basic/transports).
   Report:
   [A 91/100](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/vcqa-report.md).
 - [vibecodeqa/ref-cloudflare-saas](https://github.com/vibecodeqa/ref-cloudflare-saas):
-  open-source template repository for the Cloudflare SaaS stack. It demonstrates React
-  SPA, Cloudflare Pages Functions, D1, Worker MCP, SDK, CLI, tenant manifests, runbooks,
-  CI gates, and a tracked VCQA report. It exists because no single vendor starter owns
-  this full composition. Report:
+  open-source reference fixture for tenant-deployed Cloudflare SaaS. It demonstrates one
+  rich composition: React SPA, Cloudflare Pages Functions, D1, Worker MCP, SDK, CLI,
+  tenant manifests, runbooks, CI gates, and a tracked VCQA report. The standard is broader
+  than this exact repo shape; it applies when tenant identity changes deployable Cloudflare
+  resources, environments, data bindings, domains, or operational evidence. Report:
   [A 91/100](https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md).
 
 Next template candidates:
