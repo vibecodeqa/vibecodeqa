@@ -387,7 +387,7 @@
     {
       "id": "cloudflare-d1-app",
       "type": "layer",
-      "title": "Cloudflare D1",
+      "title": "Cloudflare D1 App",
       "summary": "SQLite-at-the-edge: schema, migrations discipline, parameterized queries, local/remote parity.",
       "url": "https://vibecodeqa.online/standards/cloudflare-d1-app/v1/",
       "repo": "vibecodeqa/vibecodeqa",
@@ -652,7 +652,7 @@
       "editions": [],
       "aliases": [],
       "standardUrl": null,
-      "docsUrl": null
+      "docsUrl": "/docs/standards/items/web-accessibility/"
     },
     {
       "id": "dependencies",
@@ -669,7 +669,7 @@
       "editions": [],
       "aliases": [],
       "standardUrl": null,
-      "docsUrl": null
+      "docsUrl": "/docs/standards/items/dependencies/"
     },
     {
       "id": "tenant-deployed-cloudflare-saas",

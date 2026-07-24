@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -94,7 +94,7 @@ function plannedStandards() {
 
 function writeIfChanged(path, next) {
   const abs = join(root, path);
-  const current = readFileSync(abs, 'utf8');
+  const current = existsSync(abs) ? readFileSync(abs, 'utf8') : '';
   if (current === next) return false;
   if (checkOnly) {
     console.error(`${path} is stale; run node standards/generate-catalog.mjs`);
@@ -102,6 +102,10 @@ function writeIfChanged(path, next) {
   }
   writeFileSync(abs, next);
   return true;
+}
+
+function writeJsonIfChanged(path, value) {
+  return writeIfChanged(path, `${JSON.stringify(value, null, 2)}\n`);
 }
 
 function replaceGeneratedBlock(path, blockName, body) {
@@ -289,15 +293,227 @@ function generatedHtmlNextStandards() {
     .join('\n');
 }
 
+function standardKind(standard) {
+  if (isAliasOnly(standard)) return 'alias';
+  if (standard.status === 'planned') return 'planned';
+  if (isStackStandard(standard)) return 'authored-stack';
+  return 'authored-cross-cutting';
+}
+
+function standardTitle(standard) {
+  return registryById.get(standard.id)?.title ?? titleize(standard.id);
+}
+
+function chipFor(id, optional = false) {
+  const item = compositions.stackItems.find((entry) => entry.id === id);
+  const standard = compositions.composedStandards.find((entry) => entry.id === id);
+  const href = normalizeStandardUrl(item?.docsUrl ?? standard?.docsUrl);
+  const cls = item ? 'item' : 'standard';
+  const optionalClass = optional ? ' optional' : '';
+  if (!href) return `<span class="chip ${cls}${optionalClass}">${escapeHtml(id)}</span>`;
+  return `<a class="chip ${cls}${optionalClass}" href="${escapeHtml(href)}">${escapeHtml(id)}</a>`;
+}
+
+function markdownEntityLink(id) {
+  const item = compositions.stackItems.find((entry) => entry.id === id);
+  const standard = compositions.composedStandards.find((entry) => entry.id === id);
+  const href = normalizeStandardUrl(item?.docsUrl ?? standard?.docsUrl ?? standard?.standardUrl);
+  return href ? mdLink(id, href) : `\`${id}\``;
+}
+
+function graphModel() {
+  const standards = compositions.composedStandards.map((standard) => ({
+    id: standard.id,
+    title: standardTitle(standard),
+    kind: standardKind(standard),
+    status: standard.status,
+    docsUrl: normalizeStandardUrl(standard.docsUrl),
+    standardUrl: normalizeStandardUrl(standard.standardUrl),
+    latestEdition: standard.latestEdition,
+    stackItems: standard.stackItems ?? [],
+    optionalStackItems: standard.optionalStackItems ?? [],
+    aliases: standard.aliases ?? [],
+    ownedRules: standard.ownedRules ?? []
+  }));
+  const items = compositions.stackItems.map((item) => ({
+    id: item.id,
+    title: titleize(item.id),
+    kind: item.kind,
+    docsUrl: normalizeStandardUrl(item.docsUrl),
+    references: item.references ?? []
+  }));
+  const referenceImplementations = compositions.referenceImplementations.map((repo) => ({
+    id: repo.id,
+    repo: repo.repo,
+    url: repo.url,
+    status: repo.status,
+    standards: repo.standards ?? [],
+    reportUrl: repo.reportUrl,
+    score: repo.score,
+    ci: repo.ci
+  }));
+  const edges = [
+    ...standards.flatMap((standard) => [
+      ...standard.stackItems.map((item) => ({ from: item, to: standard.id, type: 'composes' })),
+      ...standard.optionalStackItems.map((item) => ({ from: item, to: standard.id, type: 'optional' }))
+    ]),
+    ...referenceImplementations.flatMap((repo) => (repo.standards ?? []).map((standard) => ({
+      from: repo.id,
+      to: standard,
+      type: 'demonstrates'
+    }))),
+    ...standards.filter((standard) => standard.kind === 'alias').map((standard) => ({
+      from: standard.id,
+      to: standard.standardUrl,
+      type: 'aliases'
+    }))
+  ];
+  return { version: 1, source: 'standards/compositions.json', standards, items, referenceImplementations, edges };
+}
+
+function generatedGraphContent() {
+  const model = graphModel();
+  const groups = [
+    ['Authored Stack Rubrics', model.standards.filter((standard) => standard.kind === 'authored-stack'), 'authored'],
+    ['Authored Cross-Cutting Rubrics', model.standards.filter((standard) => standard.kind === 'authored-cross-cutting'), 'crosscut'],
+    ['Published Aliases', model.standards.filter((standard) => standard.kind === 'alias'), 'authored'],
+    ['Planned Standards', model.standards.filter((standard) => standard.kind === 'planned'), 'planned']
+  ];
+  const standardCards = groups.map(([heading, standards, cls]) => `
+<h2 id="${heading.toLowerCase().replaceAll(' ', '-')}">${heading}</h2>
+
+<div class="standard-grid">
+${standards.map((standard) => {
+  const links = [
+    standard.docsUrl ? htmlLink('catalog', standard.docsUrl) : null,
+    standard.standardUrl ? htmlLink('rubric', standard.standardUrl) : null
+  ].filter(Boolean).join('');
+  const chips = [
+    ...(standard.stackItems ?? []).map((id) => chipFor(id)),
+    ...(standard.optionalStackItems ?? []).map((id) => chipFor(id, true))
+  ].join('\n      ');
+  const summary = registryById.get(standard.id)?.summary ?? standard.ownedRules.join(', ');
+  const edition = standard.latestEdition ? ` ${standard.latestEdition}` : '';
+  return `  <div class="standard-card ${cls}">
+    <div class="title"><strong>${standard.docsUrl ? htmlLink(standard.id, standard.docsUrl) : escapeHtml(standard.id)}</strong><span class="status">${escapeHtml(standard.status)}${escapeHtml(edition)}</span></div>
+    <div class="kind">${escapeHtml(summary)}</div>
+    <div class="chips">
+      ${chips || '<span class="chip">metadata-only</span>'}
+    </div>
+    <div class="links">${links}</div>
+  </div>`;
+}).join('\n')}
+</div>`).join('\n\n');
+
+  const templates = model.referenceImplementations.map((repo) => {
+    const evidence = [repo.reportUrl ? htmlLink(repo.score ? `${repo.score} report` : 'report', repo.reportUrl) : null, repo.ci ? `CI ${escapeHtml(repo.ci)}` : null].filter(Boolean).join(' · ');
+    return `  <div class="node template">
+    <div class="title"><strong>${htmlLink(repo.id, repo.url)}</strong><span class="status">${escapeHtml(repo.status)}</span></div>
+    <div class="chips">${repo.standards.map((id) => chipFor(id)).join('')}</div>
+    <div class="links">${evidence}</div>
+  </div>`;
+  }).join('\n');
+
+  const itemGroups = new Map();
+  for (const item of model.items) {
+    if (!itemGroups.has(item.kind)) itemGroups.set(item.kind, []);
+    itemGroups.get(item.kind).push(item);
+  }
+  const items = [...itemGroups.entries()].map(([kind, group]) => {
+    const chips = group.map((item) => item.docsUrl ? `<a class="chip item" href="${escapeHtml(item.docsUrl)}">${escapeHtml(item.id)}</a>` : `<span class="chip item">${escapeHtml(item.id)}</span>`).join('');
+    return `  <div class="item-card"><strong>${escapeHtml(titleize(kind))}</strong><div class="chips">${chips}</div></div>`;
+  }).join('\n');
+
+  return `
+<div class="legend">
+  <div class="node authored"><strong>Authored stack rubric</strong><br><span class="kind">Deployable stack standard with stable rule IDs.</span></div>
+  <div class="node crosscut"><strong>Authored cross-cutting rubric</strong><br><span class="kind">First-class rubric applied across stack shapes.</span></div>
+  <div class="node planned"><strong>Planned standard</strong><br><span class="kind">Cataloged rule surface; full rubric is not published yet.</span></div>
+  <div class="node item"><strong>Stack item leaf</strong><br><span class="kind">Framework, runtime, tool, protocol, quality, or supply-chain layer.</span></div>
+  <div class="node template"><strong>Reference template</strong><br><span class="kind">Runnable repo with CI and a tracked VCQA report.</span></div>
+</div>
+
+<p class="kind">Generated graph data: <a href="/standards/graph.json"><code>graph.json</code></a>.</p>
+
+<h2 id="reference-templates">Reference Templates</h2>
+
+<div class="template-row">
+${templates}
+</div>
+
+${standardCards}
+
+<h2 id="stack-item-leaves">Stack Item Leaves</h2>
+
+<div class="item-grid">
+${items}
+</div>
+`;
+}
+
+function standardsUsing(id, selfId) {
+  return compositions.composedStandards
+    .filter((standard) => standard.id !== selfId)
+    .filter((standard) => (standard.stackItems ?? []).includes(id) || (standard.optionalStackItems ?? []).includes(id));
+}
+
+function relatedStandardsFor(standard) {
+  const direct = new Map();
+  for (const item of [...(standard.stackItems ?? []), ...(standard.optionalStackItems ?? [])]) {
+    for (const related of standardsUsing(item, standard.id)) {
+      if (!isAliasOnly(related)) direct.set(related.id, related);
+    }
+  }
+  for (const id of registryById.get(standard.id)?.recommends ?? []) {
+    const related = compositions.composedStandards.find((entry) => entry.id === id);
+    if (related && !isAliasOnly(related)) direct.set(related.id, related);
+  }
+  return [...direct.values()].slice(0, 8);
+}
+
+function generatedRelatedSection(standard) {
+  const registryEntry = registryById.get(standard.id);
+  const latest = registryEntry?.editions?.find((edition) => edition.status === 'latest');
+  const templates = compositions.referenceImplementations.filter((repo) => (repo.standards ?? []).includes(standard.id));
+  const related = relatedStandardsFor(standard);
+  const composed = [
+    ...(standard.stackItems ?? []).map((id) => markdownEntityLink(id)),
+    ...(standard.optionalStackItems ?? []).map((id) => `${markdownEntityLink(id)} (optional)`)
+  ].join(', ');
+  const lifecycle = latest?.lifecycle;
+  const lifecycleText = lifecycle
+    ? `Edition lifecycle: ${lifecycle.deprecated ? 'deprecated' : 'active'}${lifecycle.supersededBy ? `, superseded by ${lifecycle.supersededBy}` : ''}. Errata: ${lifecycle.errata.length ? lifecycle.errata.join('; ') : 'none'}.`
+    : 'Edition lifecycle metadata is unavailable.';
+
+  return `
+## Related Standards
+
+Reports and scans should cite this pinned edition URL:
+<${registryEntry?.standardUrl ?? standard.standardUrl}>
+
+- Catalog page: ${standard.docsUrl ? mdLink(standard.docsUrl, normalizeStandardUrl(standard.docsUrl)) : 'none'}
+- Latest edition: \`${standard.latestEdition}\`
+- ${lifecycleText}
+- Composes: ${composed || 'metadata-only'}
+- Reference implementations: ${templates.length ? templates.map((repo) => mdLink(repo.id, repo.url)).join(', ') : 'none yet'}
+- Related standards: ${related.length ? related.map((entry) => entry.standardUrl ? mdLink(entry.id, normalizeStandardUrl(entry.standardUrl)) : (entry.docsUrl ? mdLink(entry.id, normalizeStandardUrl(entry.docsUrl)) : `\`${entry.id}\``)).join(', ') : 'none'}
+`;
+}
+
 const changed = [
+  writeJsonIfChanged('standards/graph.json', graphModel()),
   replaceGeneratedBlock('docs/docs/standards/index.md', 'standards-inventory', generatedStandardsCatalog()),
   replaceGeneratedBlock('docs/docs/standards/index.md', 'reference-implementations', generatedReferenceRepos()),
   replaceGeneratedBlock('docs/docs/standards/stacks/index.md', 'stack-standards-inventory', generatedStackIndex()),
   replaceGeneratedBlock('docs/docs/standards/items/index.md', 'stack-items-inventory', generatedItemsIndex()),
   replaceGeneratedBlock('docs/docs/standards/compositions.md', 'composition-summary', generatedCompositionsSummary()),
+  replaceGeneratedBlock('docs/docs/standards/graph.md', 'standards-graph', generatedGraphContent()),
   replaceGeneratedBlock('standards/index.html', 'published-rubrics', generatedHtmlPublishedRubrics()),
   replaceGeneratedBlock('standards/index.html', 'reference-implementations', generatedHtmlReferenceRepos()),
-  replaceGeneratedBlock('standards/index.html', 'next-standards', generatedHtmlNextStandards())
+  replaceGeneratedBlock('standards/index.html', 'next-standards', generatedHtmlNextStandards()),
+  ...compositions.composedStandards
+    .filter((standard) => isComposedAuthored(standard) && !isAliasOnly(standard))
+    .map((standard) => replaceGeneratedBlock(`standards/${standard.id}/docs/v1/index.md`, 'related-standards', generatedRelatedSection(standard)))
 ].filter(Boolean);
 
 if (checkOnly && changed.length) {

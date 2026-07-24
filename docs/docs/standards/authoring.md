@@ -47,7 +47,8 @@ When adding or changing a standard:
 3. Run `node standards/validate-registry.mjs`.
 4. Author or revise the stack charter or rubric Markdown.
 5. Do not manually edit generated catalog tables, stack/item indexes, root standards
-   landing inventories, or reference implementation inventories.
+   landing inventories, graph content/data, rubric related-standard sections, or
+   reference implementation inventories.
 
 CI runs `node standards/generate-catalog.mjs --check` and fails if generated output is
 stale.

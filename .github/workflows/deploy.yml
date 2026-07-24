@@ -53,6 +53,7 @@ jobs:
           cp standards/compositions.html _site/standards/compositions.html
           cp standards/compositions.json _site/standards/compositions.json
           cp standards/compositions.schema.json _site/standards/compositions.schema.json
+          cp standards/graph.json _site/standards/graph.json
           for d in standards/*/; do
             name=$(basename "$d")
             [ -d "$d/site" ] && cp -r "$d/site" "_site/standards/$name"

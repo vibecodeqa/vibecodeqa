@@ -183,7 +183,8 @@ other Cloudflare-Pages fullstack repos.
 | `references.json` | official upstream standards and primary-source documentation |
 | `compositions.json` | human/tool navigation map from stack items to composed VCQA standards |
 | `resolve.mjs` | reference resolver: repo → per-slice standard set + gaps |
-| `generate-catalog.mjs` | deterministic generator for catalog/index/landing inventories |
+| `generate-catalog.mjs` | deterministic generator for catalog/index/landing inventories, graph data, and rubric related links |
+| `graph.json` | generated graph model for standards, stack items, reference repos, and metadata edges |
 | `SCHEMA.md` | this document |
 
 > The **standards** registry (which rubric to *judge against*) is deliberately separate from
@@ -237,9 +238,9 @@ The docs KB is the discovery and explanation surface. `/standards/<id>/vN/` is r
 for full rubrics a judge can cite rule-by-rule. `/standards/*.json` remains the
 machine-readable registry layer.
 
-Catalog tables, stack and item indexes, the root standards landing inventories, and
-reference implementation inventories are generated from metadata. Edit the JSON first,
-then run:
+Catalog tables, stack and item indexes, the root standards landing inventories, graph
+data/view, rubric related-standard sections, and reference implementation inventories are
+generated from metadata. Edit the JSON first, then run:
 
 ```sh
 node standards/generate-catalog.mjs

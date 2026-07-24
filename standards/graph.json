@@ -1,0 +1,1421 @@
+{
+  "version": 1,
+  "source": "standards/compositions.json",
+  "standards": [
+    {
+      "id": "react-spa",
+      "title": "React SPA",
+      "kind": "authored-stack",
+      "status": "authored",
+      "docsUrl": "/docs/standards/stacks/react-spa/",
+      "standardUrl": "/standards/react-spa/v1/",
+      "latestEdition": "v1",
+      "stackItems": [
+        "react",
+        "react-router",
+        "vite",
+        "typescript",
+        "web-accessibility",
+        "web-security",
+        "vitest",
+        "playwright"
+      ],
+      "optionalStackItems": [],
+      "aliases": [
+        "react-spa-static"
+      ],
+      "ownedRules": [
+        "static SPA boundary",
+        "client env vars are non-secret only",
+        "SPA routing fallback",
+        "build output and asset hygiene"
+      ]
+    },
+    {
+      "id": "cloudflare-pages-fullstack",
+      "title": "Cloudflare Pages Fullstack",
+      "kind": "authored-stack",
+      "status": "authored",
+      "docsUrl": "/docs/standards/stacks/cloudflare-pages-fullstack/",
+      "standardUrl": "/standards/cloudflare-pages-fullstack/v1/",
+      "latestEdition": "v1",
+      "stackItems": [
+        "react-spa",
+        "cloudflare-pages-functions",
+        "typescript",
+        "web-security",
+        "github-actions"
+      ],
+      "optionalStackItems": [],
+      "aliases": [
+        "pages-fullstack"
+      ],
+      "ownedRules": [
+        "same-origin /api seam",
+        "functions route shape",
+        "middleware/auth placement",
+        "bindings and deployed vars",
+        "SPA/functions deploy assembly"
+      ]
+    },
+    {
+      "id": "cloudflare-d1-app",
+      "title": "Cloudflare D1 App",
+      "kind": "authored-stack",
+      "status": "authored",
+      "docsUrl": "/docs/standards/stacks/cloudflare-d1-app/",
+      "standardUrl": "/standards/cloudflare-d1-app/v1/",
+      "latestEdition": "v1",
+      "stackItems": [
+        "cloudflare-d1",
+        "cloudflare-pages-functions",
+        "cloudflare-workers",
+        "typescript",
+        "web-security",
+        "github-actions"
+      ],
+      "optionalStackItems": [],
+      "aliases": [
+        "cloudflare-d1",
+        "d1-database"
+      ],
+      "ownedRules": [
+        "append-only/versioned migrations",
+        "migration checksum or drift guard",
+        "local apply test",
+        "staging/prod/tenant database isolation",
+        "parameterized query enforcement"
+      ]
+    },
+    {
+      "id": "cloudflare-worker-mcp-server",
+      "title": "Cloudflare Worker MCP Server",
+      "kind": "authored-stack",
+      "status": "authored",
+      "docsUrl": "/docs/standards/stacks/cloudflare-worker-mcp-server/",
+      "standardUrl": "/standards/cloudflare-worker-mcp-server/v1/",
+      "latestEdition": "v1",
+      "stackItems": [
+        "cloudflare-workers",
+        "durable-objects",
+        "mcp",
+        "zod",
+        "typescript",
+        "web-security",
+        "github-actions"
+      ],
+      "optionalStackItems": [],
+      "aliases": [],
+      "ownedRules": [
+        "remote MCP authorization",
+        "tool schema and permission boundaries",
+        "Durable Object/KV storage policy",
+        "per-environment OAuth isolation",
+        "tool audit trail"
+      ]
+    },
+    {
+      "id": "tenant-deployed-cloudflare-saas",
+      "title": "Tenant-Deployed Cloudflare SaaS",
+      "kind": "authored-stack",
+      "status": "authored",
+      "docsUrl": "/docs/standards/stacks/tenant-deployed-cloudflare-saas/",
+      "standardUrl": "/standards/tenant-deployed-cloudflare-saas/v1/",
+      "latestEdition": "v1",
+      "stackItems": [
+        "cloudflare-workers",
+        "github-actions",
+        "web-security",
+        "docs-kb"
+      ],
+      "optionalStackItems": [
+        "cloudflare-pages-functions",
+        "cloudflare-d1"
+      ],
+      "aliases": [],
+      "ownedRules": [
+        "tenant instance isolation",
+        "staging/prod promotion gates",
+        "per-tenant data-resource and secret boundaries",
+        "deployment alias auth perimeter",
+        "tenant provisioning documentation"
+      ]
+    },
+    {
+      "id": "security",
+      "title": "Security",
+      "kind": "authored-cross-cutting",
+      "status": "authored",
+      "docsUrl": "/docs/standards/items/web-security/",
+      "standardUrl": "/standards/security/v1/",
+      "latestEdition": "v1",
+      "stackItems": [
+        "web-security",
+        "github-actions",
+        "cloudflare-workers",
+        "mcp",
+        "docs-kb"
+      ],
+      "optionalStackItems": [],
+      "aliases": [],
+      "ownedRules": [
+        "server-side authorization boundary checks",
+        "client/server secret exposure and environment-scope checks",
+        "input validation and injection-prone boundary checks",
+        "output safety for browser, logs, tool responses, and generated content",
+        "tenant, preview, staging, and production isolation signals",
+        "GitHub Actions and deployment permission gates",
+        "security logging, audit, and incident evidence expectations"
+      ]
+    },
+    {
+      "id": "testing",
+      "title": "Testing",
+      "kind": "authored-cross-cutting",
+      "status": "authored",
+      "docsUrl": "/docs/standards/items/vitest/",
+      "standardUrl": "/standards/testing/v1/",
+      "latestEdition": "v1",
+      "stackItems": [
+        "vitest",
+        "playwright",
+        "github-actions"
+      ],
+      "optionalStackItems": [],
+      "aliases": [],
+      "ownedRules": [
+        "critical behavior mapped to automated tests or explicit risk exceptions",
+        "meaningful unit assertions over deterministic logic",
+        "integration tests at public API, command, database, provider, protocol, or package seams",
+        "component and UI tests that assert user-visible behavior",
+        "built-artifact smoke tests for deployable apps",
+        "coverage thresholds and documented exclusions for behavior-bearing code",
+        "mock, fixture, snapshot, flaky, skipped, and generated-test quality gates",
+        "CI test gates and failure evidence before deploy, release, or publish"
+      ]
+    },
+    {
+      "id": "typescript",
+      "title": "TypeScript",
+      "kind": "authored-cross-cutting",
+      "status": "authored",
+      "docsUrl": "/docs/standards/items/typescript/",
+      "standardUrl": "/standards/typescript/v1/",
+      "latestEdition": "v1",
+      "stackItems": [
+        "typescript",
+        "node",
+        "github-actions"
+      ],
+      "optionalStackItems": [],
+      "aliases": [],
+      "ownedRules": [
+        "strict compiler settings for owned source",
+        "runtime-compatible lib, types, module, and moduleResolution",
+        "project references or explicit typecheck boundaries",
+        "unsafe any, assertion, and suppression controls",
+        "external data validation before trusted domain typing",
+        "type-only import and emit discipline",
+        "generated code and exception policy",
+        "declaration and public API type compatibility",
+        "CI typecheck gates and drift evidence"
+      ]
+    },
+    {
+      "id": "node-cli-internal-tool",
+      "title": "Node CLI Internal Tool",
+      "kind": "planned",
+      "status": "planned",
+      "docsUrl": "/docs/standards/stacks/node-cli-internal-tool/",
+      "standardUrl": null,
+      "latestEdition": null,
+      "stackItems": [
+        "typescript",
+        "node",
+        "openapi",
+        "web-security"
+      ],
+      "optionalStackItems": [],
+      "aliases": [
+        "node-service"
+      ],
+      "ownedRules": [
+        "noninteractive exit-code contract",
+        "credential resolution order",
+        "prod/staging safety defaults",
+        "structured output mode",
+        "SDK reuse instead of API duplication"
+      ]
+    },
+    {
+      "id": "typescript-sdk",
+      "title": "TypeScript SDK",
+      "kind": "planned",
+      "status": "planned",
+      "docsUrl": "/docs/standards/stacks/typescript-sdk/",
+      "standardUrl": null,
+      "latestEdition": null,
+      "stackItems": [
+        "typescript",
+        "openapi",
+        "zod",
+        "vitest"
+      ],
+      "optionalStackItems": [],
+      "aliases": [
+        "library"
+      ],
+      "ownedRules": [
+        "export map and declaration quality",
+        "API contract freshness",
+        "credential boundary",
+        "typed error model",
+        "consumer compatibility tests"
+      ]
+    },
+    {
+      "id": "github-action-package",
+      "title": "GitHub Action Package",
+      "kind": "planned",
+      "status": "planned",
+      "docsUrl": "/docs/standards/stacks/github-action-package/",
+      "standardUrl": null,
+      "latestEdition": null,
+      "stackItems": [
+        "github-action",
+        "github-actions",
+        "node",
+        "typescript"
+      ],
+      "optionalStackItems": [],
+      "aliases": [],
+      "ownedRules": [
+        "action.yml metadata completeness",
+        "minimum token permissions",
+        "input validation",
+        "pinned runtime/dependency policy",
+        "release tag policy"
+      ]
+    },
+    {
+      "id": "vscode-extension-package",
+      "title": "VS Code Extension Package",
+      "kind": "planned",
+      "status": "planned",
+      "docsUrl": "/docs/standards/stacks/vscode-extension-package/",
+      "standardUrl": null,
+      "latestEdition": null,
+      "stackItems": [
+        "vscode-extension",
+        "typescript",
+        "node",
+        "web-security"
+      ],
+      "optionalStackItems": [],
+      "aliases": [],
+      "ownedRules": [
+        "activation event scope",
+        "workspace trust behavior",
+        "command and webview boundaries",
+        "marketplace metadata",
+        "extension test coverage"
+      ]
+    },
+    {
+      "id": "tauri-react-desktop",
+      "title": "Tauri React Desktop",
+      "kind": "planned",
+      "status": "planned",
+      "docsUrl": "/docs/standards/stacks/tauri-react-desktop/",
+      "standardUrl": null,
+      "latestEdition": null,
+      "stackItems": [
+        "tauri",
+        "react",
+        "typescript",
+        "web-security",
+        "docs-kb"
+      ],
+      "optionalStackItems": [],
+      "aliases": [],
+      "ownedRules": [
+        "Tauri command/capability boundaries",
+        "keychain/secret storage",
+        "file-system watch safety",
+        "desktop packaging and signing",
+        "frontend/backend contract typing"
+      ]
+    },
+    {
+      "id": "zensical-kb-site",
+      "title": "Zensical KB Site",
+      "kind": "planned",
+      "status": "planned",
+      "docsUrl": "/docs/standards/stacks/zensical-kb-site/",
+      "standardUrl": null,
+      "latestEdition": null,
+      "stackItems": [
+        "docs-kb",
+        "github-actions"
+      ],
+      "optionalStackItems": [],
+      "aliases": [],
+      "ownedRules": [
+        "Markdown source is the source of truth",
+        "generated site is ignored",
+        "published URLs are stable",
+        "source references are tracked",
+        "docs drift checks where mirrors exist"
+      ]
+    },
+    {
+      "id": "react-spa-on-cloudflare-pages",
+      "title": "React SPA on Cloudflare Pages (with Functions)",
+      "kind": "alias",
+      "status": "authored",
+      "docsUrl": "/docs/standards/stacks/cloudflare-pages-fullstack/",
+      "standardUrl": "/standards/cloudflare-pages-fullstack/v1/",
+      "latestEdition": "v1",
+      "stackItems": [
+        "react-spa",
+        "cloudflare-pages-functions",
+        "typescript",
+        "web-security",
+        "github-actions"
+      ],
+      "optionalStackItems": [],
+      "aliases": [
+        "pages-fullstack"
+      ],
+      "ownedRules": [
+        "same-origin app/API deployment seam",
+        "SPA fallback and /api route ownership",
+        "shared deployment evidence for React app plus Pages Functions"
+      ]
+    },
+    {
+      "id": "accessibility",
+      "title": "Accessibility",
+      "kind": "planned",
+      "status": "planned",
+      "docsUrl": "/docs/standards/items/web-accessibility/",
+      "standardUrl": null,
+      "latestEdition": null,
+      "stackItems": [
+        "web-accessibility"
+      ],
+      "optionalStackItems": [],
+      "aliases": [],
+      "ownedRules": [
+        "WCAG and ARIA acceptance gates mapped to scanner evidence",
+        "keyboard, focus, semantics, and contrast checks by UI stack",
+        "manual-review exception policy for accessibility findings"
+      ]
+    },
+    {
+      "id": "dependencies",
+      "title": "Dependency hygiene",
+      "kind": "planned",
+      "status": "planned",
+      "docsUrl": "/docs/standards/items/dependencies/",
+      "standardUrl": null,
+      "latestEdition": null,
+      "stackItems": [
+        "dependencies",
+        "github-actions",
+        "node"
+      ],
+      "optionalStackItems": [],
+      "aliases": [],
+      "ownedRules": [
+        "lockfile and package-manager pinning",
+        "install script and dependency provenance review",
+        "audit, license, update, runtime, and exception evidence in CI"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "node",
+      "title": "Node",
+      "kind": "runtime",
+      "docsUrl": "/docs/standards/items/node/",
+      "references": [
+        "node-docs",
+        "node-security-best-practices",
+        "npm-package-json"
+      ]
+    },
+    {
+      "id": "react",
+      "title": "React",
+      "kind": "framework",
+      "docsUrl": "/docs/standards/items/react/",
+      "references": [
+        "react-docs",
+        "react-rules-of-hooks"
+      ]
+    },
+    {
+      "id": "react-router",
+      "title": "React Router",
+      "kind": "routing",
+      "docsUrl": "/docs/standards/items/react-router/",
+      "references": [
+        "react-router-docs"
+      ]
+    },
+    {
+      "id": "vite",
+      "title": "Vite",
+      "kind": "build-tool",
+      "docsUrl": "/docs/standards/items/vite/",
+      "references": [
+        "vite-guide",
+        "vite-static-deploy"
+      ]
+    },
+    {
+      "id": "typescript",
+      "title": "TypeScript",
+      "kind": "language",
+      "docsUrl": "/docs/standards/items/typescript/",
+      "references": [
+        "typescript-tsconfig",
+        "typescript-handbook"
+      ]
+    },
+    {
+      "id": "web-accessibility",
+      "title": "Web Accessibility",
+      "kind": "quality",
+      "docsUrl": "/docs/standards/items/web-accessibility/",
+      "references": [
+        "wcag-22",
+        "wai-aria"
+      ]
+    },
+    {
+      "id": "web-security",
+      "title": "Web Security",
+      "kind": "security",
+      "docsUrl": "/docs/standards/items/web-security/",
+      "references": [
+        "owasp-asvs",
+        "owasp-cheat-sheets",
+        "owasp-authorization-cheat-sheet",
+        "owasp-secrets-management-cheat-sheet",
+        "owasp-input-validation-cheat-sheet",
+        "owasp-sql-injection-prevention",
+        "owasp-logging-cheat-sheet",
+        "owasp-csrf-cheat-sheet",
+        "owasp-session-management"
+      ]
+    },
+    {
+      "id": "vitest",
+      "title": "Vitest",
+      "kind": "testing",
+      "docsUrl": "/docs/standards/items/vitest/",
+      "references": [
+        "vitest-guide"
+      ]
+    },
+    {
+      "id": "playwright",
+      "title": "Playwright",
+      "kind": "testing",
+      "docsUrl": "/docs/standards/items/playwright/",
+      "references": [
+        "playwright-best-practices"
+      ]
+    },
+    {
+      "id": "cloudflare-pages-functions",
+      "title": "Cloudflare Pages Functions",
+      "kind": "runtime",
+      "docsUrl": "/docs/standards/items/cloudflare-pages-functions/",
+      "references": [
+        "cloudflare-pages-functions",
+        "cloudflare-pages-functions-routing",
+        "cloudflare-pages-functions-middleware"
+      ]
+    },
+    {
+      "id": "cloudflare-workers",
+      "title": "Cloudflare Workers",
+      "kind": "runtime",
+      "docsUrl": "/docs/standards/items/cloudflare-workers/",
+      "references": [
+        "cloudflare-workers",
+        "cloudflare-workers-best-practices"
+      ]
+    },
+    {
+      "id": "cloudflare-d1",
+      "title": "Cloudflare D1",
+      "kind": "database",
+      "docsUrl": "/docs/standards/items/cloudflare-d1/",
+      "references": [
+        "cloudflare-d1",
+        "cloudflare-d1-migrations"
+      ]
+    },
+    {
+      "id": "durable-objects",
+      "title": "Durable Objects",
+      "kind": "state",
+      "docsUrl": "/docs/standards/items/durable-objects/",
+      "references": [
+        "cloudflare-durable-objects",
+        "cloudflare-durable-objects-best-practices"
+      ]
+    },
+    {
+      "id": "mcp",
+      "title": "MCP",
+      "kind": "protocol",
+      "docsUrl": "/docs/standards/items/mcp/",
+      "references": [
+        "mcp-spec",
+        "mcp-authorization",
+        "mcp-security",
+        "mcp-typescript-sdk"
+      ]
+    },
+    {
+      "id": "zod",
+      "title": "Zod",
+      "kind": "validation",
+      "docsUrl": "/docs/standards/items/zod/",
+      "references": [
+        "zod-docs"
+      ]
+    },
+    {
+      "id": "openapi",
+      "title": "OpenAPI",
+      "kind": "api-contract",
+      "docsUrl": "/docs/standards/items/openapi/",
+      "references": [
+        "openapi",
+        "json-schema"
+      ]
+    },
+    {
+      "id": "github-actions",
+      "title": "GitHub Actions",
+      "kind": "ci",
+      "docsUrl": "/docs/standards/items/github-actions/",
+      "references": [
+        "github-actions-secure-use",
+        "github-actions-oidc"
+      ]
+    },
+    {
+      "id": "vscode-extension",
+      "title": "VS Code Extension",
+      "kind": "extension",
+      "docsUrl": "/docs/standards/items/vscode-extension/",
+      "references": [
+        "vscode-extension-api",
+        "vscode-extension-publishing",
+        "vscode-extension-runtime-security"
+      ]
+    },
+    {
+      "id": "github-action",
+      "title": "GitHub Action",
+      "kind": "automation",
+      "docsUrl": "/docs/standards/items/github-action/",
+      "references": [
+        "github-actions-metadata",
+        "github-actions-creating-actions",
+        "github-actions-secure-use"
+      ]
+    },
+    {
+      "id": "tauri",
+      "title": "Tauri",
+      "kind": "desktop",
+      "docsUrl": "/docs/standards/items/tauri/",
+      "references": [
+        "tauri-docs"
+      ]
+    },
+    {
+      "id": "docs-kb",
+      "title": "Docs KB",
+      "kind": "documentation",
+      "docsUrl": "/docs/standards/items/docs-kb/",
+      "references": [
+        "zensical-docs",
+        "diataxis",
+        "adr-github",
+        "c4-model"
+      ]
+    },
+    {
+      "id": "dependencies",
+      "title": "Dependencies",
+      "kind": "supply-chain",
+      "docsUrl": "/docs/standards/items/dependencies/",
+      "references": [
+        "npm-package-json",
+        "github-actions-secure-use"
+      ]
+    }
+  ],
+  "referenceImplementations": [
+    {
+      "id": "ref-react-spa",
+      "repo": "vibecodeqa/ref-react-spa",
+      "url": "https://github.com/vibecodeqa/ref-react-spa",
+      "status": "published",
+      "standards": [
+        "react-spa",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "reportUrl": "https://github.com/vibecodeqa/ref-react-spa/blob/main/docs/vcqa-report.md",
+      "score": "94/100",
+      "ci": "green"
+    },
+    {
+      "id": "ref-cloudflare-worker-mcp",
+      "repo": "vibecodeqa/ref-cloudflare-worker-mcp",
+      "url": "https://github.com/vibecodeqa/ref-cloudflare-worker-mcp",
+      "status": "published",
+      "standards": [
+        "cloudflare-worker-mcp-server",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "reportUrl": "https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/vcqa-report.md",
+      "score": "91/100",
+      "ci": "green"
+    },
+    {
+      "id": "ref-cloudflare-saas",
+      "repo": "vibecodeqa/ref-cloudflare-saas",
+      "url": "https://github.com/vibecodeqa/ref-cloudflare-saas",
+      "status": "published",
+      "standards": [
+        "react-spa",
+        "cloudflare-pages-fullstack",
+        "cloudflare-d1-app",
+        "cloudflare-worker-mcp-server",
+        "tenant-deployed-cloudflare-saas",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "reportUrl": "https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md",
+      "score": "91/100",
+      "ci": "green"
+    },
+    {
+      "id": "ref-node-cli-internal-tool",
+      "repo": "vibecodeqa/ref-node-cli-internal-tool",
+      "url": "https://github.com/vibecodeqa/ref-node-cli-internal-tool",
+      "status": "published",
+      "standards": [
+        "node-cli-internal-tool",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "reportUrl": "https://github.com/vibecodeqa/ref-node-cli-internal-tool/blob/main/docs/vcqa-report.md",
+      "score": "92/100",
+      "ci": "green"
+    },
+    {
+      "id": "ref-cloudflare-pages-fullstack",
+      "repo": "vibecodeqa/ref-cloudflare-pages-fullstack",
+      "url": "https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack",
+      "status": "candidate",
+      "standards": [
+        "cloudflare-pages-fullstack",
+        "react-spa",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "reportUrl": null,
+      "score": null,
+      "ci": null
+    },
+    {
+      "id": "ref-cloudflare-d1-app",
+      "repo": "vibecodeqa/ref-cloudflare-d1-app",
+      "url": "https://github.com/vibecodeqa/ref-cloudflare-d1-app",
+      "status": "candidate",
+      "standards": [
+        "cloudflare-d1-app",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "reportUrl": null,
+      "score": null,
+      "ci": null
+    },
+    {
+      "id": "ref-typescript-sdk",
+      "repo": "vibecodeqa/ref-typescript-sdk",
+      "url": "https://github.com/vibecodeqa/ref-typescript-sdk",
+      "status": "candidate",
+      "standards": [
+        "typescript-sdk",
+        "typescript",
+        "testing",
+        "dependencies"
+      ],
+      "reportUrl": null,
+      "score": null,
+      "ci": null
+    },
+    {
+      "id": "ref-zensical-kb-site",
+      "repo": "vibecodeqa/ref-zensical-kb-site",
+      "url": "https://github.com/vibecodeqa/ref-zensical-kb-site",
+      "status": "candidate",
+      "standards": [
+        "zensical-kb-site"
+      ],
+      "reportUrl": null,
+      "score": null,
+      "ci": null
+    },
+    {
+      "id": "ref-vscode-extension-package",
+      "repo": "vibecodeqa/ref-vscode-extension-package",
+      "url": "https://github.com/vibecodeqa/ref-vscode-extension-package",
+      "status": "candidate",
+      "standards": [
+        "vscode-extension-package",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "reportUrl": null,
+      "score": null,
+      "ci": null
+    },
+    {
+      "id": "ref-tauri-react-desktop",
+      "repo": "vibecodeqa/ref-tauri-react-desktop",
+      "url": "https://github.com/vibecodeqa/ref-tauri-react-desktop",
+      "status": "candidate",
+      "standards": [
+        "tauri-react-desktop",
+        "react-spa",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "reportUrl": null,
+      "score": null,
+      "ci": null
+    }
+  ],
+  "edges": [
+    {
+      "from": "react",
+      "to": "react-spa",
+      "type": "composes"
+    },
+    {
+      "from": "react-router",
+      "to": "react-spa",
+      "type": "composes"
+    },
+    {
+      "from": "vite",
+      "to": "react-spa",
+      "type": "composes"
+    },
+    {
+      "from": "typescript",
+      "to": "react-spa",
+      "type": "composes"
+    },
+    {
+      "from": "web-accessibility",
+      "to": "react-spa",
+      "type": "composes"
+    },
+    {
+      "from": "web-security",
+      "to": "react-spa",
+      "type": "composes"
+    },
+    {
+      "from": "vitest",
+      "to": "react-spa",
+      "type": "composes"
+    },
+    {
+      "from": "playwright",
+      "to": "react-spa",
+      "type": "composes"
+    },
+    {
+      "from": "react-spa",
+      "to": "cloudflare-pages-fullstack",
+      "type": "composes"
+    },
+    {
+      "from": "cloudflare-pages-functions",
+      "to": "cloudflare-pages-fullstack",
+      "type": "composes"
+    },
+    {
+      "from": "typescript",
+      "to": "cloudflare-pages-fullstack",
+      "type": "composes"
+    },
+    {
+      "from": "web-security",
+      "to": "cloudflare-pages-fullstack",
+      "type": "composes"
+    },
+    {
+      "from": "github-actions",
+      "to": "cloudflare-pages-fullstack",
+      "type": "composes"
+    },
+    {
+      "from": "cloudflare-d1",
+      "to": "cloudflare-d1-app",
+      "type": "composes"
+    },
+    {
+      "from": "cloudflare-pages-functions",
+      "to": "cloudflare-d1-app",
+      "type": "composes"
+    },
+    {
+      "from": "cloudflare-workers",
+      "to": "cloudflare-d1-app",
+      "type": "composes"
+    },
+    {
+      "from": "typescript",
+      "to": "cloudflare-d1-app",
+      "type": "composes"
+    },
+    {
+      "from": "web-security",
+      "to": "cloudflare-d1-app",
+      "type": "composes"
+    },
+    {
+      "from": "github-actions",
+      "to": "cloudflare-d1-app",
+      "type": "composes"
+    },
+    {
+      "from": "cloudflare-workers",
+      "to": "cloudflare-worker-mcp-server",
+      "type": "composes"
+    },
+    {
+      "from": "durable-objects",
+      "to": "cloudflare-worker-mcp-server",
+      "type": "composes"
+    },
+    {
+      "from": "mcp",
+      "to": "cloudflare-worker-mcp-server",
+      "type": "composes"
+    },
+    {
+      "from": "zod",
+      "to": "cloudflare-worker-mcp-server",
+      "type": "composes"
+    },
+    {
+      "from": "typescript",
+      "to": "cloudflare-worker-mcp-server",
+      "type": "composes"
+    },
+    {
+      "from": "web-security",
+      "to": "cloudflare-worker-mcp-server",
+      "type": "composes"
+    },
+    {
+      "from": "github-actions",
+      "to": "cloudflare-worker-mcp-server",
+      "type": "composes"
+    },
+    {
+      "from": "cloudflare-workers",
+      "to": "tenant-deployed-cloudflare-saas",
+      "type": "composes"
+    },
+    {
+      "from": "github-actions",
+      "to": "tenant-deployed-cloudflare-saas",
+      "type": "composes"
+    },
+    {
+      "from": "web-security",
+      "to": "tenant-deployed-cloudflare-saas",
+      "type": "composes"
+    },
+    {
+      "from": "docs-kb",
+      "to": "tenant-deployed-cloudflare-saas",
+      "type": "composes"
+    },
+    {
+      "from": "cloudflare-pages-functions",
+      "to": "tenant-deployed-cloudflare-saas",
+      "type": "optional"
+    },
+    {
+      "from": "cloudflare-d1",
+      "to": "tenant-deployed-cloudflare-saas",
+      "type": "optional"
+    },
+    {
+      "from": "web-security",
+      "to": "security",
+      "type": "composes"
+    },
+    {
+      "from": "github-actions",
+      "to": "security",
+      "type": "composes"
+    },
+    {
+      "from": "cloudflare-workers",
+      "to": "security",
+      "type": "composes"
+    },
+    {
+      "from": "mcp",
+      "to": "security",
+      "type": "composes"
+    },
+    {
+      "from": "docs-kb",
+      "to": "security",
+      "type": "composes"
+    },
+    {
+      "from": "vitest",
+      "to": "testing",
+      "type": "composes"
+    },
+    {
+      "from": "playwright",
+      "to": "testing",
+      "type": "composes"
+    },
+    {
+      "from": "github-actions",
+      "to": "testing",
+      "type": "composes"
+    },
+    {
+      "from": "typescript",
+      "to": "typescript",
+      "type": "composes"
+    },
+    {
+      "from": "node",
+      "to": "typescript",
+      "type": "composes"
+    },
+    {
+      "from": "github-actions",
+      "to": "typescript",
+      "type": "composes"
+    },
+    {
+      "from": "typescript",
+      "to": "node-cli-internal-tool",
+      "type": "composes"
+    },
+    {
+      "from": "node",
+      "to": "node-cli-internal-tool",
+      "type": "composes"
+    },
+    {
+      "from": "openapi",
+      "to": "node-cli-internal-tool",
+      "type": "composes"
+    },
+    {
+      "from": "web-security",
+      "to": "node-cli-internal-tool",
+      "type": "composes"
+    },
+    {
+      "from": "typescript",
+      "to": "typescript-sdk",
+      "type": "composes"
+    },
+    {
+      "from": "openapi",
+      "to": "typescript-sdk",
+      "type": "composes"
+    },
+    {
+      "from": "zod",
+      "to": "typescript-sdk",
+      "type": "composes"
+    },
+    {
+      "from": "vitest",
+      "to": "typescript-sdk",
+      "type": "composes"
+    },
+    {
+      "from": "github-action",
+      "to": "github-action-package",
+      "type": "composes"
+    },
+    {
+      "from": "github-actions",
+      "to": "github-action-package",
+      "type": "composes"
+    },
+    {
+      "from": "node",
+      "to": "github-action-package",
+      "type": "composes"
+    },
+    {
+      "from": "typescript",
+      "to": "github-action-package",
+      "type": "composes"
+    },
+    {
+      "from": "vscode-extension",
+      "to": "vscode-extension-package",
+      "type": "composes"
+    },
+    {
+      "from": "typescript",
+      "to": "vscode-extension-package",
+      "type": "composes"
+    },
+    {
+      "from": "node",
+      "to": "vscode-extension-package",
+      "type": "composes"
+    },
+    {
+      "from": "web-security",
+      "to": "vscode-extension-package",
+      "type": "composes"
+    },
+    {
+      "from": "tauri",
+      "to": "tauri-react-desktop",
+      "type": "composes"
+    },
+    {
+      "from": "react",
+      "to": "tauri-react-desktop",
+      "type": "composes"
+    },
+    {
+      "from": "typescript",
+      "to": "tauri-react-desktop",
+      "type": "composes"
+    },
+    {
+      "from": "web-security",
+      "to": "tauri-react-desktop",
+      "type": "composes"
+    },
+    {
+      "from": "docs-kb",
+      "to": "tauri-react-desktop",
+      "type": "composes"
+    },
+    {
+      "from": "docs-kb",
+      "to": "zensical-kb-site",
+      "type": "composes"
+    },
+    {
+      "from": "github-actions",
+      "to": "zensical-kb-site",
+      "type": "composes"
+    },
+    {
+      "from": "react-spa",
+      "to": "react-spa-on-cloudflare-pages",
+      "type": "composes"
+    },
+    {
+      "from": "cloudflare-pages-functions",
+      "to": "react-spa-on-cloudflare-pages",
+      "type": "composes"
+    },
+    {
+      "from": "typescript",
+      "to": "react-spa-on-cloudflare-pages",
+      "type": "composes"
+    },
+    {
+      "from": "web-security",
+      "to": "react-spa-on-cloudflare-pages",
+      "type": "composes"
+    },
+    {
+      "from": "github-actions",
+      "to": "react-spa-on-cloudflare-pages",
+      "type": "composes"
+    },
+    {
+      "from": "web-accessibility",
+      "to": "accessibility",
+      "type": "composes"
+    },
+    {
+      "from": "dependencies",
+      "to": "dependencies",
+      "type": "composes"
+    },
+    {
+      "from": "github-actions",
+      "to": "dependencies",
+      "type": "composes"
+    },
+    {
+      "from": "node",
+      "to": "dependencies",
+      "type": "composes"
+    },
+    {
+      "from": "ref-react-spa",
+      "to": "react-spa",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-react-spa",
+      "to": "typescript",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-react-spa",
+      "to": "testing",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-react-spa",
+      "to": "security",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-worker-mcp",
+      "to": "cloudflare-worker-mcp-server",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-worker-mcp",
+      "to": "typescript",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-worker-mcp",
+      "to": "testing",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-worker-mcp",
+      "to": "security",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-saas",
+      "to": "react-spa",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-saas",
+      "to": "cloudflare-pages-fullstack",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-saas",
+      "to": "cloudflare-d1-app",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-saas",
+      "to": "cloudflare-worker-mcp-server",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-saas",
+      "to": "tenant-deployed-cloudflare-saas",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-saas",
+      "to": "typescript",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-saas",
+      "to": "testing",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-saas",
+      "to": "security",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-node-cli-internal-tool",
+      "to": "node-cli-internal-tool",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-node-cli-internal-tool",
+      "to": "typescript",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-node-cli-internal-tool",
+      "to": "testing",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-node-cli-internal-tool",
+      "to": "security",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-pages-fullstack",
+      "to": "cloudflare-pages-fullstack",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-pages-fullstack",
+      "to": "react-spa",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-pages-fullstack",
+      "to": "typescript",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-pages-fullstack",
+      "to": "testing",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-pages-fullstack",
+      "to": "security",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-d1-app",
+      "to": "cloudflare-d1-app",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-d1-app",
+      "to": "typescript",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-d1-app",
+      "to": "testing",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-cloudflare-d1-app",
+      "to": "security",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-typescript-sdk",
+      "to": "typescript-sdk",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-typescript-sdk",
+      "to": "typescript",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-typescript-sdk",
+      "to": "testing",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-typescript-sdk",
+      "to": "dependencies",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-zensical-kb-site",
+      "to": "zensical-kb-site",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-vscode-extension-package",
+      "to": "vscode-extension-package",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-vscode-extension-package",
+      "to": "typescript",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-vscode-extension-package",
+      "to": "testing",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-vscode-extension-package",
+      "to": "security",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-tauri-react-desktop",
+      "to": "tauri-react-desktop",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-tauri-react-desktop",
+      "to": "react-spa",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-tauri-react-desktop",
+      "to": "typescript",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-tauri-react-desktop",
+      "to": "testing",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-tauri-react-desktop",
+      "to": "security",
+      "type": "demonstrates"
+    },
+    {
+      "from": "react-spa-on-cloudflare-pages",
+      "to": "/standards/cloudflare-pages-fullstack/v1/",
+      "type": "aliases"
+    }
+  ]
+}

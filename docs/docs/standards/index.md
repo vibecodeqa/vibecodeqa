@@ -60,8 +60,8 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 | [VS Code Extension Package](stacks/vscode-extension-package.md) | VS Code Extension, TypeScript, Node, Web Security | activation event scope; workspace trust behavior; command and webview boundaries; marketplace metadata; extension test coverage |
 | [Tauri React Desktop](stacks/tauri-react-desktop.md) | Tauri, React, TypeScript, Web Security, Docs KB | Tauri command/capability boundaries; keychain/secret storage; file-system watch safety; desktop packaging and signing; frontend/backend contract typing |
 | [Zensical KB Site](stacks/zensical-kb-site.md) | Docs KB, GitHub Actions | Markdown source is the source of truth; generated site is ignored; published URLs are stable; source references are tracked; docs drift checks where mirrors exist |
-| Accessibility | - | Semantics, keyboard, focus, ARIA, contrast. Applies to any UI-rendering slice. |
-| Dependencies | - | Lockfile pinning, audit, vetting, no unexpected install scripts. |
+| [Accessibility](items/web-accessibility.md) | Web Accessibility | WCAG and ARIA acceptance gates mapped to scanner evidence; keyboard, focus, semantics, and contrast checks by UI stack; manual-review exception policy for accessibility findings |
+| [Dependencies](items/dependencies.md) | Dependencies, GitHub Actions, Node | lockfile and package-manager pinning; install script and dependency provenance review; audit, license, update, runtime, and exception evidence in CI |
 <!-- END GENERATED:standards-inventory -->
 
 ## Catalog entry points

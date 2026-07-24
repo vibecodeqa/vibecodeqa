@@ -79,6 +79,10 @@ full VCQA standards by themselves unless the deployable stack shape makes them j
 ## Documentation
 
 - [Docs KB](docs-kb.md): docs source/build separation, ADR freshness checks, published KB access policy, architecture drift gates.
+
+## Supply Chain
+
+- [Dependencies](dependencies.md): lockfile and package-manager consistency, install-script and dependency provenance gates, audit, license, update, and exception evidence.
 <!-- END GENERATED:stack-items-inventory -->
 
 ## Authoring rule

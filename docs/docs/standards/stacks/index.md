@@ -33,6 +33,8 @@ Cross-cutting rubrics are authored standards too, but they are cataloged through
 - [VS Code Extension Package](vscode-extension-package.md): activation event scope, workspace trust behavior, command and webview boundaries, marketplace metadata, extension test coverage.
 - [Tauri React Desktop](tauri-react-desktop.md): Tauri command/capability boundaries, keychain/secret storage, file-system watch safety, desktop packaging and signing, frontend/backend contract typing.
 - [Zensical KB Site](zensical-kb-site.md): Markdown source is the source of truth, generated site is ignored, published URLs are stable, source references are tracked, docs drift checks where mirrors exist.
+- [Accessibility](../items/web-accessibility.md): WCAG and ARIA acceptance gates mapped to scanner evidence, keyboard, focus, semantics, and contrast checks by UI stack, manual-review exception policy for accessibility findings.
+- [Dependencies](../items/dependencies.md): lockfile and package-manager pinning, install script and dependency provenance review, audit, license, update, runtime, and exception evidence in CI.
 <!-- END GENERATED:stack-standards-inventory -->
 
 ## What makes a stack standard

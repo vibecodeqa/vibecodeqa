@@ -82,6 +82,7 @@ nav = [
       { "TypeScript" = "standards/items/typescript.md" },
       { "Web Accessibility" = "standards/items/web-accessibility.md" },
       { "Web Security" = "standards/items/web-security.md" },
+      { "Dependency Hygiene" = "standards/items/dependencies.md" },
       { "Vitest" = "standards/items/vitest.md" },
       { "Playwright" = "standards/items/playwright.md" },
       { "Cloudflare Pages Functions" = "standards/items/cloudflare-pages-functions.md" },

@@ -312,6 +312,20 @@
         "architecture drift gates"
       ],
       "docsUrl": "/docs/standards/items/docs-kb/"
+    },
+    {
+      "id": "dependencies",
+      "kind": "supply-chain",
+      "references": [
+        "npm-package-json",
+        "github-actions-secure-use"
+      ],
+      "vcqaShouldOwn": [
+        "lockfile and package-manager consistency",
+        "install-script and dependency provenance gates",
+        "audit, license, update, and exception evidence"
+      ],
+      "docsUrl": "/docs/standards/items/dependencies/"
     }
   ],
   "composedStandards": [
@@ -717,6 +731,46 @@
       "standardUrl": "/standards/cloudflare-pages-fullstack/v1/",
       "latestEdition": "v1",
       "docsUrl": "/docs/standards/stacks/cloudflare-pages-fullstack/"
+    },
+    {
+      "id": "accessibility",
+      "status": "planned",
+      "stackItems": [
+        "web-accessibility"
+      ],
+      "ownedRules": [
+        "WCAG and ARIA acceptance gates mapped to scanner evidence",
+        "keyboard, focus, semantics, and contrast checks by UI stack",
+        "manual-review exception policy for accessibility findings"
+      ],
+      "benefits": [
+        "all VCQA browser app, docs, extension webview, and desktop UI surfaces"
+      ],
+      "aliases": [],
+      "standardUrl": null,
+      "latestEdition": null,
+      "docsUrl": "/docs/standards/items/web-accessibility/"
+    },
+    {
+      "id": "dependencies",
+      "status": "planned",
+      "stackItems": [
+        "dependencies",
+        "github-actions",
+        "node"
+      ],
+      "ownedRules": [
+        "lockfile and package-manager pinning",
+        "install script and dependency provenance review",
+        "audit, license, update, runtime, and exception evidence in CI"
+      ],
+      "benefits": [
+        "all VCQA package-managed apps, Workers, CLIs, SDKs, Actions, and docs sites"
+      ],
+      "aliases": [],
+      "standardUrl": null,
+      "latestEdition": null,
+      "docsUrl": "/docs/standards/items/dependencies/"
     }
   ],
   "referenceImplementations": [

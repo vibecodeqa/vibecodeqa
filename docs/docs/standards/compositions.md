@@ -29,6 +29,8 @@ map.
 | [Tauri React Desktop](stacks/tauri-react-desktop.md) | planned | planned | `tauri`, `react`, `typescript`, `web-security`, `docs-kb` |
 | [Zensical KB Site](stacks/zensical-kb-site.md) | planned | planned | `docs-kb`, `github-actions` |
 | [React SPA On Cloudflare Pages](stacks/cloudflare-pages-fullstack.md) | authored | [v1](/standards/cloudflare-pages-fullstack/v1/) | `react-spa`, `cloudflare-pages-functions`, `typescript`, `web-security`, `github-actions` |
+| [Accessibility](items/web-accessibility.md) | planned | planned | `web-accessibility` |
+| [Dependencies](items/dependencies.md) | planned | planned | `dependencies`, `github-actions`, `node` |
 <!-- END GENERATED:composition-summary -->
 
 Product-neutral reference implementations:
