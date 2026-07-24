@@ -10,7 +10,7 @@ The machine-readable source for this map is
 <style>
 .vcqa-graph {
   --line: color-mix(in srgb, var(--md-default-fg-color, #18181b) 24%, transparent);
-  --edge: color-mix(in srgb, var(--md-default-fg-color, #18181b) 42%, transparent);
+  --edge: color-mix(in srgb, var(--md-default-fg-color, #18181b) 30%, transparent);
   --ink: var(--md-default-fg-color, #18181b);
   --muted: var(--md-default-fg-color--light, #71717a);
   --panel: color-mix(
@@ -175,17 +175,15 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
 }
 .vcqa-graph .graph-node text {
   fill: var(--ink) !important;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
-  stroke: var(--canvas) !important;
-  stroke-width: 2px;
-  paint-order: stroke fill;
+  stroke: none !important;
   text-anchor: middle;
   pointer-events: none;
 }
 .vcqa-graph .graph-node .sub {
   fill: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
 }
 .vcqa-graph .graph-node.item rect {
@@ -224,7 +222,7 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     </marker>
   </defs>
 
-  <g class="edges" stroke="var(--edge)" stroke-width="1.7" fill="none" marker-end="url(#arrow)">
+  <g class="edges" stroke="var(--edge)" stroke-width="1.35" fill="none" marker-end="url(#arrow)">
     <!-- stack items to authored standards -->
     <path d="M175 70 C420 70 460 130 610 170"/><path d="M175 110 C410 100 465 135 610 170"/><path d="M175 150 C405 130 470 150 610 170"/><path d="M175 190 C410 175 470 170 610 170"/><path d="M175 230 C410 210 470 185 610 170"/><path d="M175 270 C410 235 470 200 610 170"/><path d="M175 310 C410 260 470 215 610 170"/><path d="M175 350 C410 285 470 230 610 170"/>
     <path d="M175 190 C420 220 500 255 610 285"/><path d="M175 270 C420 260 500 275 610 285"/><path d="M175 430 C420 380 500 320 610 285"/><path d="M610 170 C620 210 620 245 610 285"/>
