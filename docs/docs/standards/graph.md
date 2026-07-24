@@ -9,55 +9,30 @@ The machine-readable source for this map is
 
 <style>
 .vcqa-graph {
-  --line: #d4d4d8;
-  --edge: #d4d4d8;
-  --ink: #18181b;
-  --muted: #71717a;
-  --panel: #fafafa;
-  --canvas: #ffffff;
-  --chip-bg: #ffffff;
-  --authored: #dcfce7;
-  --authored-border: #22c55e;
-  --planned: #f4f4f5;
-  --planned-border: #a1a1aa;
-  --item: #eef2ff;
-  --item-border: #818cf8;
-  --template: #fef3c7;
-  --template-border: #f59e0b;
+  --line: color-mix(in srgb, var(--md-default-fg-color, #18181b) 24%, transparent);
+  --edge: color-mix(in srgb, var(--md-default-fg-color, #18181b) 42%, transparent);
+  --ink: var(--md-default-fg-color, #18181b);
+  --muted: var(--md-default-fg-color--light, #71717a);
+  --panel: color-mix(
+    in srgb,
+    var(--md-default-bg-color, #ffffff) 88%,
+    var(--md-default-fg-color, #18181b) 12%
+  );
+  --canvas: var(--md-default-bg-color, #ffffff);
+  --chip-bg: var(--panel);
+  --authored: var(--panel);
+  --authored-border: #15803d;
+  --planned: var(--panel);
+  --planned-border: #71717a;
+  --item: var(--panel);
+  --item-border: #2563eb;
+  --template: var(--panel);
+  --template-border: #b45309;
 }
 body[data-md-color-scheme="slate"] .vcqa-graph {
-  --line: #3f3f46;
-  --edge: #52525b;
-  --ink: #f4f4f5;
-  --muted: #a1a1aa;
-  --panel: #18181b;
-  --canvas: #0f1117;
-  --chip-bg: #27272a;
-  --authored: #052e16;
-  --authored-border: #16a34a;
-  --planned: #27272a;
-  --planned-border: #71717a;
-  --item: #1e1b4b;
-  --item-border: #6366f1;
-  --template: #451a03;
-  --template-border: #d97706;
-}
-html[data-darkreader-mode] .vcqa-graph,
-html[data-darkreader-scheme="dark"] .vcqa-graph {
-  --line: #3f3f46;
-  --edge: #71717a;
-  --ink: #f4f4f5;
-  --muted: #c4c4cc;
-  --panel: #181a20;
-  --canvas: #0b0d12;
-  --chip-bg: #20232b;
-  --authored: #13251a;
   --authored-border: #4ade80;
-  --planned: #20232b;
   --planned-border: #a1a1aa;
-  --item: #171f33;
   --item-border: #93c5fd;
-  --template: #2a2114;
   --template-border: #fbbf24;
 }
 .vcqa-graph .legend,
@@ -93,9 +68,7 @@ html[data-darkreader-scheme="dark"] .vcqa-graph {
 .vcqa-graph a {
   color: #2563eb;
 }
-body[data-md-color-scheme="slate"] .vcqa-graph a,
-html[data-darkreader-mode] .vcqa-graph a,
-html[data-darkreader-scheme="dark"] .vcqa-graph a {
+body[data-md-color-scheme="slate"] .vcqa-graph a {
   color: #93c5fd;
 }
 .vcqa-graph .standard-card.authored {
@@ -182,16 +155,15 @@ html[data-darkreader-scheme="dark"] .vcqa-graph a {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--canvas);
-  color-scheme: light dark;
 }
 .vcqa-graph .network-map {
   display: block;
-  min-width: 960px;
+  min-width: 1200px;
   width: 100%;
   height: auto;
 }
 .vcqa-graph .graph-node rect {
-  stroke-width: 1.5;
+  stroke-width: 2;
 }
 .vcqa-graph .edges {
   stroke: var(--edge);
@@ -232,7 +204,7 @@ html[data-darkreader-scheme="dark"] .vcqa-graph a {
 }
 </style>
 
-<div class="vcqa-graph" data-darkreader-ignore>
+<div class="vcqa-graph">
 
 <div class="legend">
   <div class="node authored"><strong>Authored standard</strong><br><span class="kind">Versioned rubric with stable rule IDs.</span></div>
@@ -247,11 +219,11 @@ html[data-darkreader-scheme="dark"] .vcqa-graph a {
 <svg class="network-map" viewBox="0 0 1380 900" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3.5" orient="auto">
-      <path d="M0,0 L8,3.5 L0,7 Z" fill="#a1a1aa" />
+      <path d="M0,0 L8,3.5 L0,7 Z" fill="var(--edge)" />
     </marker>
   </defs>
 
-  <g class="edges" stroke="#d4d4d8" stroke-width="1.4" fill="none" marker-end="url(#arrow)">
+  <g class="edges" stroke="var(--edge)" stroke-width="1.7" fill="none" marker-end="url(#arrow)">
     <!-- stack items to authored standards -->
     <path d="M175 70 C420 70 460 130 610 170"/><path d="M175 110 C410 100 465 135 610 170"/><path d="M175 150 C405 130 470 150 610 170"/><path d="M175 190 C410 175 470 170 610 170"/><path d="M175 230 C410 210 470 185 610 170"/><path d="M175 270 C410 235 470 200 610 170"/><path d="M175 310 C410 260 470 215 610 170"/><path d="M175 350 C410 285 470 230 610 170"/>
     <path d="M175 190 C420 220 500 255 610 285"/><path d="M175 270 C420 260 500 275 610 285"/><path d="M175 430 C420 380 500 320 610 285"/><path d="M610 170 C620 210 620 245 610 285"/>
