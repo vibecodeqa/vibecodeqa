@@ -481,6 +481,34 @@
       "docsUrl": "/docs/standards/items/web-security/"
     },
     {
+      "id": "testing",
+      "status": "authored",
+      "stackItems": [
+        "vitest",
+        "playwright",
+        "github-actions"
+      ],
+      "ownedRules": [
+        "critical behavior mapped to automated tests or explicit risk exceptions",
+        "meaningful unit assertions over deterministic logic",
+        "integration tests at public API, command, database, provider, protocol, or package seams",
+        "component and UI tests that assert user-visible behavior",
+        "built-artifact smoke tests for deployable apps",
+        "coverage thresholds and documented exclusions for behavior-bearing code",
+        "mock, fixture, snapshot, flaky, skipped, and generated-test quality gates",
+        "CI test gates and failure evidence before deploy, release, or publish"
+      ],
+      "benefits": [
+        "all VCQA app, API, Worker, MCP, CLI, SDK, desktop, and CI surfaces",
+        "VCQA testing and test-audit scanner checks",
+        "Cloudflare SaaS example coverage gaps"
+      ],
+      "aliases": [],
+      "standardUrl": "/standards/testing/v1/",
+      "latestEdition": "v1",
+      "docsUrl": "/docs/standards/items/vitest/"
+    },
+    {
       "id": "node-cli-internal-tool",
       "status": "planned",
       "stackItems": [

@@ -196,7 +196,7 @@ Cloudflare, D1, MCP, or TypeScript alone. They are born from the stack combinati
 
 1. Author Node CLI Internal Tool and TypeScript SDK once the app/runtime standards are
    stable enough to define shared package expectations.
-2. Decide whether cross-cutting TypeScript, testing, accessibility, and dependency
+2. Decide whether cross-cutting TypeScript, accessibility, and dependency
    standards should become full rubrics or remain stack-item guidance.
 
 ## Coverage status
@@ -206,5 +206,5 @@ The right claim is:
 ```text
 The frontend, Pages Functions, D1, and Worker MCP surfaces are covered by authored v1 rubrics.
 The tenant deployment recipe, React-on-Pages repo recipe, and security baseline are covered by authored v1 rubrics.
-CLI, SDK, testing, TypeScript, dependency, and accessibility standards still need authored rubrics.
+CLI, SDK, TypeScript, dependency, and accessibility standards still need authored rubrics.
 ```
