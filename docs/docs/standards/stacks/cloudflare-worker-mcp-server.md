@@ -11,7 +11,7 @@ This stack is valuable when the problem is not "how do I write an MCP server?"
 but "how do I expose remote tools to AI clients without turning the Worker into
 an unaudited remote-control endpoint?"
 
-## Full rubric
+## Rubric and reference implementation
 
 Use [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/)
 when a repository exposes MCP over HTTP from Cloudflare Workers or Cloudflare
@@ -26,6 +26,21 @@ tracked VCQA report.
 
 VCQA report:
 [A 91/100](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/vcqa-report.md).
+
+## Reference template map
+
+The reference repo is meant to be inspected, not treated as a black box. These
+files show the stack contract in code:
+
+| Evidence | Where to look | What it proves |
+|---|---|---|
+| Worker MCP boundary | [`src/index.ts`](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/src/index.ts) | The Worker owns metadata and MCP routes, authorizes before dispatch, registers tools, checks scopes, validates inputs, and emits audit-ready mutation evidence. |
+| Protocol and auth tests | [`src/index.test.ts`](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/src/index.test.ts) | CI exercises unauthorized rejection, scope checks, SDK transport initialization, and representative tool calls. |
+| Cloudflare deployment shape | [`wrangler.toml`](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/wrangler.toml) | Worker name, compatibility date, environment config, and binding shape are explicit. |
+| Quality gates | [`.github/workflows/ci.yml`](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/.github/workflows/ci.yml) | Lint, typecheck, tests, build, and VCQA run before changes are trusted. |
+| Deployment operations | [`docs/runbooks/deploy.md`](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/runbooks/deploy.md) | Production deploys require protected environment evidence and protocol smoke tests. |
+| Incident operations | [`docs/runbooks/incident-response.md`](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/runbooks/incident-response.md) | A bad tool call can be investigated with actor, tenant, tool, outcome, and request correlation. |
+| Score evidence | [`docs/vcqa-report.md`](https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/vcqa-report.md) | The template carries a tracked VCQA score and visible gaps. |
 
 ## What this teaches
 
@@ -53,6 +68,17 @@ boundary:
   documented state ownership.
 - CI proves unauthorized rejection, tool listing, schema validation, and at
   least one representative read and mutation path.
+
+## Decision matrix
+
+| Need | Better fit |
+|---|---|
+| Local tools for one developer machine | Local stdio MCP server. |
+| Public product API consumed by normal web/mobile clients | HTTP API standard plus OpenAPI, auth, and web-security standards. |
+| Remote tools for agents with organization/product permissions | Cloudflare Worker MCP Server. |
+| Remote tools plus tenant-specific deployable Cloudflare surfaces | Cloudflare Worker MCP Server plus Tenant-Deployed Cloudflare SaaS. |
+| Long-running jobs, fan-out work, or delayed side effects | Worker MCP gateway plus queue/workflow/job boundary; do not hide long work inside one tool request. |
+| Unrestricted shell, database, or cloud admin access | Do not expose as a remote MCP tool without redesigning into narrow, auditable capabilities. |
 
 ## When this stack is a good fit
 
