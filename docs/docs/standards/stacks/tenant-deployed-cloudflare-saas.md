@@ -7,7 +7,7 @@ Cloudflare Pages, Workers, D1, and related bindings. This stack treats deploymen
 topology, tenant isolation, promotion, preview exposure, and operational evidence as
 part of the product contract.
 
-## Full rubric
+## Rubric and reference implementation
 
 Use [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/)
 when a repository operates tenant-scoped Cloudflare deployment surfaces.
@@ -32,6 +32,24 @@ The rubric has stable rule IDs across:
 - tenant provisioning and deprovisioning runbooks
 - tenant-aware observability, audit, and incident evidence
 
+## Reference template map
+
+The reference repo is a composed fixture: React SPA, Pages Functions, D1,
+Worker MCP, SDK, CLI, tenant runbooks, and VCQA evidence live together so the
+tenant-deployed standard can be inspected in context.
+
+| Evidence | Where to look | What it proves |
+|---|---|---|
+| App and Pages Functions | [`app/`](https://github.com/vibecodeqa/ref-cloudflare-saas/tree/main/app) | Static frontend, same-origin Functions API, tests, migrations, and Pages deployment config live as one deployable app surface. |
+| D1 migrations | [`app/migrations/`](https://github.com/vibecodeqa/ref-cloudflare-saas/tree/main/app/migrations) | Schema change history is versioned and can be applied in CI/deploy workflows. |
+| Pages/D1 bindings | [`app/wrangler.toml`](https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/app/wrangler.toml) | Cloudflare project, environment, and database binding shape are explicit. |
+| MCP Worker package | [`packages/mcp-worker/`](https://github.com/vibecodeqa/ref-cloudflare-saas/tree/main/packages/mcp-worker) | Tenant operations can expose a remote MCP surface without mixing it into the frontend. |
+| SDK and CLI packages | [`packages/sdk/`](https://github.com/vibecodeqa/ref-cloudflare-saas/tree/main/packages/sdk), [`packages/cli/`](https://github.com/vibecodeqa/ref-cloudflare-saas/tree/main/packages/cli) | Contracted automation has typed package boundaries rather than ad hoc scripts. |
+| Tenant manifest | [`docs/tenant-manifest.example.json`](https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/tenant-manifest.example.json) | Tenant resources, environments, and deployment ownership can be named and reviewed. |
+| Tenant runbooks | [`docs/runbooks/`](https://github.com/vibecodeqa/ref-cloudflare-saas/tree/main/docs/runbooks) | Provisioning, promotion, rollback/restore, and incident response are operational controls in the repo. |
+| Quality gates | [`.github/workflows/ci.yml`](https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/.github/workflows/ci.yml) | Tests, builds, and VCQA evidence run before changes are trusted. |
+| Score evidence | [`docs/vcqa-report.md`](https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md) | The template carries a tracked VCQA score and visible gaps. |
+
 ## What this teaches
 
 Choose this stack when each customer needs its own deployable Cloudflare surface:
@@ -46,6 +64,36 @@ fund tenant provisioning, migration, secret rotation, observability, and inciden
 response per tenant. If tenant identity is only an application column and all tenants
 share one deployable artifact, use lower-level Cloudflare, D1, and web-security
 standards instead.
+
+## Architecture flow
+
+| Step | Boundary | What VCQA expects |
+|---:|---|---|
+| 1 | Commit or tenant change | Change starts from a tracked commit, tenant request, or manifest update. |
+| 2 | GitHub Actions gates | CI proves build, tests, migrations, deploy config, and VCQA evidence. |
+| 3 | Tenant manifest | Tenant resources, environments, aliases, domains, and owners are named. |
+| 4 | Pages app and Functions | Frontend and same-origin API deploy as a known artifact. |
+| 5 | Tenant D1 database | Database binding, migration state, backup/restore posture, and tenant ownership are explicit. |
+| 6 | Worker or MCP surface | Background, admin, or MCP Workers use tenant-scoped bindings and permissions. |
+| 7 | Access, domains, and aliases | Preview, staging, production, and custom domains share the intended auth and indexing posture. |
+| 8 | Tenant smoke tests | Smoke tests prove the deployed tenant surface, not only local code. |
+| 9 | Deployment and audit evidence | Promotion, rollback, incident, and mutation evidence can be reviewed after the fact. |
+
+The standard judges whether tenant identity is visible in deployable resources,
+not only in application rows. A tenant deployment should leave evidence for the
+artifact, bindings, database state, access perimeter, smoke tests, and rollback
+path.
+
+## Decision matrix
+
+| Need | Better fit |
+|---|---|
+| One production app serving every customer from shared deployables | Cloudflare Pages Fullstack plus D1 and web-security standards. |
+| Row-level multi-tenancy inside one database and one deployment | D1 app standard plus authorization and tenant data checks. |
+| White-label, regulated, or customer-specific deployment surfaces | Tenant-Deployed Cloudflare SaaS. |
+| Tenant-specific MCP/admin automation | Tenant-Deployed Cloudflare SaaS plus Cloudflare Worker MCP Server. |
+| Customer-specific release windows, rollback, domains, or Access policy | Tenant-Deployed Cloudflare SaaS. |
+| No operational budget for per-tenant provisioning and incident response | Do not choose tenant-deployed topology yet. |
 
 ## Scope
 

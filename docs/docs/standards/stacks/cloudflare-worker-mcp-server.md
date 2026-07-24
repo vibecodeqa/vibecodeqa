@@ -69,6 +69,23 @@ boundary:
 - CI proves unauthorized rejection, tool listing, schema validation, and at
   least one representative read and mutation path.
 
+## Architecture flow
+
+| Step | Boundary | What VCQA expects |
+|---:|---|---|
+| 1 | Remote MCP client | Client sends Streamable HTTP requests and follows protected-resource discovery. |
+| 2 | Cloudflare Worker route | Worker owns `/mcp` and metadata routes explicitly. |
+| 3 | Auth and protected metadata | Unauthorized requests fail before MCP dispatch. |
+| 4 | MCP server transport | SDK or Cloudflare Agent receives only authorized request context. |
+| 5 | Tool permission check | Tool name maps to a narrow read or mutate grant. |
+| 6 | Zod argument validation | Parsed input, not raw JSON, drives authorization-sensitive work. |
+| 7 | Tool handler | Side effects are scoped and intentionally named. |
+| 8 | Scoped binding or Durable Object | State keys and object IDs match tenant, user, session, or resource boundaries. |
+| 9 | Audit event | Mutations produce actor, tool, target, outcome, and request correlation evidence. |
+
+The important boundary is between `worker` and `mcp`: unauthenticated or
+unauthorized requests should fail before the MCP server dispatches tools.
+
 ## Decision matrix
 
 | Need | Better fit |
