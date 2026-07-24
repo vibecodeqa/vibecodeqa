@@ -32,4 +32,3 @@ This standard governs:
   Library, Flutter, or platform docs.
 - Security-specific deploy controls covered by [Security v1](/standards/security/v1/).
 - Stack-specific smoke paths covered by authored stack standards.
-

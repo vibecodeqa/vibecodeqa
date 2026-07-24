@@ -44,4 +44,3 @@ snapshot updates with no nearby assertion or explanation.
 **References.**
 
 - Vitest Guide: <https://vitest.dev/guide/>
-

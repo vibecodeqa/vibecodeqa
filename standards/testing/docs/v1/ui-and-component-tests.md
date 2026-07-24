@@ -49,4 +49,3 @@ or brittle component internals instead of accessible controls.
 
 - Testing Library Guiding Principles:
   <https://testing-library.com/docs/guiding-principles>
-

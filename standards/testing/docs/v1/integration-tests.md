@@ -49,4 +49,3 @@ production resources without an explicit read-only exception.
 
 - GitHub Actions secure use:
   <https://docs.github.com/en/actions/reference/security/secure-use>
-

@@ -57,4 +57,3 @@ a `vcqa` signal, and primary references.
   <https://docs.github.com/en/actions/reference/security/secure-use>
 - GitHub Actions deployments and environments:
   <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments>
-

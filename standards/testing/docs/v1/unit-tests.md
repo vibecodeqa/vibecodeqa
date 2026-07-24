@@ -41,4 +41,3 @@ and no assertion covers thrown errors, invalid input, boundary values, or reject
 **References.**
 
 - Vitest Guide: <https://vitest.dev/guide/>
-

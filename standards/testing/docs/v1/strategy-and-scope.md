@@ -49,4 +49,3 @@ documentation naming reason, owner, or review trigger.
 
 - GitHub Actions deployments and environments:
   <https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments>
-

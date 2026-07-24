@@ -45,4 +45,3 @@ coverage increases caused mostly by trivial generated tests.
 **References.**
 
 - Vitest Guide: <https://vitest.dev/guide/>
-

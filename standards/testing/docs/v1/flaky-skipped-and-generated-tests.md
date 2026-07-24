@@ -45,4 +45,3 @@ shape, missing failure paths, or names that do not match the behavior asserted.
 
 - Testing Library Guiding Principles:
   <https://testing-library.com/docs/guiding-principles>
-

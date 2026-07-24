@@ -175,4 +175,3 @@ The assessment must penalize:
 
 The point of self-assessment is to make VCQA more trustworthy, not to manufacture a high
 score.
-
