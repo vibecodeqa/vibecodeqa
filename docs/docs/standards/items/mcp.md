@@ -4,8 +4,8 @@ MCP defines how tools, resources, prompts, and transports are exposed to AI clie
 
 ## Upstream references
 
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/2025-06-18)
-- [MCP Authorization](https://modelcontextprotocol.io/specification/draft/basic/authorization)
+- [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/2025-11-25)
+- [MCP Authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization)
 - [MCP Security Best Practices](https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices)
 - [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk)
 
