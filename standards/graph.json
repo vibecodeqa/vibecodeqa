@@ -852,6 +852,22 @@
       "ci": null
     },
     {
+      "id": "ref-github-action-package",
+      "repo": "vibecodeqa/ref-github-action-package",
+      "url": "https://github.com/vibecodeqa/ref-github-action-package",
+      "status": "candidate",
+      "standards": [
+        "github-action-package",
+        "typescript",
+        "testing",
+        "security",
+        "dependencies"
+      ],
+      "reportUrl": null,
+      "score": null,
+      "ci": null
+    },
+    {
       "id": "ref-zensical-kb-site",
       "repo": "vibecodeqa/ref-zensical-kb-site",
       "url": "https://github.com/vibecodeqa/ref-zensical-kb-site",
@@ -1493,6 +1509,31 @@
     },
     {
       "from": "ref-typescript-sdk",
+      "to": "dependencies",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-github-action-package",
+      "to": "github-action-package",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-github-action-package",
+      "to": "typescript",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-github-action-package",
+      "to": "testing",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-github-action-package",
+      "to": "security",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-github-action-package",
       "to": "dependencies",
       "type": "demonstrates"
     },

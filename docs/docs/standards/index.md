@@ -108,6 +108,7 @@ Next template candidates:
 - `ref-cloudflare-pages-fullstack`: React SPA plus same-origin Cloudflare Pages Functions API, route ownership, bindings, and deploy evidence.
 - `ref-cloudflare-d1-app`: D1 migrations, local apply checks, bindings, query safety, and environment isolation without the broader SaaS composition.
 - `ref-typescript-sdk`: Export maps, declarations, typed errors, generated client drift checks, and consumer compatibility tests.
+- `ref-github-action-package`: GitHub Action package metadata, minimum permissions, input validation, runtime/dependency policy, bundled-output freshness, release tags, and CI smoke evidence.
 - `ref-zensical-kb-site`: Markdown source of truth, stable docs URLs, references, generated-site policy, and docs smoke checks.
 - `ref-vscode-extension-package`: Activation scope, workspace trust, command/webview boundaries, marketplace metadata, and extension tests.
 - `ref-tauri-react-desktop`: Tauri command/capability boundaries, secure storage, file-system safety, packaging, and frontend/backend typing.

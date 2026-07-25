@@ -985,6 +985,23 @@
       "ci": null
     },
     {
+      "id": "ref-github-action-package",
+      "repo": "vibecodeqa/ref-github-action-package",
+      "url": "https://github.com/vibecodeqa/ref-github-action-package",
+      "status": "candidate",
+      "standards": [
+        "github-action-package",
+        "typescript",
+        "testing",
+        "security",
+        "dependencies"
+      ],
+      "demonstrates": "GitHub Action package metadata, minimum permissions, input validation, runtime/dependency policy, bundled-output freshness, release tags, and CI smoke evidence.",
+      "score": null,
+      "reportUrl": null,
+      "ci": null
+    },
+    {
       "id": "ref-zensical-kb-site",
       "repo": "vibecodeqa/ref-zensical-kb-site",
       "url": "https://github.com/vibecodeqa/ref-zensical-kb-site",

@@ -284,6 +284,11 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     <div class="links"></div>
   </div>
   <div class="node template">
+    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-github-action-package">ref-github-action-package</a></strong><span class="status">candidate</span></div>
+    <div class="chips"><a class="chip standard" href="/docs/standards/stacks/github-action-package/">github-action-package</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a><a class="chip item" href="/docs/standards/items/dependencies/">dependencies</a></div>
+    <div class="links"></div>
+  </div>
+  <div class="node template">
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-zensical-kb-site">ref-zensical-kb-site</a></strong><span class="status">candidate</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/zensical-kb-site/">zensical-kb-site</a></div>
     <div class="links"></div>
