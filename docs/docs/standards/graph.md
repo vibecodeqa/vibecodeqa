@@ -298,6 +298,11 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/tauri-react-desktop/">tauri-react-desktop</a><a class="chip standard" href="/docs/standards/stacks/react-spa/">react-spa</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a></div>
     <div class="links"></div>
   </div>
+  <div class="node template">
+    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-flutter-firebase-app">ref-flutter-firebase-app</a></strong><span class="status">candidate</span></div>
+    <div class="chips"><a class="chip standard" href="/docs/standards/stacks/flutter-firebase-app/">flutter-firebase-app</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a><a class="chip item" href="/docs/standards/items/dependencies/">dependencies</a></div>
+    <div class="links"></div>
+  </div>
 </div>
 
 
@@ -516,16 +521,32 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     </div>
     <div class="links"><a href="/docs/standards/items/dependencies/">catalog</a></div>
   </div>
+  <div class="standard-card planned">
+    <div class="title"><strong><a href="/docs/standards/stacks/flutter-firebase-app/">flutter-firebase-app</a></strong><span class="status">planned</span></div>
+    <div class="kind">Flutter app/admin/shared workspace backed by Firebase Auth, Firestore, Storage, Messaging, Hosting, and Cloud Functions, with Melos orchestration and deploy/test gates.</div>
+    <div class="chips">
+      <a class="chip item" href="/docs/standards/items/dart/">dart</a>
+      <a class="chip item" href="/docs/standards/items/flutter/">flutter</a>
+      <a class="chip item" href="/docs/standards/items/firebase/">firebase</a>
+      <a class="chip item" href="/docs/standards/items/melos/">melos</a>
+      <a class="chip item" href="/docs/standards/items/github-actions/">github-actions</a>
+      <a class="chip item" href="/docs/standards/items/dependencies/">dependencies</a>
+      <a class="chip item optional" href="/docs/standards/items/web-accessibility/">web-accessibility</a>
+      <a class="chip item optional" href="/docs/standards/items/web-security/">web-security</a>
+      <a class="chip item optional" href="/docs/standards/items/node/">node</a>
+    </div>
+    <div class="links"><a href="/docs/standards/stacks/flutter-firebase-app/">catalog</a></div>
+  </div>
 </div>
 
 <h2 id="stack-item-leaves">Stack Item Leaves</h2>
 
 <div class="item-grid">
   <div class="item-card"><strong>Runtime</strong><div class="chips"><a class="chip item" href="/docs/standards/items/node/">node</a><a class="chip item" href="/docs/standards/items/cloudflare-pages-functions/">cloudflare-pages-functions</a><a class="chip item" href="/docs/standards/items/cloudflare-workers/">cloudflare-workers</a></div></div>
-  <div class="item-card"><strong>Framework</strong><div class="chips"><a class="chip item" href="/docs/standards/items/react/">react</a></div></div>
+  <div class="item-card"><strong>Framework</strong><div class="chips"><a class="chip item" href="/docs/standards/items/react/">react</a><a class="chip item" href="/docs/standards/items/flutter/">flutter</a></div></div>
   <div class="item-card"><strong>Routing</strong><div class="chips"><a class="chip item" href="/docs/standards/items/react-router/">react-router</a></div></div>
   <div class="item-card"><strong>Build Tool</strong><div class="chips"><a class="chip item" href="/docs/standards/items/vite/">vite</a></div></div>
-  <div class="item-card"><strong>Language</strong><div class="chips"><a class="chip item" href="/docs/standards/items/typescript/">typescript</a></div></div>
+  <div class="item-card"><strong>Language</strong><div class="chips"><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip item" href="/docs/standards/items/dart/">dart</a></div></div>
   <div class="item-card"><strong>Quality</strong><div class="chips"><a class="chip item" href="/docs/standards/items/web-accessibility/">web-accessibility</a></div></div>
   <div class="item-card"><strong>Security</strong><div class="chips"><a class="chip item" href="/docs/standards/items/web-security/">web-security</a></div></div>
   <div class="item-card"><strong>Testing</strong><div class="chips"><a class="chip item" href="/docs/standards/items/vitest/">vitest</a><a class="chip item" href="/docs/standards/items/playwright/">playwright</a></div></div>
@@ -540,6 +561,8 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
   <div class="item-card"><strong>Desktop</strong><div class="chips"><a class="chip item" href="/docs/standards/items/tauri/">tauri</a></div></div>
   <div class="item-card"><strong>Documentation</strong><div class="chips"><a class="chip item" href="/docs/standards/items/docs-kb/">docs-kb</a></div></div>
   <div class="item-card"><strong>Supply Chain</strong><div class="chips"><a class="chip item" href="/docs/standards/items/dependencies/">dependencies</a></div></div>
+  <div class="item-card"><strong>Backend Platform</strong><div class="chips"><a class="chip item" href="/docs/standards/items/firebase/">firebase</a></div></div>
+  <div class="item-card"><strong>Workspace Tool</strong><div class="chips"><a class="chip item" href="/docs/standards/items/melos/">melos</a></div></div>
 </div>
 <!-- END GENERATED:standards-graph -->
 

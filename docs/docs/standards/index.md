@@ -62,6 +62,7 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 | [Zensical KB Site](stacks/zensical-kb-site.md) | Docs KB, GitHub Actions | Markdown source is the source of truth; generated site is ignored; published URLs are stable; source references are tracked; docs drift checks where mirrors exist |
 | [Accessibility](items/web-accessibility.md) | Web Accessibility | WCAG and ARIA acceptance gates mapped to scanner evidence; keyboard, focus, semantics, and contrast checks by UI stack; manual-review exception policy for accessibility findings |
 | [Dependencies](items/dependencies.md) | Dependencies, GitHub Actions, Node | lockfile and package-manager pinning; install script and dependency provenance review; audit, license, update, runtime, and exception evidence in CI |
+| [Flutter Firebase App](stacks/flutter-firebase-app.md) | Dart, Flutter, Firebase, Melos, GitHub Actions, Dependencies | Flutter app/admin/shared package workspace shape; Firebase project, hosting, functions, and Firestore environment separation; Firestore rules, indexes, and emulator-backed test gates; mobile/web build artifact and platform permission evidence; version bump, deploy gate, and test dashboard evidence |
 <!-- END GENERATED:standards-inventory -->
 
 ## Catalog entry points
@@ -110,6 +111,7 @@ Next template candidates:
 - `ref-zensical-kb-site`: Markdown source of truth, stable docs URLs, references, generated-site policy, and docs smoke checks.
 - `ref-vscode-extension-package`: Activation scope, workspace trust, command/webview boundaries, marketplace metadata, and extension tests.
 - `ref-tauri-react-desktop`: Tauri command/capability boundaries, secure storage, file-system safety, packaging, and frontend/backend typing.
+- `ref-flutter-firebase-app`: Product-neutral Flutter + Firebase workspace: app/admin/shared packages, Firebase Hosting/Functions/Firestore, rules tests, platform builds, and CI evidence gates.
 <!-- END GENERATED:reference-implementations -->
 
 ## Machine-readable files

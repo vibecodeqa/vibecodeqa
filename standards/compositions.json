@@ -326,6 +326,64 @@
         "audit, license, update, and exception evidence"
       ],
       "docsUrl": "/docs/standards/items/dependencies/"
+    },
+    {
+      "id": "dart",
+      "kind": "language",
+      "references": [
+        "dart-effective"
+      ],
+      "vcqaShouldOwn": [
+        "Dart SDK constraints and analyzer gates by package",
+        "generated/localized code exception boundaries",
+        "shared model compatibility across app packages"
+      ],
+      "docsUrl": "/docs/standards/items/dart/"
+    },
+    {
+      "id": "flutter",
+      "kind": "framework",
+      "references": [
+        "flutter-docs",
+        "firebase-flutter-setup"
+      ],
+      "vcqaShouldOwn": [
+        "Flutter package/app structure across platform targets",
+        "widget/integration test evidence for user flows",
+        "platform permission and build artifact checks"
+      ],
+      "docsUrl": "/docs/standards/items/flutter/"
+    },
+    {
+      "id": "firebase",
+      "kind": "backend-platform",
+      "references": [
+        "firebase-flutter-setup",
+        "firebase-functions",
+        "firebase-firestore-security-rules",
+        "firebase-rules-unit-tests",
+        "firebase-hosting-github-integration"
+      ],
+      "vcqaShouldOwn": [
+        "Firebase project/environment separation",
+        "Firestore rules and index test gates",
+        "client-exposed config versus server secret boundaries",
+        "Hosting/Functions deploy evidence and rollback path"
+      ],
+      "docsUrl": "/docs/standards/items/firebase/"
+    },
+    {
+      "id": "melos",
+      "kind": "workspace-tool",
+      "references": [
+        "melos-docs"
+      ],
+      "vcqaShouldOwn": [
+        "workspace package discovery and bootstrap reproducibility",
+        "cross-package analyze/test orchestration",
+        "shared package dependency drift checks"
+      ],
+      "docsUrl": "/docs/standards/items/melos/"
     }
   ],
   "composedStandards": [
@@ -771,6 +829,41 @@
       "standardUrl": null,
       "latestEdition": null,
       "docsUrl": "/docs/standards/items/dependencies/"
+    },
+    {
+      "id": "flutter-firebase-app",
+      "status": "planned",
+      "aliases": [
+        "flutterfire-app",
+        "firebase-flutter-app"
+      ],
+      "stackItems": [
+        "dart",
+        "flutter",
+        "firebase",
+        "melos",
+        "github-actions",
+        "dependencies"
+      ],
+      "optionalStackItems": [
+        "web-accessibility",
+        "web-security",
+        "node"
+      ],
+      "ownedRules": [
+        "Flutter app/admin/shared package workspace shape",
+        "Firebase project, hosting, functions, and Firestore environment separation",
+        "Firestore rules, indexes, and emulator-backed test gates",
+        "mobile/web build artifact and platform permission evidence",
+        "version bump, deploy gate, and test dashboard evidence"
+      ],
+      "benefits": [
+        "HeartFull platform: app/admin/shared Flutter workspace with Firebase backend",
+        "future ref-flutter-firebase-app template"
+      ],
+      "standardUrl": null,
+      "latestEdition": null,
+      "docsUrl": "/docs/standards/stacks/flutter-firebase-app/"
     }
   ],
   "referenceImplementations": [
@@ -933,6 +1026,22 @@
         "security"
       ],
       "demonstrates": "Tauri command/capability boundaries, secure storage, file-system safety, packaging, and frontend/backend typing.",
+      "score": null,
+      "reportUrl": null,
+      "ci": null
+    },
+    {
+      "id": "ref-flutter-firebase-app",
+      "repo": "vibecodeqa/ref-flutter-firebase-app",
+      "url": "https://github.com/vibecodeqa/ref-flutter-firebase-app",
+      "status": "candidate",
+      "standards": [
+        "flutter-firebase-app",
+        "testing",
+        "security",
+        "dependencies"
+      ],
+      "demonstrates": "Product-neutral Flutter + Firebase workspace: app/admin/shared packages, Firebase Hosting/Functions/Firestore, rules tests, platform builds, and CI evidence gates.",
       "score": null,
       "reportUrl": null,
       "ci": null

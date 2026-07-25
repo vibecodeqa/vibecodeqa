@@ -50,7 +50,8 @@ Language, runtime, package manager, and CLI baseline references.
 | [Node.js Security Best Practices](https://nodejs.org/learn/getting-started/security-best-practices) | OpenJS Foundation | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `node-cli-internal-tool` | `node-service`, `node-cli`, `server-side-javascript` | Node runtime security posture; dependency and input handling guidance |
 | [package.json](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/) | npm | Pinned to v11 upstream docs. | CI-enforced 2xx | none expected | - | `npm-package`, `library`, `cli`, `workspace` | Package metadata; bin; exports; files; scripts; engines |
 | [pnpm Workspaces](https://pnpm.io/workspaces) | pnpm | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | - | `monorepo`, `workspace`, `typescript-project-references` | Workspace layout; workspace protocol; recursive scripts |
-| [Effective Dart](https://dart.dev/effective-dart) | Dart | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | - | `dart`, `flutter` | Dart style; documentation; usage and design guidance |
+| [Effective Dart](https://dart.dev/effective-dart) | Dart | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `dart` | `flutter` | Dart style; documentation; usage and design guidance |
+| [Melos Documentation](https://melos.invertase.dev/) | Invertase | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `melos` | `dart-workspace`, `flutter-workspace`, `monorepo` | Dart and Flutter monorepo package orchestration; bootstrap scripts; workspace analyze/test commands |
 
 ## Frontend frameworks and build tools
 
@@ -161,7 +162,8 @@ Editor, desktop, mobile, and distribution references.
 | [Creating actions](https://docs.github.com/en/actions/how-tos/create-and-publish-actions) | GitHub | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `github-action` | `ci-automation` | JavaScript actions; composite actions; Docker actions |
 | [Tauri Documentation](https://v2.tauri.app/) | Tauri | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `tauri` | `desktop-app`, `rust-webview` | Tauri app structure; commands; capabilities; plugins; bundling |
 | [Electron Documentation](https://www.electronjs.org/docs/latest/) | Electron | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | - | `electron`, `desktop-app` | Main/renderer process boundaries; IPC; security; packaging |
-| [Flutter Documentation](https://docs.flutter.dev/) | Flutter | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | - | `flutter`, `mobile-app`, `desktop-app` | Flutter app structure; widgets; testing; deployment |
+| [Flutter Documentation](https://docs.flutter.dev/) | Flutter | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `flutter` | `mobile-app`, `desktop-app` | Flutter app structure; widgets; testing; deployment |
+| [Add Firebase to your Flutter app](https://firebase.google.com/docs/flutter/setup) | Firebase | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `firebase`, `flutter`, `flutter-firebase-app` | `flutterfire`, `firebase-core`, `mobile-app`, `web-app` | FlutterFire setup; Firebase CLI and FlutterFire CLI configuration; platform app registration |
 
 ## Architecture and documentation
 
@@ -174,3 +176,14 @@ Architecture decision and knowledge-base references.
 | [Diataxis](https://diataxis.fr/) | Diataxis | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `docs-kb` | `documentation`, `knowledge-base`, `developer-docs` | Tutorial/how-to/reference/explanation structure |
 | [Zensical Documentation](https://zensical.org/docs/) | Zensical | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `docs-kb` | `zensical`, `documentation-site`, `kb-publishing` | Zensical site configuration; Markdown authoring; static docs publishing |
 | [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) | Material for MkDocs | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `docs-kb` | `mkdocs`, `documentation-site` | Docs navigation; search; admonitions; theme configuration |
+
+## Firebase backend platform
+
+Firebase Auth, Firestore, Functions, Hosting, rules, and emulator references for client-backed apps.
+
+| Reference | Publisher | Version policy | Link check | Redirect target | Controlled appliesTo | Topics | Use it for |
+|---|---|---|---|---|---|---|---|
+| [Cloud Functions for Firebase](https://firebase.google.com/docs/functions) | Firebase | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `firebase`, `flutter-firebase-app`, `node` | `cloud-functions`, `server-side-javascript`, `firebase-admin` | server-side Firebase functions; runtime configuration; backend mutation boundaries |
+| [Get started with Cloud Firestore Security Rules](https://firebase.google.com/docs/firestore/security/get-started) | Firebase | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `firebase`, `flutter-firebase-app` | `firestore`, `security-rules`, `tenant-isolation` | Firestore rules authoring; rules simulator expectations; client data access boundaries |
+| [Build unit tests for Firebase Security Rules](https://firebase.google.com/docs/rules/unit-tests) | Firebase | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `firebase`, `flutter-firebase-app`, `testing` | `firestore`, `security-rules`, `emulator`, `rules-tests` | Emulator-backed rules tests; local rules validation; automated security-rule test gates |
+| [Deploy to live and preview channels via GitHub pull requests](https://firebase.google.com/docs/hosting/github-integration) | Firebase | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `firebase`, `flutter-firebase-app`, `github-actions` | `firebase-hosting`, `preview-deployments`, `ci-deploy` | Firebase Hosting deploy automation; preview channels; GitHub Actions deployment evidence |

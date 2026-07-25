@@ -73,6 +73,7 @@ nav = [
       { "GitHub Action Package" = "standards/stacks/github-action-package.md" },
       { "VS Code Extension Package" = "standards/stacks/vscode-extension-package.md" },
       { "Tauri React Desktop" = "standards/stacks/tauri-react-desktop.md" },
+      { "Flutter Firebase App" = "standards/stacks/flutter-firebase-app.md" },
       { "Zensical KB Site" = "standards/stacks/zensical-kb-site.md" },
     ] },
     { "Stack items" = [
@@ -99,6 +100,10 @@ nav = [
       { "Tauri" = "standards/items/tauri.md" },
       { "Docs KB" = "standards/items/docs-kb.md" },
       { "Node" = "standards/items/node.md" },
+      { "Dart" = "standards/items/dart.md" },
+      { "Flutter" = "standards/items/flutter.md" },
+      { "Firebase" = "standards/items/firebase.md" },
+      { "Melos" = "standards/items/melos.md" },
     ] },
     { "Assessment reports" = [
       { "Index" = "standards/assessments/index.md" },

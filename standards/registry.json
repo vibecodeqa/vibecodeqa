@@ -3,11 +3,11 @@
   "version": 1,
   "note": "VibeCode QA standards registry. Maps a repo or slice detectable signals to the published or planned standards it should be judged against. Consumers: the vcqa CLI/engine, deterministic resolvers, and AI judges that must use fixed standards instead of memory. See SCHEMA.md.",
   "signals": {
-    "note": "Reference of the atoms a `detect` predicate may test, gathered per slice by the resolver.",
-    "dep": "a dependency name present in the slice's package.json (deps + devDeps)",
+    "note": "Reference of the atoms a `detect` predicate may test, gathered per slice or repo by the resolver.",
+    "dep": "a dependency name present in package.json (deps + devDeps) or pubspec.yaml (dependencies + dev_dependencies)",
     "file": "an exact file present in the slice",
     "fileGlob": "a glob matched within the slice",
-    "config": "a parsed key present (e.g. wrangler.toml has [[d1_databases]])"
+    "config": "a parsed key present (e.g. wrangler.toml has [[d1_databases]], pubspec.yaml, firebase.json, melos.yaml)"
   },
   "standards": [
     {
@@ -983,6 +983,59 @@
           "next-auth"
         ]
       }
+    },
+    {
+      "id": "flutter-firebase-app",
+      "type": "recipe",
+      "title": "Flutter Firebase App",
+      "summary": "Flutter app/admin/shared workspace backed by Firebase Auth, Firestore, Storage, Messaging, Hosting, and Cloud Functions, with Melos orchestration and deploy/test gates.",
+      "url": "https://vibecodeqa.online/docs/standards/stacks/flutter-firebase-app/",
+      "standardUrl": null,
+      "repo": "vibecodeqa/vibecodeqa",
+      "appliesTo": "repo",
+      "status": "planned",
+      "detect": {
+        "all": [
+          {
+            "anyFileGlob": [
+              "pubspec.yaml",
+              "*/pubspec.yaml",
+              "**/pubspec.yaml"
+            ]
+          },
+          {
+            "anyFileGlob": [
+              "firebase.json",
+              "**/firebase.json"
+            ]
+          },
+          {
+            "anyFileGlob": [
+              "melos.yaml",
+              "**/melos.yaml"
+            ]
+          }
+        ]
+      },
+      "recommends": [
+        "testing",
+        "security",
+        "dependencies",
+        "accessibility"
+      ],
+      "seamTopics": [
+        "Flutter client config is public while Firebase Admin/Functions secrets remain server-side",
+        "Firestore rules and indexes deploy with emulator-backed tests",
+        "app/admin/shared package changes are analyzed and tested together",
+        "mobile/web builds carry platform permission and signing evidence",
+        "test dashboard artifacts are evidence, but production deploy gates must fail on red tests"
+      ],
+      "editions": [],
+      "aliases": [
+        "flutterfire-app",
+        "firebase-flutter-app"
+      ],
+      "docsUrl": "/docs/standards/stacks/flutter-firebase-app/"
     }
   ]
 }

@@ -126,7 +126,8 @@ async function request(url, method) {
     method,
     redirect: 'manual',
     headers: {
-      'user-agent': 'vcqa-reference-check/1.0'
+      'user-agent': 'vcqa-reference-check/1.0',
+      'accept-language': 'en-US,en;q=0.9'
     },
     signal: AbortSignal.timeout(15000)
   });

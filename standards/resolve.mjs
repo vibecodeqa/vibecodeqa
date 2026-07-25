@@ -63,8 +63,22 @@ function depsOf(pkg) {
   if (!pkg) return new Set();
   return new Set([...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.devDependencies || {})]);
 }
+function pubspecDepsOf(dir) {
+  const p = join(dir, 'pubspec.yaml');
+  if (!existsSync(p)) return new Set();
+  const deps = new Set();
+  let inDeps = false;
+  for (const line of safeRead(p).split('\n')) {
+    if (/^(dependencies|dev_dependencies):\s*$/.test(line)) { inDeps = true; continue; }
+    if (inDeps && /^\S/.test(line)) { inDeps = false; }
+    if (!inDeps) continue;
+    const m = line.match(/^\s{2}([a-zA-Z0-9_]+):/);
+    if (m) deps.add(m[1]);
+  }
+  return deps;
+}
 
-// ── expand a pnpm/npm workspace into member dirs ──
+// ── expand a pnpm/npm/melos workspace into member dirs ──
 function workspaceGlobs(repo) {
   const globs = [];
   const wsY = join(repo, 'pnpm-workspace.yaml');
@@ -80,6 +94,17 @@ function workspaceGlobs(repo) {
   }
   const rootPkg = readPkg(repo);
   if (rootPkg?.workspaces) globs.push(...(Array.isArray(rootPkg.workspaces) ? rootPkg.workspaces : rootPkg.workspaces.packages || []));
+  const melos = join(repo, 'melos.yaml');
+  if (existsSync(melos)) {
+    let inPkgs = false;
+    for (const line of readFileSync(melos, 'utf8').split('\n')) {
+      if (/^packages:/.test(line)) { inPkgs = true; continue; }
+      if (inPkgs) {
+        const m = line.match(/^\s*-\s*['"]?([^'"]+)['"]?\s*$/);
+        if (m) globs.push(m[1]); else if (/^\S/.test(line)) inPkgs = false;
+      }
+    }
+  }
   return globs;
 }
 function expandGlobDir(repo, glob) {
@@ -122,18 +147,39 @@ function sliceRepo(repo) {
 
 // ── gather the signal atoms a predicate can test ──
 function signals(slice) {
-  const deps = depsOf(slice.pkg);
+  const deps = new Set([...depsOf(slice.pkg), ...pubspecDepsOf(slice.dir)]);
   let files = slice.files;
   const cfg = new Set();
   if (slice.pkg?.bin) cfg.add('package.json:bin');
   if (slice.pkg?.exports || slice.pkg?.main || slice.pkg?.module) cfg.add('package.json:exportsOrMain');
   if (slice.pkg) { cfg.add('package.json'); files = [...new Set([...files, 'package.json'])]; }
+  if (files.includes('pubspec.yaml')) cfg.add('pubspec.yaml');
+  if (files.includes('firebase.json')) cfg.add('firebase.json');
+  if (files.includes('melos.yaml')) cfg.add('melos.yaml');
   if (files.includes('wrangler.toml')) {
     const txt = safeRead(join(slice.dir, 'wrangler.toml'));
     if (/d1_databases/.test(txt)) cfg.add('wrangler.toml:d1_databases');
     if (/r2_buckets/.test(txt)) cfg.add('wrangler.toml:r2_buckets');
     if (/durable_objects/.test(txt)) cfg.add('wrangler.toml:durable_objects');
   }
+  return { deps, files, cfg };
+}
+function repoSignals(repo) {
+  const files = walk(repo);
+  const deps = new Set();
+  for (const file of files) {
+    if (file.endsWith('package.json')) {
+      for (const dep of depsOf(readPkg(join(repo, dirname(file))))) deps.add(dep);
+    }
+    if (file.endsWith('pubspec.yaml')) {
+      for (const dep of pubspecDepsOf(join(repo, dirname(file)))) deps.add(dep);
+    }
+  }
+  const cfg = new Set();
+  if (files.includes('package.json')) cfg.add('package.json');
+  if (files.includes('pubspec.yaml')) cfg.add('pubspec.yaml');
+  if (files.includes('firebase.json')) cfg.add('firebase.json');
+  if (files.includes('melos.yaml')) cfg.add('melos.yaml');
   return { deps, files, cfg };
 }
 
@@ -181,7 +227,8 @@ function resolve(repo) {
     results.push({ slice: slice.label, kind: slice.kind, archetypes, layers, cross });
   }
 
-  const recipes = byType('recipe').filter((r) => evalPred(r.detect, null, repoMatched));
+  const repoSignal = repoSignals(repo);
+  const recipes = byType('recipe').filter((r) => evalPred(r.detect, repoSignal, repoMatched));
   return { repo, slices: results, recipes };
 }
 

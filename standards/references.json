@@ -227,15 +227,35 @@
           "title": "Effective Dart",
           "publisher": "Dart",
           "url": "https://dart.dev/effective-dart",
-          "appliesTo": [],
+          "appliesTo": [
+            "dart"
+          ],
           "useFor": [
             "Dart style",
             "documentation",
             "usage and design guidance"
           ],
           "topics": [
-            "dart",
             "flutter"
+          ]
+        },
+        {
+          "id": "melos-docs",
+          "title": "Melos Documentation",
+          "publisher": "Invertase",
+          "url": "https://melos.invertase.dev/",
+          "appliesTo": [
+            "melos"
+          ],
+          "useFor": [
+            "Dart and Flutter monorepo package orchestration",
+            "bootstrap scripts",
+            "workspace analyze/test commands"
+          ],
+          "topics": [
+            "dart-workspace",
+            "flutter-workspace",
+            "monorepo"
           ]
         }
       ]
@@ -1643,7 +1663,9 @@
           "title": "Flutter Documentation",
           "publisher": "Flutter",
           "url": "https://docs.flutter.dev/",
-          "appliesTo": [],
+          "appliesTo": [
+            "flutter"
+          ],
           "useFor": [
             "Flutter app structure",
             "widgets",
@@ -1651,9 +1673,30 @@
             "deployment"
           ],
           "topics": [
-            "flutter",
             "mobile-app",
             "desktop-app"
+          ]
+        },
+        {
+          "id": "firebase-flutter-setup",
+          "title": "Add Firebase to your Flutter app",
+          "publisher": "Firebase",
+          "url": "https://firebase.google.com/docs/flutter/setup",
+          "appliesTo": [
+            "firebase",
+            "flutter",
+            "flutter-firebase-app"
+          ],
+          "useFor": [
+            "FlutterFire setup",
+            "Firebase CLI and FlutterFire CLI configuration",
+            "platform app registration"
+          ],
+          "topics": [
+            "flutterfire",
+            "firebase-core",
+            "mobile-app",
+            "web-app"
           ]
         }
       ]
@@ -1751,6 +1794,97 @@
           "topics": [
             "mkdocs",
             "documentation-site"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "firebase-backend",
+      "title": "Firebase backend platform",
+      "description": "Firebase Auth, Firestore, Functions, Hosting, rules, and emulator references for client-backed apps.",
+      "references": [
+        {
+          "id": "firebase-functions",
+          "title": "Cloud Functions for Firebase",
+          "publisher": "Firebase",
+          "url": "https://firebase.google.com/docs/functions",
+          "appliesTo": [
+            "firebase",
+            "flutter-firebase-app",
+            "node"
+          ],
+          "useFor": [
+            "server-side Firebase functions",
+            "runtime configuration",
+            "backend mutation boundaries"
+          ],
+          "topics": [
+            "cloud-functions",
+            "server-side-javascript",
+            "firebase-admin"
+          ]
+        },
+        {
+          "id": "firebase-firestore-security-rules",
+          "title": "Get started with Cloud Firestore Security Rules",
+          "publisher": "Firebase",
+          "url": "https://firebase.google.com/docs/firestore/security/get-started",
+          "appliesTo": [
+            "firebase",
+            "flutter-firebase-app"
+          ],
+          "useFor": [
+            "Firestore rules authoring",
+            "rules simulator expectations",
+            "client data access boundaries"
+          ],
+          "topics": [
+            "firestore",
+            "security-rules",
+            "tenant-isolation"
+          ]
+        },
+        {
+          "id": "firebase-rules-unit-tests",
+          "title": "Build unit tests for Firebase Security Rules",
+          "publisher": "Firebase",
+          "url": "https://firebase.google.com/docs/rules/unit-tests",
+          "appliesTo": [
+            "firebase",
+            "flutter-firebase-app",
+            "testing"
+          ],
+          "useFor": [
+            "Emulator-backed rules tests",
+            "local rules validation",
+            "automated security-rule test gates"
+          ],
+          "topics": [
+            "firestore",
+            "security-rules",
+            "emulator",
+            "rules-tests"
+          ]
+        },
+        {
+          "id": "firebase-hosting-github-integration",
+          "title": "Deploy to live and preview channels via GitHub pull requests",
+          "publisher": "Firebase",
+          "url": "https://firebase.google.com/docs/hosting/github-integration",
+          "appliesTo": [
+            "firebase",
+            "flutter-firebase-app",
+            "github-actions"
+          ],
+          "useFor": [
+            "Firebase Hosting deploy automation",
+            "preview channels",
+            "GitHub Actions deployment evidence"
+          ],
+          "topics": [
+            "firebase-hosting",
+            "preview-deployments",
+            "ci-deploy"
           ]
         }
       ]

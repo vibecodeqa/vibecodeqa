@@ -14,6 +14,7 @@ full VCQA standards by themselves unless the deployable stack shape makes them j
 ## Framework
 
 - [React](react.md): component/routing conventions only where the stack shape requires them, detection mapping for hook and component anti-patterns.
+- [Flutter](flutter.md): Flutter package/app structure across platform targets, widget/integration test evidence for user flows, platform permission and build artifact checks.
 
 ## Routing
 
@@ -26,6 +27,7 @@ full VCQA standards by themselves unless the deployable stack shape makes them j
 ## Language
 
 - [TypeScript](typescript.md): strictness enforcement by stack, exception policy for generated files, typed boundary checks.
+- [Dart](dart.md): Dart SDK constraints and analyzer gates by package, generated/localized code exception boundaries, shared model compatibility across app packages.
 
 ## Quality
 
@@ -83,6 +85,14 @@ full VCQA standards by themselves unless the deployable stack shape makes them j
 ## Supply Chain
 
 - [Dependencies](dependencies.md): lockfile and package-manager consistency, install-script and dependency provenance gates, audit, license, update, and exception evidence.
+
+## Backend Platform
+
+- [Firebase](firebase.md): Firebase project/environment separation, Firestore rules and index test gates, client-exposed config versus server secret boundaries, Hosting/Functions deploy evidence and rollback path.
+
+## Workspace Tool
+
+- [Melos](melos.md): workspace package discovery and bootstrap reproducibility, cross-package analyze/test orchestration, shared package dependency drift checks.
 <!-- END GENERATED:stack-items-inventory -->
 
 ## Authoring rule

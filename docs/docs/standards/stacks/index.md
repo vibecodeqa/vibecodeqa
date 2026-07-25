@@ -35,6 +35,7 @@ Cross-cutting rubrics are authored standards too, but they are cataloged through
 - [Zensical KB Site](zensical-kb-site.md): Markdown source is the source of truth, generated site is ignored, published URLs are stable, source references are tracked, docs drift checks where mirrors exist.
 - [Accessibility](../items/web-accessibility.md): WCAG and ARIA acceptance gates mapped to scanner evidence, keyboard, focus, semantics, and contrast checks by UI stack, manual-review exception policy for accessibility findings.
 - [Dependencies](../items/dependencies.md): lockfile and package-manager pinning, install script and dependency provenance review, audit, license, update, runtime, and exception evidence in CI.
+- [Flutter Firebase App](flutter-firebase-app.md): Flutter app/admin/shared package workspace shape, Firebase project, hosting, functions, and Firestore environment separation, Firestore rules, indexes, and emulator-backed test gates, mobile/web build artifact and platform permission evidence, version bump, deploy gate, and test dashboard evidence.
 <!-- END GENERATED:stack-standards-inventory -->
 
 ## What makes a stack standard
