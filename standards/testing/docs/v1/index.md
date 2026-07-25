@@ -13,7 +13,21 @@ stack standard add its own runtime-specific test paths.
 ## Rule shape
 
 Each rule has a stable ID (`R-<AREA>-<n>`), one checkable statement, the reason it exists,
-a `vcqa` signal, and primary references.
+a `vcqa` signal, and primary references. Rules also follow the shared VCQA rule contract:
+severity, evidence, and accepted exceptions are explicit.
+
+## Severity and evidence defaults
+
+| Rule group | Default severity | Required evidence |
+|---|---|---|
+| Deploy, release, and publish gates | `blocker` when mutation can happen without tests; otherwise `high` | Workflow file, required check settings, test command logs, deploy/release job dependency. |
+| Critical behavior test mapping | `high` | Critical behavior inventory, matching automated tests, or accepted exception record. |
+| Unit, integration, UI, and E2E test quality | `medium` by default; `high` when security, tenant, data, package, or deploy behavior is untested | Test files, commands, CI logs, coverage report, Playwright traces/screenshots where relevant. |
+| Flaky, skipped, or generated tests | `medium`; escalates to `high` when the skipped path protects a release/security/data boundary | Skip/quarantine owner, reason, expiry/review date, issue link, and replacement evidence. |
+
+Accepted exceptions use the shared `acceptedException` template: owner, scope,
+environment/tenant, reason, compensating controls, evidence, expiry/review date, and
+approval trail.
 
 ## The rubric
 

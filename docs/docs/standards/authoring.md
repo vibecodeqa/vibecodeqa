@@ -57,10 +57,21 @@ stale.
 
 Each full-rubric rule uses a stable ID: `R-<AREA>-<n>`.
 
+Rules must follow the shared [rule contract](rule-contract.md): severity, evidence, and
+accepted exceptions are part of the rule, not reviewer guesswork.
+
 Required fields:
 
+- **Severity:** `blocker`, `high`, `medium`, `low`, or `evidence-only`, with escalation
+  conditions when context changes impact.
 - **Rule:** one checkable statement.
 - **Why:** the reason the rule exists, usually tied to the stack shape.
+- **Evidence:** source paths, config files, CI artifacts/logs, deployed URL checks,
+  screenshots/traces, runtime transcripts, package artifacts, or other concrete proof
+  required to judge the rule.
+- **Exception:** whether an exception is allowed and, if so, the accepted exception format:
+  owner, scope, environment/tenant, reason, compensating controls, evidence,
+  expiry/review date, and approval trail.
 - **Good/bad examples:** small code or config examples when practical.
 - **vcqa:** the scanner or judge signal: dependency, config key, file pattern, AST/code pattern, or human-review note.
 - **References:** upstream sources when the rule depends on external authority.
@@ -132,6 +143,7 @@ The edition index maps every rubric area and names the non-negotiables. Each are
 - [ ] The standard is stack-shaped and detectable.
 - [ ] Combination-born guidelines are explicit.
 - [ ] Rule IDs are stable and checkable.
+- [ ] Rule pages use the shared severity, evidence, and exception contract.
 - [ ] JSON registry entries include docs URL, pinned rubric URL when authored, status,
       aliases, latest edition, and edition lifecycle metadata.
 - [ ] Generated catalog output has been refreshed with `node standards/generate-catalog.mjs`.

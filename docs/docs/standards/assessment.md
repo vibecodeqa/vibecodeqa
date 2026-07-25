@@ -40,6 +40,10 @@ Scores must be conservative. Passing CI is evidence, not a score by itself.
 
 Assess each rubric across these dimensions.
 
+Severity, exceptions, and evidence should be judged against the shared
+[rule contract](rule-contract.md). A rubric can define stricter stack-specific evidence,
+but it should not weaken the common exception template.
+
 | Dimension | Weight | What Good Looks Like |
 |---|---:|---|
 | Scope clarity | 10 | The rubric says what it governs, what it excludes, and which repo slices it applies to. |

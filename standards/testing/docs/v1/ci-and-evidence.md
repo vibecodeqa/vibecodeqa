@@ -17,6 +17,9 @@ dependencies, or run from branches without a required check.
 
 ## R-CI-2 - CI records useful failure evidence
 
+**Severity.** `medium`, escalating to `high` when the missing artifact blocks diagnosis of
+a deploy, release, security, data, tenant, or package-boundary failure.
+
 **Rule.** CI must preserve useful evidence for failed E2E, integration, visual, desktop,
 or provider-bound tests where failures cannot be diagnosed from logs alone.
 
@@ -25,6 +28,17 @@ environment-specific failures into actionable debugging data.
 
 **vcqa.** Flag Playwright or equivalent E2E workflows with no artifact upload for traces,
 screenshots, videos, coverage, or failure reports.
+
+**Evidence.**
+
+- Source/config: workflow files and test runner config.
+- CI/artifacts: failed-run logs plus uploaded traces, screenshots, videos, coverage, or
+  structured failure reports.
+- Runtime/deploy: built-artifact smoke command or deployed URL when the failing check is
+  runtime-specific.
+- Exception: accepted only for deterministic unit tests or checks whose full failure state
+  is visible in logs; the exception must include owner, scope, reason, compensating
+  controls, evidence, expiry/review date, and approval trail.
 
 **References.**
 
