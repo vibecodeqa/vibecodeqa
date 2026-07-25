@@ -274,9 +274,9 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     <div class="links"><a href="https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/docs/vcqa-report.md">92/100 report</a> · CI green</div>
   </div>
   <div class="node template">
-    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-cloudflare-d1-app">ref-cloudflare-d1-app</a></strong><span class="status">candidate</span></div>
+    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-cloudflare-d1-app">ref-cloudflare-d1-app</a></strong><span class="status">published</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/cloudflare-d1-app/">cloudflare-d1-app</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a></div>
-    <div class="links"></div>
+    <div class="links"><a href="https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/docs/vcqa-report.md">92/100 report</a> · CI green</div>
   </div>
   <div class="node template">
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-typescript-sdk">ref-typescript-sdk</a></strong><span class="status">candidate</span></div>
