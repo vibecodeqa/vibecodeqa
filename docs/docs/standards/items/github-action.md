@@ -5,7 +5,7 @@ A GitHub Action package exposes reusable workflow automation through `action.yml
 ## Upstream references
 
 - [Metadata syntax for GitHub Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/metadata-syntax)
-- [Creating actions](https://docs.github.com/en/actions/sharing-automations/creating-actions)
+- [Creating actions](https://docs.github.com/en/actions/how-tos/create-and-publish-actions)
 - [Secure use reference](https://docs.github.com/en/actions/reference/security/secure-use)
 
 ## What upstream owns

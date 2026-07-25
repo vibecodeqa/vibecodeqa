@@ -31,7 +31,7 @@ contract, or no pinned tool version.
 **References.**
 
 - npm package metadata:
-  <https://docs.npmjs.com/cli/v10/configuring-npm/package-json>
+  <https://docs.npmjs.com/cli/v11/configuring-npm/package-json/>
 
 ## R-EXCEPTION-1 - Type exceptions are narrow and reviewed
 

@@ -17,7 +17,7 @@ missing, stale, or mismatched declarations.
 - TypeScript declaration file publishing:
   <https://www.typescriptlang.org/docs/handbook/declaration-files/publishing.html>
 - npm package metadata:
-  <https://docs.npmjs.com/cli/v10/configuring-npm/package-json>
+  <https://docs.npmjs.com/cli/v11/configuring-npm/package-json/>
 
 ## R-API-1 - Public types do not expose private implementation paths
 

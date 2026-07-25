@@ -5,8 +5,8 @@ Node.js is the server-side JavaScript runtime used by CLIs, services, build tool
 ## Upstream references
 
 - [Node.js Documentation](https://nodejs.org/docs/latest/api/)
-- [Node.js Security Best Practices](https://nodejs.org/en/learn/getting-started/security-best-practices)
-- [package.json](https://docs.npmjs.com/cli/v10/configuring-npm/package-json)
+- [Node.js Security Best Practices](https://nodejs.org/learn/getting-started/security-best-practices)
+- [package.json](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/)
 
 ## What upstream owns
 

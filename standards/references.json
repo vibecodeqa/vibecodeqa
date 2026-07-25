@@ -11,7 +11,12 @@
       "Mature ecosystem documentation",
       "Vendor-neutral implementation guide"
     ],
-    "authoringRule": "VCQA standards should compose and cite these sources. Do not re-create broad framework doctrine when an upstream standard already exists; author only the stack shape, deployment constraints, detection mapping, exceptions, and anti-patterns needed to judge a repo."
+    "authoringRule": "VCQA standards should compose and cite these sources. Do not re-create broad framework doctrine when an upstream standard already exists; author only the stack shape, deployment constraints, detection mapping, exceptions, and anti-patterns needed to judge a repo.",
+    "linkHealth": {
+      "status": "checked-in-ci",
+      "rule": "Every primary-source URL must return 2xx. Redirects fail unless expectedRedirectUrl is recorded on the reference."
+    },
+    "appliesToRule": "appliesTo contains only canonical VCQA standard or stack item IDs from registry.json/compositions.json. Descriptive discovery terms live in topics."
   },
   "categories": [
     {
@@ -24,32 +29,74 @@
           "title": "HTML Living Standard",
           "publisher": "WHATWG",
           "url": "https://html.spec.whatwg.org/",
-          "appliesTo": ["html", "browser-app", "static-site", "spa", "ssr"],
-          "useFor": ["HTML semantics", "forms", "navigation", "browser integration"]
+          "appliesTo": [],
+          "useFor": [
+            "HTML semantics",
+            "forms",
+            "navigation",
+            "browser integration"
+          ],
+          "topics": [
+            "html",
+            "browser-app",
+            "static-site",
+            "spa",
+            "ssr"
+          ]
         },
         {
           "id": "wcag-22",
           "title": "Web Content Accessibility Guidelines (WCAG) 2.2",
           "publisher": "W3C WAI",
           "url": "https://www.w3.org/TR/WCAG22/",
-          "appliesTo": ["ui", "website", "web-app", "documentation-site"],
-          "useFor": ["Accessibility conformance", "perceivable/operable/understandable/robust criteria"]
+          "appliesTo": [
+            "docs-kb"
+          ],
+          "useFor": [
+            "Accessibility conformance",
+            "perceivable/operable/understandable/robust criteria"
+          ],
+          "topics": [
+            "ui",
+            "website",
+            "web-app",
+            "documentation-site"
+          ]
         },
         {
           "id": "wai-aria",
           "title": "WAI-ARIA Authoring Practices Guide",
           "publisher": "W3C WAI",
           "url": "https://www.w3.org/WAI/ARIA/apg/",
-          "appliesTo": ["ui", "component-library", "web-app"],
-          "useFor": ["ARIA widget patterns", "keyboard interaction", "focus behavior"]
+          "appliesTo": [],
+          "useFor": [
+            "ARIA widget patterns",
+            "keyboard interaction",
+            "focus behavior"
+          ],
+          "topics": [
+            "ui",
+            "component-library",
+            "web-app"
+          ]
         },
         {
           "id": "mdn-web-docs",
           "title": "MDN Web Docs",
           "publisher": "Mozilla",
           "url": "https://developer.mozilla.org/en-US/docs/Web",
-          "appliesTo": ["browser-app", "javascript", "css", "html"],
-          "useFor": ["Browser API behavior", "compatibility", "web platform explanations"]
+          "appliesTo": [],
+          "useFor": [
+            "Browser API behavior",
+            "compatibility",
+            "web platform explanations"
+          ],
+          "topics": [
+            "browser-app",
+            "javascript",
+            "css",
+            "html"
+          ]
         }
       ]
     },
@@ -63,56 +110,133 @@
           "title": "TSConfig Reference",
           "publisher": "TypeScript",
           "url": "https://www.typescriptlang.org/tsconfig/",
-          "appliesTo": ["typescript", "tsconfig", "strict-types"],
-          "useFor": ["Strictness flags", "module resolution", "project references"]
+          "appliesTo": [
+            "typescript"
+          ],
+          "useFor": [
+            "Strictness flags",
+            "module resolution",
+            "project references"
+          ],
+          "topics": [
+            "tsconfig",
+            "strict-types"
+          ]
         },
         {
           "id": "typescript-handbook",
           "title": "TypeScript Handbook",
           "publisher": "TypeScript",
           "url": "https://www.typescriptlang.org/docs/handbook/intro.html",
-          "appliesTo": ["typescript", "library", "sdk", "app"],
-          "useFor": ["Type modeling", "narrowing", "generics", "declaration files"]
+          "appliesTo": [
+            "typescript",
+            "typescript-sdk"
+          ],
+          "useFor": [
+            "Type modeling",
+            "narrowing",
+            "generics",
+            "declaration files"
+          ],
+          "topics": [
+            "library",
+            "sdk",
+            "app"
+          ]
         },
         {
           "id": "node-docs",
           "title": "Node.js Documentation",
           "publisher": "OpenJS Foundation",
           "url": "https://nodejs.org/docs/latest/api/",
-          "appliesTo": ["node-service", "node-cli", "node-library"],
-          "useFor": ["Runtime APIs", "process behavior", "streams", "crypto", "file system"]
+          "appliesTo": [
+            "node-cli-internal-tool",
+            "typescript-sdk"
+          ],
+          "useFor": [
+            "Runtime APIs",
+            "process behavior",
+            "streams",
+            "crypto",
+            "file system"
+          ],
+          "topics": [
+            "node-service",
+            "node-cli",
+            "node-library"
+          ]
         },
         {
           "id": "node-security-best-practices",
           "title": "Node.js Security Best Practices",
           "publisher": "OpenJS Foundation",
-          "url": "https://nodejs.org/en/learn/getting-started/security-best-practices",
-          "appliesTo": ["node-service", "node-cli", "server-side-javascript"],
-          "useFor": ["Node runtime security posture", "dependency and input handling guidance"]
+          "url": "https://nodejs.org/learn/getting-started/security-best-practices",
+          "appliesTo": [
+            "node-cli-internal-tool"
+          ],
+          "useFor": [
+            "Node runtime security posture",
+            "dependency and input handling guidance"
+          ],
+          "topics": [
+            "node-service",
+            "node-cli",
+            "server-side-javascript"
+          ]
         },
         {
           "id": "npm-package-json",
           "title": "package.json",
           "publisher": "npm",
-          "url": "https://docs.npmjs.com/cli/v10/configuring-npm/package-json",
-          "appliesTo": ["npm-package", "library", "cli", "workspace"],
-          "useFor": ["Package metadata", "bin", "exports", "files", "scripts", "engines"]
+          "url": "https://docs.npmjs.com/cli/v11/configuring-npm/package-json/",
+          "appliesTo": [],
+          "useFor": [
+            "Package metadata",
+            "bin",
+            "exports",
+            "files",
+            "scripts",
+            "engines"
+          ],
+          "topics": [
+            "npm-package",
+            "library",
+            "cli",
+            "workspace"
+          ]
         },
         {
           "id": "pnpm-workspaces",
           "title": "pnpm Workspaces",
           "publisher": "pnpm",
           "url": "https://pnpm.io/workspaces",
-          "appliesTo": ["monorepo", "workspace", "typescript-project-references"],
-          "useFor": ["Workspace layout", "workspace protocol", "recursive scripts"]
+          "appliesTo": [],
+          "useFor": [
+            "Workspace layout",
+            "workspace protocol",
+            "recursive scripts"
+          ],
+          "topics": [
+            "monorepo",
+            "workspace",
+            "typescript-project-references"
+          ]
         },
         {
           "id": "dart-effective",
           "title": "Effective Dart",
           "publisher": "Dart",
           "url": "https://dart.dev/effective-dart",
-          "appliesTo": ["dart", "flutter"],
-          "useFor": ["Dart style", "documentation", "usage and design guidance"]
+          "appliesTo": [],
+          "useFor": [
+            "Dart style",
+            "documentation",
+            "usage and design guidance"
+          ],
+          "topics": [
+            "dart",
+            "flutter"
+          ]
         }
       ]
     },
@@ -126,112 +250,249 @@
           "title": "React Documentation",
           "publisher": "Meta / React",
           "url": "https://react.dev/",
-          "appliesTo": ["react", "react-spa", "react-ssr"],
-          "useFor": ["Components", "hooks", "state", "effects", "React compiler guidance"]
+          "appliesTo": [
+            "react",
+            "react-spa",
+            "react-ssr"
+          ],
+          "useFor": [
+            "Components",
+            "hooks",
+            "state",
+            "effects",
+            "React compiler guidance"
+          ],
+          "topics": []
         },
         {
           "id": "react-rules-of-hooks",
           "title": "Rules of Hooks",
           "publisher": "React",
           "url": "https://react.dev/reference/rules/rules-of-hooks",
-          "appliesTo": ["react", "react-components", "hooks"],
-          "useFor": ["Hook call placement", "custom hook constraints", "lint mapping"]
+          "appliesTo": [
+            "react"
+          ],
+          "useFor": [
+            "Hook call placement",
+            "custom hook constraints",
+            "lint mapping"
+          ],
+          "topics": [
+            "react-components",
+            "hooks"
+          ]
         },
         {
           "id": "react-router-docs",
           "title": "React Router Documentation",
           "publisher": "React Router",
           "url": "https://reactrouter.com/",
-          "appliesTo": ["react-spa", "react-router", "react-fullstack"],
-          "useFor": ["Routing modes", "data routers", "framework mode", "SPA fallback implications"]
+          "appliesTo": [
+            "react-spa",
+            "react-router"
+          ],
+          "useFor": [
+            "Routing modes",
+            "data routers",
+            "framework mode",
+            "SPA fallback implications"
+          ],
+          "topics": [
+            "react-fullstack"
+          ]
         },
         {
           "id": "vite-guide",
           "title": "Vite Guide",
           "publisher": "Vite",
           "url": "https://vite.dev/guide/",
-          "appliesTo": ["vite", "spa", "frontend-build"],
-          "useFor": ["Dev server", "production build", "static deployment", "env variables"]
+          "appliesTo": [
+            "vite"
+          ],
+          "useFor": [
+            "Dev server",
+            "production build",
+            "static deployment",
+            "env variables"
+          ],
+          "topics": [
+            "spa",
+            "frontend-build"
+          ]
         },
         {
           "id": "vite-static-deploy",
           "title": "Deploying a Static Site",
           "publisher": "Vite",
           "url": "https://vite.dev/guide/static-deploy",
-          "appliesTo": ["vite", "static-site", "spa"],
-          "useFor": ["Static hosting expectations", "SPA deployment guidance"]
+          "appliesTo": [
+            "vite"
+          ],
+          "useFor": [
+            "Static hosting expectations",
+            "SPA deployment guidance"
+          ],
+          "topics": [
+            "static-site",
+            "spa"
+          ]
         },
         {
           "id": "vite-env-and-mode",
           "title": "Env Variables and Modes",
           "publisher": "Vite",
           "url": "https://vite.dev/guide/env-and-mode",
-          "appliesTo": ["vite", "spa", "client-env"],
-          "useFor": ["Client-exposed environment variables", "mode-specific config", "public env prefixes"]
+          "appliesTo": [
+            "vite"
+          ],
+          "useFor": [
+            "Client-exposed environment variables",
+            "mode-specific config",
+            "public env prefixes"
+          ],
+          "topics": [
+            "spa",
+            "client-env"
+          ]
         },
         {
           "id": "next-docs",
           "title": "Next.js Documentation",
           "publisher": "Vercel",
           "url": "https://nextjs.org/docs",
-          "appliesTo": ["nextjs", "react-ssr", "react-fullstack"],
-          "useFor": ["App Router", "server components", "route handlers", "deployment"]
+          "appliesTo": [
+            "react-ssr"
+          ],
+          "useFor": [
+            "App Router",
+            "server components",
+            "route handlers",
+            "deployment"
+          ],
+          "topics": [
+            "nextjs",
+            "react-fullstack"
+          ]
         },
         {
           "id": "next-data-security",
           "title": "Data Security",
           "publisher": "Next.js",
           "url": "https://nextjs.org/docs/app/guides/data-security",
-          "appliesTo": ["nextjs", "react-server-components", "server-data"],
-          "useFor": ["Server component data boundaries", "DTOs", "sensitive data handling"]
+          "appliesTo": [],
+          "useFor": [
+            "Server component data boundaries",
+            "DTOs",
+            "sensitive data handling"
+          ],
+          "topics": [
+            "nextjs",
+            "react-server-components",
+            "server-data"
+          ]
         },
         {
           "id": "vue-docs",
           "title": "Vue.js Guide",
           "publisher": "Vue",
           "url": "https://vuejs.org/guide/introduction.html",
-          "appliesTo": ["vue", "vue-spa", "vue-ssr"],
-          "useFor": ["Composition API", "SFCs", "reactivity", "app structure"]
+          "appliesTo": [],
+          "useFor": [
+            "Composition API",
+            "SFCs",
+            "reactivity",
+            "app structure"
+          ],
+          "topics": [
+            "vue",
+            "vue-spa",
+            "vue-ssr"
+          ]
         },
         {
           "id": "vue-style-guide",
           "title": "Vue Style Guide",
           "publisher": "Vue",
           "url": "https://vuejs.org/style-guide/",
-          "appliesTo": ["vue", "vue-components"],
-          "useFor": ["Vue-specific conventions", "component naming", "anti-patterns"]
+          "appliesTo": [],
+          "useFor": [
+            "Vue-specific conventions",
+            "component naming",
+            "anti-patterns"
+          ],
+          "topics": [
+            "vue",
+            "vue-components"
+          ]
         },
         {
           "id": "svelte-docs",
           "title": "Svelte Documentation",
           "publisher": "Svelte",
           "url": "https://svelte.dev/docs",
-          "appliesTo": ["svelte", "sveltekit"],
-          "useFor": ["Svelte syntax", "runes", "compiler warnings", "component model"]
+          "appliesTo": [],
+          "useFor": [
+            "Svelte syntax",
+            "runes",
+            "compiler warnings",
+            "component model"
+          ],
+          "topics": [
+            "svelte",
+            "sveltekit"
+          ]
         },
         {
           "id": "sveltekit-docs",
           "title": "SvelteKit Documentation",
           "publisher": "Svelte",
-          "url": "https://svelte.dev/docs/kit",
-          "appliesTo": ["sveltekit", "svelte-fullstack", "svelte-ssr"],
-          "useFor": ["Routing", "load functions", "server endpoints", "deployment adapters"]
+          "url": "https://svelte.dev/docs/kit/introduction",
+          "appliesTo": [],
+          "useFor": [
+            "Routing",
+            "load functions",
+            "server endpoints",
+            "deployment adapters"
+          ],
+          "topics": [
+            "sveltekit",
+            "svelte-fullstack",
+            "svelte-ssr"
+          ]
         },
         {
           "id": "angular-docs",
           "title": "Angular Documentation",
           "publisher": "Google / Angular",
           "url": "https://angular.dev/",
-          "appliesTo": ["angular", "angular-spa"],
-          "useFor": ["Signals", "templates", "dependency injection", "Angular CLI"]
+          "appliesTo": [],
+          "useFor": [
+            "Signals",
+            "templates",
+            "dependency injection",
+            "Angular CLI"
+          ],
+          "topics": [
+            "angular",
+            "angular-spa"
+          ]
         },
         {
           "id": "astro-docs",
           "title": "Astro Documentation",
           "publisher": "Astro",
           "url": "https://docs.astro.build/",
-          "appliesTo": ["astro", "static-site", "content-site"],
-          "useFor": ["Content collections", "islands architecture", "static/SSR output"]
+          "appliesTo": [],
+          "useFor": [
+            "Content collections",
+            "islands architecture",
+            "static/SSR output"
+          ],
+          "topics": [
+            "astro",
+            "static-site",
+            "content-site"
+          ]
         }
       ]
     },
@@ -245,200 +506,468 @@
           "title": "Pages Functions",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/pages/functions/",
-          "appliesTo": ["cloudflare-pages-fullstack", "pages-functions", "react-spa-on-cloudflare-pages"],
-          "useFor": ["Functions directory", "middleware", "routing", "bindings", "runtime configuration"]
+          "appliesTo": [
+            "cloudflare-pages-fullstack",
+            "cloudflare-pages-functions",
+            "react-spa-on-cloudflare-pages"
+          ],
+          "useFor": [
+            "Functions directory",
+            "middleware",
+            "routing",
+            "bindings",
+            "runtime configuration"
+          ],
+          "topics": [
+            "pages-functions"
+          ]
         },
         {
           "id": "cloudflare-pages-functions-routing",
           "title": "Pages Functions Routing",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/pages/functions/routing/",
-          "appliesTo": ["pages-functions", "cloudflare-pages-fullstack"],
-          "useFor": ["File-based routes", "dynamic segments", "route matching"]
+          "appliesTo": [
+            "cloudflare-pages-functions",
+            "cloudflare-pages-fullstack"
+          ],
+          "useFor": [
+            "File-based routes",
+            "dynamic segments",
+            "route matching"
+          ],
+          "topics": [
+            "pages-functions"
+          ]
         },
         {
           "id": "cloudflare-pages-functions-middleware",
           "title": "Pages Functions Middleware",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/pages/functions/middleware/",
-          "appliesTo": ["pages-functions", "auth-middleware", "api-edge"],
-          "useFor": ["Middleware chains", "error handling", "authentication middleware"]
+          "appliesTo": [
+            "cloudflare-pages-functions"
+          ],
+          "useFor": [
+            "Middleware chains",
+            "error handling",
+            "authentication middleware"
+          ],
+          "topics": [
+            "pages-functions",
+            "auth-middleware",
+            "api-edge"
+          ]
         },
         {
           "id": "cloudflare-pages-preview-deployments",
           "title": "Pages Preview Deployments",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/pages/configuration/preview-deployments/",
-          "appliesTo": ["cloudflare-pages", "preview-deployments", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["Preview URLs", "preview aliases", "Access protection", "preview indexing posture"]
+          "appliesTo": [
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Preview URLs",
+            "preview aliases",
+            "Access protection",
+            "preview indexing posture"
+          ],
+          "topics": [
+            "cloudflare-pages",
+            "preview-deployments"
+          ]
         },
         {
           "id": "cloudflare-pages-branch-build-controls",
           "title": "Pages Branch Build Controls",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/pages/configuration/branch-build-controls/",
-          "appliesTo": ["cloudflare-pages", "release-branches", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["Production branch control", "preview branch control", "release policy"]
+          "appliesTo": [
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Production branch control",
+            "preview branch control",
+            "release policy"
+          ],
+          "topics": [
+            "cloudflare-pages",
+            "release-branches"
+          ]
         },
         {
           "id": "cloudflare-pages-direct-upload-ci",
           "title": "Direct Upload with Continuous Integration",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/",
-          "appliesTo": ["cloudflare-pages", "ci-deploy", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["CI-managed Pages deploys", "artifact promotion", "deployment traceability"]
+          "appliesTo": [
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "CI-managed Pages deploys",
+            "artifact promotion",
+            "deployment traceability"
+          ],
+          "topics": [
+            "cloudflare-pages",
+            "ci-deploy"
+          ]
         },
         {
           "id": "cloudflare-workers",
           "title": "Workers Documentation",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/workers/",
-          "appliesTo": ["cloudflare-worker", "edge-api", "mcp-worker"],
-          "useFor": ["Worker runtime", "bindings", "compatibility dates", "deployment"]
+          "appliesTo": [
+            "cloudflare-workers",
+            "cloudflare-worker-mcp-server"
+          ],
+          "useFor": [
+            "Worker runtime",
+            "bindings",
+            "compatibility dates",
+            "deployment"
+          ],
+          "topics": [
+            "cloudflare-worker",
+            "edge-api",
+            "mcp-worker"
+          ]
         },
         {
           "id": "cloudflare-workers-best-practices",
           "title": "Workers Best Practices",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/workers/best-practices/",
-          "appliesTo": ["cloudflare-worker", "edge-api"],
-          "useFor": ["Worker production patterns", "anti-patterns", "performance and reliability"]
+          "appliesTo": [
+            "cloudflare-workers"
+          ],
+          "useFor": [
+            "Worker production patterns",
+            "anti-patterns",
+            "performance and reliability"
+          ],
+          "topics": [
+            "cloudflare-worker",
+            "edge-api"
+          ]
         },
         {
           "id": "cloudflare-workers-environments",
           "title": "Workers Environments",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/workers/wrangler/environments/",
-          "appliesTo": ["cloudflare-worker", "wrangler", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["Environment-specific configuration", "binding selection", "deployment isolation"]
+          "appliesTo": [
+            "cloudflare-workers",
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Environment-specific configuration",
+            "binding selection",
+            "deployment isolation"
+          ],
+          "topics": [
+            "cloudflare-worker",
+            "wrangler"
+          ]
         },
         {
           "id": "cloudflare-workers-bindings",
           "title": "Workers Bindings",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/workers/runtime-apis/bindings/",
-          "appliesTo": ["cloudflare-worker", "bindings", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["Resource bindings", "runtime configuration", "service boundaries"]
+          "appliesTo": [
+            "cloudflare-workers",
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Resource bindings",
+            "runtime configuration",
+            "service boundaries"
+          ],
+          "topics": [
+            "cloudflare-worker",
+            "bindings"
+          ]
         },
         {
           "id": "cloudflare-workers-secrets",
           "title": "Workers Secrets",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/workers/configuration/secrets/",
-          "appliesTo": ["cloudflare-worker", "secrets", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["Secret configuration", "secret scope", "secret handling"]
+          "appliesTo": [
+            "cloudflare-workers",
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Secret configuration",
+            "secret scope",
+            "secret handling"
+          ],
+          "topics": [
+            "cloudflare-worker",
+            "secrets"
+          ]
         },
         {
           "id": "cloudflare-workers-preview-urls",
           "title": "Workers Preview URLs",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/workers/versions-and-deployments/preview-urls/",
-          "appliesTo": ["cloudflare-worker", "preview-deployments", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["Worker preview exposure", "preview URL policy"]
+          "appliesTo": [
+            "cloudflare-workers",
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Worker preview exposure",
+            "preview URL policy"
+          ],
+          "topics": [
+            "cloudflare-worker",
+            "preview-deployments"
+          ]
         },
         {
           "id": "cloudflare-workers-versions-deployments",
           "title": "Workers Versions and Deployments",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/workers/versions-and-deployments/",
-          "appliesTo": ["cloudflare-worker", "deployment-versioning", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["Worker versions", "deployments", "rollback and promotion evidence"]
+          "appliesTo": [
+            "cloudflare-workers",
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Worker versions",
+            "deployments",
+            "rollback and promotion evidence"
+          ],
+          "topics": [
+            "cloudflare-worker",
+            "deployment-versioning"
+          ]
         },
         {
           "id": "cloudflare-d1",
           "title": "D1 Documentation",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/d1/",
-          "appliesTo": ["d1-database", "cloudflare-pages-fullstack", "cloudflare-worker"],
-          "useFor": ["D1 database model", "bindings", "local/remote database behavior"]
+          "appliesTo": [
+            "cloudflare-d1",
+            "cloudflare-pages-fullstack",
+            "cloudflare-workers"
+          ],
+          "useFor": [
+            "D1 database model",
+            "bindings",
+            "local/remote database behavior"
+          ],
+          "topics": [
+            "d1-database",
+            "cloudflare-worker"
+          ]
         },
         {
           "id": "cloudflare-d1-migrations",
           "title": "D1 Migrations",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/d1/reference/migrations/",
-          "appliesTo": ["d1-database", "database-migrations"],
-          "useFor": ["SQL migration files", "migrations folder", "versioned database changes"]
+          "appliesTo": [
+            "cloudflare-d1"
+          ],
+          "useFor": [
+            "SQL migration files",
+            "migrations folder",
+            "versioned database changes"
+          ],
+          "topics": [
+            "d1-database",
+            "database-migrations"
+          ]
         },
         {
           "id": "cloudflare-d1-prepared-statements",
           "title": "D1 Prepared Statement Methods",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/d1/worker-api/prepared-statements/",
-          "appliesTo": ["d1-database", "query-safety", "edge-sql"],
-          "useFor": ["Prepared statements", "parameter binding", "query result APIs"]
+          "appliesTo": [
+            "cloudflare-d1"
+          ],
+          "useFor": [
+            "Prepared statements",
+            "parameter binding",
+            "query result APIs"
+          ],
+          "topics": [
+            "d1-database",
+            "query-safety",
+            "edge-sql"
+          ]
         },
         {
           "id": "cloudflare-d1-environments",
           "title": "D1 Environments",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/d1/configuration/environments/",
-          "appliesTo": ["d1-database", "cloudflare-environments", "preview-database"],
-          "useFor": ["Preview database IDs", "environment-specific D1 bindings"]
+          "appliesTo": [
+            "cloudflare-d1"
+          ],
+          "useFor": [
+            "Preview database IDs",
+            "environment-specific D1 bindings"
+          ],
+          "topics": [
+            "d1-database",
+            "cloudflare-environments",
+            "preview-database"
+          ]
         },
         {
           "id": "cloudflare-d1-time-travel",
           "title": "D1 Time Travel and Backups",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/d1/reference/time-travel/",
-          "appliesTo": ["d1-database", "backup", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["Point-in-time restore", "backup bookmarks", "restore runbooks"]
+          "appliesTo": [
+            "cloudflare-d1",
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Point-in-time restore",
+            "backup bookmarks",
+            "restore runbooks"
+          ],
+          "topics": [
+            "d1-database",
+            "backup"
+          ]
         },
         {
           "id": "cloudflare-d1-import-export",
           "title": "D1 Import and Export Data",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/d1/best-practices/import-export-data/",
-          "appliesTo": ["d1-database", "backup", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["Tenant data export", "restore/fix-forward runbooks", "data preservation"]
+          "appliesTo": [
+            "cloudflare-d1",
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Tenant data export",
+            "restore/fix-forward runbooks",
+            "data preservation"
+          ],
+          "topics": [
+            "d1-database",
+            "backup"
+          ]
         },
         {
           "id": "cloudflare-durable-objects",
           "title": "Durable Objects Documentation",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/durable-objects/",
-          "appliesTo": ["durable-objects", "stateful-worker", "mcp-worker"],
-          "useFor": ["Durable Object model", "bindings", "storage", "stateful coordination"]
+          "appliesTo": [
+            "durable-objects",
+            "cloudflare-worker-mcp-server"
+          ],
+          "useFor": [
+            "Durable Object model",
+            "bindings",
+            "storage",
+            "stateful coordination"
+          ],
+          "topics": [
+            "stateful-worker",
+            "mcp-worker"
+          ]
         },
         {
           "id": "cloudflare-durable-objects-best-practices",
           "title": "Durable Objects Best Practices",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/durable-objects/best-practices/",
-          "appliesTo": ["durable-objects", "stateful-worker"],
-          "useFor": ["Object design", "storage", "RPC", "error handling", "anti-patterns"]
+          "appliesTo": [
+            "durable-objects"
+          ],
+          "useFor": [
+            "Object design",
+            "storage",
+            "RPC",
+            "error handling",
+            "anti-patterns"
+          ],
+          "topics": [
+            "stateful-worker"
+          ]
         },
         {
           "id": "cloudflare-saas-data-isolation",
           "title": "SaaS Data Isolation",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/use-cases/saas/data-isolation/",
-          "appliesTo": ["multi-tenant-saas", "cloudflare-saas", "tenant-isolation"],
-          "useFor": ["Tenant data isolation", "Cloudflare SaaS architecture references"]
+          "appliesTo": [
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Tenant data isolation",
+            "Cloudflare SaaS architecture references"
+          ],
+          "topics": [
+            "multi-tenant-saas",
+            "cloudflare-saas",
+            "tenant-isolation"
+          ]
         },
         {
           "id": "cloudflare-access-service-tokens",
           "title": "Service tokens",
           "publisher": "Cloudflare",
-          "url": "https://developers.cloudflare.com/cloudflare-one/identity/service-tokens/",
-          "appliesTo": ["cloudflare-access", "machine-auth", "edge-perimeter"],
-          "useFor": ["Service token behavior", "Access policy integration"]
+          "url": "https://developers.cloudflare.com/cloudflare-one/access-controls/service-credentials/service-tokens/",
+          "appliesTo": [],
+          "useFor": [
+            "Service token behavior",
+            "Access policy integration"
+          ],
+          "topics": [
+            "cloudflare-access",
+            "machine-auth",
+            "edge-perimeter"
+          ]
         },
         {
           "id": "cloudflare-agents-mcp",
           "title": "Model Context Protocol (MCP)",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/agents/model-context-protocol/",
-          "appliesTo": ["cloudflare-worker-mcp-server", "mcp-worker", "agents"],
-          "useFor": ["MCP on Cloudflare Workers and Agents", "remote MCP server implementation"]
+          "appliesTo": [
+            "cloudflare-worker-mcp-server"
+          ],
+          "useFor": [
+            "MCP on Cloudflare Workers and Agents",
+            "remote MCP server implementation"
+          ],
+          "topics": [
+            "mcp-worker",
+            "agents"
+          ]
         },
         {
           "id": "cloudflare-workers-github-actions",
           "title": "Workers CI/CD with GitHub Actions",
           "publisher": "Cloudflare",
           "url": "https://developers.cloudflare.com/workers/ci-cd/external-cicd/github-actions/",
-          "appliesTo": ["cloudflare-worker", "github-actions", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["Wrangler deployment from GitHub Actions", "CI/CD setup", "Cloudflare deploy automation"]
+          "appliesTo": [
+            "cloudflare-workers",
+            "github-actions",
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Wrangler deployment from GitHub Actions",
+            "CI/CD setup",
+            "Cloudflare deploy automation"
+          ],
+          "topics": [
+            "cloudflare-worker"
+          ]
         }
       ]
     },
@@ -452,72 +981,168 @@
           "title": "OpenAPI Specification",
           "publisher": "OpenAPI Initiative",
           "url": "https://spec.openapis.org/oas/latest.html",
-          "appliesTo": ["rest-api", "sdk", "api-contract"],
-          "useFor": ["HTTP API contracts", "client generation", "operation schemas"]
+          "appliesTo": [
+            "typescript-sdk"
+          ],
+          "useFor": [
+            "HTTP API contracts",
+            "client generation",
+            "operation schemas"
+          ],
+          "topics": [
+            "rest-api",
+            "sdk",
+            "api-contract"
+          ]
         },
         {
           "id": "json-schema",
           "title": "JSON Schema",
           "publisher": "JSON Schema",
           "url": "https://json-schema.org/specification",
-          "appliesTo": ["api-contract", "validation", "configuration"],
-          "useFor": ["JSON validation", "machine-readable schemas", "config contracts"]
+          "appliesTo": [],
+          "useFor": [
+            "JSON validation",
+            "machine-readable schemas",
+            "config contracts"
+          ],
+          "topics": [
+            "api-contract",
+            "validation",
+            "configuration"
+          ]
         },
         {
           "id": "zod-docs",
           "title": "Zod Documentation",
           "publisher": "Zod",
           "url": "https://zod.dev/",
-          "appliesTo": ["zod-validation", "runtime-validation", "typescript-boundaries"],
-          "useFor": ["Runtime validation", "schema inference", "safe parsing"]
+          "appliesTo": [
+            "zod-validation"
+          ],
+          "useFor": [
+            "Runtime validation",
+            "schema inference",
+            "safe parsing"
+          ],
+          "topics": [
+            "runtime-validation",
+            "typescript-boundaries"
+          ]
         },
         {
           "id": "oauth-21",
           "title": "OAuth 2.1 Authorization Framework",
           "publisher": "IETF",
           "url": "https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1",
-          "appliesTo": ["oauth", "authorization", "remote-mcp", "web-app-auth"],
-          "useFor": ["Authorization code flow", "PKCE", "bearer token handling"]
+          "appliesTo": [
+            "cloudflare-worker-mcp-server"
+          ],
+          "useFor": [
+            "Authorization code flow",
+            "PKCE",
+            "bearer token handling"
+          ],
+          "topics": [
+            "oauth",
+            "authorization",
+            "remote-mcp",
+            "web-app-auth"
+          ]
         },
         {
           "id": "openid-connect-core",
           "title": "OpenID Connect Core",
           "publisher": "OpenID Foundation",
           "url": "https://openid.net/specs/openid-connect-core-1_0.html",
-          "appliesTo": ["oidc", "login", "identity"],
-          "useFor": ["ID tokens", "claims", "authentication flows"]
+          "appliesTo": [],
+          "useFor": [
+            "ID tokens",
+            "claims",
+            "authentication flows"
+          ],
+          "topics": [
+            "oidc",
+            "login",
+            "identity"
+          ]
         },
         {
           "id": "mcp-spec",
           "title": "Model Context Protocol Specification",
           "publisher": "Model Context Protocol",
           "url": "https://modelcontextprotocol.io/specification/2025-11-25",
-          "appliesTo": ["mcp-server", "mcp-client", "ai-tools"],
-          "useFor": ["Protocol messages", "tools", "resources", "prompts", "transports"]
+          "appliesTo": [
+            "mcp-server"
+          ],
+          "useFor": [
+            "Protocol messages",
+            "tools",
+            "resources",
+            "prompts",
+            "transports"
+          ],
+          "topics": [
+            "mcp-client",
+            "ai-tools"
+          ]
         },
         {
           "id": "mcp-authorization",
           "title": "MCP Authorization",
           "publisher": "Model Context Protocol",
           "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization",
-          "appliesTo": ["remote-mcp", "mcp-server", "oauth"],
-          "useFor": ["Remote MCP authorization", "resource server behavior", "protected resource metadata"]
+          "appliesTo": [
+            "cloudflare-worker-mcp-server",
+            "mcp-server"
+          ],
+          "useFor": [
+            "Remote MCP authorization",
+            "resource server behavior",
+            "protected resource metadata"
+          ],
+          "topics": [
+            "remote-mcp",
+            "oauth"
+          ]
         },
         {
           "id": "mcp-security",
           "title": "MCP Security Best Practices",
           "publisher": "Model Context Protocol",
           "url": "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices",
-          "appliesTo": ["mcp-server", "mcp-client", "ai-tools"],
-          "useFor": ["Tool poisoning defenses", "authorization risks", "prompt injection considerations"]
+          "appliesTo": [
+            "mcp-server"
+          ],
+          "useFor": [
+            "Tool poisoning defenses",
+            "authorization risks",
+            "prompt injection considerations"
+          ],
+          "topics": [
+            "mcp-client",
+            "ai-tools"
+          ]
         },
         {
           "id": "mcp-typescript-sdk",
           "title": "MCP TypeScript SDK",
           "publisher": "Model Context Protocol",
           "url": "https://github.com/modelcontextprotocol/typescript-sdk",
-          "appliesTo": ["mcp-server", "typescript", "node", "worker"],
-          "useFor": ["Server implementation patterns", "tool schemas", "transport support"]
+          "appliesTo": [
+            "mcp-server",
+            "typescript",
+            "node",
+            "cloudflare-workers"
+          ],
+          "useFor": [
+            "Server implementation patterns",
+            "tool schemas",
+            "transport support"
+          ],
+          "topics": [
+            "worker"
+          ]
         }
       ]
     },
@@ -531,160 +1156,353 @@
           "title": "Application Security Verification Standard",
           "publisher": "OWASP",
           "url": "https://owasp.org/www-project-application-security-verification-standard/",
-          "appliesTo": ["web-app-security", "api-security", "secure-development"],
-          "useFor": ["Security requirements", "authentication", "access control", "session handling"]
+          "appliesTo": [],
+          "useFor": [
+            "Security requirements",
+            "authentication",
+            "access control",
+            "session handling"
+          ],
+          "topics": [
+            "web-app-security",
+            "api-security",
+            "secure-development"
+          ]
         },
         {
           "id": "owasp-cheat-sheets",
           "title": "OWASP Cheat Sheet Series",
           "publisher": "OWASP",
           "url": "https://cheatsheetseries.owasp.org/",
-          "appliesTo": ["security", "web-app", "api", "auth"],
-          "useFor": ["Topic-specific secure implementation guidance"]
+          "appliesTo": [
+            "security"
+          ],
+          "useFor": [
+            "Topic-specific secure implementation guidance"
+          ],
+          "topics": [
+            "web-app",
+            "api",
+            "auth"
+          ]
         },
         {
           "id": "owasp-csrf-cheat-sheet",
           "title": "Cross-Site Request Forgery Prevention Cheat Sheet",
           "publisher": "OWASP",
           "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
-          "appliesTo": ["web-app", "cookie-auth", "mutating-requests"],
-          "useFor": ["CSRF controls", "same-site cookies", "origin checks", "custom headers"]
+          "appliesTo": [],
+          "useFor": [
+            "CSRF controls",
+            "same-site cookies",
+            "origin checks",
+            "custom headers"
+          ],
+          "topics": [
+            "web-app",
+            "cookie-auth",
+            "mutating-requests"
+          ]
         },
         {
           "id": "owasp-session-management",
           "title": "Session Management Cheat Sheet",
           "publisher": "OWASP",
           "url": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html",
-          "appliesTo": ["session-auth", "web-app-auth", "cookies"],
-          "useFor": ["Session ID handling", "cookie attributes", "timeout and renewal"]
+          "appliesTo": [],
+          "useFor": [
+            "Session ID handling",
+            "cookie attributes",
+            "timeout and renewal"
+          ],
+          "topics": [
+            "session-auth",
+            "web-app-auth",
+            "cookies"
+          ]
         },
         {
           "id": "owasp-multi-tenant-security",
           "title": "Multi Tenant Security Cheat Sheet",
           "publisher": "OWASP",
           "url": "https://cheatsheetseries.owasp.org/cheatsheets/Multi_Tenant_Security_Cheat_Sheet.html",
-          "appliesTo": ["multi-tenant-saas", "tenant-isolation", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["Tenant isolation risks", "multi-tenant security design", "shared-resource risk"]
+          "appliesTo": [
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Tenant isolation risks",
+            "multi-tenant security design",
+            "shared-resource risk"
+          ],
+          "topics": [
+            "multi-tenant-saas",
+            "tenant-isolation"
+          ]
         },
         {
           "id": "owasp-authorization-cheat-sheet",
           "title": "Authorization Cheat Sheet",
           "publisher": "OWASP",
           "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
-          "appliesTo": ["authorization", "access-control", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["Server-side authorization", "least privilege", "tenant access checks"]
+          "appliesTo": [
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Server-side authorization",
+            "least privilege",
+            "tenant access checks"
+          ],
+          "topics": [
+            "authorization",
+            "access-control"
+          ]
         },
         {
           "id": "owasp-secrets-management-cheat-sheet",
           "title": "Secrets Management Cheat Sheet",
           "publisher": "OWASP",
           "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
-          "appliesTo": ["secrets", "credential-management", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["Secret lifecycle", "rotation", "revocation", "safe logging"]
+          "appliesTo": [
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Secret lifecycle",
+            "rotation",
+            "revocation",
+            "safe logging"
+          ],
+          "topics": [
+            "secrets",
+            "credential-management"
+          ]
         },
         {
           "id": "owasp-input-validation-cheat-sheet",
           "title": "Input Validation Cheat Sheet",
           "publisher": "OWASP",
           "url": "https://cheatsheetseries.owasp.org/cheatsheets/Input_Validation_Cheat_Sheet.html",
-          "appliesTo": ["input-validation", "api-security", "runtime-validation"],
-          "useFor": ["Boundary validation", "allowlisting", "runtime input parsing"]
+          "appliesTo": [],
+          "useFor": [
+            "Boundary validation",
+            "allowlisting",
+            "runtime input parsing"
+          ],
+          "topics": [
+            "input-validation",
+            "api-security",
+            "runtime-validation"
+          ]
         },
         {
           "id": "owasp-sql-injection-prevention",
           "title": "SQL Injection Prevention Cheat Sheet",
           "publisher": "OWASP",
           "url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
-          "appliesTo": ["sql", "database", "query-safety"],
-          "useFor": ["Parameterized queries", "safe query APIs", "SQL injection prevention"]
+          "appliesTo": [],
+          "useFor": [
+            "Parameterized queries",
+            "safe query APIs",
+            "SQL injection prevention"
+          ],
+          "topics": [
+            "sql",
+            "database",
+            "query-safety"
+          ]
         },
         {
           "id": "owasp-injection-prevention",
           "title": "Injection Prevention Cheat Sheet",
           "publisher": "OWASP",
           "url": "https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html",
-          "appliesTo": ["injection", "command-execution", "interpreter-boundaries"],
-          "useFor": ["Injection-prone interpreter boundaries", "command/query construction"]
+          "appliesTo": [],
+          "useFor": [
+            "Injection-prone interpreter boundaries",
+            "command/query construction"
+          ],
+          "topics": [
+            "injection",
+            "command-execution",
+            "interpreter-boundaries"
+          ]
         },
         {
           "id": "owasp-ssrf-prevention",
           "title": "Server Side Request Forgery Prevention Cheat Sheet",
           "publisher": "OWASP",
           "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
-          "appliesTo": ["ssrf", "outbound-fetch", "webhooks"],
-          "useFor": ["Outbound URL constraints", "SSRF prevention", "allowlisting"]
+          "appliesTo": [],
+          "useFor": [
+            "Outbound URL constraints",
+            "SSRF prevention",
+            "allowlisting"
+          ],
+          "topics": [
+            "ssrf",
+            "outbound-fetch",
+            "webhooks"
+          ]
         },
         {
           "id": "owasp-xss-prevention",
           "title": "Cross Site Scripting Prevention Cheat Sheet",
           "publisher": "OWASP",
           "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html",
-          "appliesTo": ["xss", "browser-output", "html-rendering"],
-          "useFor": ["Output encoding", "HTML sanitization", "dangerous browser sinks"]
+          "appliesTo": [],
+          "useFor": [
+            "Output encoding",
+            "HTML sanitization",
+            "dangerous browser sinks"
+          ],
+          "topics": [
+            "xss",
+            "browser-output",
+            "html-rendering"
+          ]
         },
         {
           "id": "owasp-error-handling-cheat-sheet",
           "title": "Error Handling Cheat Sheet",
           "publisher": "OWASP",
           "url": "https://cheatsheetseries.owasp.org/cheatsheets/Error_Handling_Cheat_Sheet.html",
-          "appliesTo": ["error-handling", "api-security", "safe-output"],
-          "useFor": ["Safe errors", "exception handling", "information disclosure prevention"]
+          "appliesTo": [],
+          "useFor": [
+            "Safe errors",
+            "exception handling",
+            "information disclosure prevention"
+          ],
+          "topics": [
+            "error-handling",
+            "api-security",
+            "safe-output"
+          ]
         },
         {
           "id": "owasp-logging-cheat-sheet",
           "title": "Logging Cheat Sheet",
           "publisher": "OWASP",
           "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
-          "appliesTo": ["logging", "audit", "incident-response"],
-          "useFor": ["Security events", "safe logging", "audit evidence"]
+          "appliesTo": [],
+          "useFor": [
+            "Security events",
+            "safe logging",
+            "audit evidence"
+          ],
+          "topics": [
+            "logging",
+            "audit",
+            "incident-response"
+          ]
         },
         {
           "id": "github-actions-secure-use",
           "title": "Secure use reference",
           "publisher": "GitHub",
           "url": "https://docs.github.com/en/actions/reference/security/secure-use",
-          "appliesTo": ["github-actions", "ci", "supply-chain"],
-          "useFor": ["Workflow permissions", "untrusted code", "third-party actions", "secret handling"]
+          "appliesTo": [
+            "github-actions"
+          ],
+          "useFor": [
+            "Workflow permissions",
+            "untrusted code",
+            "third-party actions",
+            "secret handling"
+          ],
+          "topics": [
+            "ci",
+            "supply-chain"
+          ]
         },
         {
           "id": "github-actions-oidc",
           "title": "Security hardening your deployments",
           "publisher": "GitHub",
-          "url": "https://docs.github.com/actions/how-tos/secure-your-work/security-harden-deployments",
-          "appliesTo": ["github-actions", "deployment", "oidc"],
-          "useFor": ["OIDC for cloud deployments", "environment protection", "deployment hardening"]
+          "url": "https://docs.github.com/en/actions/how-tos/secure-your-work/security-harden-deployments",
+          "appliesTo": [
+            "github-actions"
+          ],
+          "useFor": [
+            "OIDC for cloud deployments",
+            "environment protection",
+            "deployment hardening"
+          ],
+          "topics": [
+            "deployment",
+            "oidc"
+          ]
         },
         {
           "id": "github-actions-deployment-environments",
           "title": "Deployments and Environments",
           "publisher": "GitHub",
           "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments",
-          "appliesTo": ["github-actions", "deployment-environments", "tenant-deployed-cloudflare-saas"],
-          "useFor": ["Environment protection rules", "deployment approvals", "environment-scoped secrets"]
+          "appliesTo": [
+            "github-actions",
+            "tenant-deployed-cloudflare-saas"
+          ],
+          "useFor": [
+            "Environment protection rules",
+            "deployment approvals",
+            "environment-scoped secrets"
+          ],
+          "topics": [
+            "deployment-environments"
+          ]
         },
         {
           "id": "vitest-guide",
           "title": "Vitest Guide",
           "publisher": "Vitest",
           "url": "https://vitest.dev/guide/",
-          "appliesTo": ["unit-tests", "vite", "typescript-tests"],
-          "useFor": ["Test runner setup", "coverage", "watch vs run mode"]
+          "appliesTo": [
+            "vite"
+          ],
+          "useFor": [
+            "Test runner setup",
+            "coverage",
+            "watch vs run mode"
+          ],
+          "topics": [
+            "unit-tests",
+            "typescript-tests"
+          ]
         },
         {
           "id": "playwright-best-practices",
           "title": "Playwright Best Practices",
           "publisher": "Microsoft / Playwright",
           "url": "https://playwright.dev/docs/best-practices",
-          "appliesTo": ["e2e-tests", "browser-tests", "web-app"],
-          "useFor": ["Locator strategy", "test isolation", "resilient browser tests"]
+          "appliesTo": [],
+          "useFor": [
+            "Locator strategy",
+            "test isolation",
+            "resilient browser tests"
+          ],
+          "topics": [
+            "e2e-tests",
+            "browser-tests",
+            "web-app"
+          ]
         },
         {
           "id": "testing-library-guiding-principles",
           "title": "Testing Library Guiding Principles",
           "publisher": "Testing Library",
-          "url": "https://testing-library.com/docs/guiding-principles",
-          "appliesTo": ["component-tests", "ui-tests", "react", "vue", "svelte"],
-          "useFor": ["User-centered test style", "DOM queries", "implementation-detail avoidance"]
+          "url": "https://testing-library.com/docs/guiding-principles/",
+          "appliesTo": [
+            "react"
+          ],
+          "useFor": [
+            "User-centered test style",
+            "DOM queries",
+            "implementation-detail avoidance"
+          ],
+          "topics": [
+            "component-tests",
+            "ui-tests",
+            "vue",
+            "svelte"
+          ]
         }
       ]
     },
@@ -698,64 +1516,145 @@
           "title": "Extension API",
           "publisher": "Visual Studio Code",
           "url": "https://code.visualstudio.com/api",
-          "appliesTo": ["vscode-extension", "editor-extension"],
-          "useFor": ["Extension structure", "activation events", "commands", "webviews", "testing"]
+          "appliesTo": [
+            "vscode-extension"
+          ],
+          "useFor": [
+            "Extension structure",
+            "activation events",
+            "commands",
+            "webviews",
+            "testing"
+          ],
+          "topics": [
+            "editor-extension"
+          ]
         },
         {
           "id": "vscode-extension-publishing",
           "title": "Publishing Extensions",
           "publisher": "Visual Studio Code",
           "url": "https://code.visualstudio.com/api/working-with-extensions/publishing-extension",
-          "appliesTo": ["vscode-extension", "marketplace"],
-          "useFor": ["Marketplace metadata", "engines.vscode", "VSIX packaging", "publisher requirements"]
+          "appliesTo": [
+            "vscode-extension"
+          ],
+          "useFor": [
+            "Marketplace metadata",
+            "engines.vscode",
+            "VSIX packaging",
+            "publisher requirements"
+          ],
+          "topics": [
+            "marketplace"
+          ]
         },
         {
           "id": "vscode-extension-runtime-security",
           "title": "Extension Runtime Security",
           "publisher": "Visual Studio Code",
           "url": "https://code.visualstudio.com/docs/configure/extensions/extension-runtime-security",
-          "appliesTo": ["vscode-extension", "extension-security"],
-          "useFor": ["Extension trust boundaries", "runtime permissions", "user risk model"]
+          "appliesTo": [
+            "vscode-extension"
+          ],
+          "useFor": [
+            "Extension trust boundaries",
+            "runtime permissions",
+            "user risk model"
+          ],
+          "topics": [
+            "extension-security"
+          ]
         },
         {
           "id": "github-actions-metadata",
           "title": "Metadata syntax for GitHub Actions",
           "publisher": "GitHub",
           "url": "https://docs.github.com/en/actions/reference/workflows-and-actions/metadata-syntax",
-          "appliesTo": ["github-action", "action-yml"],
-          "useFor": ["action.yml schema", "inputs", "outputs", "runs", "branding"]
+          "appliesTo": [
+            "github-action"
+          ],
+          "useFor": [
+            "action.yml schema",
+            "inputs",
+            "outputs",
+            "runs",
+            "branding"
+          ],
+          "topics": [
+            "action-yml"
+          ]
         },
         {
           "id": "github-actions-creating-actions",
           "title": "Creating actions",
           "publisher": "GitHub",
-          "url": "https://docs.github.com/en/actions/sharing-automations/creating-actions",
-          "appliesTo": ["github-action", "ci-automation"],
-          "useFor": ["JavaScript actions", "composite actions", "Docker actions"]
+          "url": "https://docs.github.com/en/actions/how-tos/create-and-publish-actions",
+          "appliesTo": [
+            "github-action"
+          ],
+          "useFor": [
+            "JavaScript actions",
+            "composite actions",
+            "Docker actions"
+          ],
+          "topics": [
+            "ci-automation"
+          ]
         },
         {
           "id": "tauri-docs",
           "title": "Tauri Documentation",
           "publisher": "Tauri",
           "url": "https://v2.tauri.app/",
-          "appliesTo": ["tauri", "desktop-app", "rust-webview"],
-          "useFor": ["Tauri app structure", "commands", "capabilities", "plugins", "bundling"]
+          "appliesTo": [
+            "tauri"
+          ],
+          "useFor": [
+            "Tauri app structure",
+            "commands",
+            "capabilities",
+            "plugins",
+            "bundling"
+          ],
+          "topics": [
+            "desktop-app",
+            "rust-webview"
+          ]
         },
         {
           "id": "electron-docs",
           "title": "Electron Documentation",
           "publisher": "Electron",
           "url": "https://www.electronjs.org/docs/latest/",
-          "appliesTo": ["electron", "desktop-app"],
-          "useFor": ["Main/renderer process boundaries", "IPC", "security", "packaging"]
+          "appliesTo": [],
+          "useFor": [
+            "Main/renderer process boundaries",
+            "IPC",
+            "security",
+            "packaging"
+          ],
+          "topics": [
+            "electron",
+            "desktop-app"
+          ]
         },
         {
           "id": "flutter-docs",
           "title": "Flutter Documentation",
           "publisher": "Flutter",
           "url": "https://docs.flutter.dev/",
-          "appliesTo": ["flutter", "mobile-app", "desktop-app"],
-          "useFor": ["Flutter app structure", "widgets", "testing", "deployment"]
+          "appliesTo": [],
+          "useFor": [
+            "Flutter app structure",
+            "widgets",
+            "testing",
+            "deployment"
+          ],
+          "topics": [
+            "flutter",
+            "mobile-app",
+            "desktop-app"
+          ]
         }
       ]
     },
@@ -768,41 +1667,91 @@
           "id": "adr-github",
           "title": "Architecture Decision Records",
           "publisher": "Michael Nygard / joelparkerhenderson",
-          "url": "https://github.com/joelparkerhenderson/architecture-decision-record",
-          "appliesTo": ["adr", "architecture-docs", "knowledge-base"],
-          "useFor": ["ADR structure", "decision history", "docs-as-architecture"]
+          "url": "https://github.com/architecture-decision-record/architecture-decision-record",
+          "appliesTo": [
+            "docs-kb"
+          ],
+          "useFor": [
+            "ADR structure",
+            "decision history",
+            "docs-as-architecture"
+          ],
+          "topics": [
+            "adr",
+            "architecture-docs",
+            "knowledge-base"
+          ]
         },
         {
           "id": "c4-model",
           "title": "The C4 Model",
           "publisher": "Structurizr",
           "url": "https://c4model.com/",
-          "appliesTo": ["architecture-docs", "system-design", "diagrams"],
-          "useFor": ["Context/container/component/code diagrams", "architecture communication"]
+          "appliesTo": [],
+          "useFor": [
+            "Context/container/component/code diagrams",
+            "architecture communication"
+          ],
+          "topics": [
+            "architecture-docs",
+            "system-design",
+            "diagrams"
+          ]
         },
         {
           "id": "diataxis",
           "title": "Diataxis",
           "publisher": "Diataxis",
           "url": "https://diataxis.fr/",
-          "appliesTo": ["documentation", "knowledge-base", "developer-docs"],
-          "useFor": ["Tutorial/how-to/reference/explanation structure"]
+          "appliesTo": [
+            "docs-kb"
+          ],
+          "useFor": [
+            "Tutorial/how-to/reference/explanation structure"
+          ],
+          "topics": [
+            "documentation",
+            "knowledge-base",
+            "developer-docs"
+          ]
         },
         {
           "id": "zensical-docs",
           "title": "Zensical Documentation",
           "publisher": "Zensical",
           "url": "https://zensical.org/docs/",
-          "appliesTo": ["zensical", "documentation-site", "kb-publishing"],
-          "useFor": ["Zensical site configuration", "Markdown authoring", "static docs publishing"]
+          "appliesTo": [
+            "docs-kb"
+          ],
+          "useFor": [
+            "Zensical site configuration",
+            "Markdown authoring",
+            "static docs publishing"
+          ],
+          "topics": [
+            "zensical",
+            "documentation-site",
+            "kb-publishing"
+          ]
         },
         {
           "id": "mkdocs-material",
           "title": "Material for MkDocs",
           "publisher": "Material for MkDocs",
           "url": "https://squidfunk.github.io/mkdocs-material/",
-          "appliesTo": ["mkdocs", "documentation-site"],
-          "useFor": ["Docs navigation", "search", "admonitions", "theme configuration"]
+          "appliesTo": [
+            "docs-kb"
+          ],
+          "useFor": [
+            "Docs navigation",
+            "search",
+            "admonitions",
+            "theme configuration"
+          ],
+          "topics": [
+            "mkdocs",
+            "documentation-site"
+          ]
         }
       ]
     }

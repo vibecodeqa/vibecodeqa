@@ -36,7 +36,7 @@ Node-based command-line tools used by developers, CI, operators, or internal aut
 
 - [Node.js process API](https://nodejs.org/api/process.html)
 - [Node.js package entry points and package metadata](https://nodejs.org/api/packages.html)
-- [Node.js security best practices](https://nodejs.org/en/learn/getting-started/security-best-practices)
+- [Node.js security best practices](https://nodejs.org/learn/getting-started/security-best-practices)
 - [npm package.json docs](https://docs.npmjs.com/cli/v11/configuring-npm/package-json/)
 - [GitHub Actions workflow commands](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands)
 - [GitHub Actions exit codes for actions](https://docs.github.com/actions/creating-actions/setting-exit-codes-for-actions)

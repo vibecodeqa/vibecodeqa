@@ -13,7 +13,17 @@
       "type": "object",
       "properties": {
         "sourcePreference": { "type": "array", "items": { "type": "string" } },
-        "authoringRule": { "type": "string" }
+        "authoringRule": { "type": "string" },
+        "linkHealth": {
+          "type": "object",
+          "required": ["status", "rule"],
+          "properties": {
+            "status": { "type": "string" },
+            "rule": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "appliesToRule": { "type": "string" }
       },
       "additionalProperties": false
     },
@@ -30,13 +40,24 @@
             "type": "array",
             "items": {
               "type": "object",
-              "required": ["id", "title", "publisher", "url", "appliesTo", "useFor"],
+              "required": ["id", "title", "publisher", "url", "appliesTo", "topics", "useFor"],
               "properties": {
                 "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
                 "title": { "type": "string" },
                 "publisher": { "type": "string" },
-                "url": { "type": "string" },
-                "appliesTo": { "type": "array", "items": { "type": "string" } },
+                "url": { "type": "string", "format": "uri" },
+                "expectedRedirectUrl": { "type": "string", "format": "uri" },
+                "versionPolicy": { "type": "string" },
+                "appliesTo": {
+                  "type": "array",
+                  "items": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+                  "uniqueItems": true
+                },
+                "topics": {
+                  "type": "array",
+                  "items": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+                  "uniqueItems": true
+                },
                 "useFor": { "type": "array", "items": { "type": "string" } }
               },
               "additionalProperties": false

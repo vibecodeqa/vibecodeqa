@@ -19,6 +19,8 @@ jobs:
       - name: Build docs
         run: |
           node standards/generate-catalog.mjs --check
+          node standards/validate-references.mjs
+          node standards/validate-references.mjs --links
           node docs/validate-assessments.mjs
           cd docs && uvx zensical@0.0.43 build
 

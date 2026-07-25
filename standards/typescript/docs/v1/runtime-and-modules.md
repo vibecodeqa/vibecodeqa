@@ -35,7 +35,7 @@ NodeNext/Bundler/CommonJS mismatches, extension drift, and unsupported dual-modu
 - TypeScript modules reference:
   <https://www.typescriptlang.org/docs/handbook/modules/reference.html>
 - npm package metadata:
-  <https://docs.npmjs.com/cli/v10/configuring-npm/package-json>
+  <https://docs.npmjs.com/cli/v11/configuring-npm/package-json/>
 
 ## R-RUNTIME-2 - Test-only globals do not leak into production source
 

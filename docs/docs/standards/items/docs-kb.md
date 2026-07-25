@@ -6,7 +6,7 @@ Docs KB covers Markdown source, docs navigation, architecture records, and publi
 
 - [Zensical Documentation](https://zensical.org/docs/)
 - [Diataxis](https://diataxis.fr/)
-- [Architecture Decision Records](https://github.com/joelparkerhenderson/architecture-decision-record)
+- [Architecture Decision Records](https://github.com/architecture-decision-record/architecture-decision-record)
 - [The C4 Model](https://c4model.com/)
 
 ## What upstream owns
