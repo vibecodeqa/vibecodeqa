@@ -121,6 +121,11 @@ function expandGlobDir(repo, glob) {
 function sliceRepo(repo) {
   const memberGlobs = workspaceGlobs(repo);
   let memberDirs = memberGlobs.flatMap((g) => expandGlobDir(repo, g));
+  const rootFiles = walk(repo);
+  const rootHasPagesFunctions = rootFiles.includes('wrangler.toml') && anyGlob(rootFiles, 'functions/**/*.{ts,js}');
+  if (memberDirs.length > 0 && rootHasPagesFunctions && !memberDirs.includes('.')) {
+    memberDirs = ['.', ...memberDirs];
+  }
   if (memberDirs.length === 0) memberDirs = ['.']; // non-monorepo: repo is one slice
 
   const slices = [];

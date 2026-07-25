@@ -809,7 +809,7 @@
       "id": "ref-cloudflare-pages-fullstack",
       "repo": "vibecodeqa/ref-cloudflare-pages-fullstack",
       "url": "https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack",
-      "status": "candidate",
+      "status": "published",
       "standards": [
         "cloudflare-pages-fullstack",
         "react-spa",
@@ -817,9 +817,9 @@
         "testing",
         "security"
       ],
-      "reportUrl": null,
-      "score": null,
-      "ci": null
+      "reportUrl": "https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/docs/vcqa-report.md",
+      "score": "92/100",
+      "ci": "green"
     },
     {
       "id": "ref-cloudflare-d1-app",
