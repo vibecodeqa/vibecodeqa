@@ -89,6 +89,8 @@ jobs:
           }
           NODE
           } > _site/_redirects
+          node scripts/generate-sitemap.mjs _site https://vibecodeqa.online
+          node scripts/generate-sitemap.mjs _site https://vibecodeqa.online --check
 
       - uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3
         with:
