@@ -38,13 +38,13 @@ React and browser targets.
 
 ### R-SETUP-3 · Current React and TypeScript
 
-**Rule.** React and `react-dom` are on **19.x**; the project is TypeScript on **5.7+**
-(6.x preferred). JavaScript-only React SPAs fail this rule.
+**Rule.** React and `react-dom` are on **19.x**; the project is TypeScript on **6.x**.
+JavaScript-only React SPAs fail this rule.
 
 **Why.** React 19 is the current major (Actions, `use`, improved Suspense, ref-as-prop).
 Types catch the class of bug that static apps can't catch at runtime for the user.
 
-**vcqa.** `react` satisfies `>=19`; `typescript` present and `>=5.7`; `.tsx` sources, not
+**vcqa.** `react` satisfies `>=19`; `typescript` present and `>=6 <7`; `.tsx` sources, not
 `.jsx`.
 
 ### R-SETUP-4 · pnpm, with the app in a `web` package
@@ -71,14 +71,17 @@ repo/
 **vcqa.** `pnpm-lock.yaml` present (no `package-lock.json`/`yarn.lock`); `packageManager`
 field pins pnpm; a `web` (or single app) package holds `index.html` + `vite.config.ts`.
 
-### R-SETUP-5 · Node 22+ pinned
+### R-SETUP-5 · Node runtime pinned
 
-**Rule.** The supported Node version is declared (`engines.node >= 22`) and matched in CI.
+**Rule.** The supported Node version is declared and matched in CI. `engines.node` allows
+**>=20.19** as the minimum Vite-supported runtime; CI and local docs prefer **22.12+ or 24
+LTS**.
 
 **Why.** Build reproducibility. The bytes users receive depend on the toolchain that built
 them; an unpinned Node lets CI drift from local and from itself over time.
 
-**vcqa.** `engines.node` present and `>= 20`; CI `setup-node` version agrees.
+**vcqa.** `engines.node` present and compatible with `>=20.19`; CI `setup-node` uses
+22.12+ or 24 LTS and agrees with the documented local runtime.
 
 ### R-SETUP-6 · Relative asset base
 
@@ -151,9 +154,9 @@ createRoot(document.getElementById('root')!).render(
 
 - [ ] Builds to static assets with `vite build`; no server needed to render (**R-SETUP-1**)
 - [ ] Vite + `@vitejs/plugin-react`; no CRA (**R-SETUP-2**)
-- [ ] React 19 + TypeScript 5.7+ (**R-SETUP-3**)
+- [ ] React 19 + TypeScript 6.x (**R-SETUP-3**)
 - [ ] pnpm; app isolated in a `web` package (**R-SETUP-4**)
-- [ ] Node 22+ pinned in `engines` and CI (**R-SETUP-5**)
+- [ ] Node >=20.19 accepted; 22.12+ or 24 LTS preferred in CI (**R-SETUP-5**)
 - [ ] `base: './'` in Vite config (**R-SETUP-6**)
 - [ ] `dev` / `build` / `preview` / `typecheck` scripts; build type-checks first (**R-SETUP-7**)
 - [ ] `StrictMode` + `createRoot` at the entry (**R-SETUP-8**)

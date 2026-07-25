@@ -1,7 +1,7 @@
 # React SPA — Edition v1
 
 !!! info "Edition metadata"
-    **Targets:** React 19 · Vite 8 · Tailwind CSS 4 · TypeScript 6 · pnpm · Node 22+
+    **Targets:** React 19 · Vite 8 · Tailwind CSS 4 · TypeScript 6 · pnpm · Node >=20.19 (22.12+ or 24 LTS preferred)
     **Reviewed:** 2026-07 · **Next review due:** 2027-07
     **Status:** latest · **Pin as:** `react-spa@v1`
     **Canonical URL:** <https://vibecodeqa.online/standards/react-spa/v1/>

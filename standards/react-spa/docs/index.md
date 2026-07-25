@@ -55,7 +55,7 @@ change**, and each carries a review date so it can't silently rot.
 
 | Edition | Targets | Reviewed | Next review due | Status |
 | --- | --- | --- | --- | --- |
-| **[v1](v1/index.md)** | React 19 · Vite 8 · Tailwind 4 · TS 6 | 2026-07 | 2027-07 | **latest** |
+| **[v1](v1/index.md)** | React 19 · Vite 8 · Tailwind 4 · TS 6 · Node >=20.19 | 2026-07 | 2027-07 | **latest** |
 
 vcqa pins an edition (`react-spa@v1`) and surfaces the review date as a staleness signal:
 *"judged against a standard last verified N months ago."*

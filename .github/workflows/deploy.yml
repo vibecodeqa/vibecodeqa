@@ -26,6 +26,7 @@ jobs:
       - name: Build standards
         run: |
           node standards/validate-registry.mjs
+          node standards/validate-react-spa-baselines.mjs
           for d in standards/*/; do
             if [ -f "$d/zensical.toml" ]; then
               echo "building standard: $d"

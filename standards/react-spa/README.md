@@ -28,7 +28,7 @@ carries a **review date** so it can't silently rot.
 
 | Edition | Targets | Reviewed | Next review due | Status |
 | --- | --- | --- | --- | --- |
-| `v1` | React 19 · Vite 8 · Tailwind 4 · TS 6 | 2026-07 | 2027-07 | latest |
+| `v1` | React 19 · Vite 8 · Tailwind 4 · TS 6 · Node >=20.19 | 2026-07 | 2027-07 | latest |
 
 The canonical URL for this edition is
 <https://vibecodeqa.online/standards/react-spa/v1/>. The deployed `/latest` route is only

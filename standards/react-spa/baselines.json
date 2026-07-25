@@ -1,0 +1,31 @@
+{
+  "standard": "react-spa",
+  "edition": "v1",
+  "labels": {
+    "full": "React 19 · Vite 8 · Tailwind CSS 4 · TypeScript 6 · pnpm · Node >=20.19 (22.12+ or 24 LTS preferred)",
+    "short": "React 19 · Vite 8 · Tailwind 4 · TS 6 · Node >=20.19"
+  },
+  "registryTargets": {
+    "react": "19",
+    "vite": "8",
+    "tailwind": "4",
+    "typescript": "6",
+    "node": ">=20.19; prefer 22.12+ or 24 LTS"
+  },
+  "minimums": {
+    "react": ">=19",
+    "vite": ">=8 <9",
+    "tailwind": ">=4 <5",
+    "typescript": ">=6 <7",
+    "node": ">=20.19"
+  },
+  "preferred": {
+    "node": "22.12+ or 24 LTS"
+  },
+  "sources": {
+    "react": "https://react.dev/blog/2024/12/05/react-19",
+    "vite": "https://vite.dev/releases",
+    "typescript": "https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html",
+    "node": "https://nodejs.org/en/about/previous-releases"
+  }
+}
