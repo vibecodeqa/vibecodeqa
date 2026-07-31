@@ -2,9 +2,9 @@
 icon: lucide/list-checks
 ---
 
-# The 34 checks
+# The checks
 
-VibeCode QA runs **34 checks across 7 categories**. Each check is scored 0–100 and weighted into a single composite score (weights sum to 100; the five AI Analysis checks are weight 0 — informational). Every issue in the report ships with a copy-pasteable fix prompt.
+VibeCode QA runs canonical checks across 7 categories. Each check is scored 0–100 and weighted into a single composite score. Weights sum to 100; Pro/AI Analysis and platform-specific zero-weight checks are informational unless promoted into the scoring model. The schema package's `CHECK_META` is the source of truth for the exact current check list and weights.
 
 ## Foundations <small>(23% of score)</small>
 
@@ -122,13 +122,25 @@ VibeCode QA runs **34 checks across 7 categories**. Each check is scored 0–100
 
 `weight 3%` · `high priority`
 
-**What it checks.** Checks React-specific patterns: conditional hook calls (violates Rules of Hooks), missing key props in .map(), index as key, prop spreading on DOM elements, and excessive inline handlers.
+**What it checks.** Checks React-specific patterns. Configured React ESLint plugins are the primary source for React diagnostics: `eslint-plugin-react-hooks`, `eslint-plugin-react`, `eslint-plugin-react-refresh`, `eslint-plugin-jsx-a11y`, and the newer React ESLint plugin families. VCQA heuristics fill gaps when those tools are absent or do not cover a visualized metric, including conditional hook calls, missing key props in `.map()`, index keys, prop spreading on DOM elements, useEffect dependency hazards, direct DOM queries, inline style pressure when Tailwind is present, and missing Error Boundaries. Monitor reports group findings into React Health categories: hooks, effects, rendering, component structure, error boundaries, compiler readiness, Fast Refresh, and accessibility.
 
 !!! warning "Why it matters"
     Conditional hooks cause React to crash at runtime. Missing keys cause incorrect reconciliation — items can swap, duplicate, or lose state. Index keys break when lists are reordered or filtered.
 
 !!! tip "How to fix"
-    Never call hooks inside conditions, loops, or nested functions. Always provide a unique, stable key in .map(). Avoid spreading unknown props onto DOM elements. Extract inline handlers for readability.
+    Never call hooks inside conditions, loops, or nested functions. Always provide a unique, stable key in `.map()`. Avoid spreading unknown props onto DOM elements. Install and enable `eslint-plugin-react-hooks` for the official Rules of React and React Compiler diagnostics.
+
+### Flutter Health
+
+`advisory` · `high priority`
+
+**What it checks.** Checks Flutter-specific project health across single-package and multi-package roots: package discovery, `analysis_options.yaml` coverage, `flutter_lints`, `flutter_test`, widget tests, `integration_test`, generated Dart files, and pubspec hygiene.
+
+!!! warning "Why it matters"
+    Flutter repos often contain several packages. If app, admin, and shared packages drift on analysis rules, test layout, or generated-file handling, CI can miss broken widgets and noisy generated files can dominate quality maps.
+
+!!! tip "How to fix"
+    Give each Flutter package analysis options or inherit a root config. Enable `flutter_lints` or a stronger lint pack. Keep widget and integration tests near each Flutter app, and treat `*.g.dart` / `*.freezed.dart` files as generated or visual-neutral.
 
 ### Accessibility
 
