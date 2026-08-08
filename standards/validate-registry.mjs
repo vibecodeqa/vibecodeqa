@@ -203,11 +203,113 @@ checkCatalogPagesAreBacked(
     .filter((url) => normalizeUrl(url)?.startsWith('/docs/standards/stacks/'))
 );
 
+// --- Reference implementation inventory and score evidence ----------------------------
+//
+// A reference repo score is a trust signal, so it carries a provenance record (report,
+// assessed commit, CI run, verification date) instead of a bare number. Every catalog
+// surface renders that record; the drift guard below stops a hand-written page from
+// quoting a different score behind the generator's back.
+
+const refReposWithEvidence = [];
+
 for (const refRepo of compositions.referenceImplementations || []) {
   requireId(refRepo.id, `referenceImplementations.${refRepo.id}`);
   for (const id of refRepo.standards || []) {
     if (!standardIds.has(id) && !compositionIds.has(id)) {
       fail(`${refRepo.id}: unknown demonstrated standard "${id}"`);
+    }
+  }
+  if (refRepo.demonstratesPrimary !== null && refRepo.demonstratesPrimary !== undefined) {
+    if (!standardIds.has(refRepo.demonstratesPrimary) && !compositionIds.has(refRepo.demonstratesPrimary)) {
+      fail(`${refRepo.id}: unknown demonstratesPrimary standard "${refRepo.demonstratesPrimary}"`);
+    }
+    if (!(refRepo.standards || []).includes(refRepo.demonstratesPrimary)) {
+      fail(`${refRepo.id}: demonstratesPrimary "${refRepo.demonstratesPrimary}" is not listed in standards`);
+    }
+  }
+
+  const evidence = refRepo.evidence ?? null;
+  if (refRepo.status === 'candidate') {
+    if (evidence) fail(`${refRepo.id}: candidate repos have nothing to cite yet, so evidence must be null`);
+    continue;
+  }
+  if (!evidence) {
+    fail(`${refRepo.id}: ${refRepo.status} repos must carry score evidence (report, commit, CI run)`);
+    continue;
+  }
+  if (!evidence.reportUrl?.startsWith(`${refRepo.url}/`)) {
+    fail(`${refRepo.id}: evidence.reportUrl must live inside ${refRepo.url}`);
+  }
+  if (!Number.isInteger(evidence.score) || evidence.score < 0 || evidence.score > 100) {
+    fail(`${refRepo.id}: evidence.score must be an integer 0-100`);
+  }
+  if (evidence.grade !== null && !/^[A-F]$/.test(evidence.grade ?? '')) {
+    fail(`${refRepo.id}: evidence.grade must be a single letter grade or null`);
+  }
+  if (!/^[0-9a-f]{40}$/.test(evidence.assessedCommit ?? '')) {
+    fail(`${refRepo.id}: evidence.assessedCommit must be a full 40-character SHA`);
+  }
+  for (const field of ['assessedAt', 'ciRunAt', 'verifiedAt']) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(evidence[field] ?? '')) {
+      fail(`${refRepo.id}: evidence.${field} must be a YYYY-MM-DD date`);
+    }
+  }
+  if (!evidence.ciRunUrl?.startsWith(`${refRepo.url}/actions/runs/`)) {
+    fail(`${refRepo.id}: evidence.ciRunUrl must be a run URL inside ${refRepo.url}`);
+  }
+  if (!evidence.ciConclusion) fail(`${refRepo.id}: evidence.ciConclusion is required`);
+  if (evidence.independentAssessmentUrl === undefined) {
+    fail(`${refRepo.id}: evidence.independentAssessmentUrl is required (use null while the score is self-reported)`);
+  }
+  refReposWithEvidence.push(refRepo);
+}
+
+// Drift guard. Scores used to be retyped into charter pages and landing tables; the live
+// report moved and the pages did not. Any score claim on a non-generated surface must
+// agree with the metadata. Assessment reports are excluded on purpose: they are dated,
+// signed snapshots of what a page claimed on a given day, and rewriting them would
+// falsify the record rather than fix drift.
+const generatedBlock = /<!--\s*BEGIN GENERATED:[\s\S]*?END GENERATED:[^>]*-->/g;
+const scanRoot = join(here, '..');
+const skipDirs = new Set(['.git', 'node_modules', 'site', '_site']);
+const skipPaths = ['docs/docs/standards/assessments'];
+
+function surfaceFiles(dir, acc = []) {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.') && entry.name !== '.github') continue;
+    const full = join(dir, entry.name);
+    const rel = full.slice(scanRoot.length + 1);
+    if (entry.isDirectory()) {
+      if (skipDirs.has(entry.name)) continue;
+      if (skipPaths.some((skip) => rel === skip || rel.startsWith(`${skip}/`))) continue;
+      surfaceFiles(full, acc);
+    } else if (/\.(md|html)$/.test(entry.name)) {
+      acc.push({ rel, full });
+    }
+  }
+  return acc;
+}
+
+for (const file of surfaceFiles(scanRoot)) {
+  const text = readFileSync(file.full, 'utf8').replace(generatedBlock, '');
+  for (const refRepo of refReposWithEvidence) {
+    const expected = refRepo.evidence.score;
+    const escaped = refRepo.evidence.reportUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const linked = new RegExp(`\\[([^\\]]*?)\\]\\(${escaped}\\)|<a href="${escaped}"[^>]*>([^<]*)</a>`, 'g');
+    for (const match of text.matchAll(linked)) {
+      const label = match[1] ?? match[2] ?? '';
+      const claimed = label.match(/(\d{1,3})\/100/);
+      if (claimed && Number(claimed[1]) !== expected) {
+        fail(`${file.rel}: cites ${claimed[0]} for ${refRepo.id}, but metadata records ${expected}/100. Update compositions.json and regenerate; do not retype the score.`);
+      }
+    }
+    for (const line of text.split('\n')) {
+      if (!line.includes(refRepo.id)) continue;
+      for (const claimed of line.matchAll(/(\d{1,3})\/100/g)) {
+        if (Number(claimed[1]) !== expected) {
+          fail(`${file.rel}: cites ${claimed[0]} next to ${refRepo.id}, but metadata records ${expected}/100. Update compositions.json and regenerate; do not retype the score.`);
+        }
+      }
     }
   }
 }

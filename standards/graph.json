@@ -752,9 +752,21 @@
         "testing",
         "security"
       ],
-      "reportUrl": "https://github.com/vibecodeqa/ref-react-spa/blob/main/docs/vcqa-report.md",
-      "score": "94/100",
-      "ci": "green"
+      "demonstratesPrimary": "react-spa",
+      "note": null,
+      "evidence": {
+        "reportUrl": "https://github.com/vibecodeqa/ref-react-spa/blob/main/docs/vcqa-report.md",
+        "score": 94,
+        "grade": "A",
+        "assessedCommit": "54ac82b9d91b83055409bca0b60d317115c358fd",
+        "assessedAt": "2026-07-23",
+        "ciRunUrl": "https://github.com/vibecodeqa/ref-react-spa/actions/runs/30010328660",
+        "ciConclusion": "success",
+        "ciRunAt": "2026-07-23",
+        "independentAssessmentUrl": null,
+        "verifiedAt": "2026-08-08",
+        "verification": "self-reported"
+      }
     },
     {
       "id": "ref-cloudflare-worker-mcp",
@@ -767,9 +779,21 @@
         "testing",
         "security"
       ],
-      "reportUrl": "https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/vcqa-report.md",
-      "score": "91/100",
-      "ci": "green"
+      "demonstratesPrimary": "cloudflare-worker-mcp-server",
+      "note": null,
+      "evidence": {
+        "reportUrl": "https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/vcqa-report.md",
+        "score": 92,
+        "grade": "A",
+        "assessedCommit": "2242765a77a05458025c0ed377cd6a89856f5a6b",
+        "assessedAt": "2026-07-24",
+        "ciRunUrl": "https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/actions/runs/30058670533",
+        "ciConclusion": "success",
+        "ciRunAt": "2026-07-24",
+        "independentAssessmentUrl": null,
+        "verifiedAt": "2026-08-08",
+        "verification": "self-reported"
+      }
     },
     {
       "id": "ref-cloudflare-saas",
@@ -786,9 +810,21 @@
         "testing",
         "security"
       ],
-      "reportUrl": "https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md",
-      "score": "91/100",
-      "ci": "green"
+      "demonstratesPrimary": "tenant-deployed-cloudflare-saas",
+      "note": null,
+      "evidence": {
+        "reportUrl": "https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md",
+        "score": 91,
+        "grade": "A",
+        "assessedCommit": "41eb24369378b4efd4234d8ccea5e5e88b799761",
+        "assessedAt": "2026-07-23",
+        "ciRunUrl": "https://github.com/vibecodeqa/ref-cloudflare-saas/actions/runs/30010329406",
+        "ciConclusion": "success",
+        "ciRunAt": "2026-07-23",
+        "independentAssessmentUrl": null,
+        "verifiedAt": "2026-08-08",
+        "verification": "self-reported"
+      }
     },
     {
       "id": "ref-node-cli-internal-tool",
@@ -801,9 +837,21 @@
         "testing",
         "security"
       ],
-      "reportUrl": "https://github.com/vibecodeqa/ref-node-cli-internal-tool/blob/main/docs/vcqa-report.md",
-      "score": "92/100",
-      "ci": "green"
+      "demonstratesPrimary": "node-cli-internal-tool",
+      "note": null,
+      "evidence": {
+        "reportUrl": "https://github.com/vibecodeqa/ref-node-cli-internal-tool/blob/main/docs/vcqa-report.md",
+        "score": 92,
+        "grade": null,
+        "assessedCommit": "95f41941a1a049ce34e32cdea5a9698db5782717",
+        "assessedAt": "2026-07-24",
+        "ciRunUrl": "https://github.com/vibecodeqa/ref-node-cli-internal-tool/actions/runs/30108197597",
+        "ciConclusion": "success",
+        "ciRunAt": "2026-07-24",
+        "independentAssessmentUrl": null,
+        "verifiedAt": "2026-08-08",
+        "verification": "self-reported"
+      }
     },
     {
       "id": "ref-cloudflare-pages-fullstack",
@@ -817,9 +865,21 @@
         "testing",
         "security"
       ],
-      "reportUrl": "https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/docs/vcqa-report.md",
-      "score": "92/100",
-      "ci": "green"
+      "demonstratesPrimary": "cloudflare-pages-fullstack",
+      "note": null,
+      "evidence": {
+        "reportUrl": "https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/docs/vcqa-report.md",
+        "score": 92,
+        "grade": null,
+        "assessedCommit": "26b59c4e3f00f1102d6244322e5e61e36311ecc7",
+        "assessedAt": "2026-07-25",
+        "ciRunUrl": "https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/actions/runs/30144503839",
+        "ciConclusion": "success",
+        "ciRunAt": "2026-07-25",
+        "independentAssessmentUrl": null,
+        "verifiedAt": "2026-08-08",
+        "verification": "self-reported"
+      }
     },
     {
       "id": "ref-cloudflare-d1-app",
@@ -832,9 +892,48 @@
         "testing",
         "security"
       ],
-      "reportUrl": "https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/docs/vcqa-report.md",
-      "score": "92/100",
-      "ci": "green"
+      "demonstratesPrimary": "cloudflare-d1-app",
+      "note": null,
+      "evidence": {
+        "reportUrl": "https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/docs/vcqa-report.md",
+        "score": 92,
+        "grade": null,
+        "assessedCommit": "167e6e42346e80acf2b13eea63beaa9987f3b6c9",
+        "assessedAt": "2026-07-25",
+        "ciRunUrl": "https://github.com/vibecodeqa/ref-cloudflare-d1-app/actions/runs/30144779114",
+        "ciConclusion": "success",
+        "ciRunAt": "2026-07-25",
+        "independentAssessmentUrl": null,
+        "verifiedAt": "2026-08-08",
+        "verification": "self-reported"
+      }
+    },
+    {
+      "id": "ref-firebase-react-fullstack",
+      "repo": "vibecodeqa/ref-firebase-react-fullstack",
+      "url": "https://github.com/vibecodeqa/ref-firebase-react-fullstack",
+      "status": "experimental",
+      "standards": [
+        "react-spa",
+        "typescript",
+        "testing",
+        "security"
+      ],
+      "demonstratesPrimary": null,
+      "note": "Experimental. This repo was published before any Firebase stack standard existed, and no authored or planned VCQA standard describes the Firebase + React shape today (flutter-firebase-app is planned, but it targets Flutter). It is cataloged as experimental evidence for the cross-cutting TypeScript, Testing, and Security rubrics only, and is not a reference implementation of a stack standard.",
+      "evidence": {
+        "reportUrl": "https://github.com/vibecodeqa/ref-firebase-react-fullstack/blob/main/docs/vcqa-report.md",
+        "score": 91,
+        "grade": null,
+        "assessedCommit": "9a18be493942f77af2141b18ecf2dfed5e879299",
+        "assessedAt": "2026-07-24",
+        "ciRunUrl": "https://github.com/vibecodeqa/ref-firebase-react-fullstack/actions/runs/30089690815",
+        "ciConclusion": "success",
+        "ciRunAt": "2026-07-24",
+        "independentAssessmentUrl": null,
+        "verifiedAt": "2026-08-08",
+        "verification": "self-reported"
+      }
     },
     {
       "id": "ref-typescript-sdk",
@@ -847,9 +946,9 @@
         "testing",
         "dependencies"
       ],
-      "reportUrl": null,
-      "score": null,
-      "ci": null
+      "demonstratesPrimary": "typescript-sdk",
+      "note": null,
+      "evidence": null
     },
     {
       "id": "ref-github-action-package",
@@ -863,9 +962,9 @@
         "security",
         "dependencies"
       ],
-      "reportUrl": null,
-      "score": null,
-      "ci": null
+      "demonstratesPrimary": "github-action-package",
+      "note": null,
+      "evidence": null
     },
     {
       "id": "ref-zensical-kb-site",
@@ -875,9 +974,9 @@
       "standards": [
         "zensical-kb-site"
       ],
-      "reportUrl": null,
-      "score": null,
-      "ci": null
+      "demonstratesPrimary": "zensical-kb-site",
+      "note": null,
+      "evidence": null
     },
     {
       "id": "ref-vscode-extension-package",
@@ -890,9 +989,9 @@
         "testing",
         "security"
       ],
-      "reportUrl": null,
-      "score": null,
-      "ci": null
+      "demonstratesPrimary": "vscode-extension-package",
+      "note": null,
+      "evidence": null
     },
     {
       "id": "ref-tauri-react-desktop",
@@ -906,9 +1005,9 @@
         "testing",
         "security"
       ],
-      "reportUrl": null,
-      "score": null,
-      "ci": null
+      "demonstratesPrimary": "tauri-react-desktop",
+      "note": null,
+      "evidence": null
     },
     {
       "id": "ref-flutter-firebase-app",
@@ -921,9 +1020,9 @@
         "security",
         "dependencies"
       ],
-      "reportUrl": null,
-      "score": null,
-      "ci": null
+      "demonstratesPrimary": "flutter-firebase-app",
+      "note": null,
+      "evidence": null
     }
   ],
   "edges": [
@@ -1489,6 +1588,26 @@
     },
     {
       "from": "ref-cloudflare-d1-app",
+      "to": "security",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-firebase-react-fullstack",
+      "to": "react-spa",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-firebase-react-fullstack",
+      "to": "typescript",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-firebase-react-fullstack",
+      "to": "testing",
+      "type": "demonstrates"
+    },
+    {
+      "from": "ref-firebase-react-fullstack",
       "to": "security",
       "type": "demonstrates"
     },

@@ -50,17 +50,44 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "repo", "url", "status", "demonstrates", "score", "reportUrl", "ci"],
+        "required": ["id", "repo", "url", "status", "standards", "demonstratesPrimary", "demonstrates", "note", "evidence"],
         "properties": {
           "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
           "repo": { "type": "string" },
           "url": { "type": "string" },
-          "status": { "type": "string", "enum": ["published", "candidate"] },
+          "status": { "type": "string", "enum": ["published", "experimental", "candidate"] },
           "standards": { "type": "array", "items": { "type": "string", "pattern": "^[a-z0-9-]+$" } },
+          "demonstratesPrimary": { "type": ["string", "null"], "pattern": "^[a-z0-9-]+$" },
           "demonstrates": { "type": "string" },
-          "score": { "type": ["string", "null"] },
-          "reportUrl": { "type": ["string", "null"] },
-          "ci": { "type": ["string", "null"] }
+          "note": { "type": ["string", "null"] },
+          "evidence": {
+            "type": ["object", "null"],
+            "required": [
+              "reportUrl",
+              "score",
+              "grade",
+              "assessedCommit",
+              "assessedAt",
+              "ciRunUrl",
+              "ciConclusion",
+              "ciRunAt",
+              "independentAssessmentUrl",
+              "verifiedAt"
+            ],
+            "properties": {
+              "reportUrl": { "type": "string" },
+              "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+              "grade": { "type": ["string", "null"], "pattern": "^[A-F]$" },
+              "assessedCommit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+              "assessedAt": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+              "ciRunUrl": { "type": "string" },
+              "ciConclusion": { "type": "string" },
+              "ciRunAt": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+              "independentAssessmentUrl": { "type": ["string", "null"] },
+              "verifiedAt": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+            },
+            "additionalProperties": false
+          }
         },
         "additionalProperties": false
       }

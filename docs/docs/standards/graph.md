@@ -251,62 +251,67 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
   <div class="node template">
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-react-spa">ref-react-spa</a></strong><span class="status">published</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/react-spa/">react-spa</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a></div>
-    <div class="links"><a href="https://github.com/vibecodeqa/ref-react-spa/blob/main/docs/vcqa-report.md">94/100 report</a> · CI green</div>
+    <div class="links"><a href="https://github.com/vibecodeqa/ref-react-spa/blob/main/docs/vcqa-report.md">A 94/100</a> (self-reported); commit <a href="https://github.com/vibecodeqa/ref-react-spa/commit/54ac82b9d91b83055409bca0b60d317115c358fd">54ac82b</a> (2026-07-23); CI <a href="https://github.com/vibecodeqa/ref-react-spa/actions/runs/30010328660">success</a> (2026-07-23); verified 2026-08-08.</div>
   </div>
   <div class="node template">
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-cloudflare-worker-mcp">ref-cloudflare-worker-mcp</a></strong><span class="status">published</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/cloudflare-worker-mcp-server/">cloudflare-worker-mcp-server</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a></div>
-    <div class="links"><a href="https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/vcqa-report.md">91/100 report</a> · CI green</div>
+    <div class="links"><a href="https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/vcqa-report.md">A 92/100</a> (self-reported); commit <a href="https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/commit/2242765a77a05458025c0ed377cd6a89856f5a6b">2242765</a> (2026-07-24); CI <a href="https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/actions/runs/30058670533">success</a> (2026-07-24); verified 2026-08-08.</div>
   </div>
   <div class="node template">
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-cloudflare-saas">ref-cloudflare-saas</a></strong><span class="status">published</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/react-spa/">react-spa</a><a class="chip standard" href="/docs/standards/stacks/cloudflare-pages-fullstack/">cloudflare-pages-fullstack</a><a class="chip standard" href="/docs/standards/stacks/cloudflare-d1-app/">cloudflare-d1-app</a><a class="chip standard" href="/docs/standards/stacks/cloudflare-worker-mcp-server/">cloudflare-worker-mcp-server</a><a class="chip standard" href="/docs/standards/stacks/tenant-deployed-cloudflare-saas/">tenant-deployed-cloudflare-saas</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a></div>
-    <div class="links"><a href="https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md">91/100 report</a> · CI green</div>
+    <div class="links"><a href="https://github.com/vibecodeqa/ref-cloudflare-saas/blob/main/docs/vcqa-report.md">A 91/100</a> (self-reported); commit <a href="https://github.com/vibecodeqa/ref-cloudflare-saas/commit/41eb24369378b4efd4234d8ccea5e5e88b799761">41eb243</a> (2026-07-23); CI <a href="https://github.com/vibecodeqa/ref-cloudflare-saas/actions/runs/30010329406">success</a> (2026-07-23); verified 2026-08-08.</div>
   </div>
   <div class="node template">
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-node-cli-internal-tool">ref-node-cli-internal-tool</a></strong><span class="status">published</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/node-cli-internal-tool/">node-cli-internal-tool</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a></div>
-    <div class="links"><a href="https://github.com/vibecodeqa/ref-node-cli-internal-tool/blob/main/docs/vcqa-report.md">92/100 report</a> · CI green</div>
+    <div class="links"><a href="https://github.com/vibecodeqa/ref-node-cli-internal-tool/blob/main/docs/vcqa-report.md">92/100</a> (self-reported); commit <a href="https://github.com/vibecodeqa/ref-node-cli-internal-tool/commit/95f41941a1a049ce34e32cdea5a9698db5782717">95f4194</a> (2026-07-24); CI <a href="https://github.com/vibecodeqa/ref-node-cli-internal-tool/actions/runs/30108197597">success</a> (2026-07-24); verified 2026-08-08.</div>
   </div>
   <div class="node template">
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack">ref-cloudflare-pages-fullstack</a></strong><span class="status">published</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/cloudflare-pages-fullstack/">cloudflare-pages-fullstack</a><a class="chip standard" href="/docs/standards/stacks/react-spa/">react-spa</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a></div>
-    <div class="links"><a href="https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/docs/vcqa-report.md">92/100 report</a> · CI green</div>
+    <div class="links"><a href="https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/docs/vcqa-report.md">92/100</a> (self-reported); commit <a href="https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/commit/26b59c4e3f00f1102d6244322e5e61e36311ecc7">26b59c4</a> (2026-07-25); CI <a href="https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/actions/runs/30144503839">success</a> (2026-07-25); verified 2026-08-08.</div>
   </div>
   <div class="node template">
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-cloudflare-d1-app">ref-cloudflare-d1-app</a></strong><span class="status">published</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/cloudflare-d1-app/">cloudflare-d1-app</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a></div>
-    <div class="links"><a href="https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/docs/vcqa-report.md">92/100 report</a> · CI green</div>
+    <div class="links"><a href="https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/docs/vcqa-report.md">92/100</a> (self-reported); commit <a href="https://github.com/vibecodeqa/ref-cloudflare-d1-app/commit/167e6e42346e80acf2b13eea63beaa9987f3b6c9">167e6e4</a> (2026-07-25); CI <a href="https://github.com/vibecodeqa/ref-cloudflare-d1-app/actions/runs/30144779114">success</a> (2026-07-25); verified 2026-08-08.</div>
+  </div>
+  <div class="node template">
+    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-firebase-react-fullstack">ref-firebase-react-fullstack</a></strong><span class="status">experimental</span></div>
+    <div class="chips"><a class="chip standard" href="/docs/standards/stacks/react-spa/">react-spa</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a></div>
+    <div class="links"><a href="https://github.com/vibecodeqa/ref-firebase-react-fullstack/blob/main/docs/vcqa-report.md">91/100</a> (self-reported); commit <a href="https://github.com/vibecodeqa/ref-firebase-react-fullstack/commit/9a18be493942f77af2141b18ecf2dfed5e879299">9a18be4</a> (2026-07-24); CI <a href="https://github.com/vibecodeqa/ref-firebase-react-fullstack/actions/runs/30089690815">success</a> (2026-07-24); verified 2026-08-08.</div>
   </div>
   <div class="node template">
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-typescript-sdk">ref-typescript-sdk</a></strong><span class="status">candidate</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/typescript-sdk/">typescript-sdk</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip item" href="/docs/standards/items/dependencies/">dependencies</a></div>
-    <div class="links"></div>
+    <div class="links">No report yet.</div>
   </div>
   <div class="node template">
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-github-action-package">ref-github-action-package</a></strong><span class="status">candidate</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/github-action-package/">github-action-package</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a><a class="chip item" href="/docs/standards/items/dependencies/">dependencies</a></div>
-    <div class="links"></div>
+    <div class="links">No report yet.</div>
   </div>
   <div class="node template">
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-zensical-kb-site">ref-zensical-kb-site</a></strong><span class="status">candidate</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/zensical-kb-site/">zensical-kb-site</a></div>
-    <div class="links"></div>
+    <div class="links">No report yet.</div>
   </div>
   <div class="node template">
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-vscode-extension-package">ref-vscode-extension-package</a></strong><span class="status">candidate</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/vscode-extension-package/">vscode-extension-package</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a></div>
-    <div class="links"></div>
+    <div class="links">No report yet.</div>
   </div>
   <div class="node template">
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-tauri-react-desktop">ref-tauri-react-desktop</a></strong><span class="status">candidate</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/tauri-react-desktop/">tauri-react-desktop</a><a class="chip standard" href="/docs/standards/stacks/react-spa/">react-spa</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a></div>
-    <div class="links"></div>
+    <div class="links">No report yet.</div>
   </div>
   <div class="node template">
     <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-flutter-firebase-app">ref-flutter-firebase-app</a></strong><span class="status">candidate</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/flutter-firebase-app/">flutter-firebase-app</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a><a class="chip item" href="/docs/standards/items/dependencies/">dependencies</a></div>
-    <div class="links"></div>
+    <div class="links">No report yet.</div>
   </div>
 </div>
 

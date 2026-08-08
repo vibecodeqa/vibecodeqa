@@ -208,7 +208,7 @@ Where a field is repeated for convenience, it is a **derived mirror** and
 | `aliases` | `registry.json` | `compositions.json` mirrors the set; validated identical. |
 | stack item `id`, `kind`, `title`, `references`, `vcqaShouldOwn`, `docsUrl` | `compositions.json` | Stack items have no registry row. When an id exists in both files, the titles must match. |
 | `stackItems`, `optionalStackItems`, `ownedRules`, `benefits` | `compositions.json` | Composition and graph grouping. |
-| `referenceImplementations` | `compositions.json` | Repo, status, demonstrated standards, report URL, score, CI evidence. |
+| `referenceImplementations` | `compositions.json` | Repo, catalog status, demonstrated standards, primary standard, and the `evidence` provenance record (§10). No surface stores a score of its own. |
 | upstream reference `id`, `url`, `publisher`, `appliesTo`, `topics`, `useFor` | `references.json` | Stack items cite reference ids; unknown ids fail validation. |
 
 Display names in particular are metadata, not a heuristic. The generator resolves a label
@@ -228,7 +228,7 @@ contains URLs for humans and tools:
 | `aliases` | composed standard | Historical or internal names that resolve to the canonical standard ID. |
 | `stackItems` | composed standard | Core stack items that define the standard's required rule surface. |
 | `optionalStackItems` | composed standard | Adjacent stack items that commonly appear in reference repos but are only judged when present. |
-| `referenceImplementations` | composition map | Product-neutral template repos, report links, CI evidence, demonstrated standards, and next candidates. |
+| `referenceImplementations` | composition map | Product-neutral template repos, catalog status, demonstrated standards, and score evidence (§10). |
 
 Example authored standard:
 
@@ -265,8 +265,8 @@ machine-readable registry layer.
 Catalog tables, stack and item indexes, the root standards landing inventories, the
 "Supported stacks" authored-rubric inventory, the docs sidebar navigation for stack
 standards / stack items / assessment reports, graph data/view, rubric related-standard
-sections, and reference implementation inventories are generated from metadata. Edit the
-JSON first, then run:
+sections, charter-page reference evidence blocks, and reference implementation
+inventories are generated from metadata. Edit the JSON first, then run:
 
 ```sh
 node standards/generate-catalog.mjs
@@ -275,3 +275,62 @@ node standards/validate-registry.mjs
 
 CI runs `node standards/generate-catalog.mjs --check` so hand-edited generated regions
 or stale metadata changes fail before deploy.
+
+## 10. Reference implementations and the score evidence model
+
+A reference repo score is a **trust signal**, and trust signals rot the moment they are
+retyped. The number is therefore metadata with a provenance record, rendered by the
+generator into every surface that shows it, and guarded by `validate-registry.mjs`.
+
+```json
+{
+  "id": "ref-cloudflare-worker-mcp",
+  "repo": "vibecodeqa/ref-cloudflare-worker-mcp",
+  "url": "https://github.com/vibecodeqa/ref-cloudflare-worker-mcp",
+  "status": "published",
+  "standards": ["cloudflare-worker-mcp-server", "typescript", "testing", "security"],
+  "demonstratesPrimary": "cloudflare-worker-mcp-server",
+  "demonstrates": "SDK-backed Streamable HTTP MCP Worker template: …",
+  "note": null,
+  "evidence": {
+    "reportUrl": "https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/blob/main/docs/vcqa-report.md",
+    "score": 92,
+    "grade": "A",
+    "assessedCommit": "2242765a77a05458025c0ed377cd6a89856f5a6b",
+    "assessedAt": "2026-07-24",
+    "ciRunUrl": "https://github.com/vibecodeqa/ref-cloudflare-worker-mcp/actions/runs/30058670533",
+    "ciConclusion": "success",
+    "ciRunAt": "2026-07-24",
+    "independentAssessmentUrl": null,
+    "verifiedAt": "2026-08-08"
+  }
+}
+```
+
+| Field | Meaning |
+| --- | --- |
+| `status` | `published` (a reference implementation of a standard), `experimental` (a real repo with evidence that no authored or planned standard describes yet), `candidate` (not built yet). |
+| `demonstratesPrimary` | The one standard whose charter page owns this repo, or `null`. Charter-page evidence blocks are generated from this field. Must also appear in `standards`. |
+| `note` | Why a repo carries a non-obvious status. Rendered under every reference inventory. |
+| `evidence` | Provenance for the score. Required for `published` and `experimental`; must be `null` for `candidate`. |
+| `evidence.score` / `grade` | The number and letter the repo's own tracked report states at `assessedCommit`. Never a rounded or remembered value. |
+| `evidence.assessedCommit` / `assessedAt` | Which commit the report describes, and when it was written. |
+| `evidence.ciRunUrl` / `ciConclusion` / `ciRunAt` | The CI run that backs the "CI green" claim, not the words "CI green". |
+| `evidence.independentAssessmentUrl` | `null` until someone publishes an assessment **of the repo**. While it is `null`, every surface labels the score **self-reported**. |
+| `evidence.verifiedAt` | When this catalog entry was last checked against the live repo. |
+
+Two guards keep the surfaces honest:
+
+- `generate-catalog.mjs` renders the reference inventories on the standards landing page,
+  the docs catalog, the compositions page, the standards graph, `graph.json`, and the
+  `reference-evidence` block on each charter page whose standard has a
+  `demonstratesPrimary` repo.
+- `validate-registry.mjs` checks the shape of every `evidence` record and then scans every
+  non-generated Markdown/HTML surface for a score claim about a known reference repo,
+  failing the build when the claim disagrees with the metadata. Dated assessment reports
+  under `docs/docs/standards/assessments/` are excluded: they are signed snapshots of what
+  a page claimed on a given day, so rewriting them would falsify the record.
+
+Self-reported is the default and must stay visible. The assessment criteria treat a
+repo's own score as a claim to verify, so no catalog surface may present one as
+third-party proof.

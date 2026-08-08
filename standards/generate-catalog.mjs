@@ -305,23 +305,126 @@ ${plannedRows.join('\n')}
 `;
 }
 
+// --- Reference implementation evidence ------------------------------------------------
+//
+// A reference repo score is a trust signal, so it is metadata with a provenance trail
+// (report, assessed commit, CI run, verification date) rather than a number typed into
+// each surface by hand. Every reference inventory below renders from these helpers, and
+// validate-registry.mjs fails the build when a hand-written page quotes a different one.
+
+const referenceRepos = compositions.referenceImplementations ?? [];
+const reposByStatus = (status) => referenceRepos.filter((repo) => repo.status === status);
+const primaryRepoFor = (standardId) =>
+  referenceRepos.find((repo) => repo.demonstratesPrimary === standardId && repo.evidence);
+
+function scoreLabel(evidence) {
+  return evidence.grade ? `${evidence.grade} ${evidence.score}/100` : `${evidence.score}/100`;
+}
+
+// Until someone publishes an independent assessment of the repo itself, the score is the
+// repo's own claim. Say so everywhere it is displayed.
+function verificationLabel(evidence) {
+  return evidence.independentAssessmentUrl ? 'independently assessed' : 'self-reported';
+}
+
+function commitUrl(repo, sha) {
+  return `${repo.url}/commit/${sha}`;
+}
+
+function evidenceMarkdown(repo) {
+  if (!repo.evidence) return 'No report yet';
+  const evidence = repo.evidence;
+  const parts = [
+    `${mdLink(scoreLabel(evidence), evidence.reportUrl)} (${verificationLabel(evidence)})`,
+    `commit ${mdLink(`\`${evidence.assessedCommit.slice(0, 7)}\``, commitUrl(repo, evidence.assessedCommit))} (${evidence.assessedAt})`,
+    `CI ${mdLink(evidence.ciConclusion, evidence.ciRunUrl)} (${evidence.ciRunAt})`,
+    `verified ${evidence.verifiedAt}`
+  ];
+  if (evidence.independentAssessmentUrl) {
+    parts.splice(3, 0, mdLink('independent assessment', evidence.independentAssessmentUrl));
+  }
+  return parts.join('; ');
+}
+
+function evidenceHtml(repo) {
+  if (!repo.evidence) return 'No report yet.';
+  const evidence = repo.evidence;
+  const parts = [
+    `${htmlLink(scoreLabel(evidence), evidence.reportUrl)} (${escapeHtml(verificationLabel(evidence))})`,
+    `commit ${htmlLink(evidence.assessedCommit.slice(0, 7), commitUrl(repo, evidence.assessedCommit))} (${escapeHtml(evidence.assessedAt)})`,
+    `CI ${htmlLink(evidence.ciConclusion, evidence.ciRunUrl)} (${escapeHtml(evidence.ciRunAt)})`,
+    `verified ${escapeHtml(evidence.verifiedAt)}`
+  ];
+  if (evidence.independentAssessmentUrl) {
+    parts.splice(3, 0, htmlLink('independent assessment', evidence.independentAssessmentUrl));
+  }
+  return `${parts.join('; ')}.`;
+}
+
+function referenceNotes() {
+  return referenceRepos.filter((repo) => repo.note).map((repo) => `- \`${repo.id}\`: ${repo.note}`);
+}
+
 function generatedReferenceRepos() {
-  const published = compositions.referenceImplementations.filter((repo) => repo.status === 'published');
-  const candidates = compositions.referenceImplementations.filter((repo) => repo.status === 'candidate');
-  const rows = published.map((repo) => {
-    const report = repo.reportUrl ? mdLink(repo.score ? `${repo.score} report` : 'Report', repo.reportUrl) : '-';
-    return `| ${mdLink(repo.repo, repo.url)} | ${repo.standards?.map((id) => `\`${id}\``).join(', ') ?? '-'} | ${repo.demonstrates} | ${report}; CI ${repo.ci ?? 'unknown'} |`;
+  const listed = [...reposByStatus('published'), ...reposByStatus('experimental')];
+  const rows = listed.map((repo) => {
+    const standards = repo.standards?.length ? repo.standards.map((id) => `\`${id}\``).join(', ') : '-';
+    return `| ${mdLink(repo.repo, repo.url)} | ${repo.status} | ${standards} | ${repo.demonstrates} | ${evidenceMarkdown(repo)} |`;
   });
-  const next = candidates.map((repo) => `- \`${repo.id}\`: ${repo.demonstrates}`).join('\n');
+  const next = reposByStatus('candidate').map((repo) => `- \`${repo.id}\`: ${repo.demonstrates}`).join('\n');
+  const notes = referenceNotes();
 
   return `
-| Repository | Standards demonstrated | What it demonstrates | Evidence |
-|---|---|---|---|
+| Repository | Catalog status | Standards demonstrated | What it demonstrates | Score evidence |
+|---|---|---|---|---|
 ${rows.join('\n')}
 
+Scores marked *self-reported* come from the reference repo's own tracked VCQA report at the
+listed commit. They are not independent assessments; treat them as claims with a visible
+provenance trail, not as third-party proof.
+${notes.length ? `\nStatus notes:\n\n${notes.join('\n')}\n` : ''}
 Next template candidates:
 
 ${next}
+`;
+}
+
+// The compositions page repeats the reference inventory in prose form for readers arriving
+// from the composition map. It used to be a hand-maintained list and had drifted to three
+// of the six published repos, so it is generated from the same metadata.
+function generatedCompositionsReferenceRepos() {
+  const listed = [...reposByStatus('published'), ...reposByStatus('experimental')];
+  const lines = listed.map((repo) => {
+    const primary = repo.demonstratesPrimary
+      ? `primary standard \`${repo.demonstratesPrimary}\``
+      : 'no primary stack standard yet';
+    return `- ${mdLink(repo.repo, repo.url)} (${repo.status}, ${primary}): ${repo.demonstrates} Score evidence: ${evidenceMarkdown(repo)}.`;
+  });
+  return `
+${lines.join('\n')}
+`;
+}
+
+// Charter pages cite "the" reference repo for their stack. That claim, its score, and its
+// provenance are generated so a charter page cannot fall behind the catalog.
+function generatedStackReferenceEvidence(standardId) {
+  const repo = primaryRepoFor(standardId);
+  if (!repo) throw new Error(`no primary reference implementation with evidence for ${standardId}`);
+  const evidence = repo.evidence;
+  const independent = evidence.independentAssessmentUrl
+    ? mdLink('Published independent assessment', evidence.independentAssessmentUrl)
+    : 'None published yet. The score above is the reference repo\'s own claim, not third-party proof.';
+  return `
+| Score evidence | Value |
+|---|---|
+| Repository | ${mdLink(repo.repo, repo.url)} (${repo.status}) |
+| VCQA report | ${mdLink(scoreLabel(evidence), evidence.reportUrl)} |
+| Verification | ${verificationLabel(evidence)} |
+| Assessed commit | ${mdLink(`\`${evidence.assessedCommit.slice(0, 7)}\``, commitUrl(repo, evidence.assessedCommit))} |
+| Assessed on | ${evidence.assessedAt} |
+| CI run | ${mdLink(evidence.ciConclusion, evidence.ciRunUrl)} (${evidence.ciRunAt}) |
+| Independent assessment | ${independent} |
+| Catalog entry last verified | ${evidence.verifiedAt} |
 `;
 }
 
@@ -464,21 +567,22 @@ function generatedHtmlPublishedRubrics() {
 }
 
 function generatedHtmlReferenceRepos() {
-  const rows = compositions.referenceImplementations
-    .filter((repo) => repo.status === 'published')
-    .map((repo) => {
-      const evidence = repo.reportUrl ? `${htmlLink(repo.score ? `${repo.score} report` : 'Report', repo.reportUrl)}; CI ${escapeHtml(repo.ci ?? 'unknown')}.` : 'No report yet.';
-      return `<tr><td>${htmlLink(repo.id, repo.url, 'name')}</td><td>${escapeHtml(repo.demonstrates)}</td><td>${evidence}</td></tr>`;
-    })
+  const rows = [...reposByStatus('published'), ...reposByStatus('experimental')]
+    .map((repo) => `<tr><td>${htmlLink(repo.id, repo.url, 'name')}</td><td>${escapeHtml(repo.status)}</td><td>${escapeHtml(repo.demonstrates)}</td><td>${evidenceHtml(repo)}</td></tr>`)
     .join('\n');
-  const next = compositions.referenceImplementations
-    .filter((repo) => repo.status === 'candidate')
+  const next = reposByStatus('candidate')
     .map((repo) => `<code>${escapeHtml(repo.id)}</code>`)
     .join(', ');
+  const notes = referenceRepos
+    .filter((repo) => repo.note)
+    .map((repo) => `<p><code>${escapeHtml(repo.id)}</code>: ${escapeHtml(repo.note)}</p>`)
+    .join('\n');
   return `<table>
-<tr><th>Repository</th><th>What it demonstrates</th><th>Score evidence</th></tr>
+<tr><th>Repository</th><th>Catalog status</th><th>What it demonstrates</th><th>Score evidence</th></tr>
 ${rows}
 </table>
+<p>Scores marked <em>self-reported</em> come from the reference repo's own tracked VCQA report at the listed commit. They are claims with a visible provenance trail, not independent assessments.</p>
+${notes}
 <p>Next candidates: ${next}.</p>`;
 }
 
@@ -536,15 +640,17 @@ function graphModel() {
     docsUrl: normalizeStandardUrl(item.docsUrl),
     references: item.references ?? []
   }));
-  const referenceImplementations = compositions.referenceImplementations.map((repo) => ({
+  const referenceImplementations = referenceRepos.map((repo) => ({
     id: repo.id,
     repo: repo.repo,
     url: repo.url,
     status: repo.status,
     standards: repo.standards ?? [],
-    reportUrl: repo.reportUrl,
-    score: repo.score,
-    ci: repo.ci
+    demonstratesPrimary: repo.demonstratesPrimary ?? null,
+    note: repo.note ?? null,
+    evidence: repo.evidence
+      ? { ...repo.evidence, verification: verificationLabel(repo.evidence) }
+      : null
   }));
   const edges = [
     ...standards.flatMap((standard) => [
@@ -599,14 +705,11 @@ ${standards.map((standard) => {
 }).join('\n')}
 </div>`).join('\n\n');
 
-  const templates = model.referenceImplementations.map((repo) => {
-    const evidence = [repo.reportUrl ? htmlLink(repo.score ? `${repo.score} report` : 'report', repo.reportUrl) : null, repo.ci ? `CI ${escapeHtml(repo.ci)}` : null].filter(Boolean).join(' · ');
-    return `  <div class="node template">
+  const templates = referenceRepos.map((repo) => `  <div class="node template">
     <div class="title"><strong>${htmlLink(repo.id, repo.url)}</strong><span class="status">${escapeHtml(repo.status)}</span></div>
-    <div class="chips">${repo.standards.map((id) => chipFor(id)).join('')}</div>
-    <div class="links">${evidence}</div>
-  </div>`;
-  }).join('\n');
+    <div class="chips">${(repo.standards ?? []).map((id) => chipFor(id)).join('')}</div>
+    <div class="links">${evidenceHtml(repo)}</div>
+  </div>`).join('\n');
 
   const itemGroups = new Map();
   for (const item of model.items) {
@@ -694,10 +797,26 @@ Reports and scans should cite this pinned edition URL:
 `;
 }
 
+// Charter pages that carry a generated reference-evidence block: every stack page whose
+// standard has a primary reference repo with score evidence. Deduped by page, because an
+// alias standard can point at the same charter page.
+function stackPagesWithReferenceEvidence() {
+  const seen = new Set();
+  return compositions.composedStandards.flatMap((standard) => {
+    const slug = docsPageSlug(standard.docsUrl, 'stacks');
+    if (!slug || seen.has(slug) || !primaryRepoFor(standard.id)) return [];
+    seen.add(slug);
+    return [{ id: standard.id, slug }];
+  });
+}
+
 const changed = [
   writeJsonIfChanged('standards/graph.json', graphModel()),
   replaceGeneratedBlock('docs/docs/standards/index.md', 'standards-inventory', generatedStandardsCatalog()),
   replaceGeneratedBlock('docs/docs/standards/index.md', 'reference-implementations', generatedReferenceRepos()),
+  replaceGeneratedBlock('docs/docs/standards/compositions.md', 'reference-implementations', generatedCompositionsReferenceRepos()),
+  ...stackPagesWithReferenceEvidence().map((page) =>
+    replaceGeneratedBlock(`docs/docs/standards/stacks/${page.slug}.md`, 'reference-evidence', generatedStackReferenceEvidence(page.id))),
   replaceGeneratedBlock('docs/docs/standards/stacks/index.md', 'stack-standards-inventory', generatedStackIndex()),
   replaceGeneratedBlock('docs/docs/standards/items/index.md', 'stack-items-inventory', generatedItemsIndex()),
   replaceGeneratedBlock('docs/docs/standards/compositions.md', 'composition-summary', generatedCompositionsSummary()),
