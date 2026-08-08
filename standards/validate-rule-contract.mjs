@@ -22,7 +22,11 @@ const checks = [
   ['standards/testing/docs/v1/index.md', '## Severity and evidence defaults'],
   ['standards/testing/docs/v1/index.md', 'acceptedException'],
   ['standards/testing/docs/v1/ci-and-evidence.md', '**Severity.**'],
-  ['standards/testing/docs/v1/ci-and-evidence.md', '**Evidence.**']
+  ['standards/testing/docs/v1/ci-and-evidence.md', '**Evidence.**'],
+  ['standards/flutter-firebase-app/docs/v1/index.md', '## Severity and evidence defaults'],
+  ['standards/flutter-firebase-app/docs/v1/index.md', 'acceptedException'],
+  ['standards/flutter-firebase-app/docs/v1/firestore-rules-and-indexes.md', '**Severity.**'],
+  ['standards/flutter-firebase-app/docs/v1/firestore-rules-and-indexes.md', '**Evidence.**']
 ];
 
 const failures = [];
