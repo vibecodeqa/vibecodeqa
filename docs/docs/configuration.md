@@ -24,9 +24,9 @@ VibeCode QA runs with **zero configuration**. When you want to tailor it — dis
 | `checks.<name>.enabled` | Set `false` to turn a check off (default `true`). Disabled checks are excluded from the [score](scoring.md), never counted against you. |
 | `checks.<name>.ignore` | File patterns skipped **for that one check**. |
 | `ignore` | Global file patterns skipped by **every** check. |
-| `failUnder` | Exit code 1 if the score is below this. The `--fail-under` flag overrides it. |
+| `failUnder` | Exit code 1 if the score is below this. The `--fail-under` flag overrides it, and `--ci` without `--fail-under` uses its own default of 60 instead of this value. |
 
-Use any check's `name` (the lowercase id, e.g. `complexity`, `duplication`, `react`). See [the 34 checks](checks.md) for the full list.
+Use any check's `name` (the lowercase id, e.g. `complexity`, `duplication`, `react`). See [the 38 checks](checks.md) for the full list.
 
 ## Ignore patterns
 

@@ -4,7 +4,7 @@ icon: lucide/gauge
 
 # VibeCode QA
 
-**Code health scanner for the AI coding era.** 34 checks across 7 categories, zero config, a single 0–100 score with a full HTML report — in about five seconds.
+**Code health scanner for the AI coding era.** 38 checks across 7 categories, zero config, a single 0–100 score with a full HTML report — in about five seconds.
 
 ```bash
 npx @vibecodeqa/cli
@@ -20,9 +20,9 @@ That auto-detects your stack (TypeScript/JavaScript, React/Vue/Svelte, Node, or 
 
     A weighted composite (0–100) you can track over time, gate CI on, and post to pull requests.
 
-- :lucide-search: __34 checks, 7 categories__
+- :lucide-search: __38 checks, 7 categories__
 
-    Foundations, Quality, Testing, Architecture, Security, AI Readiness, and AI Analysis. [See them all](checks.md).
+    Foundations, Quality, Testing, Architecture, Security, LLM Readiness, and AI Analysis. [See them all](checks.md).
 
 - :lucide-bot: __Built for AI-assisted code__
 
@@ -39,7 +39,7 @@ That auto-detects your stack (TypeScript/JavaScript, React/Vue/Svelte, Node, or 
 ```mermaid
 flowchart LR
   A[npx @vibecodeqa/cli] --> B[Detect stack<br/>and workspace]
-  B --> C[Run 34 checks]
+  B --> C[Run 38 checks]
   C --> D[Weighted score<br/>0–100 · A–F]
   D --> E[Terminal summary]
   D --> F[HTML report<br/>.vibe-check/]
@@ -48,7 +48,7 @@ flowchart LR
 
 ## Next steps
 
-- [The 34 checks](checks.md) — what each one measures, why it matters, and how to fix it
+- [The 38 checks](checks.md) — what each one measures, why it matters, and how to fix it
 - [Scoring](scoring.md) — how the composite score is calculated
 - [Architecture](architecture.md) — how the scanner works under the hood
 - [Documentation site](documentation.md) — how this website's docs are built and published

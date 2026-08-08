@@ -4,7 +4,57 @@ icon: lucide/list-checks
 
 # The checks
 
-VibeCode QA runs canonical checks across 7 categories. Each check is scored 0–100 and weighted into a single composite score. Weights sum to 100; Pro/AI Analysis and platform-specific zero-weight checks are informational unless promoted into the scoring model. The schema package's `CHECK_META` is the source of truth for the exact current check list and weights.
+A scan runs **38 checks** across **7 weighted categories**. Each check is scored 0–100 and weighted into a single composite score. The weights of the 37 checks that carry category metadata sum to 100; Pro/AI Analysis and platform-specific zero-weight checks are informational unless promoted into the scoring model. The `CHECK_META` table in the `@vibecodeqa/schema` package is the source of truth for the exact current check list and weights.
+
+!!! info "Last verified"
+    Check list, categories, weights, and priorities on this page were verified against `@vibecodeqa/cli` **0.54.4** on **2026-08-08**, by reading `CHECK_META` and running a real scan. The inventory below is complete; the detailed sections that follow cover the long-standing checks only.
+
+## Full check inventory
+
+Every check a scan runs, in run order, with the category and weight it contributes.
+
+| Check | Category | Weight | Priority |
+|---|---|---:|---|
+| `structure` | Foundations | 6 | high |
+| `lint` | Foundations | 5 | high |
+| `types` | Foundations | 6 | critical |
+| `type-safety` | Foundations | 3 | medium |
+| `standards` | Foundations | 3 | high |
+| `complexity` | Quality | 5 | high |
+| `duplication` | Quality | 3 | medium |
+| `error-handling` | Quality | 3 | high |
+| `react` | Quality | 3 | high |
+| `flutter` | Quality | 0 | high |
+| `accessibility` | Quality | 4 | high |
+| `docs` | Quality | 3 | low |
+| `best-practices` | Quality | 3 | medium |
+| `env-validation` | Quality | 1 | medium |
+| `git-hygiene` | Quality | 1 | medium |
+| `memory-safety` | Quality | 1 | high |
+| `testing` | Testing | 13 | critical |
+| `secrets` | Security | 6 | critical |
+| `security` | Security | 5 | critical |
+| `dependencies` | Security | 5 | high |
+| `architecture` | Architecture | 5 | high |
+| `performance` | Architecture | 4 | medium |
+| `dead-code` | — (synthetic) | 0 | — |
+| `container-health` | Quality | 0 | medium |
+| `cloudflare-workers` | Quality | 0 | high |
+| `sqlite-d1` | Security | 0 | critical |
+| `confusion` | LLM Readiness | 4 | high |
+| `context` | LLM Readiness | 5 | high |
+| `doc-coherence` | AI Analysis | 0 (Pro) | high |
+| `code-coherence` | AI Analysis | 0 (Pro) | high |
+| `comment-staleness` | AI Analysis | 0 (Pro) | medium |
+| `html-quality` | Quality | 0 | medium |
+| `frontend-health` | Quality | 2 | high |
+| `styling` | Quality | 1 | medium |
+| `dead-patterns` | AI Analysis | 0 (Pro) | high |
+| `test-audit` | AI Analysis | 0 (Pro) | high |
+| `file-cohesion` | AI Analysis | 0 (Pro) | critical |
+| `design-consistency` | AI Analysis | 0 (Pro) | high |
+
+`dead-code` is a synthetic check: it is derived from the `performance` runner's findings, has no `CHECK_META` row, and is marked `scoreImpact: false`, so it appears in `report.json` and the HTML report but never moves the score.
 
 ## Foundations <small>(23% of score)</small>
 
@@ -58,7 +108,7 @@ VibeCode QA runs canonical checks across 7 categories. Each check is scored 0–
 
 ### Code Standards
 
-`weight 3%` · `medium priority`
+`weight 3%` · `high priority`
 
 **What it checks.** Checks coding conventions: file naming (PascalCase for components, kebab-case for modules), file size limits (>300 lines flagged), code smells (console.log, var, ==, eval, innerHTML, TODO/FIXME), config hygiene (strict mode), and framework best practices (Tailwind vs inline styles).
 
@@ -68,7 +118,7 @@ VibeCode QA runs canonical checks across 7 categories. Each check is scored 0–
 !!! tip "How to fix"
     Split files over 300 lines. Replace console.log with a proper logger or remove it. Use const/let, ===, and safe DOM APIs. Enable TypeScript strict mode.
 
-## Quality <small>(26% of score)</small>
+## Quality <small>(30% of score)</small>
 
 ### Error Handling
 
@@ -96,7 +146,7 @@ VibeCode QA runs canonical checks across 7 categories. Each check is scored 0–
 
 ### Duplication
 
-`weight 5%` · `medium priority`
+`weight 3%` · `medium priority`
 
 **What it checks.** Detects copy-pasted code blocks of 6+ lines across source files. Duplication is measured as a percentage of total source lines involved in duplicate blocks.
 
@@ -174,11 +224,11 @@ VibeCode QA runs canonical checks across 7 categories. Each check is scored 0–
 !!! tip "How to fix"
     Pin third-party actions to SHA. Use OIDC trusted publishing instead of tokens. Set explicit permissions in workflows. Add SECURITY.md, CODEOWNERS, and CONTRIBUTING.md. Configure Dependabot or Renovate for automated dependency updates. Add pre-commit hooks.
 
-## Testing <small>(15% of score)</small>
+## Testing <small>(13% of score)</small>
 
 ### Testing
 
-`weight 15%` · `critical priority`
+`weight 13%` · `critical priority`
 
 **What it checks.** Deep assessment of test quality across 6 dimensions: pyramid presence (unit/integration/component/E2E layers), test execution (pass/fail), coverage (statement/branch/line/function), file pairing (test file per source file), test quality (assertion density, mock ratio, snapshot ratio), and E2E tool detection (Playwright/Cypress).
 
@@ -252,11 +302,11 @@ VibeCode QA runs canonical checks across 7 categories. Each check is scored 0–
 !!! tip "How to fix"
     Run 'pnpm audit' regularly and fix critical/high vulnerabilities immediately. Keep dependencies updated — use Dependabot or Renovate for automated PRs. Pin versions with a lockfile.
 
-## AI Readiness <small>(11% of score)</small>
+## LLM Readiness <small>(9% of score)</small>
 
 ### Confusion Index
 
-`weight 6%` · `high priority`
+`weight 4%` · `high priority`
 
 **What it checks.** Measures naming ambiguity that causes LLMs to misunderstand or edit the wrong code. Checks: file name confusability (Levenshtein distance + synonym detection), generic function/variable names, export name collisions across files, and ambiguous abbreviations.
 
@@ -279,6 +329,8 @@ VibeCode QA runs canonical checks across 7 categories. Each check is scored 0–
     Keep files under 400 lines / 4000 tokens. Limit imports to <15 per file. Break circular dependencies. Co-locate related code to reduce cross-file jumps.
 
 ## AI Analysis <small>(Pro · informational)</small>
+
+These checks need a `VCQA_PRO_KEY` in the environment. Without it they report status `unavailable` and are excluded from the score. There are seven of them; `file-cohesion` and `design-consistency` do not yet have a detailed section below.
 
 ### Doc Coherence
 

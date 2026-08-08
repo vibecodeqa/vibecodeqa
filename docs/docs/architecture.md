@@ -14,7 +14,7 @@ flowchart TD
   B --> C{Monorepo?}
   C -->|yes| D[Resolve packages<br/>pnpm · turbo · nx · melos]
   C -->|no| E[Single source root]
-  D --> F[Run 34 checks]
+  D --> F[Run 38 checks]
   E --> F
   F --> G[Per-check score 0–100]
   G --> H[Weighted composite]
@@ -31,7 +31,7 @@ Where a best-in-class tool exists, VibeCode QA delegates to it when it's availab
 ```mermaid
 flowchart LR
   subgraph Secrets
-    S1[gitleaks] -.fallback.-> S2[14 regex patterns]
+    S1[gitleaks] -.fallback.-> S2[15 regex patterns]
   end
   subgraph Duplication
     D1[jscpd CLI] -.fallback.-> D2["@jscpd/core engine<br/>+ our tokenizer"]
@@ -56,16 +56,16 @@ The duplication fallback is notable: it runs **jscpd's own `@jscpd/core` Rabin-K
 ```mermaid
 flowchart LR
   F[Foundations 23%] --> SUM([Σ check × weight])
-  Q[Quality 26%] --> SUM
-  T[Testing 15%] --> SUM
+  Q[Quality 30%] --> SUM
+  T[Testing 13%] --> SUM
   AR[Architecture 9%] --> SUM
   SEC[Security 16%] --> SUM
-  AI[AI Readiness 11%] --> SUM
+  AI[LLM Readiness 9%] --> SUM
   SUM --> SCORE[Composite 0–100]
   SCORE --> GRADE[Grade A–F]
 ```
 
-Weights sum to 100. The five AI Analysis checks are weight 0 — they surface findings without affecting the score. Full method on the [Scoring](scoring.md) page.
+Weights sum to 100 across the 37 checks that carry category metadata. The seven AI Analysis checks are weight 0 — they surface findings without affecting the score, as do the platform-specific zero-weight checks and the synthetic `dead-code` check. Full method on the [Scoring](scoring.md) page.
 
 ## Output formats
 
@@ -83,4 +83,7 @@ See the [CLI reference](reference.md) for every flag.
 
 The hosted dashboard uses GitHub OAuth for repo discovery and settings, but the browser never receives the GitHub access token. The API stores the token server-side behind an HttpOnly session cookie, validates OAuth state on callback, and checks GitHub repo permissions before reading settings, uploading manual reports, triggering scans, or showing private report history.
 
-CLI uploads use a separate VibeCode QA platform token (`VCQA_TOKEN`). GitHub Actions `GITHUB_TOKEN` is intentionally not accepted for dashboard uploads.
+CLI uploads use a separate VibeCode QA platform token (`VCQA_TOKEN`). The CLI falls back to `GITHUB_TOKEN` when `VCQA_TOKEN` is unset and sends whichever it finds as the bearer token; whether the dashboard accepts a GitHub token is a server-side decision this repository cannot verify from the CLI source.
+
+!!! info "Last verified"
+    Pipeline, weights, and output formats verified against `@vibecodeqa/cli` **0.54.4** on **2026-08-08**. Dashboard-side behaviour was not verified.
