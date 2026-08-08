@@ -386,6 +386,22 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     </div>
     <div class="links"><a href="/docs/standards/stacks/tenant-deployed-cloudflare-saas/">catalog</a><a href="/standards/tenant-deployed-cloudflare-saas/v1/">rubric</a></div>
   </div>
+  <div class="standard-card authored">
+    <div class="title"><strong><a href="/docs/standards/stacks/flutter-firebase-app/">flutter-firebase-app</a></strong><span class="status">authored v1</span></div>
+    <div class="kind">Flutter app/admin/shared workspace backed by Firebase Auth, Firestore, Storage, Messaging, Hosting, and Cloud Functions, with Melos orchestration and deploy/test gates.</div>
+    <div class="chips">
+      <a class="chip item" href="/docs/standards/items/dart/">dart</a>
+      <a class="chip item" href="/docs/standards/items/flutter/">flutter</a>
+      <a class="chip item" href="/docs/standards/items/firebase/">firebase</a>
+      <a class="chip item" href="/docs/standards/items/melos/">melos</a>
+      <a class="chip item" href="/docs/standards/items/github-actions/">github-actions</a>
+      <a class="chip item" href="/docs/standards/items/dependencies/">dependencies</a>
+      <a class="chip item optional" href="/docs/standards/items/web-accessibility/">web-accessibility</a>
+      <a class="chip item optional" href="/docs/standards/items/web-security/">web-security</a>
+      <a class="chip item optional" href="/docs/standards/items/node/">node</a>
+    </div>
+    <div class="links"><a href="/docs/standards/stacks/flutter-firebase-app/">catalog</a><a href="/standards/flutter-firebase-app/v1/">rubric</a></div>
+  </div>
 </div>
 
 
@@ -530,22 +546,6 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
       <a class="chip item" href="/docs/standards/items/node/">node</a>
     </div>
     <div class="links"><a href="/docs/standards/items/dependencies/">catalog</a></div>
-  </div>
-  <div class="standard-card planned">
-    <div class="title"><strong><a href="/docs/standards/stacks/flutter-firebase-app/">flutter-firebase-app</a></strong><span class="status">planned</span></div>
-    <div class="kind">Flutter app/admin/shared workspace backed by Firebase Auth, Firestore, Storage, Messaging, Hosting, and Cloud Functions, with Melos orchestration and deploy/test gates.</div>
-    <div class="chips">
-      <a class="chip item" href="/docs/standards/items/dart/">dart</a>
-      <a class="chip item" href="/docs/standards/items/flutter/">flutter</a>
-      <a class="chip item" href="/docs/standards/items/firebase/">firebase</a>
-      <a class="chip item" href="/docs/standards/items/melos/">melos</a>
-      <a class="chip item" href="/docs/standards/items/github-actions/">github-actions</a>
-      <a class="chip item" href="/docs/standards/items/dependencies/">dependencies</a>
-      <a class="chip item optional" href="/docs/standards/items/web-accessibility/">web-accessibility</a>
-      <a class="chip item optional" href="/docs/standards/items/web-security/">web-security</a>
-      <a class="chip item optional" href="/docs/standards/items/node/">node</a>
-    </div>
-    <div class="links"><a href="/docs/standards/stacks/flutter-firebase-app/">catalog</a></div>
   </div>
 </div>
 

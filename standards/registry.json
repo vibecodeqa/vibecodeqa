@@ -1043,13 +1043,13 @@
       "type": "recipe",
       "title": "Flutter Firebase App",
       "summary": "Flutter app/admin/shared workspace backed by Firebase Auth, Firestore, Storage, Messaging, Hosting, and Cloud Functions, with Melos orchestration and deploy/test gates.",
-      "url": "https://vibecodeqa.online/docs/standards/stacks/flutter-firebase-app/",
-      "standardUrl": null,
+      "url": "https://vibecodeqa.online/standards/flutter-firebase-app/v1/",
+      "standardUrl": "https://vibecodeqa.online/standards/flutter-firebase-app/v1/",
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "repo",
-      "status": "planned",
-      "maturity": "draft-charter",
-      "maturityNote": "Eight candidate rules are drafted, but none states a severity, required evidence, or accepted exception, so no rubric can be cut from them. `ref-flutter-firebase-app` is now built and cataloged as experimental with a self-reported score and a green CI run; the v1 rubric half of [#43](https://github.com/vibecodeqa/vibecodeqa/issues/43) is still outstanding and is what blocks a candidate rubric. Detection is also fragile: it requires `melos.yaml`, which Melos 7 removed ([#48](https://github.com/vibecodeqa/vibecodeqa/issues/48)).",
+      "status": "published",
+      "maturity": "authored-rubric",
+      "maturityNote": null,
       "detect": {
         "all": [
           {
@@ -1086,7 +1086,29 @@
         "mobile/web builds carry platform permission and signing evidence",
         "test dashboard artifacts are evidence, but production deploy gates must fail on red tests"
       ],
-      "editions": [],
+      "editions": [
+        {
+          "version": "v1",
+          "path": "/v1",
+          "status": "latest",
+          "reviewed": "2026-08",
+          "nextReview": "2027-08",
+          "targets": {
+            "flutter": "3",
+            "dart": "3",
+            "firebase": "latest",
+            "melos": "6",
+            "cloudFunctions": "nodejs22",
+            "githubActions": "latest"
+          },
+          "lifecycle": {
+            "deprecated": false,
+            "supersededBy": null,
+            "errata": [],
+            "changelog": []
+          }
+        }
+      ],
       "aliases": [
         "flutterfire-app",
         "firebase-flutter-app"

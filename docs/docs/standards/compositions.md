@@ -31,7 +31,7 @@ map.
 | [React SPA on Cloudflare Pages (with Functions)](stacks/cloudflare-pages-fullstack.md) | authored | Authored rubric | [v1](/standards/cloudflare-pages-fullstack/v1/) | `react-spa`, `cloudflare-pages-functions`, `typescript`, `web-security`, `github-actions` |
 | [Accessibility](items/web-accessibility.md) | planned | Draft charter | planned | `web-accessibility` |
 | [Dependency Hygiene](items/dependencies.md) | planned | Draft charter | planned | `dependencies`, `github-actions`, `node` |
-| [Flutter Firebase App](stacks/flutter-firebase-app.md) | planned | Draft charter | planned | `dart`, `flutter`, `firebase`, `melos`, `github-actions`, `dependencies` |
+| [Flutter Firebase App](stacks/flutter-firebase-app.md) | authored | Authored rubric | [v1](/standards/flutter-firebase-app/v1/) | `dart`, `flutter`, `firebase`, `melos`, `github-actions`, `dependencies` |
 <!-- END GENERATED:composition-summary -->
 
 Product-neutral reference implementations:

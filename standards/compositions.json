@@ -858,7 +858,7 @@
     },
     {
       "id": "flutter-firebase-app",
-      "status": "planned",
+      "status": "authored",
       "aliases": [
         "flutterfire-app",
         "firebase-flutter-app"
@@ -877,18 +877,21 @@
         "node"
       ],
       "ownedRules": [
-        "Flutter app/admin/shared package workspace shape",
-        "Firebase project, hosting, functions, and Firestore environment separation",
-        "Firestore rules, indexes, and emulator-backed test gates",
-        "mobile/web build artifact and platform permission evidence",
-        "version bump, deploy gate, and test dashboard evidence"
+        "Flutter/Dart workspace declaration, workspace-wide analyze, and shared-package consumer proof",
+        "the client/server field contract declared once across Dart, firestore.rules, and Functions",
+        "Firebase environment separation, emulator isolation, and build-time environment selection",
+        "the public client config versus server credential boundary, in source and in the built artifact",
+        "Firestore rules and composite indexes as versioned, emulator-tested, deployable artifacts",
+        "Cloud Functions as the owner of privileged writes, with server-side claim re-verification",
+        "Flutter build evidence: pinned toolchain, platform permissions, and stated build-shape limits",
+        "production deploy gating, rules-before-code promotion order, and deploy credential shape"
       ],
       "benefits": [
         "HeartFull platform: app/admin/shared Flutter workspace with Firebase backend",
-        "future ref-flutter-firebase-app template"
+        "ref-flutter-firebase-app: product-neutral template for this composition"
       ],
-      "standardUrl": null,
-      "latestEdition": null,
+      "standardUrl": "https://vibecodeqa.online/standards/flutter-firebase-app/v1/",
+      "latestEdition": "v1",
       "docsUrl": "/docs/standards/stacks/flutter-firebase-app/"
     }
   ],
@@ -1234,7 +1237,7 @@
       ],
       "demonstratesPrimary": "flutter-firebase-app",
       "demonstrates": "Product-neutral Flutter + Firebase workspace: app/admin/shared packages, Firebase Hosting/Functions/Firestore, rules tests, platform builds, and CI evidence gates.",
-      "note": "Experimental rather than published: `flutter-firebase-app` is `planned` with maturity `draft-charter` — its rules name behaviours but state no severity, required evidence or accepted exception — so there is no rule set for this repo to be the reference implementation of. The v1 rubric is outstanding under [#43](https://github.com/vibecodeqa/vibecodeqa/issues/43). Detection also depends on `melos.yaml`, which Melos 7 removed ([#48](https://github.com/vibecodeqa/vibecodeqa/issues/48)), and the repo's Cloud Functions package resolves as `typescript-sdk` because Functions must declare `main` ([#49](https://github.com/vibecodeqa/vibecodeqa/issues/49)). The mobile build check is a debug APK compile: release signing, R8, App Bundle and iOS are never built.",
+      "note": "Not yet re-judged against the v1 rubric published under [#43](https://github.com/vibecodeqa/vibecodeqa/issues/43): its score was assessed against the earlier charter plus testing@v1 and security@v1, so it stays experimental until a scan against flutter-firebase-app@v1 replaces the evidence below. The score is also self-reported and was not independently reproducible -- a bare-environment scan without a Flutter SDK and resolved Dart dependencies returns 78/100 for the same commit, because the analyzer cannot resolve imports. Detection depends on melos.yaml, which Melos 7 removed, so the repo pins Melos 6.3.2 purely to stay detectable ([#48](https://github.com/vibecodeqa/vibecodeqa/issues/48)), and its Cloud Functions package resolves as typescript-sdk because Functions must declare main ([#49](https://github.com/vibecodeqa/vibecodeqa/issues/49)). The mobile build check is a debug APK compile: release signing, R8, App Bundle and iOS are never built.",
       "evidence": {
         "reportUrl": "https://github.com/vibecodeqa/ref-flutter-firebase-app/blob/main/docs/vcqa-report.md",
         "score": 93,

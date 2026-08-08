@@ -63,6 +63,7 @@ policy, and anti-patterns.
 - [Cloudflare D1 App v1](/standards/cloudflare-d1-app/v1/) - SQLite-at-the-edge: schema, migrations discipline, parameterized queries, local/remote parity.
 - [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/) - A remote MCP server hosted on Cloudflare Workers, with Worker-bound authorization, tool schemas, validation, storage boundaries, and auditability.
 - [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/) - A tenant-scoped Cloudflare SaaS deployment model composing Pages Functions, D1, Worker MCP, bindings, secrets, aliases, promotion gates, provisioning, and auditability.
+- [Flutter Firebase App v1](/standards/flutter-firebase-app/v1/) - Flutter app/admin/shared workspace backed by Firebase Auth, Firestore, Storage, Messaging, Hosting, and Cloud Functions, with Melos orchestration and deploy/test gates.
 
 ### Authored cross-cutting rubrics
 

@@ -12,6 +12,7 @@ describe deployable shapes, not isolated frameworks.
 - [Cloudflare D1 App](cloudflare-d1-app.md): SQLite-at-the-edge: schema, migrations discipline, parameterized queries, local/remote parity. Full rubric: [Cloudflare D1 App v1](/standards/cloudflare-d1-app/v1/).
 - [Cloudflare Worker MCP Server](cloudflare-worker-mcp-server.md): A remote MCP server hosted on Cloudflare Workers, with Worker-bound authorization, tool schemas, validation, storage boundaries, and auditability. Full rubric: [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/).
 - [Tenant-Deployed Cloudflare SaaS](tenant-deployed-cloudflare-saas.md): A tenant-scoped Cloudflare SaaS deployment model composing Pages Functions, D1, Worker MCP, bindings, secrets, aliases, promotion gates, provisioning, and auditability. Full rubric: [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/).
+- [Flutter Firebase App](flutter-firebase-app.md): Flutter app/admin/shared workspace backed by Firebase Auth, Firestore, Storage, Messaging, Hosting, and Cloud Functions, with Melos orchestration and deploy/test gates. Full rubric: [Flutter Firebase App v1](/standards/flutter-firebase-app/v1/).
 
 ## Authored Cross-Cutting Rubrics
 
@@ -47,7 +48,6 @@ Scope, composition, detection signals, and the VCQA-owned rule surface are recor
 - [Zensical KB Site](zensical-kb-site.md): Markdown source is the source of truth, generated site is ignored, published URLs are stable, source references are tracked, docs drift checks where mirrors exist.
 - [Accessibility](../items/web-accessibility.md): WCAG and ARIA acceptance gates mapped to scanner evidence, keyboard, focus, semantics, and contrast checks by UI stack, manual-review exception policy for accessibility findings.
 - [Dependency Hygiene](../items/dependencies.md): lockfile and package-manager pinning, install script and dependency provenance review, audit, license, update, runtime, and exception evidence in CI.
-- [Flutter Firebase App](flutter-firebase-app.md): Flutter app/admin/shared package workspace shape, Firebase project, hosting, functions, and Firestore environment separation, Firestore rules, indexes, and emulator-backed test gates, mobile/web build artifact and platform permission evidence, version bump, deploy gate, and test dashboard evidence.
 
 ### Backlog
 
