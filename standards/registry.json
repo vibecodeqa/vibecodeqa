@@ -330,7 +330,7 @@
       "appliesTo": "slice",
       "status": "planned",
       "maturity": "candidate-rubric",
-      "maturityNote": "Twelve candidate rules carry severity, evidence, and exception terms. Blocking v1: `ref-typescript-sdk` does not exist yet ([#14](https://github.com/vibecodeqa/vibecodeqa/issues/14)), so not one rule has been proven against a working repository.",
+      "maturityNote": "Twelve candidate rules carry severity, evidence, and exception terms, and `ref-typescript-sdk` now exists, is published in the catalog, and carries a self-reported score with a green CI run ([#14](https://github.com/vibecodeqa/vibecodeqa/issues/14)). Blocking v1: the reference repo's report evidences the required implementation but does not judge R-SDK-1 to R-SDK-12 one by one at a named commit, and no independent assessment of the repo exists.",
       "detect": {
         "all": [
           {
@@ -842,7 +842,7 @@
       "appliesTo": "slice",
       "status": "planned",
       "maturity": "candidate-rubric",
-      "maturityNote": "Matured from a backlog note on 2026-08-09 ([#37](https://github.com/vibecodeqa/vibecodeqa/issues/37)): candidate rules, upstream references, severity, exception policy, and CI evidence are now on the page. Blocking v1: `ref-github-action-package` does not exist yet ([#44](https://github.com/vibecodeqa/vibecodeqa/issues/44)), so `vibecodeqa/action` is the only repository these rules have been read against.",
+      "maturityNote": "Matured from a backlog note on 2026-08-09 ([#37](https://github.com/vibecodeqa/vibecodeqa/issues/37)): candidate rules, upstream references, severity, exception policy, and CI evidence are on the page, and `ref-github-action-package` is now published in the catalog with a self-reported score, a green CI run, and a hand-argued R-GHA-1 to R-GHA-10 mapping ([#44](https://github.com/vibecodeqa/vibecodeqa/issues/44)). Blocking v1: that mapping is prose rather than a scanner signal, no independent assessment of the repo exists, no release tag has been cut so R-GHA-8 is documented but never exercised, and the composite and Docker runtimes are still unseparated from the JavaScript rules.",
       "aliases": [],
       "detect": {
         "anyFile": [
@@ -870,7 +870,7 @@
       "appliesTo": "slice",
       "status": "planned",
       "maturity": "backlog",
-      "maturityNote": "Demoted on 2026-08-09 ([#37](https://github.com/vibecodeqa/vibecodeqa/issues/37)). The only consumer the charter cited, `vibecodeqa/vscode`, was archived on 2026-07-23 without ever being published, and `ref-vscode-extension-package` does not exist ([#19](https://github.com/vibecodeqa/vibecodeqa/issues/19)). The page stays published so its URL keeps resolving, but nobody is working toward a rubric.",
+      "maturityNote": "Demoted on 2026-08-09 ([#37](https://github.com/vibecodeqa/vibecodeqa/issues/37)) because the only consumer the charter cited, `vibecodeqa/vscode`, was archived on 2026-07-23 without ever being published. A reference repo has since been built and is cataloged as experimental ([#19](https://github.com/vibecodeqa/vibecodeqa/issues/19)), which is why the demotion reason no longer stands alone. Still blocking any promotion: this page carries no numbered candidate rules, and the resolver cannot match the archetype at all — both detect branches are dead, so even the gap report a backlog entry exists to produce names `typescript-sdk` instead ([#47](https://github.com/vibecodeqa/vibecodeqa/issues/47)). The page stays published so its URL keeps resolving.",
       "aliases": [],
       "detect": {
         "any": [
@@ -902,7 +902,7 @@
       "appliesTo": "repo",
       "status": "planned",
       "maturity": "draft-charter",
-      "maturityNote": "Scope, composition, detection signals, and rule surface are recorded, but no numbered candidate rules exist, so nothing here is judgeable yet. `vibecodeqa/app` is a live in-house consumer; `ref-tauri-react-desktop` is not built ([#21](https://github.com/vibecodeqa/vibecodeqa/issues/21)).",
+      "maturityNote": "Scope, composition, detection signals, and rule surface are recorded, but no numbered candidate rules exist, so nothing here is judgeable yet. `vibecodeqa/app` is a live in-house consumer, and `ref-tauri-react-desktop` is now built and cataloged as experimental with a self-reported score and a green CI run ([#21](https://github.com/vibecodeqa/vibecodeqa/issues/21)). Blocking a candidate rubric: the rule surface has to become numbered rules with severity, evidence, and an exception policy before either repo can be judged against it.",
       "aliases": [],
       "composes": [
         "react-spa"
@@ -940,7 +940,7 @@
       "appliesTo": "repo",
       "status": "planned",
       "maturity": "draft-charter",
-      "maturityNote": "Scope, composition, detection signals, and rule surface are recorded, but no numbered candidate rules exist. This repository's own docs site is the in-house consumer; `ref-zensical-kb-site` is not built ([#17](https://github.com/vibecodeqa/vibecodeqa/issues/17)).",
+      "maturityNote": "Scope, composition, detection signals, and rule surface are recorded, but no numbered candidate rules exist. This repository's own docs site is the in-house consumer, and `ref-zensical-kb-site` is now built and cataloged as experimental with a self-reported score and a green CI run ([#17](https://github.com/vibecodeqa/vibecodeqa/issues/17)). Blocking a candidate rubric: the rule surface has to become numbered rules with severity, evidence, and an exception policy, and the reference repo's KB-quality model is the obvious input for authoring them.",
       "aliases": [],
       "detect": {
         "anyFile": [
@@ -1049,7 +1049,7 @@
       "appliesTo": "repo",
       "status": "planned",
       "maturity": "draft-charter",
-      "maturityNote": "Eight candidate rules are drafted, but none states a severity, required evidence, or accepted exception, so no rubric can be cut from them. Maturing the rules and building `ref-flutter-firebase-app` is tracked by [#43](https://github.com/vibecodeqa/vibecodeqa/issues/43).",
+      "maturityNote": "Eight candidate rules are drafted, but none states a severity, required evidence, or accepted exception, so no rubric can be cut from them. `ref-flutter-firebase-app` is now built and cataloged as experimental with a self-reported score and a green CI run; the v1 rubric half of [#43](https://github.com/vibecodeqa/vibecodeqa/issues/43) is still outstanding and is what blocks a candidate rubric. Detection is also fragile: it requires `melos.yaml`, which Melos 7 removed ([#48](https://github.com/vibecodeqa/vibecodeqa/issues/48)).",
       "detect": {
         "all": [
           {

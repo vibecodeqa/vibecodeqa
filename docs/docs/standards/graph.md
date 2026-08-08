@@ -284,34 +284,34 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     <div class="links"><a href="https://github.com/vibecodeqa/ref-firebase-react-fullstack/blob/main/docs/vcqa-report.md">91/100</a> (self-reported); commit <a href="https://github.com/vibecodeqa/ref-firebase-react-fullstack/commit/9a18be493942f77af2141b18ecf2dfed5e879299">9a18be4</a> (2026-07-24); CI <a href="https://github.com/vibecodeqa/ref-firebase-react-fullstack/actions/runs/30089690815">success</a> (2026-07-24); verified 2026-08-08.</div>
   </div>
   <div class="node template">
-    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-typescript-sdk">ref-typescript-sdk</a></strong><span class="status">candidate</span></div>
+    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-typescript-sdk">ref-typescript-sdk</a></strong><span class="status">published</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/typescript-sdk/">typescript-sdk</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip item" href="/docs/standards/items/dependencies/">dependencies</a></div>
-    <div class="links">No report yet.</div>
+    <div class="links"><a href="https://github.com/vibecodeqa/ref-typescript-sdk/blob/main/docs/vcqa-report.md">A 98/100</a> (self-reported); commit <a href="https://github.com/vibecodeqa/ref-typescript-sdk/commit/2f6a285c38341700492843919c4012f66df0c7a1">2f6a285</a> (2026-08-09); CI <a href="https://github.com/vibecodeqa/ref-typescript-sdk/actions/runs/31281125180">success</a> (2026-08-08); verified 2026-08-09.</div>
   </div>
   <div class="node template">
-    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-github-action-package">ref-github-action-package</a></strong><span class="status">candidate</span></div>
+    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-github-action-package">ref-github-action-package</a></strong><span class="status">published</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/github-action-package/">github-action-package</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a><a class="chip item" href="/docs/standards/items/dependencies/">dependencies</a></div>
-    <div class="links">No report yet.</div>
+    <div class="links"><a href="https://github.com/vibecodeqa/ref-github-action-package/blob/main/docs/vcqa-report.md">A 100/100</a> (self-reported); commit <a href="https://github.com/vibecodeqa/ref-github-action-package/commit/fd8722d8f584481bb0fdc440f9a519337361e528">fd8722d</a> (2026-08-09); CI <a href="https://github.com/vibecodeqa/ref-github-action-package/actions/runs/31280798527">success</a> (2026-08-08); verified 2026-08-09.</div>
   </div>
   <div class="node template">
-    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-zensical-kb-site">ref-zensical-kb-site</a></strong><span class="status">candidate</span></div>
+    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-zensical-kb-site">ref-zensical-kb-site</a></strong><span class="status">experimental</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/zensical-kb-site/">zensical-kb-site</a></div>
-    <div class="links">No report yet.</div>
+    <div class="links"><a href="https://github.com/vibecodeqa/ref-zensical-kb-site/blob/main/docs/vcqa-report.md">B 88/100</a> (self-reported); commit <a href="https://github.com/vibecodeqa/ref-zensical-kb-site/commit/7b3f48978d46e2731c44b88622ae1d7a97235c86">7b3f489</a> (2026-08-09); CI <a href="https://github.com/vibecodeqa/ref-zensical-kb-site/actions/runs/31281323385">success</a> (2026-08-08); verified 2026-08-09.</div>
   </div>
   <div class="node template">
-    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-vscode-extension-package">ref-vscode-extension-package</a></strong><span class="status">candidate</span></div>
+    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-vscode-extension-package">ref-vscode-extension-package</a></strong><span class="status">experimental</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/vscode-extension-package/">vscode-extension-package</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a></div>
-    <div class="links">No report yet.</div>
+    <div class="links"><a href="https://github.com/vibecodeqa/ref-vscode-extension-package/blob/main/docs/vcqa-report.md">A 99/100</a> (self-reported); commit <a href="https://github.com/vibecodeqa/ref-vscode-extension-package/commit/ca7525fbe541694a362031f2e69165d88c0ad8a1">ca7525f</a> (2026-08-09); CI <a href="https://github.com/vibecodeqa/ref-vscode-extension-package/actions/runs/31281381176">success</a> (2026-08-08); verified 2026-08-09.</div>
   </div>
   <div class="node template">
-    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-tauri-react-desktop">ref-tauri-react-desktop</a></strong><span class="status">candidate</span></div>
+    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-tauri-react-desktop">ref-tauri-react-desktop</a></strong><span class="status">experimental</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/tauri-react-desktop/">tauri-react-desktop</a><a class="chip standard" href="/docs/standards/stacks/react-spa/">react-spa</a><a class="chip item" href="/docs/standards/items/typescript/">typescript</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a></div>
-    <div class="links">No report yet.</div>
+    <div class="links"><a href="https://github.com/vibecodeqa/ref-tauri-react-desktop/blob/main/docs/vcqa-report.md">A 98/100</a> (self-reported); commit <a href="https://github.com/vibecodeqa/ref-tauri-react-desktop/commit/263d600c1c7be456a95fb3c7494cc79f2b7dbab3">263d600</a> (2026-08-09); CI <a href="https://github.com/vibecodeqa/ref-tauri-react-desktop/actions/runs/31281611946">success</a> (2026-08-08); verified 2026-08-09.</div>
   </div>
   <div class="node template">
-    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-flutter-firebase-app">ref-flutter-firebase-app</a></strong><span class="status">candidate</span></div>
+    <div class="title"><strong><a href="https://github.com/vibecodeqa/ref-flutter-firebase-app">ref-flutter-firebase-app</a></strong><span class="status">experimental</span></div>
     <div class="chips"><a class="chip standard" href="/docs/standards/stacks/flutter-firebase-app/">flutter-firebase-app</a><a class="chip standard" href="/docs/standards/items/vitest/">testing</a><a class="chip standard" href="/docs/standards/items/web-security/">security</a><a class="chip item" href="/docs/standards/items/dependencies/">dependencies</a></div>
-    <div class="links">No report yet.</div>
+    <div class="links"><a href="https://github.com/vibecodeqa/ref-flutter-firebase-app/blob/main/docs/vcqa-report.md">A 93/100</a> (self-reported); commit <a href="https://github.com/vibecodeqa/ref-flutter-firebase-app/commit/d0d1a28e72cea97cf34432f8f0e2aaafe5b5349e">d0d1a28</a> (2026-08-09); CI <a href="https://github.com/vibecodeqa/ref-flutter-firebase-app/actions/runs/31282189859">success</a> (2026-08-08); verified 2026-08-09.</div>
   </div>
 </div>
 

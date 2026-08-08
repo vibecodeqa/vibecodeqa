@@ -310,7 +310,7 @@ generator into every surface that shows it, and guarded by `validate-registry.mj
 
 | Field | Meaning |
 | --- | --- |
-| `status` | `published` (a reference implementation of a standard), `experimental` (a real repo with evidence that no authored or planned standard describes yet), `candidate` (not built yet). |
+| `status` | `candidate` (not built yet; `evidence` must be `null`), `experimental` (built and scored, but nothing yet claims it as a reference implementation of a standard — either no standard describes its shape, or its primary standard has no numbered rules to be a reference implementation *of*), `published` (built, scored, and named as the reference implementation of a standard that has at least a `candidate-rubric` rule set). A repo is not promoted to `published` by existing; it is promoted when the standard it demonstrates carries rules. |
 | `demonstratesPrimary` | The one standard whose charter page owns this repo, or `null`. Charter-page evidence blocks are generated from this field. Must also appear in `standards`. |
 | `note` | Why a repo carries a non-obvious status. Rendered under every reference inventory. |
 | `evidence` | Provenance for the score. Required for `published` and `experimental`; must be `null` for `candidate`. |
@@ -349,7 +349,7 @@ Each standard therefore also declares:
 {
   "status": "planned",
   "maturity": "candidate-rubric",
-  "maturityNote": "Twelve candidate rules carry severity, evidence, and exception terms. Blocking v1: `ref-typescript-sdk` does not exist yet, so not one rule has been proven against a working repository."
+  "maturityNote": "Twelve candidate rules carry severity, evidence, and exception terms, and `ref-typescript-sdk` is published with a self-reported score. Blocking v1: its report evidences the implementation but does not judge R-SDK-1 to R-SDK-12 one by one at a named commit."
 }
 ```
 

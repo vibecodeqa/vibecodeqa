@@ -412,7 +412,10 @@ function generatedReferenceRepos() {
     const standards = repo.standards?.length ? repo.standards.map((id) => `\`${id}\``).join(', ') : '-';
     return `| ${mdLink(repo.repo, repo.url)} | ${repo.status} | ${standards} | ${repo.demonstrates} | ${evidenceMarkdown(repo)} |`;
   });
-  const next = reposByStatus('candidate').map((repo) => `- \`${repo.id}\`: ${repo.demonstrates}`).join('\n');
+  // Every cataloged candidate has now been built, so this list can legitimately be empty.
+  // Say so rather than rendering a heading with nothing under it.
+  const next = reposByStatus('candidate').map((repo) => `- \`${repo.id}\`: ${repo.demonstrates}`).join('\n')
+    || '- None. Every reference repository the catalog names has been built and carries score evidence.';
   const notes = referenceNotes();
 
   return `
@@ -699,7 +702,8 @@ function generatedHtmlReferenceRepos() {
     .join('\n');
   const next = reposByStatus('candidate')
     .map((repo) => `<code>${escapeHtml(repo.id)}</code>`)
-    .join(', ');
+    .join(', ')
+    || 'none — every reference repository the catalog names has been built';
   const notes = referenceRepos
     .filter((repo) => repo.note)
     .map((repo) => `<p><code>${escapeHtml(repo.id)}</code>: ${escapeHtml(repo.note)}</p>`)
