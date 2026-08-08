@@ -46,7 +46,11 @@ authorization failure behavior.
 advertises schemas, or rejects unauthorized clients after Worker deployment.
 
 **vcqa.** Inspect CI workflows and test scripts for MCP inspector/client smoke tests,
-local `wrangler dev` or preview URL tests, and negative auth cases before deploy.
+local `wrangler dev` or preview URL tests, and negative auth cases before deploy. The gate
+must cover every row of the compatibility matrix required by
+[R-PROTO-5](protocol-and-transport.md#r-proto-5-declare-a-compatibility-matrix), and its
+output must be retained per
+[R-DEPLOY-5](#r-deploy-5-mcp-smoke-evidence-is-retained).
 
 **References.**
 
@@ -70,6 +74,64 @@ parsing, and snapshots or assertions over `tools/list` output.
 - https://developers.cloudflare.com/workers/best-practices/workers-best-practices/
 - https://ts.sdk.modelcontextprotocol.io/
 - https://zod.dev/json-schema
+
+## R-DEPLOY-5 - MCP smoke evidence is retained
+
+**Severity.** `evidence-only`, escalating to `high` when the missing output is what would
+show whether protocol negotiation, tool advertisement, or authorization denial actually
+worked on the deployed Worker, and to `blocker` when no retained evidence exists for an
+auth denial on a production endpoint that serves privileged tools.
+
+**Rule.** The smoke run required by R-DEPLOY-3 must retain its output as a CI artifact or
+durable log attached to the run that produced it, uploaded on failure as well as success.
+At minimum the retained set must cover four exchanges per matrix row:
+
+| Exchange | What the retained record must show |
+|---|---|
+| `initialize` | the request's offered `protocolVersion`, the server's negotiated `protocolVersion`, the advertised `capabilities`, and the server name/version |
+| `tools/list` | the full advertised tool list with each tool's name and input schema, so a schema change is visible in the diff |
+| representative tool call | one real `tools/call` for a tool that exercises a binding or an external effect, with its arguments and the result or structured error |
+| auth denial | an unauthenticated or insufficiently scoped request and the rejection it received, including the HTTP status and the `WWW-Authenticate` challenge or protected-resource pointer where R-AUTH-2 requires one |
+
+Every record must carry the endpoint URL, the environment, the commit SHA, and the
+timestamp, with tokens and secret values redacted. The retention period must be stated
+explicitly rather than left to a platform default.
+
+**Why.** A remote MCP deployment can be green in CI and still fail a real client path.
+Retained transcripts are what makes the compatibility claims of R-PROTO-5 auditable after
+the fact: they tie a protocol revision, an SDK version, a transport, an auth mode, and a
+client to a specific deployment at a specific commit.
+
+**Scoring.** A pass requires the artifacts to exist for the run that deployed the current
+production version, to be reachable from that run, and to match the matrix rows. Console
+output that is only visible while a run's logs live, an upload step that a failing run never
+reaches, and an artifact overwritten by the next run all fail this rule.
+
+**vcqa.** Check the workflow for an upload step covering the smoke output with an
+always-run condition and an explicit retention setting; confirm the smoke runner writes a
+file rather than only printing; open the artifact and confirm it contains the four
+exchanges, the endpoint, the environment, the commit, and the timestamp. Flag redaction
+failures — a retained transcript containing a live token is a security finding, not
+evidence.
+
+**Evidence.**
+
+- Source/config: the smoke script and its output path, the workflow upload step, its
+  condition and retention setting, the redaction helper.
+- CI/artifacts: the uploaded transcript, inspector output, or client log from a real run,
+  resolvable to a commit and an endpoint.
+- Runtime/deploy: the endpoint recorded inside the artifact matches the deployed Worker
+  route for that environment.
+- Exception: `acceptedException` when evidence must be redacted further or stored outside
+  CI, naming owner, scope, environment, the durable store, the retention period,
+  compensating controls, evidence, expiry/review date, and approval trail.
+
+**References.**
+
+- https://developers.cloudflare.com/agents/model-context-protocol/guides/test-remote-mcp-server/
+- https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle
+- https://modelcontextprotocol.io/specification/2025-11-25/server/tools
+- https://docs.github.com/en/actions/reference/security/secure-use
 
 ## R-CI-1 - Deployment credentials are least privilege
 

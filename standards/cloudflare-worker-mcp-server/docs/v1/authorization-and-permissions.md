@@ -11,7 +11,11 @@ endpoint.
 
 **vcqa.** Inspect the MCP route for bearer-token validation, OAuth provider middleware,
 Cloudflare Access checks, or equivalent authorization before `serve`, `createMcpHandler`,
-transport dispatch, or tool invocation.
+transport dispatch, or tool invocation. The auth mode resolved here is the auth column of
+the compatibility matrix required by
+[R-PROTO-5](protocol-and-transport.md#r-proto-5-declare-a-compatibility-matrix), and the
+denial behavior must be backed by the retained evidence required by
+[R-DEPLOY-5](deployment-gates.md#r-deploy-5-mcp-smoke-evidence-is-retained).
 
 **References.**
 
@@ -32,7 +36,9 @@ request the right token.
 **vcqa.** Request the MCP endpoint without credentials and check for a 401 challenge with
 `resource_metadata`, or request the applicable `.well-known/oauth-protected-resource`
 metadata endpoint; validate `authorization_servers` and resource values for the deployed
-origin.
+origin. That unauthenticated exchange is the auth-denial record required by
+[R-DEPLOY-5](deployment-gates.md#r-deploy-5-mcp-smoke-evidence-is-retained) and must be
+retained per environment, because the challenge differs between preview and production.
 
 **References.**
 

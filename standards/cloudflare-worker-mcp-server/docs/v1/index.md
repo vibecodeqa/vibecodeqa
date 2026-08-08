@@ -16,6 +16,19 @@ Each rule has a stable ID (`R-<AREA>-<n>`), one checkable statement, the reason 
 a `vcqa` signal that describes how a scanner or judge evaluates it, and upstream
 references when the rule depends on external authority.
 
+## Protocol revision this edition cites
+
+This edition is written against MCP protocol revision `2025-11-25` - the revision recorded
+as this edition's `mcp` target in the standards registry, and the revision every
+specification link in these chapters points at. VCQA does not certify a fixed set of
+revisions on a repo's behalf: which revisions a given deployment negotiates, on which
+transport, under which auth mode, and against which clients is a claim the repo itself must
+state and evidence. See
+[R-PROTO-5](protocol-and-transport.md#r-proto-5-declare-a-compatibility-matrix) for the
+required matrix and
+[R-DEPLOY-5](deployment-gates.md#r-deploy-5-mcp-smoke-evidence-is-retained) for the
+evidence that has to back it.
+
 ## The rubric
 
 | # | Area | Code | What it governs |
