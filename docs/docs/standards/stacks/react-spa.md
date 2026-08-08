@@ -31,6 +31,53 @@ to any product. It complements, rather than replaces, the official
 | Catalog entry last verified | 2026-08-08 |
 <!-- END GENERATED:reference-evidence -->
 
+## Reference template map
+
+The reference repo is meant to be inspected, not treated as a black box. These files show
+the stack contract in code:
+
+| Evidence | Where to look | What it proves |
+|---|---|---|
+| Static build path | [`vite.config.ts`](https://github.com/vibecodeqa/ref-react-spa/blob/main/vite.config.ts), [`index.html`](https://github.com/vibecodeqa/ref-react-spa/blob/main/index.html) | The app builds to static assets with a relative base and needs no server of its own. |
+| Client entry and routing | [`src/main.tsx`](https://github.com/vibecodeqa/ref-react-spa/blob/main/src/main.tsx), [`src/App.tsx`](https://github.com/vibecodeqa/ref-react-spa/blob/main/src/App.tsx) | Routing is client-side only; there is no server render step. |
+| Failure containment | [`src/ErrorBoundary.tsx`](https://github.com/vibecodeqa/ref-react-spa/blob/main/src/ErrorBoundary.tsx) | A render error degrades one boundary instead of blanking the page. |
+| Public client configuration | [`.env.example`](https://github.com/vibecodeqa/ref-react-spa/blob/main/.env.example) | Every `VITE_*` value is declared as public configuration, so nothing secret can arrive by habit. |
+| Behaviour tests | [`src/App.test.tsx`](https://github.com/vibecodeqa/ref-react-spa/blob/main/src/App.test.tsx), [`src/ErrorBoundary.test.tsx`](https://github.com/vibecodeqa/ref-react-spa/blob/main/src/ErrorBoundary.test.tsx) | Components are tested through user-visible behaviour, not internals. |
+| Deep-link smoke coverage | [`tests/e2e/home.spec.ts`](https://github.com/vibecodeqa/ref-react-spa/blob/main/tests/e2e/home.spec.ts), [`playwright.config.ts`](https://github.com/vibecodeqa/ref-react-spa/blob/main/playwright.config.ts) | The built app is exercised as a browser sees it, including the routes a fallback must serve. |
+| Quality gates | [`.github/workflows/ci.yml`](https://github.com/vibecodeqa/ref-react-spa/blob/main/.github/workflows/ci.yml) | Lint, typecheck, tests, and build run before changes are trusted. |
+| Score evidence | [`docs/vcqa-report.md`](https://github.com/vibecodeqa/ref-react-spa/blob/main/docs/vcqa-report.md) | The template carries a tracked VCQA score and visible gaps. |
+
+## What this teaches
+
+Choose this stack when the whole application can be delivered as a folder of static files
+that any CDN, object store, or Pages host can serve, and every request that needs a secret
+is somebody else's server. It fits dashboards over an existing API, internal tools, admin
+consoles, marketing apps with client-side interactivity, and the frontend half of a
+product whose backend is a separate deployable.
+
+The lesson the stack teaches is a boundary, not a framework. A static SPA ships its
+**entire source** to the browser: there is no server-side step in which a secret can be
+kept, a permission checked, or a page rendered. So authorization, secrets, and data
+ownership all live somewhere else, and the app's job is to be honest about that. Most
+serious defects in this archetype come from pretending otherwise - a route guard treated
+as access control, an API key in `VITE_*`, a deep link that 404s because nobody configured
+the fallback.
+
+Do not choose this stack if you need server rendering, per-request personalization before
+first paint, an API of your own, or SEO that depends on server-rendered HTML. Those are
+different archetypes with different rubrics.
+
+## Decision matrix
+
+| Need | Better fit |
+|---|---|
+| Static client-rendered app talking to somebody else's API | React SPA. |
+| The same app plus a same-origin `/api/*` of your own | [Cloudflare Pages Fullstack](cloudflare-pages-fullstack.md), which composes this standard. |
+| Server-rendered HTML, streaming, or per-request personalization | React SSR or a framework-mode app; not this standard. |
+| SEO that depends on server-rendered markup | SSR or prerendering; a client-rendered shell is not enough. |
+| A desktop shell around the same UI | [Tauri React Desktop](tauri-react-desktop.md) (planned) plus this standard for the web layer. |
+| Secrets or privileged data the browser must not see | A server surface of some kind. No configuration of a static SPA makes this safe. |
+
 ## Aliases
 
 - `react-spa-static`
@@ -44,6 +91,24 @@ Client-rendered React applications built as static files, with no server render 
 - React SSR or framework-mode apps
 - Cloudflare Pages Functions APIs
 - native desktop shells
+
+## Upstream references
+
+This standard cites upstream doctrine rather than restating it. React, Router, and Vite own
+component, routing, and build guidance; VCQA owns only the static-boundary glue.
+
+- [React documentation](https://react.dev/)
+- [Build a React app from scratch](https://react.dev/learn/build-a-react-app-from-scratch)
+- [Rules of Hooks](https://react.dev/reference/rules/rules-of-hooks)
+- [React Router documentation](https://reactrouter.com/)
+- [Vite guide](https://vite.dev/guide/)
+- [Vite: deploying a static site](https://vite.dev/guide/static-deploy)
+- [Vite: env variables and modes](https://vite.dev/guide/env-and-mode)
+- [TSConfig reference](https://www.typescriptlang.org/tsconfig/)
+- [Vitest guide](https://vitest.dev/guide/)
+- [Testing Library guiding principles](https://testing-library.com/docs/guiding-principles/)
+- [WCAG 2.2](https://www.w3.org/TR/WCAG22/)
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 
 ## Composes
 
@@ -76,10 +141,71 @@ Client-rendered React applications built as static files, with no server render 
 - Deep links require SPA fallback or hash routing because no server route renders them.
 - Client auth guards improve UX but do not authorize access to private data.
 
+## Rule highlights
+
+The full rubric is the source of truth for judgment. These are the rules that decide
+whether a repo is this archetype at all:
+
+- **R-SETUP-1: It builds to static assets.** `vite build` produces a folder that needs no
+  running server of its own to answer a request.
+- **R-ROUTE-1: Routing is client-side only.** There is no server render step.
+- **R-BUILD-2: Assets load from a relative base.** The app must work under a path prefix or
+  behind a proxy, not only at the domain root.
+- **R-BUILD-3: Deep links do not 404.** The host serves `index.html` for unknown paths, or
+  the app uses hash routing.
+- **R-DATA-1: No private secret reaches the bundle.** API keys, tokens, and database
+  credentials are not present in client source or build output.
+
+## Limitations
+
+- **This standard cannot judge your backend.** It stops at the network boundary. Whatever
+  serves the data the SPA reads is judged by its own standard, and a perfect React SPA
+  score says nothing about that surface.
+- **It cannot prove authorization.** Client-side guards are UX. VCQA can detect a missing
+  server boundary only when the repo also contains the server.
+- **Hosting is judged from repo evidence.** SPA fallback and cache headers are usually
+  configured in the host, so a repo that configures them outside version control can look
+  compliant to a scanner and still break deep links in production.
+- **Build-time secret scanning is source-shaped.** A secret injected by a CI variable at
+  build time will not appear in the repository, only in the deployed bundle.
+- **The rubric targets a Vite/React/TypeScript baseline.** Another static bundler is still
+  in scope, but the detection signals and edition targets are written for that baseline.
+
+## Anti-patterns
+
+- Treating a React route guard as access control for private data.
+- Putting an API key, token, or database credential in a `VITE_*` variable.
+- Shipping absolute asset paths that break under a path prefix or proxy.
+- Deploying without SPA fallback and discovering it via 404s on shared deep links.
+- Adding a small server "just for this one endpoint" without moving to a fullstack
+  standard, so half the app is judged by the wrong rubric.
+- Testing implementation details instead of user-visible behaviour, then rewriting every
+  test on the next refactor.
+
 ## Benefits
 
 - vibecodeqa/app web dashboard.
 - Cloudflare SaaS example frontend.
+
+## Maintenance
+
+<!-- BEGIN GENERATED:charter-maintenance -->
+<!-- Generated by standards/generate-catalog.mjs; edit standards/*.json instead. -->
+| Maintenance | Value |
+|---|---|
+| Latest edition | [React SPA v1](/standards/react-spa/v1/) |
+| Pin reports and scans to | `/standards/react-spa/v1/` |
+| Last reviewed | 2026-07 |
+| Next review due | 2027-07 |
+| Edition targets | `react 19`, `vite 8`, `tailwind 4`, `typescript 6`, `node >=20.19; prefer 22.12+ or 24 LTS` |
+| Lifecycle | active |
+| Errata | none |
+| Composes | `react`, `react-router`, `vite`, `typescript`, `web-accessibility`, `web-security`, `vitest`, `playwright` |
+
+Editions are cut on material change, not on a calendar. A review that finds the edition
+still correct moves **Last reviewed** forward without a new edition. Metadata lives in
+[`standards/registry.json`](https://github.com/vibecodeqa/vibecodeqa/blob/main/standards/registry.json).
+<!-- END GENERATED:charter-maintenance -->
 
 ## Independent Assessment
 

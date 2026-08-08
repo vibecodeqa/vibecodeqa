@@ -24,6 +24,67 @@ A static frontend co-deployed with Cloudflare Pages Functions, usually with same
 | Catalog entry last verified | 2026-08-08 |
 <!-- END GENERATED:reference-evidence -->
 
+## Reference template map
+
+| Evidence | Where to look | What it proves |
+|---|---|---|
+| API namespace ownership | [`functions/api/`](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/tree/main/functions/api) | Pages Functions own `/api/*`; the routes exist as files, not as router config. |
+| SPA fallback that spares the API | [`web/public/_redirects`](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/web/public/_redirects) | UI deep links reach `index.html` while `/api/*` stays out of the fallback. |
+| Authorization before route logic | [`functions/_middleware.ts`](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/functions/_middleware.ts), [`functions/src/auth.ts`](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/functions/src/auth.ts) | Unauthenticated requests to protected routes fail server-side, not in the client. |
+| Typed seam contract | [`shared/src/index.ts`](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/shared/src/index.ts), [`web/src/api.ts`](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/web/src/api.ts) | Both halves compile against one contract instead of two hand-kept copies. |
+| Environment separation | [`wrangler.toml`](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/wrangler.toml), [`.env.example`](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/.env.example) | Preview and production variables and bindings are declared separately; client env is declared public. |
+| Single-artifact deploy | [`.github/workflows/deploy.yml`](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/.github/workflows/deploy.yml), [`scripts/check-deploy-shape.mjs`](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/scripts/check-deploy-shape.mjs) | Assets and Functions ship as one Pages deployment, and the shape is asserted rather than assumed. |
+| Seam smoke evidence | [`scripts/smoke-pages.mjs`](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/scripts/smoke-pages.mjs), [`.github/workflows/ci.yml`](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/.github/workflows/ci.yml) | A deployed URL is asserted for both the deep-link fallback and the negative-auth path. |
+| Operations | [`docs/runbook.md`](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/docs/runbook.md) | Deploy and rollback are written down, not tribal. |
+| Score evidence | [`docs/vcqa-report.md`](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack/blob/main/docs/vcqa-report.md) | The template carries a tracked VCQA score and visible gaps. |
+
+## What this teaches
+
+Choose this stack when one product wants a static frontend and a small API that must share
+an origin: the same domain, the same deployment, the same release. The point is not that
+Cloudflare Pages can host functions - it is that co-deploying two halves creates a **seam**
+that neither half owns, and almost every failure in this archetype lives in that seam.
+
+The seam has four parts, and this standard exists to make each one explicit. **Route
+ownership**: `/api/*` belongs to Functions, and an SPA router that defines a colliding
+route silently steals it. **Authorization placement**: the client guard and the server
+check look interchangeable in a demo and are not. **Environment scope**: `VITE_*` is public
+by construction while bindings and secrets are per-environment, so preview reusing a
+production binding is a data incident, not a config nit. **Release atomicity**: assets and
+Functions must move as one artifact, or a deploy leaves a frontend calling an API shape
+that does not exist yet.
+
+Do not choose this stack for a standalone Worker with no static frontend, for a frontend
+that talks only to somebody else's API (that is [React SPA](react-spa.md)), or when you
+need a long-running server process. Pages Functions are request-scoped.
+
+## Decision matrix
+
+| Need | Better fit |
+|---|---|
+| Static frontend plus a same-origin API of your own | Cloudflare Pages Fullstack. |
+| Static frontend talking to an API you do not own | [React SPA](react-spa.md) alone. |
+| An API with no static frontend attached | A Workers standard; Pages adds nothing. |
+| The same app plus a D1 database | This standard plus [Cloudflare D1 App](cloudflare-d1-app.md) for schema, migrations, and query safety. |
+| Remote MCP tools for AI clients | [Cloudflare Worker MCP Server](cloudflare-worker-mcp-server.md); do not smuggle tool endpoints into `/api/*`. |
+| Per-customer deployable surfaces, tenant bindings, promotion gates | [Tenant-Deployed Cloudflare SaaS](tenant-deployed-cloudflare-saas.md), which composes this standard. |
+| A long-running server, background workers, or persistent connections | Not this stack. Pages Functions are request-scoped. |
+
+## Upstream references
+
+Cloudflare owns Pages and Functions doctrine; VCQA owns only the seam between the two
+halves.
+
+- [Cloudflare Pages Functions](https://developers.cloudflare.com/pages/functions/)
+- [Pages Functions routing](https://developers.cloudflare.com/pages/functions/routing/)
+- [Pages Functions middleware](https://developers.cloudflare.com/pages/functions/middleware/)
+- [Pages Functions bindings](https://developers.cloudflare.com/pages/functions/bindings/)
+- [Vite: env variables and modes](https://vite.dev/guide/env-and-mode)
+- [TSConfig reference](https://www.typescriptlang.org/tsconfig/)
+- [GitHub Actions secure use](https://docs.github.com/en/actions/reference/security/secure-use)
+- [GitHub Actions deployments and environments](https://docs.github.com/en/actions/reference/workflows-and-actions/deployments-and-environments)
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+
 ## Scope
 
 A static frontend co-deployed with Cloudflare Pages Functions, usually with same-origin `/api/*` routes.
@@ -82,6 +143,23 @@ A static frontend co-deployed with Cloudflare Pages Functions, usually with same
 - **R-OBS-1: Server errors are observable.** Functions should return safe client errors
   while preserving enough server-side context for debugging.
 
+## Limitations
+
+- **Route collisions are only provable against a deployed URL.** Static analysis can flag a
+  suspicious SPA route, but the authoritative answer comes from a smoke test on a real
+  preview deployment, which a repository scan cannot perform.
+- **Binding isolation is judged from declared config.** If preview and production bindings
+  are configured in the Cloudflare dashboard rather than in version control, the repo
+  cannot show the separation and the check falls back to evidence-only.
+- **This standard does not own your data layer.** D1 schema, migrations, and query safety
+  belong to [Cloudflare D1 App](cloudflare-d1-app.md); KV and R2 usage patterns are not
+  judged here beyond binding scope.
+- **It does not own component-level frontend quality.** That is [React SPA](react-spa.md)
+  and the cross-cutting rubrics.
+- **Retained smoke evidence is evidence-only by default.** A repo with correct behaviour
+  and no retained transcript scores lower on proof, not on behaviour - the severity
+  escalates only when the missing artifact hides a seam or auth failure.
+
 ## Anti-patterns
 
 - Treating a React route guard as the only protection for private data.
@@ -94,6 +172,26 @@ A static frontend co-deployed with Cloudflare Pages Functions, usually with same
 
 - Cloudflare SaaS example app.
 - future VCQA fullstack dashboard patterns.
+
+## Maintenance
+
+<!-- BEGIN GENERATED:charter-maintenance -->
+<!-- Generated by standards/generate-catalog.mjs; edit standards/*.json instead. -->
+| Maintenance | Value |
+|---|---|
+| Latest edition | [Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/) |
+| Pin reports and scans to | `/standards/cloudflare-pages-fullstack/v1/` |
+| Last reviewed | 2026-07 |
+| Next review due | 2027-07 |
+| Edition targets | `cloudflarePagesFunctions latest`, `typescript 6` |
+| Lifecycle | active |
+| Errata | none |
+| Composes | `react-spa`, `cloudflare-pages-functions`, `typescript`, `web-security`, `github-actions` |
+
+Editions are cut on material change, not on a calendar. A review that finds the edition
+still correct moves **Last reviewed** forward without a new edition. Metadata lives in
+[`standards/registry.json`](https://github.com/vibecodeqa/vibecodeqa/blob/main/standards/registry.json).
+<!-- END GENERATED:charter-maintenance -->
 
 ## Independent Assessment
 

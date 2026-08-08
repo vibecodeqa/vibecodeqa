@@ -88,6 +88,46 @@ Required fields:
 - **vcqa:** the scanner or judge signal: dependency, config key, file pattern, AST/code pattern, or human-review note.
 - **References:** upstream sources when the rule depends on external authority.
 
+## Authored charter bar
+
+A charter page is the entry point for a standard. Once a standard is **authored** — its
+registry status is `published` and a versioned rubric exists — its charter page must be
+usable on its own: a reader should be able to decide whether the stack applies to them,
+what it will judge, what it will not, and where the evidence is, **without opening a single
+rubric chapter first**.
+
+Authored stack charter pages therefore carry these sections. `validate-registry.mjs` fails
+the build when one is missing, so the bar is enforced rather than aspirational.
+
+| Section | What it must answer |
+|---|---|
+| `## Full rubric` | Where the judgeable rules live. |
+| `## Reference implementation` | Which repo demonstrates the stack, with the generated `reference-evidence` block for its score provenance. |
+| `## Reference template map` | The evidence map: file-by-file, which part of the reference repo proves which part of the contract. |
+| `## What this teaches` | The teaching focus. Why this stack shape exists and which failure it keeps preventing — not a feature list. |
+| `## Decision matrix` | Applicability boundaries as a table: for each adjacent need, the standard that fits better. |
+| `## Scope` / `## Not in scope` | The one-paragraph boundary and its explicit exclusions. |
+| `## Upstream references` | The external authorities the standard cites instead of restating. |
+| `## Composes` | Stack items and standards this one builds on. |
+| `## VCQA-owned rule surface` | What VCQA owns that upstream does not. |
+| `## Detection signals` | How a resolver recognises the stack. |
+| `## Combination-born guidelines` | Rules that exist only because these pieces are combined. |
+| `## Rule highlights` | The handful of rules that decide whether a repo is this archetype at all. |
+| `## Limitations` | What the standard honestly cannot judge, and where a check degrades to evidence-only. A charter with no limitations section is overselling. |
+| `## Anti-patterns` | The failures this standard exists to catch, stated as behaviour. |
+| `## Benefits` | Where the standard is already used. |
+| `## Maintenance` | Edition, review dates, targets, and lifecycle. Generated from `registry.json` into a `charter-maintenance` block — never hand-written. |
+| `## Independent Assessment` | The dated assessment of this page. |
+
+Two of those sections are generated and must not be hand-edited: `reference-evidence`
+(score provenance, see [`standards/SCHEMA.md`](https://github.com/vibecodeqa/vibecodeqa/blob/main/standards/SCHEMA.md))
+and `charter-maintenance` (edition and review metadata). Add the fence markers to a new
+authored charter page and run the generator; it fills them in.
+
+Planned charters use the lighter template below. Nothing on this page is a reason to demote
+or delete an existing page: a planned charter that has not reached the authored bar stays
+planned.
+
 ## Charter template
 
 ```markdown

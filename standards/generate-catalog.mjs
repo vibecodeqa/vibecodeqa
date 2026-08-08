@@ -428,6 +428,39 @@ function generatedStackReferenceEvidence(standardId) {
 `;
 }
 
+// Maintenance metadata on an authored charter page (edition, review dates, targets,
+// lifecycle) is registry data. Generate it so a charter cannot claim a review date the
+// registry has moved on from.
+function generatedCharterMaintenance(standardId) {
+  const registryEntry = registryById.get(standardId);
+  const composed = compositions.composedStandards.find((entry) => entry.id === standardId);
+  const latest = registryEntry?.editions?.find((edition) => edition.status === 'latest');
+  if (!latest) throw new Error(`no latest edition for ${standardId}`);
+  const lifecycle = latest.lifecycle ?? {};
+  const targets = Object.entries(latest.targets ?? {})
+    .map(([key, value]) => `\`${key} ${value}\``)
+    .join(', ') || 'none recorded';
+  const rows = [
+    ['Latest edition', mdLink(`${standardTitle(standardId)} ${latest.version}`, normalizeStandardUrl(registryEntry.standardUrl))],
+    ['Pin reports and scans to', `\`${normalizeStandardUrl(registryEntry.standardUrl)}\``],
+    ['Last reviewed', latest.reviewed],
+    ['Next review due', latest.nextReview],
+    ['Edition targets', targets],
+    ['Lifecycle', `${lifecycle.deprecated ? 'deprecated' : 'active'}${lifecycle.supersededBy ? `, superseded by ${lifecycle.supersededBy}` : ''}`],
+    ['Errata', lifecycle.errata?.length ? lifecycle.errata.join('; ') : 'none'],
+    ['Composes', (composed?.stackItems ?? []).map((id) => `\`${id}\``).join(', ') || 'metadata-only']
+  ];
+  return `
+| Maintenance | Value |
+|---|---|
+${rows.map(([label, value]) => `| ${label} | ${value} |`).join('\n')}
+
+Editions are cut on material change, not on a calendar. A review that finds the edition
+still correct moves **Last reviewed** forward without a new edition. Metadata lives in
+[\`standards/registry.json\`](https://github.com/vibecodeqa/vibecodeqa/blob/main/standards/registry.json).
+`;
+}
+
 function generatedStackIndex() {
   const authored = compositions.composedStandards.filter((standard) => isComposedAuthored(standard) && isStackStandard(standard));
   const crossCutting = compositions.composedStandards.filter((standard) => isComposedAuthored(standard) && !isStackStandard(standard) && !isAliasOnly(standard));
@@ -810,6 +843,19 @@ function stackPagesWithReferenceEvidence() {
   });
 }
 
+// Authored stack charter pages, deduped by page: the pages the authored-charter bar in
+// docs/docs/standards/authoring.md applies to.
+function authoredStackCharterPages() {
+  const seen = new Set();
+  return compositions.composedStandards.flatMap((standard) => {
+    if (!isComposedAuthored(standard) || !isStackStandard(standard)) return [];
+    const slug = docsPageSlug(standard.docsUrl, 'stacks');
+    if (!slug || seen.has(slug)) return [];
+    seen.add(slug);
+    return [{ id: standard.id, slug }];
+  });
+}
+
 const changed = [
   writeJsonIfChanged('standards/graph.json', graphModel()),
   replaceGeneratedBlock('docs/docs/standards/index.md', 'standards-inventory', generatedStandardsCatalog()),
@@ -817,6 +863,8 @@ const changed = [
   replaceGeneratedBlock('docs/docs/standards/compositions.md', 'reference-implementations', generatedCompositionsReferenceRepos()),
   ...stackPagesWithReferenceEvidence().map((page) =>
     replaceGeneratedBlock(`docs/docs/standards/stacks/${page.slug}.md`, 'reference-evidence', generatedStackReferenceEvidence(page.id))),
+  ...authoredStackCharterPages().map((page) =>
+    replaceGeneratedBlock(`docs/docs/standards/stacks/${page.slug}.md`, 'charter-maintenance', generatedCharterMaintenance(page.id))),
   replaceGeneratedBlock('docs/docs/standards/stacks/index.md', 'stack-standards-inventory', generatedStackIndex()),
   replaceGeneratedBlock('docs/docs/standards/items/index.md', 'stack-items-inventory', generatedItemsIndex()),
   replaceGeneratedBlock('docs/docs/standards/compositions.md', 'composition-summary', generatedCompositionsSummary()),

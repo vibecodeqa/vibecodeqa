@@ -24,6 +24,71 @@ Cloudflare Workers or Pages Functions using D1 with versioned SQL migrations and
 | Catalog entry last verified | 2026-08-08 |
 <!-- END GENERATED:reference-evidence -->
 
+## Reference template map
+
+| Evidence | Where to look | What it proves |
+|---|---|---|
+| Per-environment bindings | [`wrangler.toml`](https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/wrangler.toml) | Local, preview, and production D1 databases are declared separately and selected on purpose. |
+| Versioned migrations | [`migrations/`](https://github.com/vibecodeqa/ref-cloudflare-d1-app/tree/main/migrations) | Schema history is ordered SQL files, not ad hoc console statements. |
+| Drift guard | [`migrations/manifest.json`](https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/migrations/manifest.json), [`scripts/check-migration-manifest.mjs`](https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/scripts/check-migration-manifest.mjs) | An applied migration cannot be edited without the checksum check failing. |
+| Clean local apply gate | [`scripts/check-migrations.mjs`](https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/scripts/check-migrations.mjs) | Every migration is proved to apply to an empty database before remote promotion. |
+| Query safety | [`src/db.ts`](https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/src/db.ts), [`scripts/check-query-safety.mjs`](https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/scripts/check-query-safety.mjs) | Request values reach SQL through prepared-statement binding, and the rule is enforced by a script rather than by review habit. |
+| HTTP boundary tests | [`src/http.test.ts`](https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/src/http.test.ts), [`src/db.test.ts`](https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/src/db.test.ts) | Query helpers and the request boundary are covered, not just the happy path. |
+| Deploy ordering | [`.github/workflows/deploy.yml`](https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/.github/workflows/deploy.yml), [`scripts/check-deploy-shape.mjs`](https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/scripts/check-deploy-shape.mjs) | CI gates run, then production migrations apply, then code deploys - in that order. |
+| Operations | [`docs/runbook.md`](https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/docs/runbook.md) | Migration failure and rollback have a written procedure. |
+| Score evidence | [`docs/vcqa-report.md`](https://github.com/vibecodeqa/ref-cloudflare-d1-app/blob/main/docs/vcqa-report.md) | The template carries a tracked VCQA score and visible gaps. |
+
+## What this teaches
+
+Choose this stack when a Cloudflare runtime owns a SQL database and the schema has to
+change over time without losing data. The interesting part is not writing D1 queries -
+Cloudflare documents that - it is that **a database is the one part of a deploy you cannot
+roll back by redeploying the previous artifact**. Code is replaceable; applied schema is
+not.
+
+Everything this standard judges follows from that asymmetry. Migrations are **append-only**
+once a shared environment has applied them, because editing an applied file makes source
+history and database history disagree with no way to detect it later - hence a checksum
+manifest or equivalent drift guard. Migrations must be proved to apply to a **clean**
+database in CI, because the only environment where an untested migration is cheap is a
+disposable one. Environments must be **distinct databases**, because a single shared
+database turns a preview experiment into a production incident. Tenant isolation must be a
+**declared model** rather than an assumption, because "we always pass the tenant id" is not
+a control. And deploy ordering must be explicit, because a release whose code expects a
+column that has not landed fails in the least recoverable place.
+
+Do not choose this stack for generic SQL style guidance, for non-Cloudflare databases, or
+for a repo that merely reads a D1 binding it does not own the schema of.
+
+## Decision matrix
+
+| Need | Better fit |
+|---|---|
+| A Cloudflare runtime that owns D1 schema and migrations | Cloudflare D1 App. |
+| A Pages app with an API but no database of its own | [Cloudflare Pages Fullstack](cloudflare-pages-fullstack.md) alone. |
+| A Pages app with an API *and* D1 | Both standards; this one owns schema, migrations, and query safety. |
+| Key-value or object storage only (KV, R2) | Not this standard; binding scope is judged by the hosting stack standard. |
+| A database outside Cloudflare (Postgres, Turso, PlanetScale) | Not this standard. The migration doctrine transfers; the rules and detection signals do not. |
+| Per-tenant databases, provisioning, and promotion gates | [Tenant-Deployed Cloudflare SaaS](tenant-deployed-cloudflare-saas.md) plus this standard. |
+| Reading a D1 binding whose schema another repo owns | The consuming stack's standard; schema rules belong to the owner. |
+
+## Upstream references
+
+Cloudflare owns D1 and Wrangler doctrine; VCQA owns the migration, drift, isolation, and
+deploy-ordering glue that no single upstream page covers.
+
+- [Cloudflare D1 documentation](https://developers.cloudflare.com/d1/)
+- [D1 migrations](https://developers.cloudflare.com/d1/reference/migrations/)
+- [D1 prepared statement methods](https://developers.cloudflare.com/d1/worker-api/prepared-statements/)
+- [D1 environments](https://developers.cloudflare.com/d1/configuration/environments/)
+- [D1 local development](https://developers.cloudflare.com/d1/best-practices/local-development/)
+- [D1 Time Travel and backups](https://developers.cloudflare.com/d1/reference/time-travel/)
+- [D1 import and export data](https://developers.cloudflare.com/d1/best-practices/import-export-data/)
+- [Wrangler D1 commands](https://developers.cloudflare.com/workers/wrangler/commands/d1/)
+- [Pages Functions bindings](https://developers.cloudflare.com/pages/functions/bindings/)
+- [GitHub Actions secure use](https://docs.github.com/en/actions/reference/security/secure-use)
+- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
+
 ## Scope
 
 Cloudflare Workers or Pages Functions using D1 with versioned SQL migrations and environment-specific bindings.
@@ -90,6 +155,25 @@ Cloudflare Workers or Pages Functions using D1 with versioned SQL migrations and
 - **R-DEPLOY-1: Preview deploys do not run production migrations.** Pull request and
   preview workflows use preview/staging databases only.
 
+## Limitations
+
+- **Append-only is judged from repository history.** VCQA can see that a migration file
+  changed after it was added; it cannot see which databases had already applied it. A repo
+  that rewrites history, or squashes, can hide a real violation.
+- **Drift is checked against a manifest, not against the live database.** The guard proves
+  source history is internally consistent. Only a query against the deployed database
+  proves the database agrees, and a repository scan does not connect to one.
+- **Environment isolation is judged from declared config.** Databases created and bound
+  through the Cloudflare dashboard rather than in Wrangler config cannot be seen, so the
+  check falls back to evidence-only.
+- **Tenant isolation is judged as a declared model plus its enforcement points.** A shared
+  database with row scoping can satisfy the rule and still leak if one query forgets the
+  predicate; the rubric asks for enforcement you can point at, not a proof of correctness.
+- **Query safety detection is pattern-based.** Prepared-statement binding is detectable;
+  SQL assembled through several helpers before reaching D1 may need human review.
+- **Backup and restore posture is out of scope for v1.** Time Travel and export are cited
+  as upstream references, not judged as rules.
+
 ## Anti-patterns
 
 - Editing a migration after it has been applied to staging or production.
@@ -101,6 +185,26 @@ Cloudflare Workers or Pages Functions using D1 with versioned SQL migrations and
 ## Benefits
 
 - Cloudflare SaaS example D1 usage.
+
+## Maintenance
+
+<!-- BEGIN GENERATED:charter-maintenance -->
+<!-- Generated by standards/generate-catalog.mjs; edit standards/*.json instead. -->
+| Maintenance | Value |
+|---|---|
+| Latest edition | [Cloudflare D1 App v1](/standards/cloudflare-d1-app/v1/) |
+| Pin reports and scans to | `/standards/cloudflare-d1-app/v1/` |
+| Last reviewed | 2026-07 |
+| Next review due | 2027-07 |
+| Edition targets | `cloudflareD1 latest`, `wrangler 4`, `typescript 6` |
+| Lifecycle | active |
+| Errata | none |
+| Composes | `cloudflare-d1`, `cloudflare-pages-functions`, `cloudflare-workers`, `typescript`, `web-security`, `github-actions` |
+
+Editions are cut on material change, not on a calendar. A review that finds the edition
+still correct moves **Last reviewed** forward without a new edition. Metadata lives in
+[`standards/registry.json`](https://github.com/vibecodeqa/vibecodeqa/blob/main/standards/registry.json).
+<!-- END GENERATED:charter-maintenance -->
 
 ## Independent Assessment
 

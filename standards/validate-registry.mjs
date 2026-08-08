@@ -264,6 +264,61 @@ for (const refRepo of compositions.referenceImplementations || []) {
   refReposWithEvidence.push(refRepo);
 }
 
+// --- Authored charter bar --------------------------------------------------------------
+//
+// An authored charter page is the entry point for a standard and must stand on its own.
+// The section list is the bar documented in docs/docs/standards/authoring.md; it applies
+// only to charters whose standard is authored (registry status `published`), so planned
+// charters are untouched.
+const requiredCharterSections = [
+  'Full rubric',
+  'Reference implementation',
+  'Reference template map',
+  'What this teaches',
+  'Decision matrix',
+  'Scope',
+  'Not in scope',
+  'Upstream references',
+  'Composes',
+  'VCQA-owned rule surface',
+  'Detection signals',
+  'Combination-born guidelines',
+  'Rule highlights',
+  'Limitations',
+  'Anti-patterns',
+  'Benefits',
+  'Maintenance',
+  'Independent Assessment'
+];
+
+const authoredCharterSlugs = new Set(
+  compositions.composedStandards
+    .filter((standard) => standard.status === 'authored')
+    .map((standard) => normalizeUrl(standard.docsUrl))
+    .filter((url) => url?.startsWith('/docs/standards/stacks/'))
+    .map((url) => url.replace('/docs/standards/stacks/', '').replace(/\/$/, ''))
+);
+
+for (const slug of [...authoredCharterSlugs].sort()) {
+  const path = join(here, '..', 'docs/docs/standards/stacks', `${slug}.md`);
+  if (!existsSync(path)) continue;
+  const text = readFileSync(path, 'utf8');
+  const headings = new Set(
+    text.split('\n')
+      .filter((line) => line.startsWith('## '))
+      .map((line) => line.slice(3).trim())
+  );
+  const missing = requiredCharterSections.filter((section) => !headings.has(section));
+  if (missing.length) {
+    fail(`docs/docs/standards/stacks/${slug}.md: authored charter is missing required section(s): ${missing.map((s) => `"## ${s}"`).join(', ')}. See docs/docs/standards/authoring.md.`);
+  }
+  for (const block of ['reference-evidence', 'charter-maintenance']) {
+    if (!text.includes(`<!-- BEGIN GENERATED:${block} -->`)) {
+      fail(`docs/docs/standards/stacks/${slug}.md: authored charter must carry the generated ${block} block.`);
+    }
+  }
+}
+
 // Drift guard. Scores used to be retyped into charter pages and landing tables; the live
 // report moved and the pages did not. Any score claim on a non-generated surface must
 // agree with the metadata. Assessment reports are excluded on purpose: they are dated,
