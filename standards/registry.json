@@ -19,6 +19,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "published",
+      "maturity": "authored-rubric",
+      "maturityNote": null,
       "detect": {
         "all": [
           {
@@ -105,6 +107,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "published",
+      "maturity": "authored-rubric",
+      "maturityNote": null,
       "detect": {
         "all": [
           {
@@ -162,6 +166,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "published",
+      "maturity": "authored-rubric",
+      "maturityNote": null,
       "detect": {
         "all": [
           {
@@ -233,6 +239,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "backlog",
+      "maturityNote": "Resolver-only entry. The detection predicate exists so gap reports name the right standard; no charter page has been authored.",
       "detect": {
         "all": [
           {
@@ -284,6 +292,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "candidate-rubric",
+      "maturityNote": "Twelve candidate rules carry severity, evidence, and exception terms, and `ref-node-cli-internal-tool` is published with a self-reported score and a green CI run. Blocking v1: no independent assessment of the reference repo exists, and the exit-code and JSON-mode rules have no scanner signal yet.",
       "detect": {
         "any": [
           {
@@ -319,6 +329,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "candidate-rubric",
+      "maturityNote": "Twelve candidate rules carry severity, evidence, and exception terms. Blocking v1: `ref-typescript-sdk` does not exist yet ([#14](https://github.com/vibecodeqa/vibecodeqa/issues/14)), so not one rule has been proven against a working repository.",
       "detect": {
         "all": [
           {
@@ -365,6 +377,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "backlog",
+      "maturityNote": "Resolver-only entry. The detection predicate exists so gap reports name the right standard; no charter page has been authored.",
       "detect": {
         "anyDep": [
           "next",
@@ -398,6 +412,8 @@
         "package"
       ],
       "status": "published",
+      "maturity": "authored-rubric",
+      "maturityNote": null,
       "detect": {
         "any": [
           {
@@ -447,6 +463,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "backlog",
+      "maturityNote": "Resolver-only entry. The detection predicate exists so gap reports name the right standard; no charter page has been authored.",
       "detect": {
         "anyDep": [
           "@modelcontextprotocol/sdk"
@@ -466,6 +484,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "backlog",
+      "maturityNote": "Resolver-only entry. The detection predicate exists so gap reports name the right standard; no charter page has been authored.",
       "detect": {
         "anyDep": [
           "tailwindcss",
@@ -486,6 +506,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "backlog",
+      "maturityNote": "Resolver-only entry. The detection predicate exists so gap reports name the right standard; no charter page has been authored.",
       "detect": {
         "anyDep": [
           "@tanstack/react-query",
@@ -506,6 +528,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "backlog",
+      "maturityNote": "Resolver-only entry. The detection predicate exists so gap reports name the right standard; no charter page has been authored.",
       "detect": {
         "dep": "zod"
       },
@@ -523,6 +547,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "published",
+      "maturity": "authored-rubric",
+      "maturityNote": null,
       "detect": {
         "any": [
           {
@@ -569,6 +595,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "published",
+      "maturity": "authored-rubric",
+      "maturityNote": null,
       "detect": {
         "always": true
       },
@@ -606,6 +634,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "published",
+      "maturity": "authored-rubric",
+      "maturityNote": null,
       "detect": {
         "always": true
       },
@@ -643,6 +673,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "draft-charter",
+      "maturityNote": "Cataloged through the Web Accessibility item page: upstream grounding, VCQA-owned surface, and detection signals are recorded, but no numbered candidate rules exist.",
       "detect": {
         "anyFileGlob": [
           "index.html",
@@ -664,6 +696,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "draft-charter",
+      "maturityNote": "Cataloged through the Dependency Hygiene item page: upstream grounding, VCQA-owned surface, and detection signals are recorded, but no numbered candidate rules exist.",
       "detect": {
         "file": "package.json"
       },
@@ -681,6 +715,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "repo",
       "status": "published",
+      "maturity": "authored-rubric",
+      "maturityNote": null,
       "composes": [
         "react-spa",
         "cloudflare-pages-fullstack",
@@ -744,6 +780,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "repo",
       "status": "published",
+      "maturity": "authored-rubric",
+      "maturityNote": null,
       "composes": [
         "react-spa",
         "cloudflare-pages-fullstack"
@@ -803,6 +841,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "candidate-rubric",
+      "maturityNote": "Matured from a backlog note on 2026-08-09 ([#37](https://github.com/vibecodeqa/vibecodeqa/issues/37)): candidate rules, upstream references, severity, exception policy, and CI evidence are now on the page. Blocking v1: `ref-github-action-package` does not exist yet ([#44](https://github.com/vibecodeqa/vibecodeqa/issues/44)), so `vibecodeqa/action` is the only repository these rules have been read against.",
       "aliases": [],
       "detect": {
         "anyFile": [
@@ -829,6 +869,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "backlog",
+      "maturityNote": "Demoted on 2026-08-09 ([#37](https://github.com/vibecodeqa/vibecodeqa/issues/37)). The only consumer the charter cited, `vibecodeqa/vscode`, was archived on 2026-07-23 without ever being published, and `ref-vscode-extension-package` does not exist ([#19](https://github.com/vibecodeqa/vibecodeqa/issues/19)). The page stays published so its URL keeps resolving, but nobody is working toward a rubric.",
       "aliases": [],
       "detect": {
         "any": [
@@ -859,6 +901,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "repo",
       "status": "planned",
+      "maturity": "draft-charter",
+      "maturityNote": "Scope, composition, detection signals, and rule surface are recorded, but no numbered candidate rules exist, so nothing here is judgeable yet. `vibecodeqa/app` is a live in-house consumer; `ref-tauri-react-desktop` is not built ([#21](https://github.com/vibecodeqa/vibecodeqa/issues/21)).",
       "aliases": [],
       "composes": [
         "react-spa"
@@ -895,6 +939,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "repo",
       "status": "planned",
+      "maturity": "draft-charter",
+      "maturityNote": "Scope, composition, detection signals, and rule surface are recorded, but no numbered candidate rules exist. This repository's own docs site is the in-house consumer; `ref-zensical-kb-site` is not built ([#17](https://github.com/vibecodeqa/vibecodeqa/issues/17)).",
       "aliases": [],
       "detect": {
         "anyFile": [
@@ -911,6 +957,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "backlog",
+      "maturityNote": "Resolver-only entry. The detection predicate exists so gap reports name the right standard; no charter page has been authored.",
       "aliases": [],
       "url": null,
       "standardUrl": null,
@@ -928,6 +976,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "backlog",
+      "maturityNote": "Resolver-only entry. The detection predicate exists so gap reports name the right standard; no charter page has been authored.",
       "aliases": [],
       "url": null,
       "standardUrl": null,
@@ -945,6 +995,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "backlog",
+      "maturityNote": "Resolver-only entry. The detection predicate exists so gap reports name the right standard; no charter page has been authored.",
       "aliases": [],
       "url": null,
       "standardUrl": null,
@@ -967,6 +1019,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "planned",
+      "maturity": "backlog",
+      "maturityNote": "Resolver-only entry. The detection predicate exists so gap reports name the right standard; no charter page has been authored.",
       "aliases": [],
       "url": null,
       "standardUrl": null,
@@ -994,6 +1048,8 @@
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "repo",
       "status": "planned",
+      "maturity": "draft-charter",
+      "maturityNote": "Eight candidate rules are drafted, but none states a severity, required evidence, or accepted exception, so no rubric can be cut from them. Maturing the rules and building `ref-flutter-firebase-app` is tracked by [#43](https://github.com/vibecodeqa/vibecodeqa/issues/43).",
       "detect": {
         "all": [
           {

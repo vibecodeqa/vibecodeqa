@@ -35,6 +35,8 @@
         "repo",
         "appliesTo",
         "status",
+        "maturity",
+        "maturityNote",
         "detect",
         "editions"
       ],
@@ -61,6 +63,15 @@
         "status": {
           "type": "string",
           "enum": ["published", "planned"]
+        },
+        "maturity": {
+          "description": "How close this standard is to a versioned rubric. 'authored-rubric' is required for, and only for, status 'published'.",
+          "type": "string",
+          "enum": ["backlog", "draft-charter", "candidate-rubric", "authored-rubric"]
+        },
+        "maturityNote": {
+          "description": "One-paragraph reason for the maturity state and what blocks promotion. Null only for 'authored-rubric'.",
+          "type": ["string", "null"]
         },
         "aliases": {
           "type": "array",

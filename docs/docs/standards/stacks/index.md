@@ -27,15 +27,33 @@ Cross-cutting rubrics are authored standards too, but they are cataloged through
 
 ## Planned Stack Charters
 
+Planned charters are ranked by [maturity state](../authoring.md#planned-charter-maturity-states),
+not listed as one undifferentiated backlog. A charter's state says how close it is to a
+versioned rubric, and every charter page carries the reason for its own state.
+
+### Candidate rubric
+
+Numbered candidate rules carry severity, required evidence, and an exception policy. A versioned rubric can be cut from this page once its promotion criteria are met.
+
 - [Node CLI Internal Tool](node-cli-internal-tool.md): noninteractive exit-code contract, credential resolution order, prod/staging safety defaults, structured output mode, SDK reuse instead of API duplication.
 - [TypeScript SDK](typescript-sdk.md): export map and declaration quality, API contract freshness, credential boundary, typed error model, consumer compatibility tests.
 - [GitHub Action Package](github-action-package.md): action.yml metadata completeness, minimum token permissions, input validation, pinned runtime/dependency policy, release tag policy.
-- [VS Code Extension Package](vscode-extension-package.md): activation event scope, workspace trust behavior, command and webview boundaries, marketplace metadata, extension test coverage.
+
+### Draft charter
+
+Scope, composition, detection signals, and the VCQA-owned rule surface are recorded, but there are no judgeable candidate rules yet. Useful for planning, not for review.
+
 - [Tauri React Desktop](tauri-react-desktop.md): Tauri command/capability boundaries, keychain/secret storage, file-system watch safety, desktop packaging and signing, frontend/backend contract typing.
 - [Zensical KB Site](zensical-kb-site.md): Markdown source is the source of truth, generated site is ignored, published URLs are stable, source references are tracked, docs drift checks where mirrors exist.
 - [Accessibility](../items/web-accessibility.md): WCAG and ARIA acceptance gates mapped to scanner evidence, keyboard, focus, semantics, and contrast checks by UI stack, manual-review exception policy for accessibility findings.
 - [Dependency Hygiene](../items/dependencies.md): lockfile and package-manager pinning, install script and dependency provenance review, audit, license, update, runtime, and exception evidence in CI.
 - [Flutter Firebase App](flutter-firebase-app.md): Flutter app/admin/shared package workspace shape, Firebase project, hosting, functions, and Firestore environment separation, Firestore rules, indexes, and emulator-backed test gates, mobile/web build artifact and platform permission evidence, version bump, deploy gate, and test dashboard evidence.
+
+### Backlog
+
+The stack shape is recorded so gap reports name the right standard. Nobody is working toward a rubric, and nothing on the page is judgeable.
+
+- [VS Code Extension Package](vscode-extension-package.md): activation event scope, workspace trust behavior, command and webview boundaries, marketplace metadata, extension test coverage.
 <!-- END GENERATED:stack-standards-inventory -->
 
 ## What makes a stack standard

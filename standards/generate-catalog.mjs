@@ -270,9 +270,12 @@ function generatedStandardsCatalog() {
     return `| ${label} | ${catalog ? mdLink('Catalog page', catalog) : '-'} | ${mdLink(`${label} ${standard.latestEdition}`, normalizeStandardUrl(standard.standardUrl))} | ${standard.ownedRules.slice(0, 3).join('; ')} |`;
   });
 
-  const plannedRows = planned.map((standard) => {
+  // Ranked by maturity, not by metadata order: this table is the landing page for the
+  // backlog, and a flat list told readers a demoted note and a near-ready charter were the
+  // same kind of thing.
+  const plannedRows = planned.slice().sort(byMaturity).map((standard) => {
     const catalog = relativeDocsUrl(standard.docsUrl, '.');
-    return `| ${catalog ? mdLink(standardTitle(standard.id), catalog) : standardTitle(standard.id)} | ${standard.stackItems.map((id) => entityTitle(id)).join(', ') || '-'} | ${standard.ownedRules.join('; ')} |`;
+    return `| ${catalog ? mdLink(standardTitle(standard.id), catalog) : standardTitle(standard.id)} | ${maturityState(standard.id).label} | ${standard.stackItems.map((id) => entityTitle(id)).join(', ') || '-'} | ${standard.ownedRules.join('; ')} |`;
   });
 
   const aliasRows = aliases.map((standard) => {
@@ -299,8 +302,12 @@ ${aliasRows.join('\n') || '- None.'}
 
 ## Planned Standards
 
-| Planned standard | Composes | VCQA-owned surface |
-|---|---|---|
+Ranked by [maturity state](authoring.md#planned-charter-maturity-states). Only a candidate
+rubric is close enough to a versioned standard to review a repository against; a backlog entry
+exists so the resolver names the right standard, and nothing more.
+
+| Planned standard | Maturity | Composes | VCQA-owned surface |
+|---|---|---|---|
 ${plannedRows.join('\n')}
 `;
 }
@@ -316,6 +323,40 @@ const referenceRepos = compositions.referenceImplementations ?? [];
 const reposByStatus = (status) => referenceRepos.filter((repo) => repo.status === status);
 const primaryRepoFor = (standardId) =>
   referenceRepos.find((repo) => repo.demonstratesPrimary === standardId && repo.evidence);
+// Every repo claimed as this standard's reference, including catalog candidates that have
+// not been built. A charter must not go quiet about a reference repo that does not exist.
+const claimedRepoFor = (standardId) =>
+  referenceRepos.find((repo) => repo.demonstratesPrimary === standardId);
+
+// Charter maturity states, documented in docs/docs/standards/authoring.md. `order` drives
+// the ranking on every surface that lists planned charters, so the near-ready ones stop
+// sitting next to the ones nobody is working on.
+const maturityStates = {
+  'authored-rubric': {
+    order: 0,
+    label: 'Authored rubric',
+    means: 'A versioned rubric is published and the authored charter bar applies to this page.'
+  },
+  'candidate-rubric': {
+    order: 1,
+    label: 'Candidate rubric',
+    means: 'Numbered candidate rules carry severity, required evidence, and an exception policy. A versioned rubric can be cut from this page once its promotion criteria are met.'
+  },
+  'draft-charter': {
+    order: 2,
+    label: 'Draft charter',
+    means: 'Scope, composition, detection signals, and the VCQA-owned rule surface are recorded, but there are no judgeable candidate rules yet. Useful for planning, not for review.'
+  },
+  backlog: {
+    order: 3,
+    label: 'Backlog',
+    means: 'The stack shape is recorded so gap reports name the right standard. Nobody is working toward a rubric, and nothing on the page is judgeable.'
+  }
+};
+
+const maturityOf = (standardId) => registryById.get(standardId)?.maturity ?? 'backlog';
+const maturityState = (standardId) => maturityStates[maturityOf(standardId)] ?? maturityStates.backlog;
+const byMaturity = (a, b) => maturityState(a.id).order - maturityState(b.id).order;
 
 function scoreLabel(evidence) {
   return evidence.grade ? `${evidence.grade} ${evidence.score}/100` : `${evidence.score}/100`;
@@ -461,6 +502,37 @@ still correct moves **Last reviewed** forward without a new edition. Metadata li
 `;
 }
 
+// A planned charter's own header used to be one hand-typed line, "Status: Planned charter",
+// which said the same thing on a page with twelve governed candidate rules and on a page
+// nobody has touched since it was filed. The maturity state, what that state means, whether
+// a reference implementation actually exists, and what blocks promotion are registry data,
+// so they are generated onto the page instead.
+function generatedCharterStatus(standardId) {
+  const registryEntry = registryById.get(standardId);
+  const state = maturityState(standardId);
+  const repo = claimedRepoFor(standardId);
+  const referenceRow = !repo
+    ? 'None cataloged for this standard.'
+    : repo.status === 'candidate'
+      ? `Not built. \`${repo.id}\` is a catalog candidate, not an existing repository, so no rule on this page has been proven against one.`
+      : `${mdLink(repo.repo, repo.url)} (${repo.status}) — see **Reference implementation** below.`;
+  const rows = [
+    ['Maturity', `**${state.label}**`],
+    ['What this state means', state.means],
+    ['Full rubric', 'Not authored yet. This page is a charter, not a judgeable standard.'],
+    ['Reference implementation', referenceRow],
+    ['Blocking promotion', registryEntry?.maturityNote ?? 'Not recorded.']
+  ];
+  return `
+| Charter status | Value |
+|---|---|
+${rows.map(([label, value]) => `| ${label} | ${value} |`).join('\n')}
+
+Maturity states are defined in [Standards Authoring](../authoring.md#planned-charter-maturity-states).
+Metadata lives in [\`standards/registry.json\`](https://github.com/vibecodeqa/vibecodeqa/blob/main/standards/registry.json).
+`;
+}
+
 function generatedStackIndex() {
   const authored = compositions.composedStandards.filter((standard) => isComposedAuthored(standard) && isStackStandard(standard));
   const crossCutting = compositions.composedStandards.filter((standard) => isComposedAuthored(standard) && !isStackStandard(standard) && !isAliasOnly(standard));
@@ -488,8 +560,29 @@ ${aliases.map((standard) => `- \`${standard.id}\`: resolves to ${mdLink(normaliz
 
 ## Planned Stack Charters
 
-${planned.map((standard) => `- ${mdLink(standardTitle(standard.id), relativeDocsUrl(standard.docsUrl, 'stacks'))}: ${standard.ownedRules.join(', ')}.`).join('\n')}
+Planned charters are ranked by [maturity state](../authoring.md#planned-charter-maturity-states),
+not listed as one undifferentiated backlog. A charter's state says how close it is to a
+versioned rubric, and every charter page carries the reason for its own state.
+
+${plannedByMaturity(planned)}
 `;
+}
+
+// Grouped rather than flat: a charter with governed candidate rules and a published
+// reference repo is not the same artifact as one whose only cited consumer is archived,
+// and a single "Planned" list said they were.
+function plannedByMaturity(planned) {
+  const order = ['candidate-rubric', 'draft-charter', 'backlog'];
+  return order
+    .map((maturity) => {
+      const group = planned.filter((standard) => maturityOf(standard.id) === maturity);
+      if (!group.length) return null;
+      const state = maturityStates[maturity];
+      const lines = group.map((standard) => `- ${mdLink(standardTitle(standard.id), relativeDocsUrl(standard.docsUrl, 'stacks'))}: ${standard.ownedRules.join(', ')}.`);
+      return `### ${state.label}\n\n${state.means}\n\n${lines.join('\n')}`;
+    })
+    .filter(Boolean)
+    .join('\n\n');
 }
 
 function generatedItemsIndex() {
@@ -508,11 +601,11 @@ function generatedCompositionsSummary() {
   const rows = compositions.composedStandards.map((standard) => {
     const docs = relativeDocsUrl(standard.docsUrl, '.');
     const full = standard.standardUrl ? mdLink(standard.latestEdition, normalizeStandardUrl(standard.standardUrl)) : 'planned';
-    return `| ${docs ? mdLink(standardTitle(standard.id), docs) : standardTitle(standard.id)} | ${standard.status} | ${full} | ${standard.stackItems.map((id) => `\`${id}\``).join(', ')} |`;
+    return `| ${docs ? mdLink(standardTitle(standard.id), docs) : standardTitle(standard.id)} | ${standard.status} | ${maturityState(standard.id).label} | ${full} | ${standard.stackItems.map((id) => `\`${id}\``).join(', ')} |`;
   });
   return `
-| Standard | Status | Edition | Composes |
-|---|---|---|---|
+| Standard | Status | Maturity | Edition | Composes |
+|---|---|---|---|---|
 ${rows.join('\n')}
 `;
 }
@@ -622,9 +715,11 @@ ${notes}
 
 function generatedHtmlNextStandards() {
   return plannedStandards()
+    .slice()
+    .sort(byMaturity)
     .map((standard) => {
       const label = standard.docsUrl ? htmlLink(standard.id, normalizeStandardUrl(standard.docsUrl), 'name') : `<span class="name">${escapeHtml(standard.id)}</span>`;
-      return `<tr><td>${label}</td><td>${escapeHtml(standard.ownedRules.join(', '))}</td><td><span class="badge planned">planned</span></td></tr>`;
+      return `<tr><td>${label}</td><td>${escapeHtml(standard.ownedRules.join(', '))}</td><td><span class="badge planned">${escapeHtml(maturityState(standard.id).label.toLowerCase())}</span></td></tr>`;
     })
     .join('\n');
 }
@@ -659,6 +754,7 @@ function graphModel() {
     title: standardTitle(standard.id),
     kind: standardKind(standard),
     status: standard.status,
+    maturity: maturityOf(standard.id),
     docsUrl: normalizeStandardUrl(standard.docsUrl),
     standardUrl: normalizeStandardUrl(standard.standardUrl),
     latestEdition: standard.latestEdition,
@@ -844,6 +940,19 @@ function stackPagesWithReferenceEvidence() {
   });
 }
 
+// Planned stack charter pages, deduped by page: the pages that carry a generated
+// charter-status block instead of a hand-typed "Status: Planned charter" line.
+function plannedStackCharterPages() {
+  const seen = new Set();
+  return compositions.composedStandards.flatMap((standard) => {
+    if (standard.status !== 'planned' || !isStackStandard(standard)) return [];
+    const slug = docsPageSlug(standard.docsUrl, 'stacks');
+    if (!slug || seen.has(slug)) return [];
+    seen.add(slug);
+    return [{ id: standard.id, slug }];
+  });
+}
+
 // Authored stack charter pages, deduped by page: the pages the authored-charter bar in
 // docs/docs/standards/authoring.md applies to.
 function authoredStackCharterPages() {
@@ -866,6 +975,8 @@ const changed = [
     replaceGeneratedBlock(`docs/docs/standards/stacks/${page.slug}.md`, 'reference-evidence', generatedStackReferenceEvidence(page.id))),
   ...authoredStackCharterPages().map((page) =>
     replaceGeneratedBlock(`docs/docs/standards/stacks/${page.slug}.md`, 'charter-maintenance', generatedCharterMaintenance(page.id))),
+  ...plannedStackCharterPages().map((page) =>
+    replaceGeneratedBlock(`docs/docs/standards/stacks/${page.slug}.md`, 'charter-status', generatedCharterStatus(page.id))),
   replaceGeneratedBlock('docs/docs/standards/stacks/index.md', 'stack-standards-inventory', generatedStackIndex()),
   replaceGeneratedBlock('docs/docs/standards/items/index.md', 'stack-items-inventory', generatedItemsIndex()),
   replaceGeneratedBlock('docs/docs/standards/compositions.md', 'composition-summary', generatedCompositionsSummary()),

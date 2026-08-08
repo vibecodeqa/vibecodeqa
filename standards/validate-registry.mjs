@@ -10,6 +10,12 @@ const references = JSON.parse(readFileSync(join(here, 'references.json'), 'utf8'
 
 const errors = [];
 const idPattern = /^[a-z0-9-]+$/;
+const maturityRank = new Map([
+  ['backlog', 0],
+  ['draft-charter', 1],
+  ['candidate-rubric', 2],
+  ['authored-rubric', 3]
+]);
 const standardIds = new Set(registry.standards.map((standard) => standard.id));
 const standardsById = new Map(registry.standards.map((standard) => [standard.id, standard]));
 const stackItemIds = new Set(compositions.stackItems.map((item) => item.id));
@@ -104,6 +110,22 @@ for (const standard of registry.standards) {
   }
   if (standard.url && /^https:\/\/vibecodeqa\.online\/standards\/[^/]+\/?$/.test(standard.url)) {
     fail(`${standard.id}: url points at an unversioned standards route`);
+  }
+  // Maturity is the finer-grained answer to "how close is this to a rubric". It must never
+  // disagree with status, and every non-authored state must say what blocks it by name.
+  if (!maturityRank.has(standard.maturity)) {
+    fail(`${standard.id}: maturity must be one of ${[...maturityRank.keys()].join(', ')}, got ${JSON.stringify(standard.maturity)}`);
+  } else if (standard.status === 'published' && standard.maturity !== 'authored-rubric') {
+    fail(`${standard.id}: published standard must be maturity authored-rubric, got ${standard.maturity}`);
+  } else if (standard.status !== 'published' && standard.maturity === 'authored-rubric') {
+    fail(`${standard.id}: maturity authored-rubric requires registry status published`);
+  }
+  if (standard.maturity === 'authored-rubric') {
+    if (standard.maturityNote !== null) {
+      fail(`${standard.id}: authored standards use maturityNote: null; the rubric is the answer`);
+    }
+  } else if (typeof standard.maturityNote !== 'string' || standard.maturityNote.trim().length < 40) {
+    fail(`${standard.id}: maturityNote must state the reason and the concrete blocker for ${standard.maturity}`);
   }
   checkDocsUrl(standard.docsUrl, `${standard.id}.docsUrl`);
   checkStandardUrl(standard.standardUrl, `${standard.id}.standardUrl`);
@@ -316,6 +338,68 @@ for (const slug of [...authoredCharterSlugs].sort()) {
     if (!text.includes(`<!-- BEGIN GENERATED:${block} -->`)) {
       fail(`docs/docs/standards/stacks/${slug}.md: authored charter must carry the generated ${block} block.`);
     }
+  }
+}
+
+// --- Planned charter maturity bar -------------------------------------------------------
+//
+// A planned charter's maturity is a claim about what the page carries, so the page has to
+// carry it. Otherwise `candidate-rubric` becomes a label an author grants themselves, which
+// is the same problem the flat "planned" status had. Sections are cumulative: the bar for a
+// state includes the bar for every state below it.
+const plannedCharterSections = {
+  backlog: [],
+  'draft-charter': [
+    'Scope',
+    'Not in scope',
+    'Composes',
+    'VCQA-owned rule surface',
+    'Detection signals',
+    'Combination-born guidelines'
+  ],
+  'candidate-rubric': [
+    'Teaching focus',
+    'Upstream references',
+    'Candidate rules',
+    'Severity and evidence',
+    'Exception policy',
+    'Anti-patterns',
+    'Promotion criteria',
+    'Review cadence'
+  ]
+};
+
+const plannedCharterPages = new Map(
+  compositions.composedStandards
+    .filter((standard) => standard.status === 'planned')
+    .map((standard) => [standard.id, normalizeUrl(standard.docsUrl)])
+    .filter(([, url]) => url?.startsWith('/docs/standards/stacks/'))
+);
+
+for (const [id, url] of [...plannedCharterPages].sort()) {
+  const slug = url.replace('/docs/standards/stacks/', '').replace(/\/$/, '');
+  const path = join(here, '..', 'docs/docs/standards/stacks', `${slug}.md`);
+  if (!existsSync(path)) continue;
+  const text = readFileSync(path, 'utf8');
+  const headings = new Set(
+    text.split('\n')
+      .filter((line) => line.startsWith('## '))
+      .map((line) => line.slice(3).trim())
+  );
+  const maturity = standardsById.get(id)?.maturity ?? 'backlog';
+  const rank = maturityRank.get(maturity) ?? 0;
+  const required = Object.entries(plannedCharterSections)
+    .filter(([state]) => (maturityRank.get(state) ?? 0) <= rank)
+    .flatMap(([, sections]) => sections);
+  const missing = required.filter((section) => !headings.has(section));
+  if (missing.length) {
+    fail(`docs/docs/standards/stacks/${slug}.md: charter claims maturity ${maturity} but is missing ${missing.map((s) => `"## ${s}"`).join(', ')}. Lower the maturity in registry.json or write the section. See docs/docs/standards/authoring.md#planned-charter-maturity-states.`);
+  }
+  if (!text.includes('<!-- BEGIN GENERATED:charter-status -->')) {
+    fail(`docs/docs/standards/stacks/${slug}.md: planned charter must carry the generated charter-status block.`);
+  }
+  if (/^\*\*Status:\*\*/m.test(text)) {
+    fail(`docs/docs/standards/stacks/${slug}.md: hand-written status line found; maturity comes from the generated charter-status block.`);
   }
 }
 

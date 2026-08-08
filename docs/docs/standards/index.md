@@ -52,17 +52,21 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 
 ## Planned Standards
 
-| Planned standard | Composes | VCQA-owned surface |
-|---|---|---|
-| [Node CLI Internal Tool](stacks/node-cli-internal-tool.md) | TypeScript, Node, OpenAPI, Web Security | noninteractive exit-code contract; credential resolution order; prod/staging safety defaults; structured output mode; SDK reuse instead of API duplication |
-| [TypeScript SDK](stacks/typescript-sdk.md) | TypeScript, OpenAPI, Zod, Vitest | export map and declaration quality; API contract freshness; credential boundary; typed error model; consumer compatibility tests |
-| [GitHub Action Package](stacks/github-action-package.md) | GitHub Action, GitHub Actions, Node, TypeScript | action.yml metadata completeness; minimum token permissions; input validation; pinned runtime/dependency policy; release tag policy |
-| [VS Code Extension Package](stacks/vscode-extension-package.md) | VS Code Extension, TypeScript, Node, Web Security | activation event scope; workspace trust behavior; command and webview boundaries; marketplace metadata; extension test coverage |
-| [Tauri React Desktop](stacks/tauri-react-desktop.md) | Tauri, React, TypeScript, Web Security, Docs KB | Tauri command/capability boundaries; keychain/secret storage; file-system watch safety; desktop packaging and signing; frontend/backend contract typing |
-| [Zensical KB Site](stacks/zensical-kb-site.md) | Docs KB, GitHub Actions | Markdown source is the source of truth; generated site is ignored; published URLs are stable; source references are tracked; docs drift checks where mirrors exist |
-| [Accessibility](items/web-accessibility.md) | Web Accessibility | WCAG and ARIA acceptance gates mapped to scanner evidence; keyboard, focus, semantics, and contrast checks by UI stack; manual-review exception policy for accessibility findings |
-| [Dependency Hygiene](items/dependencies.md) | Dependency Hygiene, GitHub Actions, Node | lockfile and package-manager pinning; install script and dependency provenance review; audit, license, update, runtime, and exception evidence in CI |
-| [Flutter Firebase App](stacks/flutter-firebase-app.md) | Dart, Flutter, Firebase, Melos, GitHub Actions, Dependency Hygiene | Flutter app/admin/shared package workspace shape; Firebase project, hosting, functions, and Firestore environment separation; Firestore rules, indexes, and emulator-backed test gates; mobile/web build artifact and platform permission evidence; version bump, deploy gate, and test dashboard evidence |
+Ranked by [maturity state](authoring.md#planned-charter-maturity-states). Only a candidate
+rubric is close enough to a versioned standard to review a repository against; a backlog entry
+exists so the resolver names the right standard, and nothing more.
+
+| Planned standard | Maturity | Composes | VCQA-owned surface |
+|---|---|---|---|
+| [Node CLI Internal Tool](stacks/node-cli-internal-tool.md) | Candidate rubric | TypeScript, Node, OpenAPI, Web Security | noninteractive exit-code contract; credential resolution order; prod/staging safety defaults; structured output mode; SDK reuse instead of API duplication |
+| [TypeScript SDK](stacks/typescript-sdk.md) | Candidate rubric | TypeScript, OpenAPI, Zod, Vitest | export map and declaration quality; API contract freshness; credential boundary; typed error model; consumer compatibility tests |
+| [GitHub Action Package](stacks/github-action-package.md) | Candidate rubric | GitHub Action, GitHub Actions, Node, TypeScript | action.yml metadata completeness; minimum token permissions; input validation; pinned runtime/dependency policy; release tag policy |
+| [Tauri React Desktop](stacks/tauri-react-desktop.md) | Draft charter | Tauri, React, TypeScript, Web Security, Docs KB | Tauri command/capability boundaries; keychain/secret storage; file-system watch safety; desktop packaging and signing; frontend/backend contract typing |
+| [Zensical KB Site](stacks/zensical-kb-site.md) | Draft charter | Docs KB, GitHub Actions | Markdown source is the source of truth; generated site is ignored; published URLs are stable; source references are tracked; docs drift checks where mirrors exist |
+| [Accessibility](items/web-accessibility.md) | Draft charter | Web Accessibility | WCAG and ARIA acceptance gates mapped to scanner evidence; keyboard, focus, semantics, and contrast checks by UI stack; manual-review exception policy for accessibility findings |
+| [Dependency Hygiene](items/dependencies.md) | Draft charter | Dependency Hygiene, GitHub Actions, Node | lockfile and package-manager pinning; install script and dependency provenance review; audit, license, update, runtime, and exception evidence in CI |
+| [Flutter Firebase App](stacks/flutter-firebase-app.md) | Draft charter | Dart, Flutter, Firebase, Melos, GitHub Actions, Dependency Hygiene | Flutter app/admin/shared package workspace shape; Firebase project, hosting, functions, and Firestore environment separation; Firestore rules, indexes, and emulator-backed test gates; mobile/web build artifact and platform permission evidence; version bump, deploy gate, and test dashboard evidence |
+| [VS Code Extension Package](stacks/vscode-extension-package.md) | Backlog | VS Code Extension, TypeScript, Node, Web Security | activation event scope; workspace trust behavior; command and webview boundaries; marketplace metadata; extension test coverage |
 <!-- END GENERATED:standards-inventory -->
 
 ## Catalog entry points

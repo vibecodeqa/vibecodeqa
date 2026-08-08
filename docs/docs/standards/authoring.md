@@ -55,8 +55,8 @@ When adding or changing a standard:
 4. Author or revise the stack charter or rubric Markdown.
 5. Do not manually edit generated catalog tables, stack/item indexes, root standards
    landing inventories, the "Supported stacks" authored-rubric list, the generated docs
-   navigation blocks, graph content/data, rubric related-standard sections, or
-   reference implementation inventories.
+   navigation blocks, graph content/data, rubric related-standard sections, charter status
+   or maintenance blocks, or reference implementation inventories.
 
 A catalog page under `docs/docs/standards/stacks/` or `docs/docs/standards/items/` with no
 metadata entry behind it fails validation: it would be missing from every generated index,
@@ -124,18 +124,64 @@ Two of those sections are generated and must not be hand-edited: `reference-evid
 and `charter-maintenance` (edition and review metadata). Add the fence markers to a new
 authored charter page and run the generator; it fills them in.
 
-Planned charters use the lighter template below. Nothing on this page is a reason to demote
-or delete an existing page: a planned charter that has not reached the authored bar stays
-planned.
+Planned charters use the lighter template below, graded by the maturity states in the next
+section. Nothing on this page is a reason to delete an existing page: a charter that has not
+reached the authored bar keeps its URL and is labelled honestly instead.
+
+## Planned charter maturity states
+
+"Planned" was one word covering two very different artifacts: a charter with governed
+candidate rules and a scored reference repo, and a note nobody has touched since it was filed.
+Readers could not tell them apart, so a backlog entry read like a standard.
+
+Every registry entry therefore declares a `maturity` alongside its `status`, and a
+`maturityNote` giving the reason for that state and what blocks promotion. The generator
+renders both onto the charter page and into every catalog surface that lists planned work.
+
+| Maturity | The page carries | What it is good for |
+|---|---|---|
+| `backlog` | A scope statement and detection signals, at most. | Making the resolver name the right standard in a gap report. Nothing here is judgeable, and nobody is working toward a rubric. |
+| `draft-charter` | Scope, Not in scope, Composes, VCQA-owned rule surface, Detection signals, Combination-born guidelines. | Planning and scoping. A reader can tell whether the stack applies; they cannot review a repository against it. |
+| `candidate-rubric` | Everything above, plus Teaching focus, Upstream references, numbered Candidate rules, Severity and evidence, Exception policy, Anti-patterns, Promotion criteria, Review cadence. | Reviewing a repository with a named assessor, and cutting a `vN` rubric once the promotion criteria are met. |
+| `authored-rubric` | The full [authored charter bar](#authored-charter-bar) above, and a published `/standards/<id>/vN/` rubric. | Being cited rule-by-rule by a scan or a report. |
+
+Rules:
+
+- `maturity: authored-rubric` is required for, and only for, registry `status: published`.
+  The two cannot disagree.
+- `maturityNote` is required for every other state. It names the reason and the blocker in
+  concrete terms — a missing reference repo, an archived consumer, an unwritten rule set — not
+  "work in progress".
+- Promotion is earned by the page, not granted by intent. `validate-registry.mjs` fails the
+  build when a charter claims a state whose sections it does not carry.
+- Demotion is a normal outcome. A charter whose only cited consumer has been archived belongs
+  in `backlog` with the reason recorded, and it keeps its published URL so nothing 404s.
+- A `candidate-rubric` charter states its own **promotion criteria**: exactly what must be true
+  before a `v1` is cut. "Needs more work" is not a promotion criterion; "every rule judged
+  against a named commit of the reference repo" is.
+- A `candidate-rubric` charter states a **review cadence** tied to events and to the date of
+  its most recent assessment report, rather than a hand-typed date that rots.
+
+Planned charter pages carry a generated `charter-status` block instead of a hand-written
+status line. Add the fence markers and run the generator; it fills in the state, what the
+state means, whether a reference implementation actually exists, and the promotion blocker.
 
 ## Charter template
+
+This is the `draft-charter` shape. A `candidate-rubric` page adds Teaching focus, Upstream
+references, Candidate rules, Severity and evidence, Exception policy, Anti-patterns, Promotion
+criteria, and Review cadence; see
+[Node CLI Internal Tool](stacks/node-cli-internal-tool.md) as the current exemplar.
 
 ```markdown
 # <Standard title>
 
-**Status:** Planned charter
-
 <One paragraph scope statement.>
+
+## Charter status
+
+<!-- BEGIN GENERATED:charter-status -->
+<!-- END GENERATED:charter-status -->
 
 ## Full rubric
 

@@ -200,6 +200,7 @@ Where a field is repeated for convenience, it is a **derived mirror** and
 | Field | Owner | Notes |
 | --- | --- | --- |
 | standard `id`, `type`, `status` | `registry.json` | `compositions.json` mirrors status as `authored` / `planned`; validated identical. |
+| `maturity`, `maturityNote` | `registry.json` | How close the standard is to a versioned rubric, and what blocks promotion (§11). No mirror; every surface reads the registry. |
 | standard `title` | `registry.json` | The display name every catalog surface renders. Never derived from the id. |
 | `summary` | `registry.json` | One-line "what it judges" text used by catalog tables and landing inventories. |
 | `detect` predicates | `registry.json` | Resolver input only; no catalog surface renders it. |
@@ -334,3 +335,37 @@ Two guards keep the surfaces honest:
 Self-reported is the default and must stay visible. The assessment criteria treat a
 repo's own score as a claim to verify, so no catalog surface may present one as
 third-party proof.
+
+## 11. Charter maturity
+
+`status` answers "is there a published rubric". It does not answer "how close is this to
+being one", and for a long time every unpublished standard read the same on every surface —
+a charter with twelve governed candidate rules and a scored reference repo sat in the same
+undifferentiated "planned" list as a note whose only cited consumer had been archived.
+
+Each standard therefore also declares:
+
+```json
+{
+  "status": "planned",
+  "maturity": "candidate-rubric",
+  "maturityNote": "Twelve candidate rules carry severity, evidence, and exception terms. Blocking v1: `ref-typescript-sdk` does not exist yet, so not one rule has been proven against a working repository."
+}
+```
+
+| Value | Meaning |
+|---|---|
+| `backlog` | Recorded so the resolver names the right standard in a gap report. Nothing is judgeable and nobody is working toward a rubric. |
+| `draft-charter` | Scope, composition, detection signals, and the VCQA-owned rule surface exist; there are no numbered candidate rules. |
+| `candidate-rubric` | Numbered candidate rules carry severity, required evidence, and an exception policy, and the page states its own promotion criteria and review cadence. |
+| `authored-rubric` | A versioned rubric is published. Required for, and only for, `status: published`. |
+
+`maturityNote` is required for every state except `authored-rubric` and must name a concrete
+blocker. The entry requirements per state, and the promotion and demotion rules, are in
+[Standards Authoring](https://vibecodeqa.online/docs/standards/authoring/#planned-charter-maturity-states).
+
+`generate-catalog.mjs` renders maturity into the `charter-status` block on every planned
+charter page, the grouped planned-charter inventory on the stack index, the composition
+summary table, the "next standards" table on the standards landing page, and `graph.json`.
+`validate-registry.mjs` fails the build when maturity and status disagree, when a note is
+missing, or when a charter claims a state whose required sections it does not carry.
