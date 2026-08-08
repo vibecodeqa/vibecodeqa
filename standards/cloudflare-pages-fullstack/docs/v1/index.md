@@ -13,7 +13,30 @@ Cloudflare bindings, auth middleware, and deployment.
 ## Rule shape
 
 Each rule has a stable ID (`R-<AREA>-<n>`), one checkable statement, the reason it exists,
-and a `vcqa` signal that describes how a scanner or judge evaluates it.
+a `vcqa` signal that describes how a scanner or judge evaluates it, the evidence a reviewer
+must inspect, and primary references. Rules also follow the shared VCQA rule contract:
+severity, evidence, and accepted exceptions are explicit rather than reviewer judgement.
+
+Rules state an obligation (`must`) plus the exception path that makes deviation reviewable.
+Where an earlier draft of this edition used `should`, the rule meaning is unchanged: the
+expectation is now carried by an explicit severity and an `acceptedException` record instead
+of reviewer interpretation.
+
+## Severity and evidence defaults
+
+| Rule group | Default severity | Required evidence |
+|---|---|---|
+| Archetype identity and the API seam (`SHAPE`, `SEAM-1`, `SEAM-2`) | `blocker` when the deployed route graph cannot serve both halves; otherwise `high` | Repo layout, Pages project config, `_routes.json`/`_redirects`, deployed-URL responses with status and `content-type`. |
+| Authorization and secret boundary (`AUTH`, `SEC`) | `blocker` when an unauthenticated request reaches a privileged binding or a secret is reachable from browser assets; otherwise `high` | Function handlers and middleware, built assets, negative-auth smoke transcript. |
+| Environment and bindings (`ENV`, `BIND`) | `blocker` for shared preview/production binding IDs or secret-like client env; otherwise `medium` | Wrangler config binding blocks, `Env` types, deploy workflow environment selection. |
+| Contracts and validation (`TYPE`, `VAL`) | `high` when unvalidated input reaches a binding or an authorization decision; otherwise `medium` | Shared types/schemas, handler parse calls, tests over rejected input. |
+| Deployment assembly and CI (`DEPLOY`, `CI`) | `blocker` when the two halves can ship out of step; otherwise `high` | Deploy workflow, `wrangler pages deploy` invocation, branch/environment selection, job ordering. |
+| Smoke tests, evidence, and observability (`TEST`, `OBS`) | `high` for missing seam or negative-auth assertions; `evidence-only` for missing retained transcripts, escalating to `high` when the missing artifact hides a `SEAM`/`AUTH` failure | Smoke test source, CI logs, uploaded transcripts/traces with deployment URL, commit SHA, and timestamp. |
+
+Accepted exceptions use the shared `acceptedException` template: owner, scope,
+environment/tenant, reason, compensating controls, evidence, expiry/review date, and
+approval trail. An exception cannot override archetype identity: a repo that needs a
+long-running server is not a `cloudflare-pages-fullstack` with an exception.
 
 ## The rubric
 
@@ -52,3 +75,22 @@ Reports and scans should cite this pinned edition URL:
 - Reference implementations: [ref-cloudflare-saas](https://github.com/vibecodeqa/ref-cloudflare-saas), [ref-cloudflare-pages-fullstack](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack)
 - Related standards: [cloudflare-d1-app](/standards/cloudflare-d1-app/v1/), [tenant-deployed-cloudflare-saas](/standards/tenant-deployed-cloudflare-saas/v1/), [react-spa](/standards/react-spa/v1/), [cloudflare-worker-mcp-server](/standards/cloudflare-worker-mcp-server/v1/), [typescript](/standards/typescript/v1/), [node-cli-internal-tool](/docs/standards/stacks/node-cli-internal-tool/), [typescript-sdk](/docs/standards/stacks/typescript-sdk/), [github-action-package](/docs/standards/stacks/github-action-package/)
 <!-- END GENERATED:related-standards -->
+
+## Reference baseline
+
+- Cloudflare Pages Functions: <https://developers.cloudflare.com/pages/functions/>
+- Pages Functions routing and `_routes.json`:
+  <https://developers.cloudflare.com/pages/functions/routing/>
+- Pages Functions middleware:
+  <https://developers.cloudflare.com/pages/functions/middleware/>
+- Pages preview deployments:
+  <https://developers.cloudflare.com/pages/configuration/preview-deployments/>
+- Pages branch build controls:
+  <https://developers.cloudflare.com/pages/configuration/branch-build-controls/>
+- Pages direct upload from CI:
+  <https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/>
+- Workers bindings: <https://developers.cloudflare.com/workers/runtime-apis/bindings/>
+- Workers secrets: <https://developers.cloudflare.com/workers/configuration/secrets/>
+- Vite env and mode: <https://vite.dev/guide/env-and-mode>
+- GitHub Actions secure use:
+  <https://docs.github.com/en/actions/reference/security/secure-use>
