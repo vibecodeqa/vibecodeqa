@@ -18,7 +18,7 @@ map.
 | [Cloudflare Pages Fullstack](stacks/cloudflare-pages-fullstack.md) | authored | [v1](/standards/cloudflare-pages-fullstack/v1/) | `react-spa`, `cloudflare-pages-functions`, `typescript`, `web-security`, `github-actions` |
 | [Cloudflare D1 App](stacks/cloudflare-d1-app.md) | authored | [v1](/standards/cloudflare-d1-app/v1/) | `cloudflare-d1`, `cloudflare-pages-functions`, `cloudflare-workers`, `typescript`, `web-security`, `github-actions` |
 | [Cloudflare Worker MCP Server](stacks/cloudflare-worker-mcp-server.md) | authored | [v1](/standards/cloudflare-worker-mcp-server/v1/) | `cloudflare-workers`, `durable-objects`, `mcp`, `zod`, `typescript`, `web-security`, `github-actions` |
-| [Tenant Deployed Cloudflare SaaS](stacks/tenant-deployed-cloudflare-saas.md) | authored | [v1](/standards/tenant-deployed-cloudflare-saas/v1/) | `cloudflare-workers`, `github-actions`, `web-security`, `docs-kb` |
+| [Tenant-Deployed Cloudflare SaaS](stacks/tenant-deployed-cloudflare-saas.md) | authored | [v1](/standards/tenant-deployed-cloudflare-saas/v1/) | `cloudflare-workers`, `github-actions`, `web-security`, `docs-kb` |
 | [Security](items/web-security.md) | authored | [v1](/standards/security/v1/) | `web-security`, `github-actions`, `cloudflare-workers`, `mcp`, `docs-kb` |
 | [Testing](items/vitest.md) | authored | [v1](/standards/testing/v1/) | `vitest`, `playwright`, `github-actions` |
 | [TypeScript](items/typescript.md) | authored | [v1](/standards/typescript/v1/) | `typescript`, `node`, `github-actions` |
@@ -28,9 +28,9 @@ map.
 | [VS Code Extension Package](stacks/vscode-extension-package.md) | planned | planned | `vscode-extension`, `typescript`, `node`, `web-security` |
 | [Tauri React Desktop](stacks/tauri-react-desktop.md) | planned | planned | `tauri`, `react`, `typescript`, `web-security`, `docs-kb` |
 | [Zensical KB Site](stacks/zensical-kb-site.md) | planned | planned | `docs-kb`, `github-actions` |
-| [React SPA On Cloudflare Pages](stacks/cloudflare-pages-fullstack.md) | authored | [v1](/standards/cloudflare-pages-fullstack/v1/) | `react-spa`, `cloudflare-pages-functions`, `typescript`, `web-security`, `github-actions` |
+| [React SPA on Cloudflare Pages (with Functions)](stacks/cloudflare-pages-fullstack.md) | authored | [v1](/standards/cloudflare-pages-fullstack/v1/) | `react-spa`, `cloudflare-pages-functions`, `typescript`, `web-security`, `github-actions` |
 | [Accessibility](items/web-accessibility.md) | planned | planned | `web-accessibility` |
-| [Dependencies](items/dependencies.md) | planned | planned | `dependencies`, `github-actions`, `node` |
+| [Dependency Hygiene](items/dependencies.md) | planned | planned | `dependencies`, `github-actions`, `node` |
 | [Flutter Firebase App](stacks/flutter-firebase-app.md) | planned | planned | `dart`, `flutter`, `firebase`, `melos`, `github-actions`, `dependencies` |
 <!-- END GENERATED:composition-summary -->
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -161,10 +161,47 @@ for (const standard of registry.standards) {
 for (const item of compositions.stackItems) {
   requireId(item.id, `stackItems.${item.id}`);
   checkDocsUrl(item.docsUrl, `${item.id}.docsUrl`);
+  // Catalog surfaces render this title verbatim. Without it the generator would have to
+  // guess a display name, which is how nav and index labels drifted apart before.
+  if (typeof item.title !== 'string' || !item.title.trim()) {
+    fail(`${item.id}: stack item must declare a title`);
+  }
+  const sharedStandard = standardsById.get(item.id);
+  if (sharedStandard && sharedStandard.title !== item.title) {
+    fail(`${item.id}: title disagrees between registry ("${sharedStandard.title}") and compositions ("${item.title}")`);
+  }
   for (const reference of item.references || []) {
     if (!referenceIds.has(reference)) fail(`${item.id}.references: unknown reference id "${reference}"`);
   }
 }
+
+for (const standard of registry.standards) {
+  if (typeof standard.title !== 'string' || !standard.title.trim()) {
+    fail(`${standard.id}: standard must declare a title`);
+  }
+}
+
+// Reverse direction: a catalog page added by hand, without metadata behind it, is
+// invisible to every generated surface. Fail instead of silently dropping it.
+function checkCatalogPagesAreBacked(section, backingUrls) {
+  const dir = join(here, '..', 'docs/docs/standards', section);
+  if (!existsSync(dir)) return;
+  const backed = new Set([...backingUrls].filter(Boolean).map((url) => normalizeUrl(url).replace(`/docs/standards/${section}/`, '').replace(/\/$/, '')));
+  for (const file of readdirSync(dir).filter((name) => name.endsWith('.md') && name !== 'index.md')) {
+    const slug = file.replace(/\.md$/, '');
+    if (!backed.has(slug)) {
+      fail(`docs/docs/standards/${section}/${file}: catalog page has no metadata entry in compositions.json`);
+    }
+  }
+}
+
+checkCatalogPagesAreBacked('items', compositions.stackItems.map((item) => item.docsUrl));
+checkCatalogPagesAreBacked(
+  'stacks',
+  compositions.composedStandards
+    .map((standard) => standard.docsUrl)
+    .filter((url) => normalizeUrl(url)?.startsWith('/docs/standards/stacks/'))
+);
 
 for (const refRepo of compositions.referenceImplementations || []) {
   requireId(refRepo.id, `referenceImplementations.${refRepo.id}`);

@@ -14,9 +14,10 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "kind", "references", "vcqaShouldOwn", "docsUrl"],
+        "required": ["id", "title", "kind", "references", "vcqaShouldOwn", "docsUrl"],
         "properties": {
           "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "title": { "type": "string", "minLength": 1 },
           "kind": { "type": "string" },
           "references": { "type": "array", "items": { "type": "string" } },
           "vcqaShouldOwn": { "type": "array", "items": { "type": "string" } },

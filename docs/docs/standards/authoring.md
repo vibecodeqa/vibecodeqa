@@ -37,18 +37,30 @@ changelog entries. Reports and scans must cite pinned `/standards/<id>/vN/` URLs
 
 The catalog surfaces are generated from the metadata registries while the explanatory prose
 around them remains hand-authored. Generated regions are marked with
-`BEGIN GENERATED:*` and `END GENERATED:*` comments.
+`BEGIN GENERATED:*` and `END GENERATED:*` comments — HTML comments in Markdown and HTML,
+`#` comments in `docs/zensical.toml`.
+
+Field ownership across `registry.json`, `compositions.json`, and `references.json` is
+defined in [`standards/SCHEMA.md`](https://github.com/vibecodeqa/vibecodeqa/blob/main/standards/SCHEMA.md).
+Repeated fields are derived mirrors and the validator fails when two copies disagree.
 
 When adding or changing a standard:
 
 1. Update `standards/registry.json`, `standards/compositions.json`, and
-   `standards/references.json` first.
+   `standards/references.json` first. Every standard needs a `title`, and every stack item
+   needs a `title` — catalog surfaces and the docs sidebar render them verbatim rather than
+   guessing a display name from the id.
 2. Run `node standards/generate-catalog.mjs`.
 3. Run `node standards/validate-registry.mjs`.
 4. Author or revise the stack charter or rubric Markdown.
 5. Do not manually edit generated catalog tables, stack/item indexes, root standards
-   landing inventories, graph content/data, rubric related-standard sections, or
+   landing inventories, the "Supported stacks" authored-rubric list, the generated docs
+   navigation blocks, graph content/data, rubric related-standard sections, or
    reference implementation inventories.
+
+A catalog page under `docs/docs/standards/stacks/` or `docs/docs/standards/items/` with no
+metadata entry behind it fails validation: it would be missing from every generated index,
+the graph, and the sidebar.
 
 CI runs `node standards/generate-catalog.mjs --check` and fails if generated output is
 stale.

@@ -84,7 +84,7 @@ full VCQA standards by themselves unless the deployable stack shape makes them j
 
 ## Supply Chain
 
-- [Dependencies](dependencies.md): lockfile and package-manager consistency, install-script and dependency provenance gates, audit, license, update, and exception evidence.
+- [Dependency Hygiene](dependencies.md): lockfile and package-manager consistency, install-script and dependency provenance gates, audit, license, update, and exception evidence.
 
 ## Backend Platform
 

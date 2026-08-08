@@ -11,6 +11,7 @@
   "stackItems": [
     {
       "id": "node",
+      "title": "Node",
       "kind": "runtime",
       "references": [
         "node-docs",
@@ -26,6 +27,7 @@
     },
     {
       "id": "react",
+      "title": "React",
       "kind": "framework",
       "references": [
         "react-docs",
@@ -39,6 +41,7 @@
     },
     {
       "id": "react-router",
+      "title": "React Router",
       "kind": "routing",
       "references": [
         "react-router-docs"
@@ -51,6 +54,7 @@
     },
     {
       "id": "vite",
+      "title": "Vite",
       "kind": "build-tool",
       "references": [
         "vite-guide",
@@ -65,6 +69,7 @@
     },
     {
       "id": "typescript",
+      "title": "TypeScript",
       "kind": "language",
       "references": [
         "typescript-tsconfig",
@@ -79,6 +84,7 @@
     },
     {
       "id": "web-accessibility",
+      "title": "Web Accessibility",
       "kind": "quality",
       "references": [
         "wcag-22",
@@ -92,6 +98,7 @@
     },
     {
       "id": "web-security",
+      "title": "Web Security",
       "kind": "security",
       "references": [
         "owasp-asvs",
@@ -113,6 +120,7 @@
     },
     {
       "id": "vitest",
+      "title": "Vitest",
       "kind": "testing",
       "references": [
         "vitest-guide"
@@ -125,6 +133,7 @@
     },
     {
       "id": "playwright",
+      "title": "Playwright",
       "kind": "testing",
       "references": [
         "playwright-best-practices"
@@ -137,6 +146,7 @@
     },
     {
       "id": "cloudflare-pages-functions",
+      "title": "Cloudflare Pages Functions",
       "kind": "runtime",
       "references": [
         "cloudflare-pages-functions",
@@ -153,6 +163,7 @@
     },
     {
       "id": "cloudflare-workers",
+      "title": "Cloudflare Workers",
       "kind": "runtime",
       "references": [
         "cloudflare-workers",
@@ -167,6 +178,7 @@
     },
     {
       "id": "cloudflare-d1",
+      "title": "Cloudflare D1",
       "kind": "database",
       "references": [
         "cloudflare-d1",
@@ -182,6 +194,7 @@
     },
     {
       "id": "durable-objects",
+      "title": "Durable Objects",
       "kind": "state",
       "references": [
         "cloudflare-durable-objects",
@@ -196,6 +209,7 @@
     },
     {
       "id": "mcp",
+      "title": "MCP",
       "kind": "protocol",
       "references": [
         "mcp-spec",
@@ -213,6 +227,7 @@
     },
     {
       "id": "zod",
+      "title": "Zod",
       "kind": "validation",
       "references": [
         "zod-docs"
@@ -226,6 +241,7 @@
     },
     {
       "id": "openapi",
+      "title": "OpenAPI",
       "kind": "api-contract",
       "references": [
         "openapi",
@@ -240,6 +256,7 @@
     },
     {
       "id": "github-actions",
+      "title": "GitHub Actions",
       "kind": "ci",
       "references": [
         "github-actions-secure-use",
@@ -254,6 +271,7 @@
     },
     {
       "id": "vscode-extension",
+      "title": "VS Code Extension",
       "kind": "extension",
       "references": [
         "vscode-extension-api",
@@ -269,6 +287,7 @@
     },
     {
       "id": "github-action",
+      "title": "GitHub Action",
       "kind": "automation",
       "references": [
         "github-actions-metadata",
@@ -285,6 +304,7 @@
     },
     {
       "id": "tauri",
+      "title": "Tauri",
       "kind": "desktop",
       "references": [
         "tauri-docs"
@@ -298,6 +318,7 @@
     },
     {
       "id": "docs-kb",
+      "title": "Docs KB",
       "kind": "documentation",
       "references": [
         "zensical-docs",
@@ -315,6 +336,7 @@
     },
     {
       "id": "dependencies",
+      "title": "Dependency Hygiene",
       "kind": "supply-chain",
       "references": [
         "npm-package-json",
@@ -329,6 +351,7 @@
     },
     {
       "id": "dart",
+      "title": "Dart",
       "kind": "language",
       "references": [
         "dart-effective"
@@ -342,6 +365,7 @@
     },
     {
       "id": "flutter",
+      "title": "Flutter",
       "kind": "framework",
       "references": [
         "flutter-docs",
@@ -356,6 +380,7 @@
     },
     {
       "id": "firebase",
+      "title": "Firebase",
       "kind": "backend-platform",
       "references": [
         "firebase-flutter-setup",
@@ -374,6 +399,7 @@
     },
     {
       "id": "melos",
+      "title": "Melos",
       "kind": "workspace-tool",
       "references": [
         "melos-docs"

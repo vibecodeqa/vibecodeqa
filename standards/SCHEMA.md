@@ -191,6 +191,30 @@ other Cloudflare-Pages fullstack repos.
 > any future publishing registry (which rubric repos deploy where). Primary consumer:
 > VibeCode QA.
 
+### Metadata ownership
+
+Every generated surface reads from these three files, so each field has exactly one owner.
+Where a field is repeated for convenience, it is a **derived mirror** and
+`validate-registry.mjs` fails the build if the two copies disagree.
+
+| Field | Owner | Notes |
+| --- | --- | --- |
+| standard `id`, `type`, `status` | `registry.json` | `compositions.json` mirrors status as `authored` / `planned`; validated identical. |
+| standard `title` | `registry.json` | The display name every catalog surface renders. Never derived from the id. |
+| `summary` | `registry.json` | One-line "what it judges" text used by catalog tables and landing inventories. |
+| `detect` predicates | `registry.json` | Resolver input only; no catalog surface renders it. |
+| `editions`, edition `lifecycle` | `registry.json` | `compositions.latestEdition` is a derived mirror; validated identical. |
+| `standardUrl`, `docsUrl` | `registry.json` | `compositions.json` mirrors both; validated identical after host normalization. |
+| `aliases` | `registry.json` | `compositions.json` mirrors the set; validated identical. |
+| stack item `id`, `kind`, `title`, `references`, `vcqaShouldOwn`, `docsUrl` | `compositions.json` | Stack items have no registry row. When an id exists in both files, the titles must match. |
+| `stackItems`, `optionalStackItems`, `ownedRules`, `benefits` | `compositions.json` | Composition and graph grouping. |
+| `referenceImplementations` | `compositions.json` | Repo, status, demonstrated standards, report URL, score, CI evidence. |
+| upstream reference `id`, `url`, `publisher`, `appliesTo`, `topics`, `useFor` | `references.json` | Stack items cite reference ids; unknown ids fail validation. |
+
+Display names in particular are metadata, not a heuristic. The generator resolves a label
+as registry `title` → stack item `title`, and only falls back to id-titleization for
+grouping keys such as stack item kinds, which have no metadata row of their own.
+
 ## 9. Composition URLs and docs catalog
 
 `compositions.json` powers the docs catalog under `/docs/standards/`. It deliberately
@@ -238,9 +262,11 @@ The docs KB is the discovery and explanation surface. `/standards/<id>/vN/` is r
 for full rubrics a judge can cite rule-by-rule. `/standards/*.json` remains the
 machine-readable registry layer.
 
-Catalog tables, stack and item indexes, the root standards landing inventories, graph
-data/view, rubric related-standard sections, and reference implementation inventories are
-generated from metadata. Edit the JSON first, then run:
+Catalog tables, stack and item indexes, the root standards landing inventories, the
+"Supported stacks" authored-rubric inventory, the docs sidebar navigation for stack
+standards / stack items / assessment reports, graph data/view, rubric related-standard
+sections, and reference implementation inventories are generated from metadata. Edit the
+JSON first, then run:
 
 ```sh
 node standards/generate-catalog.mjs

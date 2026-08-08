@@ -414,7 +414,7 @@
     },
     {
       "id": "dependencies",
-      "title": "Dependency hygiene",
+      "title": "Dependency Hygiene",
       "kind": "planned",
       "status": "planned",
       "docsUrl": "/docs/standards/items/dependencies/",
@@ -690,7 +690,7 @@
     },
     {
       "id": "dependencies",
-      "title": "Dependencies",
+      "title": "Dependency Hygiene",
       "kind": "supply-chain",
       "docsUrl": "/docs/standards/items/dependencies/",
       "references": [

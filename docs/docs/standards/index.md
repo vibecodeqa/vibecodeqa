@@ -36,7 +36,7 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 | Cloudflare Pages Fullstack `pages-fullstack` | [Charter](stacks/cloudflare-pages-fullstack.md) | [Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/) | Server-side API co-deployed with a static frontend as Cloudflare Pages Functions. Edge runtime, bindings, no long-lived server. |
 | Cloudflare D1 App `cloudflare-d1`, `d1-database` | [Charter](stacks/cloudflare-d1-app.md) | [Cloudflare D1 App v1](/standards/cloudflare-d1-app/v1/) | SQLite-at-the-edge: schema, migrations discipline, parameterized queries, local/remote parity. |
 | Cloudflare Worker MCP Server | [Charter](stacks/cloudflare-worker-mcp-server.md) | [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/) | A remote MCP server hosted on Cloudflare Workers, with Worker-bound authorization, tool schemas, validation, storage boundaries, and auditability. |
-| Tenant Deployed Cloudflare SaaS | [Charter](stacks/tenant-deployed-cloudflare-saas.md) | [Tenant Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/) | A tenant-scoped Cloudflare SaaS deployment model composing Pages Functions, D1, Worker MCP, bindings, secrets, aliases, promotion gates, provisioning, and auditability. |
+| Tenant-Deployed Cloudflare SaaS | [Charter](stacks/tenant-deployed-cloudflare-saas.md) | [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/) | A tenant-scoped Cloudflare SaaS deployment model composing Pages Functions, D1, Worker MCP, bindings, secrets, aliases, promotion gates, provisioning, and auditability. |
 
 ## Authored Cross-Cutting Rubrics
 
@@ -61,8 +61,8 @@ upstream standards + stack items + deploy/runtime seams = VCQA rubric
 | [Tauri React Desktop](stacks/tauri-react-desktop.md) | Tauri, React, TypeScript, Web Security, Docs KB | Tauri command/capability boundaries; keychain/secret storage; file-system watch safety; desktop packaging and signing; frontend/backend contract typing |
 | [Zensical KB Site](stacks/zensical-kb-site.md) | Docs KB, GitHub Actions | Markdown source is the source of truth; generated site is ignored; published URLs are stable; source references are tracked; docs drift checks where mirrors exist |
 | [Accessibility](items/web-accessibility.md) | Web Accessibility | WCAG and ARIA acceptance gates mapped to scanner evidence; keyboard, focus, semantics, and contrast checks by UI stack; manual-review exception policy for accessibility findings |
-| [Dependencies](items/dependencies.md) | Dependencies, GitHub Actions, Node | lockfile and package-manager pinning; install script and dependency provenance review; audit, license, update, runtime, and exception evidence in CI |
-| [Flutter Firebase App](stacks/flutter-firebase-app.md) | Dart, Flutter, Firebase, Melos, GitHub Actions, Dependencies | Flutter app/admin/shared package workspace shape; Firebase project, hosting, functions, and Firestore environment separation; Firestore rules, indexes, and emulator-backed test gates; mobile/web build artifact and platform permission evidence; version bump, deploy gate, and test dashboard evidence |
+| [Dependency Hygiene](items/dependencies.md) | Dependency Hygiene, GitHub Actions, Node | lockfile and package-manager pinning; install script and dependency provenance review; audit, license, update, runtime, and exception evidence in CI |
+| [Flutter Firebase App](stacks/flutter-firebase-app.md) | Dart, Flutter, Firebase, Melos, GitHub Actions, Dependency Hygiene | Flutter app/admin/shared package workspace shape; Firebase project, hosting, functions, and Firestore environment separation; Firestore rules, indexes, and emulator-backed test gates; mobile/web build artifact and platform permission evidence; version bump, deploy gate, and test dashboard evidence |
 <!-- END GENERATED:standards-inventory -->
 
 ## Catalog entry points

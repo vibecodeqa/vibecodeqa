@@ -658,7 +658,7 @@
     {
       "id": "dependencies",
       "type": "cross-cutting",
-      "title": "Dependency hygiene",
+      "title": "Dependency Hygiene",
       "summary": "Lockfile pinning, audit, vetting, no unexpected install scripts.",
       "url": null,
       "repo": "vibecodeqa/vibecodeqa",
