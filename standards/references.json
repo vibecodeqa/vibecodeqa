@@ -1131,6 +1131,7 @@
           "title": "MCP Security Best Practices",
           "publisher": "Model Context Protocol",
           "url": "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices",
+          "expectedRedirectUrl": "https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices",
           "appliesTo": [
             "mcp-server"
           ],
