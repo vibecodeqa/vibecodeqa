@@ -10,9 +10,10 @@ The machine-readable version lives at
 
 ## Registry status
 
-- Last reviewed: **2026-07-22**
+- Last reviewed: **2026-08-09**
 - Link health: **checked-in-ci**
 - Link rule: Every primary-source URL must return 2xx. Redirects fail unless expectedRedirectUrl is recorded on the reference.
+- Versioning rule: Where a publisher versions its documentation by date or release, cite the pinned upstream URL and state the edition in versionPolicy. An undated URL that redirects to whatever snapshot is current breaks CI on the publisher's next release, so expectedRedirectUrl is reserved for stable one-off redirects with no pinnable equivalent. A pinned citation ages deliberately and is refreshed on review, which is the intended behaviour for a standards registry.
 - Applicability rule: appliesTo contains only canonical VCQA standard or stack item IDs from registry.json/compositions.json. Descriptive discovery terms live in topics.
 
 ## Authoring rule
@@ -119,7 +120,7 @@ Contract, authentication, authorization, schema, and AI-tool protocol references
 | [OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html) | OpenID Foundation | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | - | `oidc`, `login`, `identity` | ID tokens; claims; authentication flows |
 | [Model Context Protocol Specification](https://modelcontextprotocol.io/specification/2025-11-25) | Model Context Protocol | Pinned to dated specification 2025-11-25. | CI-enforced 2xx | none expected | `mcp-server` | `mcp-client`, `ai-tools` | Protocol messages; tools; resources; prompts; transports |
 | [MCP Authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) | Model Context Protocol | Pinned to dated specification 2025-11-25. | CI-enforced 2xx | none expected | `cloudflare-worker-mcp-server`, `mcp-server` | `remote-mcp`, `oauth` | Remote MCP authorization; resource server behavior; protected resource metadata |
-| [MCP Security Best Practices](https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices) | Model Context Protocol | Tracks current canonical upstream URL. | CI-enforced 2xx | [expected redirect](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices) | `mcp-server` | `mcp-client`, `ai-tools` | Tool poisoning defenses; authorization risks; prompt injection considerations |
+| [MCP Security Best Practices](https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices) | Model Context Protocol | Pinned to dated documentation 2026-07-28. | CI-enforced 2xx | none expected | `mcp-server` | `mcp-client`, `ai-tools` | Tool poisoning defenses; authorization risks; prompt injection considerations |
 | [MCP TypeScript SDK](https://github.com/modelcontextprotocol/typescript-sdk) | Model Context Protocol | Tracks current canonical upstream URL. | CI-enforced 2xx | none expected | `mcp-server`, `typescript`, `node`, `cloudflare-workers` | `worker` | Server implementation patterns; tool schemas; transport support |
 
 ## Security, CI, and testing

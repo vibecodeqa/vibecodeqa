@@ -1,7 +1,7 @@
 {
   "$schema": "./references.schema.json",
   "version": 1,
-  "lastReviewed": "2026-07-22",
+  "lastReviewed": "2026-08-09",
   "purpose": "External standards and primary-source references VibeCode QA should cite when authoring stack-specific gold-standard KBs. This registry is not the VCQA rubric itself; it is the authority map for where each rubric should look first.",
   "policy": {
     "sourcePreference": [
@@ -14,7 +14,8 @@
     "authoringRule": "VCQA standards should compose and cite these sources. Do not re-create broad framework doctrine when an upstream standard already exists; author only the stack shape, deployment constraints, detection mapping, exceptions, and anti-patterns needed to judge a repo.",
     "linkHealth": {
       "status": "checked-in-ci",
-      "rule": "Every primary-source URL must return 2xx. Redirects fail unless expectedRedirectUrl is recorded on the reference."
+      "rule": "Every primary-source URL must return 2xx. Redirects fail unless expectedRedirectUrl is recorded on the reference.",
+      "versioningRule": "Where a publisher versions its documentation by date or release, cite the pinned upstream URL and state the edition in versionPolicy. An undated URL that redirects to whatever snapshot is current breaks CI on the publisher's next release, so expectedRedirectUrl is reserved for stable one-off redirects with no pinnable equivalent. A pinned citation ages deliberately and is refreshed on review, which is the intended behaviour for a standards registry."
     },
     "appliesToRule": "appliesTo contains only canonical VCQA standard or stack item IDs from registry.json/compositions.json. Descriptive discovery terms live in topics."
   },
@@ -1130,8 +1131,8 @@
           "id": "mcp-security",
           "title": "MCP Security Best Practices",
           "publisher": "Model Context Protocol",
-          "url": "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices",
-          "expectedRedirectUrl": "https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices",
+          "url": "https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices",
+          "versionPolicy": "Pinned to dated documentation 2026-07-28.",
           "appliesTo": [
             "mcp-server"
           ],

@@ -19,7 +19,8 @@
           "required": ["status", "rule"],
           "properties": {
             "status": { "type": "string" },
-            "rule": { "type": "string" }
+            "rule": { "type": "string" },
+            "versioningRule": { "type": "string" }
           },
           "additionalProperties": false
         },
