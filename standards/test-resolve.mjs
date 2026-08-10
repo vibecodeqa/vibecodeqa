@@ -118,6 +118,56 @@ check('signal-atoms: the vocabulary is non-empty', CONFIG_ATOMS.size > 0);
     `got ${ids(result.slices[0].archetypes).join(', ') || '(none)'}`);
 }
 
+// ── #48 — a Flutter/Firebase workspace resolves the same on Melos 6 and Melos 7+ ──────────
+//
+// Melos 7 deleted melos.yaml: configuration moved under a `melos:` key in the root
+// pubspec.yaml and membership moved to Dart's native `workspace:` key. Detection has to
+// follow the ecosystem, so both layouts must give the same answer.
+function flutterFirebaseWorkspace(root, layout) {
+  write(root, 'firebase.json', {
+    functions: [{ source: 'packages/functions', codebase: 'default', runtime: 'nodejs22' }],
+    firestore: { rules: 'firestore.rules', indexes: 'firestore.indexes.json' }
+  });
+  write(root, 'firestore.rules', 'rules_version = "2";\n');
+  for (const name of ['app', 'admin', 'shared']) {
+    write(root, `packages/${name}/pubspec.yaml`,
+      `name: reference_${name}\nenvironment:\n  sdk: ^3.11.5\ndependencies:\n  firebase_core: ^4.1.1\n  cloud_firestore: ^6.0.2\n`);
+    write(root, `packages/${name}/lib/main.dart`, 'void main() {}\n');
+  }
+  write(root, 'packages/functions/package.json', {
+    name: 'reference-functions',
+    main: 'lib/index.js',
+    dependencies: { 'firebase-admin': '^13.6.0', 'firebase-functions': '^6.5.0' }
+  });
+  write(root, 'packages/functions/src/index.ts', 'export const noop = () => {};\n');
+
+  if (layout === 'melos6') {
+    write(root, 'melos.yaml', 'name: reference_workspace\npackages:\n  - packages/*\n');
+    write(root, 'pubspec.yaml',
+      'name: reference_workspace\nenvironment:\n  sdk: ^3.11.5\ndev_dependencies:\n  melos: ^6.3.2\n');
+  } else {
+    // Melos 8 layout: no melos.yaml anywhere.
+    write(root, 'pubspec.yaml',
+      'name: reference_workspace\nenvironment:\n  sdk: ^3.11.5\n' +
+      'workspace:\n  - packages/app\n  - packages/admin\n  - packages/shared\n  - packages/functions\n' +
+      'dev_dependencies:\n  melos: ^8.2.2\nmelos:\n  scripts:\n    analyze:\n      run: flutter analyze\n');
+  }
+}
+
+for (const layout of ['melos6', 'melos8']) {
+  const { result } = fixture(`flutter-${layout}`, (root) => flutterFirebaseWorkspace(root, layout));
+  check(`#48 (${layout}): the flutter-firebase-app recipe matches`,
+    ids(result.recipes).includes('flutter-firebase-app'),
+    `got ${ids(result.recipes).join(', ') || '(none)'}`);
+  check(`#48 (${layout}): the workspace slices into its four packages, not one`,
+    result.slices.length === 4,
+    `got ${result.slices.length}: ${result.slices.map((s) => s.slice).join(', ')}`);
+  for (const member of ['packages/app', 'packages/admin', 'packages/shared', 'packages/functions']) {
+    check(`#48 (${layout}): ${member} is its own slice`, Boolean(slice(result, member)),
+      `slices: ${result.slices.map((s) => s.slice).join(', ')}`);
+  }
+}
+
 if (failures.length) {
   console.error(`Resolver fixture tests: ${failures.length} of ${checks} failed\n`);
   console.error(failures.map((failure) => `  - ${failure}`).join('\n'));

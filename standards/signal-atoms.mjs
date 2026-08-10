@@ -23,6 +23,7 @@ export const CONFIG_ATOMS = new Set([
   'package.json:engines.vscode',
   // Dart / Flutter facts
   'pubspec.yaml',
+  'pubspec.yaml:melos',
   'melos.yaml',
   // Firebase facts
   'firebase.json',

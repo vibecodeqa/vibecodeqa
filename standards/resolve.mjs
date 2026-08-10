@@ -64,6 +64,30 @@ function depsOf(pkg) {
   if (!pkg) return new Set();
   return new Set([...Object.keys(pkg.dependencies || {}), ...Object.keys(pkg.devDependencies || {})]);
 }
+// Read a top-level block-sequence key out of a pubspec.yaml, e.g. `workspace:` followed by
+// `  - packages/app`. Line-based on purpose: the resolver has no YAML dependency, and this is
+// the same shape the melos.yaml/pnpm-workspace.yaml readers below already assume.
+function pubspecListOf(dir, key) {
+  const p = join(dir, 'pubspec.yaml');
+  if (!existsSync(p)) return [];
+  const out = [];
+  let inList = false;
+  for (const line of safeRead(p).split('\n')) {
+    if (new RegExp(`^${key}:\\s*$`).test(line)) { inList = true; continue; }
+    if (!inList) continue;
+    const m = line.match(/^\s+-\s*['"]?([^'"#]+?)['"]?\s*$/);
+    if (m) out.push(m[1]);
+    else if (/^\S/.test(line)) inList = false;
+  }
+  return out;
+}
+// Does pubspec.yaml carry a top-level key at all? Melos 7+ keeps its configuration under
+// `melos:` in the workspace root pubspec instead of a melos.yaml file.
+function pubspecHasKey(dir, key) {
+  const p = join(dir, 'pubspec.yaml');
+  if (!existsSync(p)) return false;
+  return new RegExp(`^${key}:`, 'm').test(safeRead(p));
+}
 function pubspecDepsOf(dir) {
   const p = join(dir, 'pubspec.yaml');
   if (!existsSync(p)) return new Set();
@@ -106,6 +130,10 @@ function workspaceGlobs(repo) {
       }
     }
   }
+  // Melos 7 deleted melos.yaml: workspace membership is now Dart's own `workspace:` key in the
+  // root pubspec.yaml (pub workspaces, Dart 3.6+). Without this branch a Melos 7+ monorepo
+  // collapses to one undifferentiated slice and its packages stop being separately gradeable.
+  globs.push(...pubspecListOf(repo, 'workspace'));
   return globs;
 }
 function expandGlobDir(repo, glob) {
@@ -165,6 +193,7 @@ function signals(slice) {
   if (slice.pkg?.contributes) add('package.json:contributes');
   if (slice.pkg) { add('package.json'); files = [...new Set([...files, 'package.json'])]; }
   if (files.includes('pubspec.yaml')) add('pubspec.yaml');
+  if (pubspecHasKey(slice.dir, 'melos')) add('pubspec.yaml:melos');
   if (files.includes('firebase.json')) add('firebase.json');
   if (files.includes('melos.yaml')) add('melos.yaml');
   if (files.includes('wrangler.toml')) {
@@ -190,6 +219,7 @@ function repoSignals(repo) {
   const add = (atom) => addConfigAtom(cfg, atom);
   if (files.includes('package.json')) add('package.json');
   if (files.includes('pubspec.yaml')) add('pubspec.yaml');
+  if (pubspecHasKey(repo, 'melos')) add('pubspec.yaml:melos');
   if (files.includes('firebase.json')) add('firebase.json');
   if (files.includes('melos.yaml')) add('melos.yaml');
   return { deps, files, cfg };

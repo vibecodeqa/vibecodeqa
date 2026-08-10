@@ -137,7 +137,13 @@ no Flutter client, or for a Flutter app whose backend is not Firebase.
 
 ## Detection signals
 
-- `melos.yaml`
+The workspace signal is layout-independent by design. Melos 7 removed `melos.yaml` — its
+configuration moved under a `melos:` key in the workspace root `pubspec.yaml`, and membership
+moved to Dart's native `workspace:` key — so both layouts are detected and neither is the
+target version. The resolver reads member packages from whichever of the two is present.
+
+- a Melos workspace, in either layout: a `melos.yaml` file (Melos 6 and earlier) **or** a
+  top-level `melos:` key in the root `pubspec.yaml` (Melos 7+)
 - multiple `pubspec.yaml` files
 - `firebase.json`, `.firebaserc`, `firestore.rules`, or `firestore.indexes.json`
 - Firebase Flutter dependencies such as `firebase_core`, `firebase_auth`, `cloud_firestore`,
@@ -188,12 +194,12 @@ promotion order, and deploy credential shape.
 
 ## Limitations
 
-- **Detection is narrower than the standard.** The `detect` predicate requires a literal
-  `melos.yaml`, which Melos 7 removed in favour of a `melos:` key in the workspace-root
-  `pubspec.yaml`. A file glob cannot see inside a file, so this needs a new content signal
-  rather than a wider glob ([#48](https://github.com/vibecodeqa/vibecodeqa/issues/48)). A
-  Melos 7+ workspace matches every rule here and is not auto-detected; name the edition
-  explicitly to judge it. The same gap collapses workspace slicing to a single slice.
+- **Workspace membership is read from the manifest, not resolved.** Both Melos layouts are
+  detected and sliced as of [#48](https://github.com/vibecodeqa/vibecodeqa/issues/48) — a
+  `melos.yaml` `packages:` list (Melos 6) or a Dart `workspace:` list in the root
+  `pubspec.yaml` (Melos 7+). The resolver reads those lists literally and never runs
+  `melos` or `dart pub`, so a member reachable only through a transitive workspace
+  resolution is not sliced. Declare members in the workspace root.
 - **A Cloud Functions package resolves as `typescript-sdk`.** A Firebase Functions
   `package.json` must declare `main`, which is `typescript-sdk`'s only positive signal
   ([#49](https://github.com/vibecodeqa/vibecodeqa/issues/49)).
@@ -243,7 +249,7 @@ promotion order, and deploy credential shape.
 | Pin reports and scans to | `/standards/flutter-firebase-app/v1/` |
 | Last reviewed | 2026-08 |
 | Next review due | 2027-08 |
-| Edition targets | `flutter 3`, `dart 3`, `firebase latest`, `melos 6`, `cloudFunctions nodejs22`, `githubActions latest` |
+| Edition targets | `flutter 3`, `dart 3`, `firebase latest`, `melos >=6`, `cloudFunctions nodejs22`, `githubActions latest` |
 | Lifecycle | active |
 | Errata | none |
 | Composes | `dart`, `flutter`, `firebase`, `melos`, `github-actions`, `dependencies` |

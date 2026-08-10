@@ -1066,9 +1066,16 @@
             ]
           },
           {
-            "anyFileGlob": [
-              "melos.yaml",
-              "**/melos.yaml"
+            "any": [
+              {
+                "anyFileGlob": [
+                  "melos.yaml",
+                  "**/melos.yaml"
+                ]
+              },
+              {
+                "config": "pubspec.yaml:melos"
+              }
             ]
           }
         ]
@@ -1097,7 +1104,7 @@
             "flutter": "3",
             "dart": "3",
             "firebase": "latest",
-            "melos": "6",
+            "melos": ">=6",
             "cloudFunctions": "nodejs22",
             "githubActions": "latest"
           },

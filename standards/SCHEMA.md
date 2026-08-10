@@ -51,8 +51,9 @@ Rules:
 
 A "slice" is the unit that gets one archetype. Slicing rules:
 
-1. **Workspace members are slices.** pnpm/npm workspace globs (`app`, `packages/*`) each
-   become a slice. A non-monorepo is a single slice.
+1. **Workspace members are slices.** pnpm/npm workspace globs (`app`, `packages/*`), Melos 6
+   `melos.yaml` `packages:` entries, and Dart pub `workspace:` entries in the root
+   `pubspec.yaml` (Melos 7+) each become a slice. A non-monorepo is a single slice.
 2. **Fullstack packages are split.** A package that contains both an app build *and* a
    `functions/` dir (Cloudflare Pages Functions) is split into a `frontend` sub-slice and a
    `functions` sub-slice — because a static SPA and an edge API are different archetypes
@@ -81,6 +82,7 @@ atoms a `{"config": …}` predicate may name:
 | `package.json:contributes` | it declares `contributes` (VS Code extension surface) |
 | `package.json:engines.vscode` | it declares `engines.vscode` |
 | `pubspec.yaml` | the slice has a `pubspec.yaml` |
+| `pubspec.yaml:melos` | `pubspec.yaml` carries a top-level `melos:` key (Melos 7+) |
 | `melos.yaml` | the slice has a `melos.yaml` (Melos 6 and earlier) |
 | `firebase.json` | the slice has a `firebase.json` |
 | `wrangler.toml:d1_databases` | `wrangler.toml` mentions `d1_databases` |
