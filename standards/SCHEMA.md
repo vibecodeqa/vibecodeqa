@@ -79,6 +79,7 @@ atoms a `{"config": …}` predicate may name:
 | `package.json` | the slice has a `package.json` |
 | `package.json:bin` | it declares `bin` |
 | `package.json:exportsOrMain` | it declares `exports`, `main` or `module` |
+| `package.json:types` | it declares `types`, `typings` or `typesVersions` |
 | `package.json:contributes` | it declares `contributes` (VS Code extension surface) |
 | `package.json:engines.vscode` | it declares `engines.vscode` |
 | `pubspec.yaml` | the slice has a `pubspec.yaml` |

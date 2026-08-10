@@ -187,6 +187,9 @@ function signals(slice) {
   const add = (atom) => addConfigAtom(cfg, atom);
   if (slice.pkg?.bin) add('package.json:bin');
   if (slice.pkg?.exports || slice.pkg?.main || slice.pkg?.module) add('package.json:exportsOrMain');
+  // Declaring types is what separates a package meant to be *imported* from one that merely
+  // has an entry point because something loads it (Cloud Functions, a VS Code extension).
+  if (slice.pkg?.types || slice.pkg?.typings || slice.pkg?.typesVersions) add('package.json:types');
   // A VS Code extension is identified by the two fields the Marketplace requires of it:
   // `engines.vscode` (every extension has it) and `contributes` (every declarative one does).
   if (slice.pkg?.engines?.vscode) add('package.json:engines.vscode');

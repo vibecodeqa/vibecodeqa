@@ -337,10 +337,14 @@
             "config": "package.json:exportsOrMain"
           },
           {
+            "config": "package.json:types"
+          },
+          {
             "noneDep": [
               "react-dom",
               "next",
-              "vite"
+              "vite",
+              "firebase-functions"
             ]
           },
           {

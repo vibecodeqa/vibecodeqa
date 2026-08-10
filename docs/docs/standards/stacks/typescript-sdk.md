@@ -55,6 +55,10 @@ TypeScript packages consumed as SDKs or client libraries by other projects.
 - private implementation packages
 - untyped JavaScript packages
 - CLIs where the command-line interface is the primary product contract
+- deployed packages that declare an entry point for a host rather than for a consumer —
+  Firebase Cloud Functions codebases and VS Code extensions both declare `main`, but they
+  publish nothing and are deployed, not imported
+  ([#49](https://github.com/vibecodeqa/vibecodeqa/issues/49))
 
 ## Composes
 
@@ -94,7 +98,11 @@ TypeScript packages consumed as SDKs or client libraries by other projects.
 
 ## Detection signals
 
-- `package.json` `exports`, `main`, `types`, `typesVersions`, or `files`
+- `package.json` declares **both** an entry point (`exports`, `main`, `module`) **and** a types
+  declaration (`types`, `typings`, `typesVersions`) — resolver signal. The entry point alone is
+  not enough: a deployed package has one too. The types declaration is what says the package is
+  meant to be imported.
+- `package.json` `files`
 - `declaration`, `emitDeclarationOnly`, or `declarationMap` in `tsconfig.json`
 - `dist/*.d.ts`, `*.d.mts`, or `*.d.cts` artifacts
 - OpenAPI, JSON Schema, or generator config files

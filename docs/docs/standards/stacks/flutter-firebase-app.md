@@ -200,9 +200,11 @@ promotion order, and deploy credential shape.
   `pubspec.yaml` (Melos 7+). The resolver reads those lists literally and never runs
   `melos` or `dart pub`, so a member reachable only through a transitive workspace
   resolution is not sliced. Declare members in the workspace root.
-- **A Cloud Functions package resolves as `typescript-sdk`.** A Firebase Functions
-  `package.json` must declare `main`, which is `typescript-sdk`'s only positive signal
-  ([#49](https://github.com/vibecodeqa/vibecodeqa/issues/49)).
+- **A Cloud Functions package resolves to no archetype.** `typescript-sdk` no longer claims
+  it ([#49](https://github.com/vibecodeqa/vibecodeqa/issues/49)), but there is no
+  Firebase Functions archetype to claim it instead, so the Functions slice is judged by this
+  recipe and the cross-cutting rubrics only. That is honest rather than wrong, but it is not
+  the same as classifying it.
 - **Scores for this stack depend on the scanning environment.** A Dart repo scanned without
   a Flutter SDK, and without `flutter pub get` having resolved its dependencies, reports far
   worse than the same commit scanned with a toolchain, because the analyzer cannot resolve

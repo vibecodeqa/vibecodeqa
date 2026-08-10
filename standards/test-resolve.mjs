@@ -97,8 +97,8 @@ check('signal-atoms: the vocabulary is non-empty', CONFIG_ATOMS.size > 0);
   const only = result.slices[0];
   check('#47: vscode-extension-package matches the extension slice',
     ids(only.archetypes).includes('vscode-extension-package'), `got ${ids(only.archetypes).join(', ') || '(none)'}`);
-  // NB: `typescript-sdk` also matches this slice today, because it tests only "declares main".
-  // That is #49, fixed separately.
+  check('#49: typescript-sdk no longer claims the extension slice',
+    !ids(only.archetypes).includes('typescript-sdk'), `got ${ids(only.archetypes).join(', ')}`);
   check('#47: cross-cutting standards still apply to the extension',
     ['typescript', 'security', 'testing'].every((id) => ids(only.cross).includes(id)),
     `got ${ids(only.cross).join(', ')}`);
@@ -166,6 +166,63 @@ for (const layout of ['melos6', 'melos8']) {
     check(`#48 (${layout}): ${member} is its own slice`, Boolean(slice(result, member)),
       `slices: ${result.slices.map((s) => s.slice).join(', ')}`);
   }
+}
+
+// ── #49 — `typescript-sdk` means "meant to be imported", not "declares main" ──────────────
+//
+// A Firebase Functions package *must* declare `main` — that is how firebase-tools finds the
+// compiled entry point — so "declares main" collected every Functions codebase and graded it
+// on export maps and tarball tests. The positive signal is a types declaration.
+{
+  const { result } = fixture('firebase-functions', (root) => {
+    write(root, 'firebase.json', { functions: [{ source: '.', codebase: 'default', runtime: 'nodejs22' }] });
+    write(root, 'package.json', {
+      name: 'reference-functions',
+      main: 'lib/index.js',
+      engines: { node: '22' },
+      dependencies: { 'firebase-admin': '^13.6.0', 'firebase-functions': '^6.5.0' },
+      devDependencies: { typescript: '^5.9.0' }
+    });
+    write(root, 'src/index.ts', 'export const noop = () => {};\n');
+  });
+  check('#49: a Firebase Functions package is not claimed by typescript-sdk',
+    !ids(result.slices[0].archetypes).includes('typescript-sdk'),
+    `got ${ids(result.slices[0].archetypes).join(', ')}`);
+}
+{
+  // The control: a real library, in the same shape, still resolves as an SDK.
+  const { result } = fixture('sdk', (root) => {
+    write(root, 'package.json', {
+      name: '@vcqa-ref/widget-sdk',
+      main: './dist/index.cjs',
+      module: './dist/index.js',
+      types: './dist/index.d.ts',
+      exports: { '.': { types: './dist/index.d.ts', import: './dist/index.js' } },
+      files: ['dist', 'src'],
+      devDependencies: { typescript: '^5.9.0' }
+    });
+    write(root, 'src/index.ts', 'export const version = "1";\n');
+    write(root, 'tsconfig.json', { compilerOptions: { declaration: true } });
+  });
+  check('#49: a genuine typed library still resolves as typescript-sdk',
+    ids(result.slices[0].archetypes).includes('typescript-sdk'),
+    `got ${ids(result.slices[0].archetypes).join(', ') || '(none)'}`);
+}
+{
+  // A library that wraps firebase-admin for consumers is an SDK, not a Functions codebase:
+  // the exclusion is on `firebase-functions` alone, deliberately.
+  const { result } = fixture('firebase-admin-sdk', (root) => {
+    write(root, 'package.json', {
+      name: '@acme/firebase-helpers',
+      main: './dist/index.js',
+      types: './dist/index.d.ts',
+      dependencies: { 'firebase-admin': '^13.6.0' }
+    });
+    write(root, 'src/index.ts', 'export const helper = () => {};\n');
+  });
+  check('#49: a library wrapping firebase-admin is still an SDK',
+    ids(result.slices[0].archetypes).includes('typescript-sdk'),
+    `got ${ids(result.slices[0].archetypes).join(', ') || '(none)'}`);
 }
 
 if (failures.length) {

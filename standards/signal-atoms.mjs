@@ -19,6 +19,7 @@ export const CONFIG_ATOMS = new Set([
   'package.json',
   'package.json:bin',
   'package.json:exportsOrMain',
+  'package.json:types',
   'package.json:contributes',
   'package.json:engines.vscode',
   // Dart / Flutter facts
