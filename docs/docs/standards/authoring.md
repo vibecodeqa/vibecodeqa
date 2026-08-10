@@ -88,6 +88,23 @@ Required fields:
 - **vcqa:** the scanner or judge signal: dependency, config key, file pattern, AST/code pattern, or human-review note.
 - **References:** upstream sources when the rule depends on external authority.
 
+### How the contract is enforced
+
+`standards/validate-rule-contract.mjs` runs on every deploy. It derives the rubrics it checks
+from `standards/registry.json` — every `status: published` standard owned by this repo, mapped
+from its versioned `standardUrl` to `standards/<id>/docs/<edition>/index.md` — so **publishing
+a standard enrols its rubric automatically**. There is no list to remember to extend.
+
+Each enrolled rubric index must carry a `## Severity and evidence defaults` section assigning
+a default severity and required evidence per rule group, plus a reference to the shared
+`acceptedException` template. That index-level table is the contract's documented shortcut for
+rubrics that do not repeat `**Severity.**` on every rule page.
+
+A rubric that is not there yet must be named in the `pendingRuleContract` set inside that
+script, with a reason. The set is allowed to shrink and not to grow: adding a newly published
+standard to it, rather than writing its defaults table, is how the contract became decorative
+the first time.
+
 ## Authored charter bar
 
 A charter page is the entry point for a standard. Once a standard is **authored** — its
