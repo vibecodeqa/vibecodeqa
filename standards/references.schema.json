@@ -20,7 +20,8 @@
           "properties": {
             "status": { "type": "string" },
             "rule": { "type": "string" },
-            "versioningRule": { "type": "string" }
+            "versioningRule": { "type": "string" },
+            "transientRule": { "type": "string" }
           },
           "additionalProperties": false
         },

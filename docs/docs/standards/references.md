@@ -10,10 +10,11 @@ The machine-readable version lives at
 
 ## Registry status
 
-- Last reviewed: **2026-08-09**
+- Last reviewed: **2026-08-11**
 - Link health: **checked-in-ci**
 - Link rule: Every primary-source URL must return 2xx. Redirects fail unless expectedRedirectUrl is recorded on the reference.
 - Versioning rule: Where a publisher versions its documentation by date or release, cite the pinned upstream URL and state the edition in versionPolicy. An undated URL that redirects to whatever snapshot is current breaks CI on the publisher's next release, so expectedRedirectUrl is reserved for stable one-off redirects with no pinnable equivalent. A pinned citation ages deliberately and is refreshed on review, which is the intended behaviour for a standards registry.
+- Transient failure rule: A definitive answer we do not want - 4xx, 5xx, an unexpected redirect, a dead hostname, a refused connection, an invalid certificate - is a registry defect and fails the build. A connection that times out or is reset is not an answer at all: it is retried up to three times, and if it still will not answer it is reported as a warning and the build proceeds, because third-party availability is not a property of our commit. Past three unreachable references the run fails instead - that is an outage rather than a flake, and link health has not actually been verified. Run validate-references.mjs --links-strict to make every unreachable reference fatal.
 - Applicability rule: appliesTo contains only canonical VCQA standard or stack item IDs from registry.json/compositions.json. Descriptive discovery terms live in topics.
 
 ## Authoring rule

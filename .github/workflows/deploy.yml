@@ -20,6 +20,7 @@ jobs:
         run: |
           node standards/generate-catalog.mjs --check
           node standards/validate-references.mjs
+          node standards/test-reference-links.mjs
           node standards/validate-references.mjs --links
           node standards/validate-rule-contract.mjs
           node docs/validate-assessments.mjs

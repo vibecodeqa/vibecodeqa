@@ -629,6 +629,7 @@ function referenceVersionPolicy(reference) {
 function generatedReferencesPage() {
   const linkRule = references.policy?.linkHealth?.rule ?? 'Primary-source URLs are checked in CI.';
   const versioningRule = references.policy?.linkHealth?.versioningRule;
+  const transientRule = references.policy?.linkHealth?.transientRule;
   const appliesRule = references.policy?.appliesToRule ?? '`appliesTo` uses canonical VCQA IDs; `topics` are descriptive.';
   const sourcePreference = references.policy?.sourcePreference ?? [];
 
@@ -671,7 +672,7 @@ The machine-readable version lives at
 - Last reviewed: **${references.lastReviewed}**
 - Link health: **${references.policy?.linkHealth?.status ?? 'checked-in-ci'}**
 - Link rule: ${linkRule}
-${versioningRule ? `- Versioning rule: ${versioningRule}\n` : ''}- Applicability rule: ${appliesRule}
+${versioningRule ? `- Versioning rule: ${versioningRule}\n` : ''}${transientRule ? `- Transient failure rule: ${transientRule}\n` : ''}- Applicability rule: ${appliesRule}
 
 ## Authoring rule
 
