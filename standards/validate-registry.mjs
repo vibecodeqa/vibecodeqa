@@ -2,6 +2,7 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { CONFIG_ATOMS, isKnownConfigAtom } from './signal-atoms.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const registry = JSON.parse(readFileSync(join(here, 'registry.json'), 'utf8'));
@@ -85,6 +86,15 @@ function walkPredicate(predicate, context) {
   if (predicate.not) walkPredicate(predicate.not, `${context}.not`);
   if (predicate.matched && !standardIds.has(predicate.matched)) {
     fail(`${context}: matched references unknown standard id "${predicate.matched}"`);
+  }
+  // A `config` atom the resolver never emits is not a typo you find later — the predicate is
+  // simply always false, and the standard silently stops being detectable. `vscode-extension-package`
+  // sat that way until #47. `matched` has been checked since the start; `config` now is too.
+  if (typeof predicate.config === 'string' && !isKnownConfigAtom(predicate.config)) {
+    fail(
+      `${context}: config atom "${predicate.config}" is never emitted by standards/resolve.mjs, so the predicate can never be true. ` +
+        `Known atoms: ${[...CONFIG_ATOMS].sort().join(', ')}. Declare new atoms in standards/signal-atoms.mjs and emit them in resolve.mjs.`
+    );
   }
 }
 

@@ -68,8 +68,30 @@ slice. Signals:
 
 - `deps` — dependency names from the slice's `package.json` (deps + devDeps)
 - `files` — file paths present in the slice
-- `cfg` — parsed config facts (`wrangler.toml:d1_databases`, `package.json:bin`,
-  `package.json:exportsOrMain`, …)
+- `cfg` — parsed config facts, drawn from a **closed vocabulary**
+
+The `cfg` vocabulary is declared once, in `signal-atoms.mjs`, and is the complete list of
+atoms a `{"config": …}` predicate may name:
+
+| Atom | True when |
+| --- | --- |
+| `package.json` | the slice has a `package.json` |
+| `package.json:bin` | it declares `bin` |
+| `package.json:exportsOrMain` | it declares `exports`, `main` or `module` |
+| `package.json:contributes` | it declares `contributes` (VS Code extension surface) |
+| `package.json:engines.vscode` | it declares `engines.vscode` |
+| `pubspec.yaml` | the slice has a `pubspec.yaml` |
+| `melos.yaml` | the slice has a `melos.yaml` (Melos 6 and earlier) |
+| `firebase.json` | the slice has a `firebase.json` |
+| `wrangler.toml:d1_databases` | `wrangler.toml` mentions `d1_databases` |
+| `wrangler.toml:r2_buckets` | `wrangler.toml` mentions `r2_buckets` |
+| `wrangler.toml:durable_objects` | `wrangler.toml` mentions `durable_objects` |
+
+The vocabulary is closed in both directions, because an aspirational atom is not a typo you
+notice — it is a predicate that is silently always false. `resolve.mjs` throws if it tries to
+emit an atom that is not declared, and `validate-registry.mjs` fails the build if a `detect`
+predicate names one. Adding a signal means editing `signal-atoms.mjs`, `resolve.mjs` and this
+table together.
 
 Predicate operators (JSON, composable via `all` / `any` / `not`):
 

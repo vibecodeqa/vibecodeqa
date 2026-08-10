@@ -17,6 +17,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join, relative, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { addConfigAtom } from './signal-atoms.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const registry = JSON.parse(readFileSync(join(HERE, 'registry.json'), 'utf8'));
@@ -155,17 +156,22 @@ function signals(slice) {
   const deps = new Set([...depsOf(slice.pkg), ...pubspecDepsOf(slice.dir)]);
   let files = slice.files;
   const cfg = new Set();
-  if (slice.pkg?.bin) cfg.add('package.json:bin');
-  if (slice.pkg?.exports || slice.pkg?.main || slice.pkg?.module) cfg.add('package.json:exportsOrMain');
-  if (slice.pkg) { cfg.add('package.json'); files = [...new Set([...files, 'package.json'])]; }
-  if (files.includes('pubspec.yaml')) cfg.add('pubspec.yaml');
-  if (files.includes('firebase.json')) cfg.add('firebase.json');
-  if (files.includes('melos.yaml')) cfg.add('melos.yaml');
+  const add = (atom) => addConfigAtom(cfg, atom);
+  if (slice.pkg?.bin) add('package.json:bin');
+  if (slice.pkg?.exports || slice.pkg?.main || slice.pkg?.module) add('package.json:exportsOrMain');
+  // A VS Code extension is identified by the two fields the Marketplace requires of it:
+  // `engines.vscode` (every extension has it) and `contributes` (every declarative one does).
+  if (slice.pkg?.engines?.vscode) add('package.json:engines.vscode');
+  if (slice.pkg?.contributes) add('package.json:contributes');
+  if (slice.pkg) { add('package.json'); files = [...new Set([...files, 'package.json'])]; }
+  if (files.includes('pubspec.yaml')) add('pubspec.yaml');
+  if (files.includes('firebase.json')) add('firebase.json');
+  if (files.includes('melos.yaml')) add('melos.yaml');
   if (files.includes('wrangler.toml')) {
     const txt = safeRead(join(slice.dir, 'wrangler.toml'));
-    if (/d1_databases/.test(txt)) cfg.add('wrangler.toml:d1_databases');
-    if (/r2_buckets/.test(txt)) cfg.add('wrangler.toml:r2_buckets');
-    if (/durable_objects/.test(txt)) cfg.add('wrangler.toml:durable_objects');
+    if (/d1_databases/.test(txt)) add('wrangler.toml:d1_databases');
+    if (/r2_buckets/.test(txt)) add('wrangler.toml:r2_buckets');
+    if (/durable_objects/.test(txt)) add('wrangler.toml:durable_objects');
   }
   return { deps, files, cfg };
 }
@@ -181,10 +187,11 @@ function repoSignals(repo) {
     }
   }
   const cfg = new Set();
-  if (files.includes('package.json')) cfg.add('package.json');
-  if (files.includes('pubspec.yaml')) cfg.add('pubspec.yaml');
-  if (files.includes('firebase.json')) cfg.add('firebase.json');
-  if (files.includes('melos.yaml')) cfg.add('melos.yaml');
+  const add = (atom) => addConfigAtom(cfg, atom);
+  if (files.includes('package.json')) add('package.json');
+  if (files.includes('pubspec.yaml')) add('pubspec.yaml');
+  if (files.includes('firebase.json')) add('firebase.json');
+  if (files.includes('melos.yaml')) add('melos.yaml');
   return { deps, files, cfg };
 }
 

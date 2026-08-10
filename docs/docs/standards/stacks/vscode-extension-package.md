@@ -12,7 +12,7 @@ VS Code extensions with commands, activation events, webviews, or workspace inte
 | What this state means | The stack shape is recorded so gap reports name the right standard. Nobody is working toward a rubric, and nothing on the page is judgeable. |
 | Full rubric | Not authored yet. This page is a charter, not a judgeable standard. |
 | Reference implementation | [vibecodeqa/ref-vscode-extension-package](https://github.com/vibecodeqa/ref-vscode-extension-package) (experimental) — see **Reference implementation** below. |
-| Blocking promotion | Demoted on 2026-08-09 ([#37](https://github.com/vibecodeqa/vibecodeqa/issues/37)) because the only consumer the charter cited, `vibecodeqa/vscode`, was archived on 2026-07-23 without ever being published. A reference repo has since been built and is cataloged as experimental ([#19](https://github.com/vibecodeqa/vibecodeqa/issues/19)), which is why the demotion reason no longer stands alone. Still blocking any promotion: this page carries no numbered candidate rules, and the resolver cannot match the archetype at all — both detect branches are dead, so even the gap report a backlog entry exists to produce names `typescript-sdk` instead ([#47](https://github.com/vibecodeqa/vibecodeqa/issues/47)). The page stays published so its URL keeps resolving. |
+| Blocking promotion | Demoted on 2026-08-09 ([#37](https://github.com/vibecodeqa/vibecodeqa/issues/37)) because the only consumer the charter cited, `vibecodeqa/vscode`, was archived on 2026-07-23 without ever being published. A reference repo has since been built and is cataloged as experimental ([#19](https://github.com/vibecodeqa/vibecodeqa/issues/19)), which is why the demotion reason no longer stands alone. Detection was repaired on 2026-08-11 ([#47](https://github.com/vibecodeqa/vibecodeqa/issues/47)): the archetype now matches on `engines.vscode` or `contributes`, so the gap report a backlog entry exists to produce finally names this standard instead of `typescript-sdk`. Still blocking any promotion: this page carries no numbered candidate rules, no severity or exception policy, and no rubric can be cut from it. The page stays published so its URL keeps resolving. |
 
 Maturity states are defined in [Standards Authoring](../authoring.md#planned-charter-maturity-states).
 Metadata lives in [`standards/registry.json`](https://github.com/vibecodeqa/vibecodeqa/blob/main/standards/registry.json).
@@ -65,10 +65,19 @@ VS Code extensions with commands, activation events, webviews, or workspace inte
 
 ## Detection signals
 
-- `engines.vscode`
+The resolver matches this archetype when a package declares either of the first two, which are
+the fields the Marketplace requires of an extension and the only ones cheap enough to read from
+a manifest. The rest are corroborating signals a judge reads once the archetype has matched.
+
+- `engines.vscode` in `package.json` — resolver signal
+- a `contributes` block in `package.json` — resolver signal
 - activation events
 - extension entrypoint
 - webview usage
+
+The deprecated `vscode` npm package is deliberately **not** a signal: it was superseded by
+`@types/vscode` and `@vscode/test-electron` in 2019, so depending on it is a finding, not a
+qualification.
 
 ## Combination-born guidelines
 
