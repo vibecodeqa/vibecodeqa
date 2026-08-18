@@ -6,6 +6,117 @@ icon: lucide/network
 
 VibeCode QA is a single zero-config CLI. It detects your stack, runs each check in isolation, folds the results into one weighted score, and emits a report. Everything runs locally — nothing is uploaded unless you pass `--upload` with a `VCQA_TOKEN`.
 
+## The surfaces
+
+Five things ship, and only one of them analyses code. The desktop app and the MCP
+server do not contain a scanner — they launch the CLI and read the report it writes.
+That is deliberate: one engine, several hosts, so a check behaves the same wherever
+you run it.
+
+```mermaid
+flowchart TB
+  subgraph LOCAL["Your machine"]
+    CLI["<b>@vibecodeqa/cli</b><br/>the engine"]
+    DESK["<b>VibeCode Monitor</b><br/>desktop app"]
+    MCPL["<b>@vibecodeqa/mcp</b><br/>MCP server"]
+    AGENT(["Your coding agent"])
+  end
+
+  subgraph CLOUD["VibeCode QA cloud"]
+    WORKER["<b>API</b><br/>api.vibecodeqa.online"]
+    KV[("Report storage")]
+    APPP["<b>Dashboard</b><br/>app.vibecodeqa.online"]
+  end
+
+  GH(["GitHub<br/>API · Actions · webhooks"])
+
+  DESK -->|launches| CLI
+  MCPL -->|launches| CLI
+  AGENT -->|MCP| MCPL
+  CLI -->|"--upload"| WORKER
+  GH -->|Actions run| CLI
+  APPP -->|session cookie| WORKER
+  WORKER --> KV
+  WORKER <--> GH
+```
+
+| Surface | What it is | Where the analysis happens |
+|---|---|---|
+| **CLI** | `npx @vibecodeqa/cli` | Here. This is the engine. |
+| **Desktop monitor** | Tauri app watching a local folder | Launches the CLI, reads `report.json` |
+| **MCP server** | stdio server for coding agents | Launches the CLI |
+| **Dashboard** | Hosted web app | Reads stored reports; never analyses |
+| **API** | Cloudflare Worker | Stores reports, serves history, runs server-side scans |
+
+### How a report reaches the dashboard
+
+```mermaid
+flowchart LR
+  subgraph P1["Local"]
+    D1["Desktop scan<br/><i>or</i> npx cli"] --> R1[".vibe-check/report.json"]
+    R1 -.->|"--upload"| KV1[("Report storage")]
+  end
+  subgraph P2["CI"]
+    D2["push / pull request"] --> A2["GitHub Actions"] --> KV2[("Report storage")]
+  end
+  subgraph P3["Server scan"]
+    D3["Dashboard button"] --> W3["API"] --> KV3[("Report storage")]
+  end
+```
+
+Local and CI scans run the full engine. The **server scan** is a lighter preview that
+reads your repository through the GitHub API without cloning it, so it can give you a
+first result with nothing installed and no workflow merged — at a shallower depth than
+a full local run. Reports record which produced them.
+
+### Inside the engine
+
+```mermaid
+flowchart TB
+  ENTRY["CLI entry"]
+  DETECT["Stack detection"]
+  INV["File inventory<br/>+ scan policy<br/><i>one shared view of the tree</i>"]
+  RUNNERS["Check runners<br/><i>lint · types · security · complexity<br/>duplication · testing · react · flutter …</i>"]
+  TOOLS(["Delegated tools<br/>biome · eslint · tsc · knip<br/>vitest · gitleaks · dart analyze"])
+  SCORE["Scoring<br/>weights · composite · grade"]
+  OUT["report.json<br/>HTML · SARIF · badge"]
+  HIST["History · trend · delta"]
+
+  ENTRY --> DETECT --> INV --> RUNNERS --> TOOLS
+  RUNNERS --> SCORE --> OUT --> HIST
+```
+
+The file inventory is the single answer to "what files exist" — runners never walk the
+tree themselves, so an ignore rule applies identically to every check. Delegated tools
+are why the engine needs a real process environment.
+
+### Inside the desktop app
+
+One codebase ships two things: the hosted dashboard and the desktop monitor. They share
+types and little else — the dashboard talks only to the API, the monitor talks only to
+the CLI.
+
+```mermaid
+flowchart TB
+  subgraph WEB["Dashboard — web"]
+    WC["Repo list · report viewer<br/>trends · settings"]
+    API["API client<br/><i>session cookie</i>"]
+  end
+  subgraph MON["Monitor — desktop"]
+    VIEWS["Views<br/><i>solution · duplication · complexity<br/>architecture · tests · trends</i>"]
+    IPC["Tauri IPC"]
+  end
+  RUST["Rust backend<br/>run_scan · watch · read_report"]
+  SHARED["Shared types"]
+  WORKER(["API"])
+  CLIP(["CLI via npx"])
+
+  WC --> API --> WORKER
+  VIEWS --> IPC --> RUST -->|launches| CLIP
+  SHARED -.-> WC
+  SHARED -.-> VIEWS
+```
+
 ## The scan pipeline
 
 ```mermaid
@@ -86,4 +197,4 @@ The hosted dashboard uses GitHub OAuth for repo discovery and settings, but the 
 CLI uploads use a separate VibeCode QA platform token (`VCQA_TOKEN`). The CLI falls back to `GITHUB_TOKEN` when `VCQA_TOKEN` is unset and sends whichever it finds as the bearer token; whether the dashboard accepts a GitHub token is a server-side decision this repository cannot verify from the CLI source.
 
 !!! info "Last verified"
-    Pipeline, weights, and output formats verified against `@vibecodeqa/cli` **0.54.4** on **2026-08-08**. Dashboard-side behaviour was not verified.
+    Surfaces, module boundaries, and report paths verified against the four codebases on **2026-08-18**. Pipeline, weights, and output formats verified against `@vibecodeqa/cli` **0.56.0**.
