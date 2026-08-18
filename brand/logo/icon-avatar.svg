@@ -1,0 +1,13 @@
+<!--
+  Composition wrapper, NOT a vector master.
+
+  There is no vector source for the VibeCode QA ring mark (see ../README.md,
+  "Provenance and the missing vector"). This file exists only to place the
+  raster master on an opaque background so the avatar export is reproducible
+  from the same toolchain as everything else in this folder. It embeds
+  icon-512.png by reference; it does not describe the mark's geometry.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#09090b"/>
+  <image x="0" y="0" width="512" height="512" xlink:href="icon-512.png"/>
+</svg>
