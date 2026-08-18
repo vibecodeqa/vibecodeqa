@@ -84,5 +84,5 @@ Neither is wrong; they simply were never reconciled. Until somebody decides,
 `README.md` records which one is canonical for which surface, and no asset in
 this folder mixes them. Do not "harmonise" them by recolouring one to match the
 other in a drive-by change — recolouring the rings needs the vector source that
-does not exist yet, and recolouring the web accent would touch 18 pages plus the
+does not exist yet, and recolouring the web accent would touch 17 pages plus the
 dashboard.

@@ -45,7 +45,7 @@ downsampled from it. Nothing here was traced, redrawn, or auto-vectorised, and
 no file in this folder claims to be the mark's geometry.
 
 `logo/icon-avatar.svg` is the one SVG in `logo/`, and it is **not** a vector
-master: it is a nine-line wrapper that places the PNG on an opaque background so
+master: it is a thin wrapper that places the PNG on an opaque background so
 the avatar export is reproducible. Its own header says so.
 
 ### What would actually close this gap
@@ -81,7 +81,7 @@ otherwise:
 | Artwork | `favicon.svg` | `logo/icon-512.png` |
 | Format | SVG, 249 bytes | PNG, raster only |
 | Colours | `#818cf8` → `#6366f1` | `#ffc131`, `#24c8db` |
-| Ships on | website, web app, all 18 site pages' favicon | desktop app dock icon, installers |
+| Ships on | website, web app, all 17 site pages' favicon | desktop app dock icon, installers |
 
 They share no colour (see `palette.md`). This was never a decision — the two
 surfaces were simply built at different times. Both are therefore canonical **for
@@ -90,7 +90,7 @@ their own surface**, and this kit keeps them apart rather than blending them.
 **Open decision, needs a human:** unify on one mark, or keep a wordmark for web
 and a symbol for the app. Do not resolve it in a drive-by change — recolouring
 the rings needs the vector that does not exist, and changing the web accent
-touches 18 pages plus the dashboard.
+touches 17 pages plus the dashboard.
 
 ---
 

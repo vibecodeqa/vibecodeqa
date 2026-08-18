@@ -3,7 +3,7 @@
  * brand/build.mjs — keep the served brand assets in sync with brand/.
  *
  * `brand/` is the single source of truth for VibeCode QA's visual identity.
- * The site serves some of those assets from the repo root because 18 HTML
+ * The site serves some of those assets from the repo root because 17 HTML
  * pages link `/favicon.svg` and index.html points Open Graph at
  * `/og-image.png`. Those root files are COPIES, and this script owns them.
  *
