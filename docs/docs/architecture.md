@@ -66,8 +66,41 @@ flowchart LR
 
 Local and CI scans run the full engine. The **server scan** is a lighter preview that
 reads your repository through the GitHub API without cloning it, so it can give you a
-first result with nothing installed and no workflow merged — at a shallower depth than
-a full local run. Reports record which produced them.
+first result with nothing installed and no workflow merged.
+
+### What each path measures
+
+The difference is not a detail. A server scan runs **5 of the 38 documented checks**.
+
+```mermaid
+flowchart LR
+  subgraph FULL["Local / CI — the engine"]
+    F1["38 checks<br/>every file in the tree"]
+    F2["lint · types · type-safety · complexity<br/>duplication · secrets · react · flutter<br/>performance · accessibility · architecture<br/>standards · dead-code · error-handling · …"]
+  end
+  subgraph PREVIEW["Server scan — preview"]
+    P1["5 checks<br/>≤80 files fetched"]
+    P2["structure · testing · docs<br/>security · dependencies"]
+  end
+  FULL -->|"33 checks not measured"| PREVIEW
+```
+
+| | Local / CI | Server scan |
+|---|---|---|
+| Checks | **38** | **5** |
+| Files read | every file | ≤ 80, ≤ 1.5 MB |
+| Repository | full clone | GitHub API, no clone |
+| External tools | biome, eslint, tsc, knip, vitest, gitleaks | none |
+| Secret scanning | gitleaks | tree-level only (`.env` committed) |
+| Setup needed | install or a merged workflow | none |
+
+Both write to the same report store, so **check `meta.source` before comparing two
+scores** — a server-scan score and a full-engine score are not measured with the same
+instrument, and a difference between them may be depth rather than a change in your
+code.
+
+A server scan is for the first look: connect a repo, see something real immediately.
+For a number you can track over time, run the engine — locally, or in CI.
 
 ### Inside the engine
 
