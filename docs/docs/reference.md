@@ -27,8 +27,8 @@ With no command it scans the current directory. In an interactive terminal the s
 | Flag | Effect |
 |---|---|
 | `--skip-tests` | Skip test execution (faster scan) |
-| `--ci` | CI mode (exit 1 if score < 60) |
-| `--fail-under N` | Exit 1 if score below `N` |
+| `--ci` | CI mode: exit 1 if score is below `failUnder` from config, else below 60 |
+| `--fail-under N` | Exit 1 if score below `N`; overrides config and the `--ci` default |
 | `--json` | Output JSON only (no terminal UI) |
 | `--markdown` | Output a Markdown summary |
 | `--badge` | Generate an SVG badge |
