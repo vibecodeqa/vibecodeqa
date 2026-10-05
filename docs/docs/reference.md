@@ -27,6 +27,7 @@ With no command it scans the current directory. In an interactive terminal the s
 | Flag | Effect |
 |---|---|
 | `--skip-tests` | Skip test execution (faster scan) |
+| `--test-timeout MS` | Time limit for each project's test run, in milliseconds (1–2147483647, default 120000). Overrides `checks.testing.settings.timeoutMs`. A project that hits it gets a `test-run-timeout` warning and its coverage is not read; on macOS and Linux the run's process group is stopped |
 | `--ci` | CI mode: exit 1 if score is below `failUnder` from config, else below 60 |
 | `--fail-under N` | Exit 1 if score below `N`; overrides config and the `--ci` default |
 | `--json` | Output JSON only (no terminal UI) |
@@ -124,4 +125,4 @@ for (const c of report.checks) {
 ```
 
 !!! info "Last verified"
-    Commands, flags, output paths, monitor keys, and the JSON shape on this page were verified against `@vibecodeqa/cli` **0.54.4** on **2026-08-08**, by reading the CLI source and running a real scan.
+    The `--test-timeout`, `--ci` and `--fail-under` rows were verified against the published `@vibecodeqa/cli` **0.57.0** on **2026-10-06**, by running its `--help`, its flag validation and reading its source. The rest of the commands, flags, output paths, monitor keys and the JSON shape on this page were verified against **0.54.4** on **2026-08-08**, by reading the CLI source and running a real scan.

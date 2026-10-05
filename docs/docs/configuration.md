@@ -23,6 +23,7 @@ VibeCode QA runs with **zero configuration**. When you want to tailor it — dis
 |---|---|
 | `checks.<name>.enabled` | Set `false` to turn a check off (default `true`). Disabled checks are excluded from the [score](scoring.md), never counted against you. |
 | `checks.<name>.ignore` | File patterns skipped **for that one check**. |
+| `checks.testing.settings.timeoutMs` | Time limit for each project's test run, in milliseconds (default `120000`). `--test-timeout` overrides it. Accepts a whole number from 1 to 2147483647; an invalid value falls back to the default and is reported as an info issue. A project whose run hits the limit gets a `test-run-timeout` warning, not an error, and its coverage is not read. Execution then scores 10/20 only if every project timed out; otherwise it is scored on the projects that did produce results. |
 | `ignore` | Global file patterns skipped by **every** check. |
 | `failUnder` | Exit code 1 if the score is below this, including under `--ci`. The `--fail-under` flag overrides it; `--ci` falls back to 60 only when neither sets a threshold. `failUnder: 0` means no gate. If a `.vcqa.json` exists, the CLI reads only that file and ignores `package.json#vcqa` entirely. |
 
