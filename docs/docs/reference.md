@@ -27,7 +27,7 @@ With no command it scans the current directory. In an interactive terminal the s
 | Flag | Effect |
 |---|---|
 | `--skip-tests` | Skip test execution (faster scan) |
-| `--test-timeout MS` | Time limit for each project's test run, in milliseconds (default 120000). Overrides `checks.testing.settings.timeoutMs`. A run that hits it is a `test-run-timeout` warning scored as not run, and its whole process tree is stopped |
+| `--test-timeout MS` | Time limit for each project's test run, in milliseconds (1–2147483647, default 120000). Overrides `checks.testing.settings.timeoutMs`. A project that hits it gets a `test-run-timeout` warning and its coverage is not read; on macOS and Linux the run's whole process tree is stopped |
 | `--ci` | CI mode (exit 1 if score < 60) |
 | `--fail-under N` | Exit 1 if score below `N` |
 | `--json` | Output JSON only (no terminal UI) |
