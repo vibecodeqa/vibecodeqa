@@ -39,7 +39,7 @@ The seven **AI Analysis** checks carry weight 0 — they surface deeper findings
 | F | < 40 |
 
 The grade is presentation only. CI gating uses a score threshold, not a grade: `--ci`
-fails under 60 unless `--fail-under N` sets your own number.
+fails under 60 unless `--fail-under N` or `failUnder` in your config sets your own number.
 
 ## Design principles
 

@@ -12,8 +12,9 @@ VibeCode QA is built to gate pull requests. It exits non-zero when the score dro
 npx @vibecodeqa/cli --ci --fail-under 80
 ```
 
-- `--ci` enables CI mode (exit 1 if score < 60 by default). In CI mode the built-in 60 wins over a `failUnder` in `.vcqa.json`; pass `--fail-under N` to set your own.
-- `--fail-under N` sets your own threshold.
+- `--ci` enables CI mode: exit 1 if the score is below the threshold. The threshold is `--fail-under N` if given, else `failUnder` from `.vcqa.json` / `package.json#vcqa`, else 60.
+- `--fail-under N` sets your own threshold and overrides the config value.
+- The CI output names the threshold and where it came from, e.g. `Passing: score 72 ≥ 80 (config)`.
 - `--skip-tests` speeds up the scan when your pipeline runs tests separately.
 
 ## GitHub Actions
