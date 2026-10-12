@@ -903,33 +903,50 @@ function relatedStandardsFor(standard) {
   return [...direct.values()].slice(0, 8);
 }
 
-function generatedRelatedSection(standard) {
+function generatedRelatedSection(standard, edition = null) {
   const registryEntry = registryById.get(standard.id);
   const latest = registryEntry?.editions?.find((edition) => edition.status === 'latest');
+  const current = edition ?? latest;
   const templates = compositions.referenceImplementations.filter((repo) => (repo.standards ?? []).includes(standard.id));
   const related = relatedStandardsFor(standard);
   const composed = [
     ...(standard.stackItems ?? []).map((id) => markdownEntityLink(id)),
     ...(standard.optionalStackItems ?? []).map((id) => `${markdownEntityLink(id)} (optional)`)
   ].join(', ');
-  const lifecycle = latest?.lifecycle;
+  const lifecycle = current?.lifecycle;
   const lifecycleText = lifecycle
-    ? `Edition lifecycle: ${lifecycle.deprecated ? 'deprecated' : 'active'}${lifecycle.supersededBy ? `, superseded by ${lifecycle.supersededBy}` : ''}. Errata: ${lifecycle.errata.length ? lifecycle.errata.join('; ') : 'none'}.`
+    ? `This edition lifecycle: ${lifecycle.deprecated ? 'deprecated' : 'active'}${lifecycle.supersededBy ? `, superseded by ${lifecycle.supersededBy}` : ''}. Errata: ${lifecycle.errata.length ? lifecycle.errata.join('; ') : 'none'}.`
     : 'Edition lifecycle metadata is unavailable.';
+  const pinnedUrl = current
+    ? `https://vibecodeqa.online/standards/${standard.id}/${current.version}/`
+    : (registryEntry?.standardUrl ?? standard.standardUrl);
 
   return `
 ## Related Standards
 
 Reports and scans should cite this pinned edition URL:
-<${registryEntry?.standardUrl ?? standard.standardUrl}>
+<${pinnedUrl}>
 
 - Catalog page: ${standard.docsUrl ? mdLink(standard.docsUrl, normalizeStandardUrl(standard.docsUrl)) : 'none'}
+- Edition on this page: \`${current?.version ?? standard.latestEdition}\`
 - Latest edition: \`${standard.latestEdition}\`
 - ${lifecycleText}
 - Composes: ${composed || 'metadata-only'}
 - Reference implementations: ${templates.length ? templates.map((repo) => mdLink(repo.id, repo.url)).join(', ') : 'none yet'}
 - Related standards: ${related.length ? related.map((entry) => entry.standardUrl ? mdLink(entry.id, normalizeStandardUrl(entry.standardUrl)) : (entry.docsUrl ? mdLink(entry.id, normalizeStandardUrl(entry.docsUrl)) : `\`${entry.id}\``)).join(', ') : 'none'}
 `;
+}
+
+function editionPagesWithRelatedSections() {
+  return compositions.composedStandards
+    .filter((standard) => isComposedAuthored(standard) && !isAliasOnly(standard))
+    .flatMap((standard) => {
+      const registryEntry = registryById.get(standard.id);
+      return (registryEntry?.editions ?? []).flatMap((edition) => {
+        const path = `standards/${standard.id}/docs/${edition.version}/index.md`;
+        return existsSync(join(root, path)) ? [{ standard, edition, path }] : [];
+      });
+    });
 }
 
 // Charter pages that carry a generated reference-evidence block: every stack page whose
@@ -994,9 +1011,8 @@ const changed = [
   replaceGeneratedBlock('standards/index.html', 'published-rubrics', generatedHtmlPublishedRubrics()),
   replaceGeneratedBlock('standards/index.html', 'reference-implementations', generatedHtmlReferenceRepos()),
   replaceGeneratedBlock('standards/index.html', 'next-standards', generatedHtmlNextStandards()),
-  ...compositions.composedStandards
-    .filter((standard) => isComposedAuthored(standard) && !isAliasOnly(standard))
-    .map((standard) => replaceGeneratedBlock(`standards/${standard.id}/docs/v1/index.md`, 'related-standards', generatedRelatedSection(standard)))
+  ...editionPagesWithRelatedSections()
+    .map(({ standard, edition, path }) => replaceGeneratedBlock(path, 'related-standards', generatedRelatedSection(standard, edition)))
 ].filter(Boolean);
 
 if (checkOnly && changed.length) {

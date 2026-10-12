@@ -6,7 +6,7 @@ Durable Objects, KV, R2, D1, or upstream APIs behind tool calls.
 
 Published by VibeCode QA at:
 
-<https://vibecodeqa.online/standards/cloudflare-worker-mcp-server/v1/>
+<https://vibecodeqa.online/standards/cloudflare-worker-mcp-server/v2/>
 
 ## What this is
 
@@ -26,6 +26,7 @@ This standard composes:
 
 | Edition | Targets | Reviewed | Next review due | Status |
 | --- | --- | --- | --- | --- |
-| `v1` | Cloudflare Workers + remote MCP + TypeScript + Zod | 2026-07 | 2027-07 | latest |
+| `v2` | Cloudflare Workers + stateless MCP 2026-07-28 + TypeScript + Zod | 2026-08 | 2027-08 | latest |
+| `v1` | Cloudflare Workers + remote MCP 2025-11-25 + TypeScript + Zod | 2026-07 | 2027-07 | retired; superseded by v2 |
 
-`cloudflare-worker-mcp-server@v1` is the stable pin for this edition.
+`cloudflare-worker-mcp-server@v2` is the stable pin for the current edition.

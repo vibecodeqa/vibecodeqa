@@ -12,6 +12,16 @@ site_dir = "site"
 
 nav = [
   { "Overview" = "index.md" },
+  { "Edition v2" = [
+    { "About this edition" = "v2/index.md" },
+    { "1 - Stateless protocol" = "v2/stateless-protocol.md" },
+    { "2 - Cloudflare Worker implementation" = "v2/cloudflare-worker.md" },
+    { "3 - Authorization and permissions" = "v2/authorization-and-permissions.md" },
+    { "4 - Tool schemas and validation" = "v2/tool-schemas-and-validation.md" },
+    { "5 - State storage and audit" = "v2/state-storage-and-audit.md" },
+    { "6 - Output safety and observability" = "v2/output-safety-and-observability.md" },
+    { "7 - Deployment evidence" = "v2/deployment-evidence.md" }
+  ] },
   { "Edition v1" = [
     { "About this edition" = "v1/index.md" },
     { "1 - Project shape" = "v1/project-shape.md" },
@@ -68,4 +78,3 @@ pygments_lang_class = true
 [project.markdown_extensions.pymdownx.superfences]
 [project.markdown_extensions.pymdownx.tasklist]
 custom_checkbox = true
-

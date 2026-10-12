@@ -360,7 +360,7 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
     <div class="links"><a href="/docs/standards/stacks/cloudflare-d1-app/">catalog</a><a href="/standards/cloudflare-d1-app/v1/">rubric</a></div>
   </div>
   <div class="standard-card authored">
-    <div class="title"><strong><a href="/docs/standards/stacks/cloudflare-worker-mcp-server/">cloudflare-worker-mcp-server</a></strong><span class="status">authored v1</span></div>
+    <div class="title"><strong><a href="/docs/standards/stacks/cloudflare-worker-mcp-server/">cloudflare-worker-mcp-server</a></strong><span class="status">authored v2</span></div>
     <div class="kind">A remote MCP server hosted on Cloudflare Workers, with Worker-bound authorization, tool schemas, validation, storage boundaries, and auditability.</div>
     <div class="chips">
       <a class="chip item" href="/docs/standards/items/cloudflare-workers/">cloudflare-workers</a>
@@ -371,7 +371,7 @@ body[data-md-color-scheme="slate"] .vcqa-graph a {
       <a class="chip item" href="/docs/standards/items/web-security/">web-security</a>
       <a class="chip item" href="/docs/standards/items/github-actions/">github-actions</a>
     </div>
-    <div class="links"><a href="/docs/standards/stacks/cloudflare-worker-mcp-server/">catalog</a><a href="/standards/cloudflare-worker-mcp-server/v1/">rubric</a></div>
+    <div class="links"><a href="/docs/standards/stacks/cloudflare-worker-mcp-server/">catalog</a><a href="/standards/cloudflare-worker-mcp-server/v2/">rubric</a></div>
   </div>
   <div class="standard-card authored">
     <div class="title"><strong><a href="/docs/standards/stacks/tenant-deployed-cloudflare-saas/">tenant-deployed-cloudflare-saas</a></strong><span class="status">authored v1</span></div>

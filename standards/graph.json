@@ -97,8 +97,8 @@
       "status": "authored",
       "maturity": "authored-rubric",
       "docsUrl": "/docs/standards/stacks/cloudflare-worker-mcp-server/",
-      "standardUrl": "/standards/cloudflare-worker-mcp-server/v1/",
-      "latestEdition": "v1",
+      "standardUrl": "/standards/cloudflare-worker-mcp-server/v2/",
+      "latestEdition": "v2",
       "stackItems": [
         "cloudflare-workers",
         "durable-objects",
@@ -111,11 +111,11 @@
       "optionalStackItems": [],
       "aliases": [],
       "ownedRules": [
-        "remote MCP authorization",
-        "tool schema and permission boundaries",
-        "Durable Object/KV storage policy",
-        "per-environment OAuth isolation",
-        "tool audit trail"
+        "stateless MCP 2026-07-28 protocol and Streamable HTTP header evidence",
+        "Cloudflare createMcpHandler implementation and legacy McpAgent migration policy",
+        "remote MCP authorization, protected resource metadata, and tool-level permissions",
+        "tool schema, validation, cacheability, state, audit, output safety, and abuse controls",
+        "deployment evidence for protocol, auth, validation, compatibility, and retained smoke transcripts"
       ]
     },
     {
@@ -632,6 +632,9 @@
       "docsUrl": "/docs/standards/items/mcp/",
       "references": [
         "mcp-spec",
+        "mcp-versioning",
+        "mcp-streamable-http-2026-07-28",
+        "mcp-server-discover",
         "mcp-authorization",
         "mcp-security",
         "mcp-typescript-sdk"

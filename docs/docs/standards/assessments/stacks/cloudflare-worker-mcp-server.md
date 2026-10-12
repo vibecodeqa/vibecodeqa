@@ -80,3 +80,12 @@ Total: **86/100**
 - Add an evidence freshness block near the reference implementation section.
 - Add an exception template for legacy SSE compatibility, non-OAuth internal
   service-token deployments, and no-state Workers.
+
+## Remediation note
+
+On 2026-08-15, issue #55 added
+[Cloudflare Worker MCP Server v2](/standards/cloudflare-worker-mcp-server/v2/) for MCP
+`2026-07-28`. The new edition adds a severity/evidence defaults table, per-rule
+severity/evidence/exception language, stateless `server/discover` and Streamable HTTP header
+rules, and explicit abuse-control rules. The reference repo score remains self-reported
+until a separate independent assessment of that repo is published.

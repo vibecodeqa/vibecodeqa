@@ -162,7 +162,7 @@
       "type": "archetype",
       "title": "Cloudflare Worker MCP Server",
       "summary": "A remote MCP server hosted on Cloudflare Workers, with Worker-bound authorization, tool schemas, validation, storage boundaries, and auditability.",
-      "url": "https://vibecodeqa.online/standards/cloudflare-worker-mcp-server/v1/",
+      "url": "https://vibecodeqa.online/standards/cloudflare-worker-mcp-server/v2/",
       "repo": "vibecodeqa/vibecodeqa",
       "appliesTo": "slice",
       "status": "published",
@@ -210,7 +210,7 @@
         {
           "version": "v1",
           "path": "/v1",
-          "status": "latest",
+          "status": "retired",
           "reviewed": "2026-07",
           "nextReview": "2027-07",
           "targets": {
@@ -219,15 +219,38 @@
             "typescript": "6"
           },
           "lifecycle": {
+            "deprecated": true,
+            "supersededBy": "v2",
+            "errata": [],
+            "changelog": [
+              "Superseded by v2 for MCP 2026-07-28 stateless Streamable HTTP and Cloudflare createMcpHandler guidance."
+            ]
+          }
+        },
+        {
+          "version": "v2",
+          "path": "/v2",
+          "status": "latest",
+          "reviewed": "2026-08",
+          "nextReview": "2027-08",
+          "targets": {
+            "cloudflareWorkers": "latest",
+            "cloudflareAgentsMcp": "createMcpHandler",
+            "mcp": "2026-07-28",
+            "typescript": "6"
+          },
+          "lifecycle": {
             "deprecated": false,
             "supersededBy": null,
             "errata": [],
-            "changelog": []
+            "changelog": [
+              "Cuts a current stateless MCP 2026-07-28 edition with server/discover, mirrored Streamable HTTP headers, cacheable list/read results, compatibility lanes, abuse controls, and rule-contract severity/evidence language."
+            ]
           }
         }
       ],
       "aliases": [],
-      "standardUrl": "https://vibecodeqa.online/standards/cloudflare-worker-mcp-server/v1/",
+      "standardUrl": "https://vibecodeqa.online/standards/cloudflare-worker-mcp-server/v2/",
       "docsUrl": "/docs/standards/stacks/cloudflare-worker-mcp-server/"
     },
     {

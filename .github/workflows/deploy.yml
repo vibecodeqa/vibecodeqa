@@ -65,21 +65,17 @@ jobs:
             [ -d "$d/site" ] && cp -r "$d/site" "_site/standards/$name"
           done
           {
-            echo "# Authored standards use /v1/ as canonical. /latest is an alias only."
-            for d in standards/*/; do
-              name=$(basename "$d")
-              if [ -d "_site/standards/$name/v1" ]; then
-                echo "/standards/$name/latest/* /standards/$name/v1/:splat 302"
-                echo "/standards/$name/latest /standards/$name/v1/ 302"
-                echo "/standards/$name/ /standards/$name/v1/ 302"
-                echo "/standards/$name /standards/$name/v1/ 302"
-              fi
-            done
+            echo "# Authored standards use versioned canonical URLs. /latest is an alias only."
             node <<'NODE'
           const fs = require("node:fs");
           const registry = JSON.parse(fs.readFileSync("standards/registry.json", "utf8"));
           for (const standard of registry.standards) {
-            if (fs.existsSync(`_site/standards/${standard.id}/v1`)) {
+            const latest = (standard.editions || []).find((edition) => edition.status === "latest");
+            if (latest && fs.existsSync(`_site/standards/${standard.id}/${latest.version}`)) {
+              console.log(`/standards/${standard.id}/latest/* /standards/${standard.id}/${latest.version}/:splat 302`);
+              console.log(`/standards/${standard.id}/latest /standards/${standard.id}/${latest.version}/ 302`);
+              console.log(`/standards/${standard.id}/ /standards/${standard.id}/${latest.version}/ 302`);
+              console.log(`/standards/${standard.id} /standards/${standard.id}/${latest.version}/ 302`);
               continue;
             }
 
