@@ -69,11 +69,12 @@ Reports and scans should cite this pinned edition URL:
 <https://vibecodeqa.online/standards/cloudflare-pages-fullstack/v1/>
 
 - Catalog page: [/docs/standards/stacks/cloudflare-pages-fullstack/](/docs/standards/stacks/cloudflare-pages-fullstack/)
+- Edition on this page: `v1`
 - Latest edition: `v1`
-- Edition lifecycle: active. Errata: none.
+- This edition lifecycle: active. Errata: none.
 - Composes: [react-spa](/docs/standards/stacks/react-spa/), [cloudflare-pages-functions](/docs/standards/items/cloudflare-pages-functions/), [typescript](/docs/standards/items/typescript/), [web-security](/docs/standards/items/web-security/), [github-actions](/docs/standards/items/github-actions/)
 - Reference implementations: [ref-cloudflare-saas](https://github.com/vibecodeqa/ref-cloudflare-saas), [ref-cloudflare-pages-fullstack](https://github.com/vibecodeqa/ref-cloudflare-pages-fullstack)
-- Related standards: [cloudflare-d1-app](/standards/cloudflare-d1-app/v1/), [tenant-deployed-cloudflare-saas](/standards/tenant-deployed-cloudflare-saas/v1/), [react-spa](/standards/react-spa/v1/), [cloudflare-worker-mcp-server](/standards/cloudflare-worker-mcp-server/v1/), [typescript](/standards/typescript/v1/), [node-cli-internal-tool](/docs/standards/stacks/node-cli-internal-tool/), [typescript-sdk](/docs/standards/stacks/typescript-sdk/), [github-action-package](/docs/standards/stacks/github-action-package/)
+- Related standards: [cloudflare-d1-app](/standards/cloudflare-d1-app/v1/), [tenant-deployed-cloudflare-saas](/standards/tenant-deployed-cloudflare-saas/v1/), [react-spa](/standards/react-spa/v1/), [cloudflare-worker-mcp-server](/standards/cloudflare-worker-mcp-server/v2/), [typescript](/standards/typescript/v1/), [node-cli-internal-tool](/docs/standards/stacks/node-cli-internal-tool/), [typescript-sdk](/docs/standards/stacks/typescript-sdk/), [github-action-package](/docs/standards/stacks/github-action-package/)
 <!-- END GENERATED:related-standards -->
 
 ## Reference baseline

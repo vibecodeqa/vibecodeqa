@@ -4,7 +4,7 @@ This is the reference standard for one deployable stack shape: a remote Model Co
 Protocol server hosted on Cloudflare Workers.
 
 Canonical version URL:
-<https://vibecodeqa.online/standards/cloudflare-worker-mcp-server/v1/>
+<https://vibecodeqa.online/standards/cloudflare-worker-mcp-server/v2/>
 
 It exists because none of the upstream sources own the combined seam. MCP defines the
 protocol, authorization model, and tool contracts. Cloudflare defines the Worker runtime,
@@ -31,7 +31,8 @@ Functions and a static frontend are co-deployed, use
 
 | Edition | Targets | Reviewed | Next review due | Status |
 | --- | --- | --- | --- | --- |
-| [v1](v1/index.md) | Cloudflare Workers + remote MCP + TypeScript + Zod | 2026-07 | 2027-07 | latest |
+| [v2](v2/index.md) | Cloudflare Workers + stateless MCP 2026-07-28 + TypeScript + Zod | 2026-08 | 2027-08 | latest |
+| [v1](v1/index.md) | Cloudflare Workers + remote MCP 2025-11-25 + TypeScript + Zod | 2026-07 | 2027-07 | retired; superseded by v2 |
 
 ## What this standard owns
 

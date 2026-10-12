@@ -31,7 +31,7 @@ The example app is **partially covered** today.
 | `app` | React SPA with Vite, TypeScript, React Router, Vitest, Playwright | Covered by [React SPA v1](/standards/react-spa/v1/), [Security v1](/standards/security/v1/), [Testing v1](/standards/testing/v1/), and [TypeScript v1](/standards/typescript/v1/) | Shared cross-cutting standards for accessibility and dependency policy |
 | `app/functions` | Cloudflare Pages Functions API deployed with the SPA | Covered by [Cloudflare Pages Fullstack v1](/standards/cloudflare-pages-fullstack/v1/), [Cloudflare D1 App v1](/standards/cloudflare-d1-app/v1/), [Security v1](/standards/security/v1/), [Testing v1](/standards/testing/v1/), and [TypeScript v1](/standards/typescript/v1/) | Shared cross-cutting dependency policy |
 | repo tenant deployment | Tenant deployment scripts and per-environment Cloudflare resources | Covered by [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/), [Security v1](/standards/security/v1/), and [Testing v1](/standards/testing/v1/) | Dependency and docs drift checks |
-| `packages/mcp-worker` | Cloudflare Worker remote MCP server with Zod and OAuth-related dependencies | Covered by [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/), [Security v1](/standards/security/v1/), [Testing v1](/standards/testing/v1/), and [TypeScript v1](/standards/typescript/v1/) | Shared cross-cutting dependency policy |
+| `packages/mcp-worker` | Cloudflare Worker remote MCP server with Zod and OAuth-related dependencies | Covered by [Cloudflare Worker MCP Server v2](/standards/cloudflare-worker-mcp-server/v2/), [Security v1](/standards/security/v1/), [Testing v1](/standards/testing/v1/), and [TypeScript v1](/standards/typescript/v1/) | Shared cross-cutting dependency policy |
 | `packages/cli` | Node command-line client using the SDK | Planned | [Node CLI Internal Tool](../stacks/node-cli-internal-tool.md) |
 | `packages/sdk` | Private TypeScript SDK package | Planned | [TypeScript SDK](../stacks/typescript-sdk.md) |
 | `packages/mcp` | Generated or build-output MCP artifact without a package manifest | No standard matched | Decide whether this should be generated output, a package, or removed from resolver scope |
@@ -124,7 +124,7 @@ This standard is now judgeable. It covers:
 
 ### Worker MCP standard
 
-Use [Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/) for
+Use [Cloudflare Worker MCP Server v2](/standards/cloudflare-worker-mcp-server/v2/) for
 the Worker-hosted MCP server. This standard is now judgeable. It covers:
 
 - remote MCP boundary authorization

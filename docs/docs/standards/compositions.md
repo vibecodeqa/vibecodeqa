@@ -17,7 +17,7 @@ map.
 | [React SPA](stacks/react-spa.md) | authored | Authored rubric | [v1](/standards/react-spa/v1/) | `react`, `react-router`, `vite`, `typescript`, `web-accessibility`, `web-security`, `vitest`, `playwright` |
 | [Cloudflare Pages Fullstack](stacks/cloudflare-pages-fullstack.md) | authored | Authored rubric | [v1](/standards/cloudflare-pages-fullstack/v1/) | `react-spa`, `cloudflare-pages-functions`, `typescript`, `web-security`, `github-actions` |
 | [Cloudflare D1 App](stacks/cloudflare-d1-app.md) | authored | Authored rubric | [v1](/standards/cloudflare-d1-app/v1/) | `cloudflare-d1`, `cloudflare-pages-functions`, `cloudflare-workers`, `typescript`, `web-security`, `github-actions` |
-| [Cloudflare Worker MCP Server](stacks/cloudflare-worker-mcp-server.md) | authored | Authored rubric | [v1](/standards/cloudflare-worker-mcp-server/v1/) | `cloudflare-workers`, `durable-objects`, `mcp`, `zod`, `typescript`, `web-security`, `github-actions` |
+| [Cloudflare Worker MCP Server](stacks/cloudflare-worker-mcp-server.md) | authored | Authored rubric | [v2](/standards/cloudflare-worker-mcp-server/v2/) | `cloudflare-workers`, `durable-objects`, `mcp`, `zod`, `typescript`, `web-security`, `github-actions` |
 | [Tenant-Deployed Cloudflare SaaS](stacks/tenant-deployed-cloudflare-saas.md) | authored | Authored rubric | [v1](/standards/tenant-deployed-cloudflare-saas/v1/) | `cloudflare-workers`, `github-actions`, `web-security`, `docs-kb` |
 | [Security](items/web-security.md) | authored | Authored rubric | [v1](/standards/security/v1/) | `web-security`, `github-actions`, `cloudflare-workers`, `mcp`, `docs-kb` |
 | [Testing](items/vitest.md) | authored | Authored rubric | [v1](/standards/testing/v1/) | `vitest`, `playwright`, `github-actions` |
@@ -88,13 +88,14 @@ owns migration discipline, drift checks, local apply tests, environment/tenant D
 isolation, query safety, and deployment gates.
 
 [Cloudflare Worker MCP Server](stacks/cloudflare-worker-mcp-server.md) is authored as
-[Cloudflare Worker MCP Server v1](/standards/cloudflare-worker-mcp-server/v1/). It composes
+[Cloudflare Worker MCP Server v2](/standards/cloudflare-worker-mcp-server/v2/). It composes
   [Cloudflare Workers](items/cloudflare-workers.md),
   [Durable Objects](items/durable-objects.md), [MCP](items/mcp.md), [Zod](items/zod.md),
   [TypeScript](items/typescript.md), [Web Security](items/web-security.md), and
 [GitHub Actions](items/github-actions.md). It owns remote MCP authorization, tool schemas,
 permission boundaries, storage policy, environment isolation, audit trail, and output
-safety.
+safety. The current edition targets MCP `2026-07-28`; v1 remains available only for legacy
+`2025-11-25` / `2025-03-26` deployments.
 
 [Tenant-Deployed Cloudflare SaaS](stacks/tenant-deployed-cloudflare-saas.md) is authored
 as [Tenant-Deployed Cloudflare SaaS v1](/standards/tenant-deployed-cloudflare-saas/v1/).

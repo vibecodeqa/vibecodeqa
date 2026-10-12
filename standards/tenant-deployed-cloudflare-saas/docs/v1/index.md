@@ -51,11 +51,12 @@ Reports and scans should cite this pinned edition URL:
 <https://vibecodeqa.online/standards/tenant-deployed-cloudflare-saas/v1/>
 
 - Catalog page: [/docs/standards/stacks/tenant-deployed-cloudflare-saas/](/docs/standards/stacks/tenant-deployed-cloudflare-saas/)
+- Edition on this page: `v1`
 - Latest edition: `v1`
-- Edition lifecycle: active. Errata: none.
+- This edition lifecycle: active. Errata: none.
 - Composes: [cloudflare-workers](/docs/standards/items/cloudflare-workers/), [github-actions](/docs/standards/items/github-actions/), [web-security](/docs/standards/items/web-security/), [docs-kb](/docs/standards/items/docs-kb/), [cloudflare-pages-functions](/docs/standards/items/cloudflare-pages-functions/) (optional), [cloudflare-d1](/docs/standards/items/cloudflare-d1/) (optional)
 - Reference implementations: [ref-cloudflare-saas](https://github.com/vibecodeqa/ref-cloudflare-saas)
-- Related standards: [cloudflare-d1-app](/standards/cloudflare-d1-app/v1/), [cloudflare-worker-mcp-server](/standards/cloudflare-worker-mcp-server/v1/), [security](/standards/security/v1/), [cloudflare-pages-fullstack](/standards/cloudflare-pages-fullstack/v1/), [testing](/standards/testing/v1/), [typescript](/standards/typescript/v1/), [github-action-package](/docs/standards/stacks/github-action-package/), [zensical-kb-site](/docs/standards/stacks/zensical-kb-site/)
+- Related standards: [cloudflare-d1-app](/standards/cloudflare-d1-app/v1/), [cloudflare-worker-mcp-server](/standards/cloudflare-worker-mcp-server/v2/), [security](/standards/security/v1/), [cloudflare-pages-fullstack](/standards/cloudflare-pages-fullstack/v1/), [testing](/standards/testing/v1/), [typescript](/standards/typescript/v1/), [github-action-package](/docs/standards/stacks/github-action-package/), [zensical-kb-site](/docs/standards/stacks/zensical-kb-site/)
 <!-- END GENERATED:related-standards -->
 
 ## Reference baseline

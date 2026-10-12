@@ -110,7 +110,7 @@ for (const standard of registry.standards) {
   if ((standard.aliases || []).includes(standard.id)) fail(`${standard.id}: aliases must not include canonical id`);
   for (const alias of standard.aliases || []) requireId(alias, `${standard.id}.aliases`);
   if (standard.status === 'published') {
-    if (!standard.standardUrl || !standard.standardUrl.endsWith('/v1/')) {
+    if (!standard.standardUrl || !/\/v\d+\/$/.test(standard.standardUrl)) {
       fail(`${standard.id}: published standard must have a versioned standardUrl`);
     }
     const latest = (standard.editions || []).filter((edition) => edition.status === 'latest');

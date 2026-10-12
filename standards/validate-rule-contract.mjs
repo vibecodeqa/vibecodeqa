@@ -58,7 +58,6 @@ const exemplarRulePages = [
 // default and must not be added to this set to make CI green.
 const pendingRuleContract = new Map([
   ['react-spa', 'no severity or exception information on any of its 12 rule pages'],
-  ['cloudflare-worker-mcp-server', 'two rule pages carry severity; the index has no defaults table'],
   ['cloudflare-d1-app', 'no severity or exception information on any of its 6 rule pages'],
   ['security', 'no severity or exception information on any of its 7 rule pages'],
   ['typescript', 'no severity or exception information on any of its 9 rule pages'],

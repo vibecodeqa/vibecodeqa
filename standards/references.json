@@ -973,6 +973,66 @@
           ]
         },
         {
+          "id": "cloudflare-agents-mcp-transport",
+          "title": "MCP Transport",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/agents/model-context-protocol/protocol/transport/",
+          "versionPolicy": "Tracks Cloudflare's current Agents MCP transport guidance; reviewed for createMcpHandler and stateless Streamable HTTP on 2026-08-15.",
+          "appliesTo": [
+            "cloudflare-worker-mcp-server"
+          ],
+          "useFor": [
+            "createMcpHandler",
+            "stateless Streamable HTTP",
+            "remote MCP route examples"
+          ],
+          "topics": [
+            "mcp-worker",
+            "agents",
+            "streamable-http"
+          ]
+        },
+        {
+          "id": "cloudflare-agents-mcp-agent-api",
+          "title": "McpAgent API",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/agents/model-context-protocol/apis/agent-api/",
+          "versionPolicy": "Tracks Cloudflare's current deprecation notice for McpAgent; reviewed on 2026-08-15.",
+          "appliesTo": [
+            "cloudflare-worker-mcp-server"
+          ],
+          "useFor": [
+            "legacy McpAgent boundaries",
+            "stateful compatibility lane policy",
+            "SDK v1 versus SDK v2 migration"
+          ],
+          "topics": [
+            "mcp-worker",
+            "agents",
+            "legacy-mcp"
+          ]
+        },
+        {
+          "id": "cloudflare-agents-mcp-sdk-v2-migration",
+          "title": "Migrate to MCP SDK v2",
+          "publisher": "Cloudflare",
+          "url": "https://developers.cloudflare.com/agents/model-context-protocol/guides/migrate-to-mcp-sdk-v2/",
+          "versionPolicy": "Tracks Cloudflare's current MCP SDK v2 migration guidance; reviewed on 2026-08-15.",
+          "appliesTo": [
+            "cloudflare-worker-mcp-server"
+          ],
+          "useFor": [
+            "dual-era migration",
+            "legacy route drain evidence",
+            "createMcpHandler migration"
+          ],
+          "topics": [
+            "mcp-worker",
+            "agents",
+            "sdk-v2"
+          ]
+        },
+        {
           "id": "cloudflare-workers-github-actions",
           "title": "Workers CI/CD with GitHub Actions",
           "publisher": "Cloudflare",
@@ -1093,8 +1153,10 @@
           "id": "mcp-spec",
           "title": "Model Context Protocol Specification",
           "publisher": "Model Context Protocol",
-          "url": "https://modelcontextprotocol.io/specification/2025-11-25",
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28",
+          "versionPolicy": "Pinned to MCP protocol revision 2026-07-28 for current stateless remote MCP standards.",
           "appliesTo": [
+            "mcp",
             "mcp-server"
           ],
           "useFor": [
@@ -1113,9 +1175,11 @@
           "id": "mcp-authorization",
           "title": "MCP Authorization",
           "publisher": "Model Context Protocol",
-          "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization",
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/authorization/authorization-server-discovery",
+          "versionPolicy": "Pinned to MCP protocol revision 2026-07-28 authorization server discovery.",
           "appliesTo": [
             "cloudflare-worker-mcp-server",
+            "mcp",
             "mcp-server"
           ],
           "useFor": [
@@ -1126,6 +1190,74 @@
           "topics": [
             "remote-mcp",
             "oauth"
+          ]
+        },
+        {
+          "id": "mcp-versioning",
+          "title": "MCP Versioning and Compatibility",
+          "publisher": "Model Context Protocol",
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/versioning",
+          "versionPolicy": "Pinned to MCP protocol revision 2026-07-28.",
+          "appliesTo": [
+            "cloudflare-worker-mcp-server",
+            "mcp",
+            "mcp-server"
+          ],
+          "useFor": [
+            "stateless protocol version declaration",
+            "server/discover requirements",
+            "legacy compatibility lanes"
+          ],
+          "topics": [
+            "remote-mcp",
+            "protocol-versioning",
+            "compatibility"
+          ]
+        },
+        {
+          "id": "mcp-streamable-http-2026-07-28",
+          "title": "MCP Streamable HTTP",
+          "publisher": "Model Context Protocol",
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/streamable-http",
+          "versionPolicy": "Pinned to MCP protocol revision 2026-07-28.",
+          "appliesTo": [
+            "cloudflare-worker-mcp-server",
+            "mcp",
+            "mcp-server"
+          ],
+          "useFor": [
+            "Streamable HTTP routing",
+            "MCP-Protocol-Version header",
+            "Mcp-Method and Mcp-Name mirrored headers",
+            "header-body validation"
+          ],
+          "topics": [
+            "remote-mcp",
+            "streamable-http",
+            "headers"
+          ]
+        },
+        {
+          "id": "mcp-server-discover",
+          "title": "MCP Server Discovery",
+          "publisher": "Model Context Protocol",
+          "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/discover",
+          "versionPolicy": "Pinned to MCP protocol revision 2026-07-28.",
+          "appliesTo": [
+            "cloudflare-worker-mcp-server",
+            "mcp",
+            "mcp-server"
+          ],
+          "useFor": [
+            "server/discover",
+            "supported protocol versions",
+            "capability discovery",
+            "cacheable discovery results"
+          ],
+          "topics": [
+            "remote-mcp",
+            "discovery",
+            "capabilities"
           ]
         },
         {
